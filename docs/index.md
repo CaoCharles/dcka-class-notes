@@ -42,51 +42,45 @@ graph LR
 
 ## 課程大綱
 
-### 第 1 章：Docker Container & Micro Service Introduction
+### 1. Docker 基礎與管理 (LAB 01-08)
 
-- 容器化的好處
-- Docker 架構
-- Docker 基本架構
-- Docker 與 Podman 比較
+- 環境初始化與基本操作
+- Docker 安裝 (Docker/Podman)
+- Private Registry 建置
+- Persistent Storage 與 WordPress 實作
 
-[:octicons-arrow-right-24: 開始學習](01_docker_intro.md)
-
----
-
-### 第 2 章：Docker 容器化管理
-
-- Public Registry 與 Private Registry
-- Docker 基本操作
-- Persistent Storage（持久化儲存）
-- Docker Network（網路）
-- 實作：使用 Docker 架設 WordPress + MySQL
-
-[:octicons-arrow-right-24: 開始學習](02_docker_management.md)
+[:octicons-arrow-right-24: 開始學習](lab01_environment_setup.md)
 
 ---
 
-### 第 3 章：客製化 Docker Images
+### 2. Docker 進階應用 (LAB 09-10)
 
-- Docker commit
-- Dockerfile 撰寫
-- Source-to-Image 簡介
+- 客製化 Docker Images (commit & Dockerfile)
+- Dockerfile 指令與最佳實踐
 
-[:octicons-arrow-right-24: 開始學習](03_docker_images.md)
+[:octicons-arrow-right-24: 開始學習](lab09_commit.md)
 
 ---
 
-### 第 4 章：Kubernetes Management
+### 3. Kubernetes 基礎 (LAB 11-15)
 
-- Kubernetes 與 OpenShift/OKD
-- Kubernetes 架構與安裝
-- YAML 與 JSON 設定檔
-- Kubernetes 資源類型與管理
-- 部署策略：RollingUpdate、Recreate、Canary、Blue/Green
-- Persistent Volumes、ConfigMaps、Secrets
-- RBAC 權限控制
-- 實作：使用 Kubernetes 架設 WordPress + MySQL
+- Kubernetes 安裝 (Standalone & Cluster)
+- 常用指令與 Namespaces
+- Rolling Update 與 Service 負載均衡
 
-[:octicons-arrow-right-24: 開始學習](04_kubernetes.md)
+[:octicons-arrow-right-24: 開始學習](lab11_standalone_k8s.md)
+
+---
+
+### 4. Kubernetes 進階管理 (LAB 16-20)
+
+- 儲存管理 (PV/PVC)
+- 設定管理 (Secret/ConfigMap)
+- 權限控制 (RBAC)
+- 實作：WordPress + MySQL 完整部署
+- Kubernetes Dashboard
+
+[:octicons-arrow-right-24: 開始學習](lab16_pv_pvc.md)
 
 ---
 
