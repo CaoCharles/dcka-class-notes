@@ -1,20 +1,27 @@
-site_name: Docker Containers 與 Kubernetes 系統管理
-site_description: DCKA 課程學習筆記
+site_name: DCKA 學習筆記
+site_description: Docker Containers 與 Kubernetes 系統管理課程
 site_author: Charles Cao
+site_url: https://caocharles.github.io/dcka-class-notes/
+repo_name: CaoCharles/dcka-class-notes
+repo_url: https://github.com/CaoCharles/dcka-class-notes
 
 theme:
   name: material
   language: zh-TW
+  icon:
+    logo: material/docker
+    repo: fontawesome/brands/github
+  favicon: assets/images/favicon.png
   palette:
     - scheme: default
-      primary: indigo
-      accent: indigo
+      primary: deep purple
+      accent: purple
       toggle:
         icon: material/brightness-7
         name: 切換至深色模式
     - scheme: slate
-      primary: indigo
-      accent: indigo
+      primary: deep purple
+      accent: purple
       toggle:
         icon: material/brightness-4
         name: 切換至淺色模式
