@@ -259,4 +259,4 @@ graph TB
 
 ## 下一步
 
-環境準備完成後，請繼續前往 [第 1 章：Docker Container & Micro Service Introduction](01_docker_intro.md)
+環境準備完成後，請繼續前往 [LAB 02 安裝 DOCKER/DOCKER-CE](lab02_docker_install.md)
