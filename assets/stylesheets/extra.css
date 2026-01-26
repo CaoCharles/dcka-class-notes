@@ -1,171 +1,84 @@
-/* DCKA Course Custom Styles - Tech Purple Gradient Theme */
+/* DCKA Course Custom Styles - Modern Dark Theme */
 
 :root {
-  /* 科技紫色漸層配色 */
-  --tech-purple-1: #667eea;
-  --tech-purple-2: #764ba2;
-  --tech-purple-3: #6B73FF;
-  --tech-purple-4: #9b59b6;
-  --gradient-purple: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --gradient-purple-soft: linear-gradient(135deg, #a855f7 0%, #6366f1 100%);
+  --primary-dark: #1e1e2e;
+  --primary-medium: #2d2d3f;
+  --accent-purple: #a78bfa;
+  --accent-light: #c4b5fd;
 }
 
-/* Header 漸層背景 */
+/* Header 深色統一 */
 .md-header {
-  background: var(--gradient-purple) !important;
+  background-color: var(--primary-dark) !important;
 }
 
-/* 深色模式 Header */
-[data-md-color-scheme="slate"] .md-header {
-  background: linear-gradient(135deg, #4c1d95 0%, #5b21b6 50%, #7c3aed 100%) !important;
-}
-
-/* Tabs 漸層背景 */
+/* Tabs 同色系 */
 .md-tabs {
-  background: linear-gradient(135deg, #764ba2 0%, #5b21b6 100%) !important;
+  background-color: var(--primary-medium) !important;
+}
+
+/* Tabs 連結顏色 */
+.md-tabs__link {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.md-tabs__link:hover,
+.md-tabs__link--active {
+  color: var(--accent-purple) !important;
+}
+
+/* 深色模式 */
+[data-md-color-scheme="slate"] .md-header {
+  background-color: #0f0f17 !important;
 }
 
 [data-md-color-scheme="slate"] .md-tabs {
-  background: linear-gradient(135deg, #3b0764 0%, #4c1d95 100%) !important;
+  background-color: #1a1a2e !important;
 }
 
-/* 標題樣式 */
-.md-typeset h1 {
-  background: var(--gradient-purple);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-weight: 700;
-}
-
-/* 深色模式標題 */
-[data-md-color-scheme="slate"] .md-typeset h1 {
-  background: linear-gradient(135deg, #c4b5fd 0%, #a78bfa 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* H2 底線紫色漸層 */
+/* H2 底線 */
 .md-typeset h2 {
-  border-bottom: 3px solid;
-  border-image: var(--gradient-purple) 1;
+  border-bottom: 2px solid var(--accent-purple);
   padding-bottom: 0.4em;
 }
 
-/* 連結 hover 效果 */
-.md-typeset a:hover {
-  color: var(--tech-purple-2);
-}
-
-/* 程式碼區塊標題 */
-.md-typeset .highlight>pre>code::before {
-  font-weight: 600;
-  color: var(--tech-purple-1);
-}
-
-/* 表格標題列 */
+/* 表格標題 */
 .md-typeset table:not([class]) th {
-  background: var(--gradient-purple) !important;
+  background-color: var(--primary-dark) !important;
   color: white !important;
 }
 
-/* 深色模式表格 */
-[data-md-color-scheme="slate"] .md-typeset table:not([class]) th {
-  background: linear-gradient(135deg, #5b21b6 0%, #7c3aed 100%) !important;
+/* 連結 hover */
+.md-typeset a:hover {
+  color: var(--accent-purple);
 }
 
-/* Admonition 紫色主題 */
-.md-typeset .admonition.note,
-.md-typeset details.note {
-  border-color: var(--tech-purple-1);
-}
-
-.md-typeset .admonition.note>.admonition-title,
-.md-typeset details.note>summary {
-  background-color: rgba(102, 126, 234, 0.1);
-}
-
-/* Checkbox 樣式 */
-.md-typeset .task-list-item input[type="checkbox"]:checked {
-  background-color: var(--tech-purple-2);
-  border-color: var(--tech-purple-2);
-}
-
-/* 搜尋框 focus 效果 */
-.md-search__input:focus {
-  border-color: var(--tech-purple-1);
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
-}
-
-/* 滾動條樣式 */
-::-webkit-scrollbar-thumb {
-  background: var(--gradient-purple);
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #5b21b6 0%, #7c3aed 100%);
-}
-
-/* 選取文字顏色 */
-::selection {
-  background: rgba(118, 75, 162, 0.3);
-}
-
-/* 導航選中項目 */
+/* 導航選中 */
 .md-nav__link--active {
-  color: var(--tech-purple-2) !important;
+  color: var(--accent-purple) !important;
   font-weight: 600;
 }
 
-/* 頁面底部 Footer */
+/* Footer 統一深色 */
 .md-footer {
-  background: var(--gradient-purple) !important;
+  background-color: var(--primary-dark) !important;
 }
 
-[data-md-color-scheme="slate"] .md-footer {
-  background: linear-gradient(135deg, #3b0764 0%, #5b21b6 100%) !important;
+/* Checkbox */
+.md-typeset .task-list-item input[type="checkbox"]:checked {
+  background-color: var(--accent-purple);
+  border-color: var(--accent-purple);
 }
 
-/* 程式碼複製按鈕 hover */
-.md-clipboard:hover {
-  color: var(--tech-purple-1);
-}
-
-/* TOC 目錄選中項目 */
-.md-nav__link:focus,
-.md-nav__link:hover {
-  color: var(--tech-purple-2);
-}
-
-/* 按鈕樣式 */
-.md-typeset .md-button {
-  background: var(--gradient-purple);
-  border: none;
-  color: white;
-}
-
-.md-typeset .md-button:hover {
-  background: linear-gradient(135deg, #5b21b6 0%, #7c3aed 100%);
-  box-shadow: 0 4px 15px rgba(118, 75, 162, 0.4);
-}
-
-/* 標籤頁選中狀態 */
-.md-typeset .tabbed-labels>label:hover,
+/* 標籤頁 */
 .md-typeset .tabbed-set>input:checked+label {
-  color: var(--tech-purple-2);
-  border-color: var(--tech-purple-2);
+  color: var(--accent-purple);
+  border-color: var(--accent-purple);
 }
 
-/* Mermaid 圖表置中 */
+/* Mermaid */
 .mermaid {
   text-align: center;
-}
-
-/* FAQ 可摺疊區塊 */
-.md-typeset details.question {
-  border-left: 4px solid var(--tech-purple-1);
 }
 
 /* 圖片圓角 */
@@ -173,19 +86,12 @@
   border-radius: 8px;
 }
 
-/* GitHub 連結圖示 */
-.md-header__source {
-  width: auto;
+/* FAQ */
+.md-typeset details.question {
+  border-left: 4px solid var(--accent-purple);
 }
 
-/* 首頁卡片效果（如果有的話） */
-.md-typeset .grid.cards>ul>li {
-  border: 1px solid rgba(118, 75, 162, 0.2);
-  transition: all 0.3s ease;
-}
-
-.md-typeset .grid.cards>ul>li:hover {
-  border-color: var(--tech-purple-1);
-  box-shadow: 0 8px 30px rgba(118, 75, 162, 0.2);
-  transform: translateY(-2px);
+/* 搜尋框 */
+.md-search__input {
+  background-color: rgba(255, 255, 255, 0.1) !important;
 }
