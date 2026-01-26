@@ -1,9 +1,0 @@
-/* Force logo to be black */
-.md-header__button.md-logo svg {
-  fill: #000000;
-}
-
-/* Also for the sidebar logo in mobile view */
-.md-nav__title .md-nav__button.md-logo svg {
-  fill: #000000;
-}
