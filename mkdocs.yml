@@ -8,8 +8,8 @@ repo_url: https://github.com/CaoCharles/dcka-class-notes
 theme:
   name: material
   language: zh-TW
+  logo: assets/images/favicon.png
   icon:
-    logo: assets/images/favicon.png
     repo: fontawesome/brands/github
   favicon: assets/images/favicon.png
   palette:
