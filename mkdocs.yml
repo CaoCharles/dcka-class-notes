@@ -1,0 +1,110 @@
+site_name: Docker Containers 與 Kubernetes 系統管理
+site_description: DCKA 課程學習筆記
+site_author: Charles Cao
+
+theme:
+  name: material
+  language: zh-TW
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: 切換至深色模式
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: 切換至淺色模式
+  font:
+    text: Noto Sans TC
+    code: JetBrains Mono
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.path
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.copy
+    - content.code.annotate
+
+plugins:
+  - search:
+      lang: zh
+  - glightbox:
+      touchNavigation: true
+      loop: false
+      effect: zoom
+      slide_effect: slide
+      width: 100%
+      height: auto
+      zoomable: true
+      draggable: true
+  - git-revision-date-localized:
+      enable_creation_date: true
+      type: datetime
+      timezone: Asia/Taipei
+      locale: zh
+      fallback_to_build_date: true
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+extra_css:
+  - assets/stylesheets/extra.css
+
+nav:
+  - 首頁: index.md
+  - 第 1 章 Docker 介紹: 01_docker_intro.md
+  - 第 2 章 Docker 容器化管理: 02_docker_management.md
+  - 第 3 章 客製化 Docker Images: 03_docker_images.md
+  - 第 4 章 Kubernetes 管理: 04_kubernetes.md
+  - 附錄:
+    - Docker 指令速查: appendix/docker_cheatsheet.md
+    - Kubernetes 指令速查: appendix/k8s_cheatsheet.md
+    - 疑難排解: appendix/troubleshooting.md

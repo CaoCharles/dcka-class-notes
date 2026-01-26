@@ -1,0 +1,113 @@
+site_name: Docker Containers 與 Kubernetes 系統管理
+site_description: 恆逸 DCKA 課程學習筆記 - 從入門到實戰的容器化技術指南
+site_author: Charles
+
+# Theme
+theme:
+  name: material
+  language: zh-TW
+  palette:
+    - scheme: default
+      primary: blue
+      accent: light blue
+      toggle:
+        icon: material/brightness-7
+        name: 切換至深色模式
+    - scheme: slate
+      primary: blue
+      accent: light blue
+      toggle:
+        icon: material/brightness-4
+        name: 切換至淺色模式
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.indexes
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+  icon:
+    repo: fontawesome/brands/docker
+
+# Navigation - 對應恆逸 DCKA 課程大綱
+nav:
+  - 首頁: index.md
+  - Docker 基礎:
+    - Ch1 - Docker 介紹: 01_docker_intro.md
+    - Ch2 - 容器化管理: 02_docker_management.md
+    - Ch3 - 客製化 Images: 03_docker_images.md
+  - Kubernetes:
+    - Ch4 - K8S 管理: 04_kubernetes.md
+  - 附錄:
+    - Docker 指令速查: appendix/docker_cheatsheet.md
+    - K8S 指令速查: appendix/k8s_cheatsheet.md
+    - 疑難排解: appendix/troubleshooting.md
+
+# Extensions
+markdown_extensions:
+  # Python Markdown Extensions
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+  
+  # PyMdown Extensions
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+# Plugins
+plugins:
+  - search:
+      lang: 
+        - zh
+        - en
+  - tags
+
+# Extra
+extra:
+  social:
+    - icon: fontawesome/brands/docker
+      link: https://hub.docker.com/
+    - icon: fontawesome/solid/dharmachakra
+      link: https://kubernetes.io/
+  generator: false
+
+# Extra CSS
+extra_css:
+  - assets/stylesheets/extra.css
