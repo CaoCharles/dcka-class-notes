@@ -42,6 +42,11 @@
     ```bash
     dnf install docker -y
     ```
+    > **指令說明**：
+    > - `dnf`: (Dandified YUM) 是 RHEL 8/9 與 Rocky Linux 的預設套件管理工具，用來取代舊的 `yum`。
+    > - `install`: 安裝套件。
+    > - `-y`: 自動回答 "Yes" 確認安裝，不需人工介入。
+
     ![安裝預設 docker 套件](images/lab02/dnf_install_podman.png)
 
 2.  **檢查 docker 指令來源**
@@ -83,6 +88,10 @@
     ```bash
     dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
     ```
+    > **指令說明**：
+    > - `config-manager`: `dnf` 的外掛模組，用於管理設定。
+    > - `--add-repo`: 新增一個外部的套件來源 (Repository)。這裡我們指向 Docker 官方為 CentOS 維護的 Repo。
+
     > 驗證 Repo 是否加入成功：
     > ```bash
     > cat /etc/yum.repos.d/docker-ce.repo
@@ -92,7 +101,7 @@
     ```bash
     dnf install docker-ce -y
     ```
-    > 安裝過程中會下載 `docker-ce`, `docker-ce-cli`, `containerd.io` 等套件。
+    > 安裝過程中會下載 `docker-ce` (Daemon), `docker-ce-cli` (指令工具), `containerd.io` (Runtime) 等套件。
 
 ---
 
@@ -105,6 +114,10 @@
     systemctl start docker
     systemctl enable docker
     ```
+    > **指令說明**：
+    > - `systemctl`: 用於管理系統服務 (Systemd)。
+    > - `start`: 立即啟動服務。
+    > - `enable`: 設定服務在開機時自動啟動。
 
 2.  **檢查服務狀態**
     ```bash
