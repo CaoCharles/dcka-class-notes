@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% if page.meta.git_revision_date_localized or page.meta.git_creation_date_localized or page.meta.git_authors %}
+{% if page.meta.git_revision_date_localized or page.meta.git_creation_date_localized or git_authors %}
 <div
   style="margin-bottom: 2rem; padding: 0.5rem 0; border-bottom: 1px solid rgba(0,0,0,0.1); font-size: 0.85em; color: #777; display: flex; flex-wrap: wrap; gap: 1.5rem;">
 
@@ -23,12 +23,15 @@
   </span>
   {% endif %}
 
-  {% if page.meta.git_authors %}
+  {% if git_authors %}
   <span style="display: inline-flex; align-items: center; gap: 0.4rem;">
     <span class="twemoji">
       {% include ".icons/material/account.svg" %}
     </span>
-    <span style="font-weight: 500;">作者:</span> {{ page.meta.git_authors | join(", ") }}
+    <span style="font-weight: 500;">作者:</span>
+    {% for author in git_authors %}
+    {{ author.name }}{% if not loop.last %}, {% endif %}
+    {% endfor %}
   </span>
   {% endif %}
 
