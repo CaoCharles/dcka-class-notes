@@ -12,6 +12,7 @@ theme:
   icon:
     repo: fontawesome/brands/github
   favicon: assets/images/favicon.png
+  custom_dir: overrides
   palette:
     - scheme: default
       primary: deep purple
@@ -35,7 +36,7 @@ theme:
     - navigation.expand
     - navigation.path
     - navigation.top
-    - navigation.footer
+    # - navigation.footer  <-- Removed as per user request
     - toc.follow
     - search.suggest
     - search.highlight
@@ -61,6 +62,10 @@ plugins:
       timezone: Asia/Taipei
       locale: zh
       fallback_to_build_date: true
+  - git-authors:
+      show_contribution: true
+      show_line_count: true
+      show_email_address: false
 
 markdown_extensions:
   - abbr
