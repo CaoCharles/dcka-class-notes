@@ -34,7 +34,7 @@ theme:
     - navigation.tabs.sticky
     - navigation.sections
     - navigation.expand
-    - navigation.path
+    # - navigation.path  <-- Removed to prevent duplication
     - navigation.top
     # - navigation.footer  <-- Removed as per user request
     - toc.follow
