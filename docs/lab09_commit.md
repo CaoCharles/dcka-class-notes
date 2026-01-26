@@ -1,4 +1,4 @@
-# 第 3 章：客製化 Docker Images
+# LAB 09 客製化 Container Images - docker commit
 
 ## 學習目標
 

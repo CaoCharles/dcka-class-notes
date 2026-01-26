@@ -1,4 +1,4 @@
-# 第 2 章：Docker 容器化管理
+# LAB 05 建置 private registry
 
 ## 學習目標
 

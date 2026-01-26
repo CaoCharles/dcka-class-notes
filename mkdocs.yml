@@ -107,11 +107,26 @@ extra_css:
 
 nav:
   - 首頁: index.md
-  - 第 0 章 環境準備: 00_environment_setup.md
-  - 第 1 章 Docker 介紹: 01_docker_intro.md
-  - 第 2 章 Docker 容器化管理: 02_docker_management.md
-  - 第 3 章 客製化 Docker Images: 03_docker_images.md
-  - 第 4 章 Kubernetes 管理: 04_kubernetes.md
+  - LAB 01 LAB 環境初始化: lab01_environment_setup.md
+  - LAB 02 安裝 DOCKER/DOCKER-CE: lab02_docker_install.md
+  - LAB 03 安裝 podman: lab03_podman.md
+  - LAB 04 如何檢查 Docker Hub Rate Limiting: lab04_docker_hub_rate_limit.md
+  - LAB 05 建置 private registry: lab05_private_registry.md
+  - LAB 06 docker 基本操作: lab06_docker_basics.md
+  - LAB 07 Persistent Storage: lab07_persistent_storage.md
+  - LAB 08 架設部落格 - wordpress: lab08_wordpress.md
+  - LAB 09 客製化 Container Images - docker commit: lab09_commit.md
+  - LAB 10 客製化 Container images - dockerfile: lab10_dockerfile.md
+  - LAB 11 standalone kubernetes 安裝: lab11_standalone_k8s.md
+  - LAB 12 kubernetes 安裝: lab12_k8s_install.md
+  - LAB 13 kubernetes 常用指令: lab13_k8s_commands.md
+  - LAB 14 namespaces 與 rolling update: lab14_namespace_rolling.md
+  - LAB 15 service: lab15_service.md
+  - LAB 16 PV/PVC: lab16_pv_pvc.md
+  - LAB 17 secret: lab17_secret.md
+  - LAB 18 RBAC 與 event/log: lab18_rbac_event_log.md
+  - LAB 19 Kubernetes + wordpress + mysql: lab19_k8s_wordpress_mysql.md
+  - LAB 20 圖形管理工具 Kubernetes Dashboard: lab20_dashboard.md
   - 附錄:
     - Docker 指令速查: appendix/docker_cheatsheet.md
     - Kubernetes 指令速查: appendix/k8s_cheatsheet.md

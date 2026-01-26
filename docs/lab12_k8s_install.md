@@ -1,4 +1,4 @@
-# 第 4 章：Kubernetes Management
+# LAB 12 kubernetes 安裝
 
 ## 學習目標
 
