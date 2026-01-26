@@ -107,6 +107,7 @@ extra_css:
 
 nav:
   - 首頁: index.md
+  - 第 0 章 環境準備: 00_environment_setup.md
   - 第 1 章 Docker 介紹: 01_docker_intro.md
   - 第 2 章 Docker 容器化管理: 02_docker_management.md
   - 第 3 章 客製化 Docker Images: 03_docker_images.md
