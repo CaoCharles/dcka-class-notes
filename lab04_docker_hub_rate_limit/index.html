@@ -54,6 +54,8 @@
     
       <link rel="stylesheet" href="../assets/stylesheets/extra.css">
     
+      <link rel="stylesheet" href="../assets/css/chatbot.css">
+    
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -642,10 +644,82 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#11-docker-hub-rate-limiting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 什麼是 Docker Hub Rate Limiting？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
         實作步驟
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="實作步驟">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-jq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 1：安裝必要工具 jq
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 2：下載檢查腳本
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-anonymous" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 3：檢查匿名使用者限制 (Anonymous)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-free-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 4：檢查免費帳號限制 (Free Account)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        小結
       
     </span>
   </a>
@@ -1482,10 +1556,82 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#11-docker-hub-rate-limiting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 什麼是 Docker Hub Rate Limiting？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
         實作步驟
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="實作步驟">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-jq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 1：安裝必要工具 jq
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 2：下載檢查腳本
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-anonymous" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 3：檢查匿名使用者限制 (Anonymous)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-free-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 4：檢查免費帳號限制 (Free Account)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        小結
       
     </span>
   </a>
@@ -1522,7 +1668,7 @@
     <span class="twemoji">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span style="font-weight: 500;">更新:</span> <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月26日 14:01:45 CST">2026年1月26日 14:01:45</span>
+    <span style="font-weight: 500;">更新:</span> <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月26日 16:09:29 CST">2026年1月26日 16:09:29</span>
   </span>
   
 
@@ -1541,11 +1687,132 @@
 
 <h1 id="lab-04-docker-hub-rate-limiting">LAB 04 如何檢查 Docker Hub Rate Limiting<a class="headerlink" href="#lab-04-docker-hub-rate-limiting" title="Permanent link">¶</a></h1>
 <h2 id="_1">學習目標<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<p>完成本 Lab 後，你將能夠：</p>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 待補</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 理解 Docker Hub 的下載限制 (Rate Limiting)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 使用 <code>curl</code> 與 <code>jq</code> 指令檢查當前的 Rate Limit 狀態</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 比較匿名使用者與免費帳號 (Free Account) 的限制差異</li>
 </ul>
+<hr>
+<h2 id="11-docker-hub-rate-limiting">1.1 什麼是 Docker Hub Rate Limiting？<a class="headerlink" href="#11-docker-hub-rate-limiting" title="Permanent link">¶</a></h2>
+<p>Docker Hub 為了防止資源濫用，對 Container Image 的 <code>pull</code> (下載) 次數進行了限制：</p>
+<table>
+<thead>
+<tr>
+<th>帳號類型</th>
+<th>限制內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>匿名使用者 (Anonymous)</strong></td>
+<td>每 6 小時 <strong>100</strong> 次 pull (以 IP 為準)</td>
+</tr>
+<tr>
+<td><strong>免費帳號 (Free Account)</strong></td>
+<td>每 6 小時 <strong>200</strong> 次 pull (以帳號為準)</td>
+</tr>
+<tr>
+<td><strong>Pro / Team / Business</strong></td>
+<td><strong>5000</strong> 次 (每日) 或 無限制</td>
+</tr>
+</tbody>
+</table>
+<p>當你遇到 <code>Before you can look around... 429 Too Many Requests</code> 錯誤時，通常就是被限流了。</p>
+<hr>
 <h2 id="_2">實作步驟<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
-<p><em>(本章節內容待補)</em></p>
+<h3 id="1-jq">步驟 1：安裝必要工具 jq<a class="headerlink" href="#1-jq" title="Permanent link">¶</a></h3>
+<p>為了方便解析 Docker Hub API 回傳的 JSON 格式 Token，我們需要安裝 <code>jq</code> 工具。</p>
+<ol>
+<li>
+<p><strong>安裝 jq</strong>
+    </p><div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>yum<span class="w"> </span>install<span class="w"> </span>jq<span class="w"> </span>-y
+</span></code></pre></div>
+    &gt; <strong>指令說明</strong>：<code>jq</code> 是一個輕量級且靈活的 command-line JSON 處理器。<p></p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../images/lab04/check_limit.png" data-desc-position="bottom"><img alt="安裝 jq 與檢查 limit" src="../images/lab04/check_limit.png"></a></p>
+</li>
+</ol>
+<hr>
+<h3 id="2">步驟 2：下載檢查腳本<a class="headerlink" href="#2" title="Permanent link">¶</a></h3>
+<p>我們使用一段 Shell Script 來簡化檢查流程。這個 Script 會向 Docker Hub 申請 Token 並查詢 Header 資訊。</p>
+<ol>
+<li>
+<p><strong>下載 Script</strong> (假設課堂環境提供)
+    </p><div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 使用 wget 下載腳本</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>wget<span class="w"> </span>http://10.0.1.248/k8s/scripts/check_docker_pull_rate_limit.sh
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># 若上述連結無法連線 (Connection refused)，請嘗試備用位置</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>wget<span class="w"> </span>http://10.0.1.249/k8s/scripts/check_docker_pull_rate_limit.sh
+</span></code></pre></div><p></p>
+</li>
+<li>
+<p><strong>賦予執行權限</strong>
+    </p><div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>chmod<span class="w"> </span><span class="m">755</span><span class="w"> </span>check_docker_pull_rate_limit.sh
+</span></code></pre></div><p></p>
+</li>
+</ol>
+<hr>
+<h3 id="3-anonymous">步驟 3：檢查匿名使用者限制 (Anonymous)<a class="headerlink" href="#3-anonymous" title="Permanent link">¶</a></h3>
+<ol>
+<li>
+<p><strong>執行 Script</strong>
+    </p><div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>./check_docker_pull_rate_limit.sh
+</span></code></pre></div><p></p>
+</li>
+<li>
+<p><strong>觀察輸出結果</strong>
+    </p><div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">ratelimit-limit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100;w=21600</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nt">ratelimit-remaining</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">58;w=21600</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nt">docker-ratelimit-source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">118.163.116.129</span>
+</span></code></pre></div>
+    &gt; <strong>輸出解析</strong>：
+    &gt; - <code>ratelimit-limit: 100;w=21600</code>: 限制為每 21600 秒 (6小時) <strong>100</strong> 次。
+    &gt; - <code>ratelimit-remaining: 58</code>: 目前剩餘 <strong>58</strong> 次額度。
+    &gt; - <code>docker-ratelimit-source</code>: 識別來源 IP。<p></p>
+</li>
+</ol>
+<hr>
+<h3 id="4-free-account">步驟 4：檢查免費帳號限制 (Free Account)<a class="headerlink" href="#4-free-account" title="Permanent link">¶</a></h3>
+<p>若要獲得更高的額度，可以登入 Docker Hub 帳號。</p>
+<ol>
+<li>
+<p><strong>修改 Script 加入認證資訊</strong>
+    編輯 <code>check_docker_pull_rate_limit.sh</code>，將你的 Docker Hub 帳號密碼填入變數 (或是透過 <code>docker login</code> 後修改 Script 以使用 Token)。</p>
+<p><em>假設 Script 支援以變數方式帶入帳密：</em>
+</p><div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># 編輯腳本填入 USER="你的帳號" PASSWORD="你的密碼"</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>vi<span class="w"> </span>check_docker_pull_rate_limit.sh
+</span></code></pre></div><p></p>
+<div class="admonition tip">
+<p class="admonition-title">手動檢查指令 (參考)</p>
+<p>如果沒有 Script，你也可以用以下指令手動檢查 (記得替換帳密)：
+</p><div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># 1. 取得 Token</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nv">TOKEN</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span>-s<span class="w"> </span>-u<span class="w"> </span><span class="s2">"你的帳號:你的密碼"</span><span class="w"> </span><span class="s2">"https://auth.docker.io/token?service=registry.docker.io&amp;scope=repository:ratelimitpreview/test:pull"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span>.token<span class="k">)</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># 2. 查詢 Header</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>curl<span class="w"> </span>--head<span class="w"> </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span><span class="w"> </span>https://registry-1.docker.io/v2/ratelimitpreview/test/manifests/latest
+</span></code></pre></div><p></p>
+</div>
+</li>
+<li>
+<p><strong>再次執行 Script</strong>
+    </p><div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>./check_docker_pull_rate_limit.sh
+</span></code></pre></div><p></p>
+</li>
+<li>
+<p><strong>預期結果</strong>
+    </p><div class="language-yaml highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nt">ratelimit-limit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">200;w=21600   &lt;-- 額度變為 200</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nt">ratelimit-remaining</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">198;w=21600</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nt">docker-ratelimit-source</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">你的帳號UUID</span><span class="p p-Indicator">]</span>
+</span></code></pre></div>
+    &gt; 登入後，<code>ratelimit-source</code> 通常會變成你的 User ID，且額度會提升至 <strong>200</strong> 次。<p></p>
+</li>
+</ol>
+<hr>
+<h2 id="_3">小結<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<ul>
+<li><strong>匿名下載</strong>：方便但限制嚴格 (100次/6hr)，多台機器共用 Public IP 時容易被鎖。</li>
+<li><strong>登入下載</strong>：建議在 Server 上透過 <code>docker login</code> 登入，可將額度提升至 (200次/6hr)，或購買 Pro 方案解除限制。</li>
+</ul>
 
 
 
@@ -1601,6 +1868,8 @@
     
     
       <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../assets/js/chatbot.js"></script>
       
     
   
