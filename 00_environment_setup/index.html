@@ -9,31 +9,31 @@
         <meta name="author" content="Charles Cao">
       
       
-        <link rel="canonical" href="https://caocharles.github.io/dcka-class-notes/appendix/docker_cheatsheet/">
+        <link rel="canonical" href="https://caocharles.github.io/dcka-class-notes/00_environment_setup/">
       
       
-        <link rel="prev" href="../../04_kubernetes/">
+        <link rel="prev" href="..">
       
       
-        <link rel="next" href="../k8s_cheatsheet/">
+        <link rel="next" href="../01_docker_intro/">
       
       
         
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
-        <title>Docker 指令速查 - DCKA 學習筆記</title>
+        <title>第 0 章 環境準備 - DCKA 學習筆記</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -52,15 +52,15 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+      <link rel="stylesheet" href="../assets/stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
-  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+  <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
             html.glightbox-open { overflow: initial; height: 100%; }
             .gslide-title { margin-top: 0px; user-select: text; }
             .gslide-desc { color: #666; user-select: text; }
@@ -89,7 +89,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#docker" class="md-skip">
+        <a href="#0" class="md-skip">
           跳轉到
         </a>
       
@@ -105,7 +105,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="頁首">
-    <a href="../.." title="DCKA 學習筆記" class="md-header__button md-logo" aria-label="DCKA 學習筆記" data-md-component="logo">
+    <a href=".." title="DCKA 學習筆記" class="md-header__button md-logo" aria-label="DCKA 學習筆記" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.81 10.25c-.06-.04-.56-.43-1.64-.43-.28 0-.56.03-.84.08-.21-1.4-1.38-2.11-1.43-2.14l-.29-.17-.18.27c-.24.36-.43.77-.51 1.19-.2.8-.08 1.56.33 2.21-.49.28-1.29.35-1.46.35H2.62c-.34 0-.62.28-.62.63 0 1.15.18 2.3.58 3.38.45 1.19 1.13 2.07 2 2.61.98.6 2.59.94 4.42.94.79 0 1.61-.07 2.42-.22 1.12-.2 2.2-.59 3.19-1.16A8.3 8.3 0 0 0 16.78 16c1.05-1.17 1.67-2.5 2.12-3.65h.19c1.14 0 1.85-.46 2.24-.85.26-.24.45-.53.59-.87l.08-.24zm-17.96.99h1.76c.08 0 .16-.07.16-.16V9.5c0-.08-.07-.16-.16-.16H3.85c-.09 0-.16.07-.16.16v1.58c.01.09.07.16.16.16m2.43 0h1.76c.08 0 .16-.07.16-.16V9.5c0-.08-.07-.16-.16-.16H6.28c-.09 0-.16.07-.16.16v1.58c.01.09.07.16.16.16m2.47 0h1.75c.1 0 .17-.07.17-.16V9.5c0-.08-.06-.16-.17-.16H8.75c-.08 0-.15.07-.15.16v1.58c0 .09.06.16.15.16m2.44 0h1.77c.08 0 .15-.07.15-.16V9.5c0-.08-.06-.16-.15-.16h-1.77c-.08 0-.15.07-.15.16v1.58c0 .09.07.16.15.16M6.28 9h1.76c.08 0 .16-.09.16-.18V7.25c0-.09-.07-.16-.16-.16H6.28c-.09 0-.16.06-.16.16v1.57c.01.09.07.18.16.18m2.47 0h1.75c.1 0 .17-.09.17-.18V7.25c0-.09-.06-.16-.17-.16H8.75c-.08 0-.15.06-.15.16v1.57c0 .09.06.18.15.18m2.44 0h1.77c.08 0 .15-.09.15-.18V7.25c0-.09-.07-.16-.15-.16h-1.77c-.08 0-.15.06-.15.16v1.57c0 .09.07.18.15.18m0-2.28h1.77c.08 0 .15-.07.15-.16V5c0-.1-.07-.17-.15-.17h-1.77c-.08 0-.15.06-.15.17v1.56c0 .08.07.16.15.16m2.46 4.52h1.76c.09 0 .16-.07.16-.16V9.5c0-.08-.07-.16-.16-.16h-1.76c-.08 0-.15.07-.15.16v1.58c0 .09.07.16.15.16"></path></svg>
@@ -125,7 +125,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Docker 指令速查
+              第 0 章 環境準備
             
           </span>
         </div>
@@ -232,7 +232,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
+      <a href=".." class="md-tabs__link">
         
   
   
@@ -249,9 +249,11 @@
   
   
   
+    
   
-    <li class="md-tabs__item">
-      <a href="../../00_environment_setup/" class="md-tabs__link">
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
         
   
   
@@ -270,7 +272,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../01_docker_intro/" class="md-tabs__link">
+      <a href="../01_docker_intro/" class="md-tabs__link">
         
   
   
@@ -289,7 +291,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../02_docker_management/" class="md-tabs__link">
+      <a href="../02_docker_management/" class="md-tabs__link">
         
   
   
@@ -308,7 +310,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../03_docker_images/" class="md-tabs__link">
+      <a href="../03_docker_images/" class="md-tabs__link">
         
   
   
@@ -327,7 +329,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../04_kubernetes/" class="md-tabs__link">
+      <a href="../04_kubernetes/" class="md-tabs__link">
         
   
   
@@ -344,13 +346,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../appendix/docker_cheatsheet/" class="md-tabs__link">
           
   
   
@@ -390,7 +390,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="導覽列" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="DCKA 學習筆記" class="md-nav__button md-logo" aria-label="DCKA 學習筆記" data-md-component="logo">
+    <a href=".." title="DCKA 學習筆記" class="md-nav__button md-logo" aria-label="DCKA 學習筆記" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.81 10.25c-.06-.04-.56-.43-1.64-.43-.28 0-.56.03-.84.08-.21-1.4-1.38-2.11-1.43-2.14l-.29-.17-.18.27c-.24.36-.43.77-.51 1.19-.2.8-.08 1.56.33 2.21-.49.28-1.29.35-1.46.35H2.62c-.34 0-.62.28-.62.63 0 1.15.18 2.3.58 3.38.45 1.19 1.13 2.07 2 2.61.98.6 2.59.94 4.42.94.79 0 1.61-.07 2.42-.22 1.12-.2 2.2-.59 3.19-1.16A8.3 8.3 0 0 0 16.78 16c1.05-1.17 1.67-2.5 2.12-3.65h.19c1.14 0 1.85-.46 2.24-.85.26-.24.45-.53.59-.87l.08-.24zm-17.96.99h1.76c.08 0 .16-.07.16-.16V9.5c0-.08-.07-.16-.16-.16H3.85c-.09 0-.16.07-.16.16v1.58c.01.09.07.16.16.16m2.43 0h1.76c.08 0 .16-.07.16-.16V9.5c0-.08-.07-.16-.16-.16H6.28c-.09 0-.16.07-.16.16v1.58c.01.09.07.16.16.16m2.47 0h1.75c.1 0 .17-.07.17-.16V9.5c0-.08-.06-.16-.17-.16H8.75c-.08 0-.15.07-.15.16v1.58c0 .09.06.16.15.16m2.44 0h1.77c.08 0 .15-.07.15-.16V9.5c0-.08-.06-.16-.15-.16h-1.77c-.08 0-.15.07-.15.16v1.58c0 .09.07.16.15.16M6.28 9h1.76c.08 0 .16-.09.16-.18V7.25c0-.09-.07-.16-.16-.16H6.28c-.09 0-.16.06-.16.16v1.57c.01.09.07.18.16.18m2.47 0h1.75c.1 0 .17-.09.17-.18V7.25c0-.09-.06-.16-.17-.16H8.75c-.08 0-.15.06-.15.16v1.57c0 .09.06.18.15.18m2.44 0h1.77c.08 0 .15-.09.15-.18V7.25c0-.09-.07-.16-.15-.16h-1.77c-.08 0-.15.06-.15.16v1.57c0 .09.07.18.15.18m0-2.28h1.77c.08 0 .15-.07.15-.16V5c0-.1-.07-.17-.15-.17h-1.77c-.08 0-.15.06-.15.17v1.56c0 .08.07.16.15.16m2.46 4.52h1.76c.09 0 .16-.07.16-.16V9.5c0-.08-.07-.16-.16-.16h-1.76c-.08 0-.15.07-.15.16v1.58c0 .09.07.16.15.16"></path></svg>
@@ -420,7 +420,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href=".." class="md-nav__link">
         
   
   
@@ -444,198 +444,6 @@
       
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../../00_environment_setup/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    第 0 章 環境準備
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../01_docker_intro/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    第 1 章 Docker 介紹
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../02_docker_management/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    第 2 章 Docker 容器化管理
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../03_docker_images/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    第 3 章 客製化 Docker Images
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../04_kubernetes/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    第 4 章 Kubernetes 管理
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-    
-  
-  
-  
-    
-    
-    
-    
-      
-        
-        
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    附錄
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_7">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    附錄
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
     
   
   
@@ -655,7 +463,7 @@
   <span class="md-ellipsis">
     
   
-    Docker 指令速查
+    第 0 章 環境準備
   
 
     
@@ -673,7 +481,7 @@
   <span class="md-ellipsis">
     
   
-    Docker 指令速查
+    第 0 章 環境準備
   
 
     
@@ -702,30 +510,41 @@
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        容器管理
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="容器管理">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        執行容器
+        學習目標
       
     </span>
   </a>
   
 </li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        前置知識
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#01-vmware-workstation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.1 安裝 VMware Workstation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.1 安裝 VMware Workstation">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        容器操作
+        取得安裝程式
       
     </span>
   </a>
@@ -736,7 +555,7 @@
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        容器操作與除錯
+        安裝步驟
       
     </span>
   </a>
@@ -749,22 +568,72 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#image" class="md-nav__link">
+  <a href="#02" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Image 管理
+        0.2 設定虛擬網路
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Image 管理">
+    <nav class="md-nav" aria-label="0.2 設定虛擬網路">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#virtual-network-editor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        開啟 Virtual Network Editor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vmnet8-nat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        設定 VMnet8 (NAT)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#03" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.3 網路拓樸與虛擬機
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.3 網路拓樸與虛擬機">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        基本操作
+        網路架構
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        虛擬機清單與 IP 配置
       
     </span>
   </a>
@@ -775,7 +644,7 @@
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        建置與標籤
+        啟動所有虛擬機
       
     </span>
   </a>
@@ -786,7 +655,18 @@
   <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        搜尋
+        驗證虛擬機狀態
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        登入資訊
       
     </span>
   </a>
@@ -799,22 +679,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#volume" class="md-nav__link">
+  <a href="#04-mirror" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Volume 管理
+        0.4 Mirror 伺服器
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Volume 管理">
+    <nav class="md-nav" aria-label="0.4 Mirror 伺服器">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#mirror" class="md-nav__link">
     <span class="md-ellipsis">
       
-        掛載方式
+        Mirror 網址
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mirror_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mirror 資源內容
       
     </span>
   </a>
@@ -830,27 +721,21 @@
   <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        網路管理
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="網路管理">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        網路類型
+        常見問題
       
     </span>
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        小結
+      
+    </span>
+  </a>
   
 </li>
       
@@ -858,62 +743,7 @@
   <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
       
-        系統管理
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#docker-compose" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Docker Compose
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#registry" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Registry 登入
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        常用組合指令
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#dockerfile" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Dockerfile 指令
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_13" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        環境變數
+        下一步
       
     </span>
   </a>
@@ -927,6 +757,195 @@
     </li>
   
 
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_docker_intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 1 章 Docker 介紹
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_docker_management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 2 章 Docker 容器化管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_docker_images/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 3 章 客製化 Docker Images
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 4 章 Kubernetes 管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7">
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    附錄
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    附錄
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appendix/docker_cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker 指令速查
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
               
             
               
@@ -936,7 +955,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../k8s_cheatsheet/" class="md-nav__link">
+      <a href="../appendix/k8s_cheatsheet/" class="md-nav__link">
         
   
   
@@ -964,7 +983,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/" class="md-nav__link">
+      <a href="../appendix/troubleshooting/" class="md-nav__link">
         
   
   
@@ -1022,30 +1041,41 @@
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        容器管理
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="容器管理">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        執行容器
+        學習目標
       
     </span>
   </a>
   
 </li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        前置知識
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#01-vmware-workstation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.1 安裝 VMware Workstation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.1 安裝 VMware Workstation">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        容器操作
+        取得安裝程式
       
     </span>
   </a>
@@ -1056,7 +1086,7 @@
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        容器操作與除錯
+        安裝步驟
       
     </span>
   </a>
@@ -1069,22 +1099,72 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#image" class="md-nav__link">
+  <a href="#02" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Image 管理
+        0.2 設定虛擬網路
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Image 管理">
+    <nav class="md-nav" aria-label="0.2 設定虛擬網路">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#virtual-network-editor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        開啟 Virtual Network Editor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vmnet8-nat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        設定 VMnet8 (NAT)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#03" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.3 網路拓樸與虛擬機
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.3 網路拓樸與虛擬機">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        基本操作
+        網路架構
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        虛擬機清單與 IP 配置
       
     </span>
   </a>
@@ -1095,7 +1175,7 @@
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        建置與標籤
+        啟動所有虛擬機
       
     </span>
   </a>
@@ -1106,7 +1186,18 @@
   <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        搜尋
+        驗證虛擬機狀態
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        登入資訊
       
     </span>
   </a>
@@ -1119,22 +1210,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#volume" class="md-nav__link">
+  <a href="#04-mirror" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Volume 管理
+        0.4 Mirror 伺服器
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Volume 管理">
+    <nav class="md-nav" aria-label="0.4 Mirror 伺服器">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#mirror" class="md-nav__link">
     <span class="md-ellipsis">
       
-        掛載方式
+        Mirror 網址
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mirror_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mirror 資源內容
       
     </span>
   </a>
@@ -1150,27 +1252,21 @@
   <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        網路管理
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="網路管理">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        網路類型
+        常見問題
       
     </span>
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        小結
+      
+    </span>
+  </a>
   
 </li>
       
@@ -1178,62 +1274,7 @@
   <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
       
-        系統管理
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#docker-compose" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Docker Compose
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#registry" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Registry 登入
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        常用組合指令
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#dockerfile" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Dockerfile 指令
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_13" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        環境變數
+        下一步
       
     </span>
   </a>
@@ -1258,46 +1299,6 @@
   
 
 
-  <nav class="md-path" aria-label="導覽列">
-    <ol class="md-path__list">
-      
-        
-  
-  
-    <li class="md-path__item">
-      <a href="../.." class="md-path__link">
-        
-  <span class="md-ellipsis">
-    首頁
-  </span>
-
-      </a>
-    </li>
-  
-
-      
-      
-        
-  
-  
-    
-    
-      <li class="md-path__item">
-        <a href="./" class="md-path__link">
-          
-  <span class="md-ellipsis">
-    附錄
-  </span>
-
-        </a>
-      </li>
-    
-  
-
-      
-    </ol>
-  </nav>
-
               
               <article class="md-content__inner md-typeset">
                 
@@ -1308,603 +1309,339 @@
   
 
 
-<h1 id="docker">Docker 指令速查表<a class="headerlink" href="#docker" title="Permanent link">¶</a></h1>
-<p>快速參考 Docker 常用指令，適合日常操作與考試複習。</p>
+<h1 id="0">第 0 章：環境準備<a class="headerlink" href="#0" title="Permanent link">¶</a></h1>
+<h2 id="_1">學習目標<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<p>完成本章節後，你將能夠：</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 安裝並設定 VMware Workstation</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 設定虛擬網路（Virtual Network Editor）</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 啟動並驗證六台 Rocky Linux 虛擬機</li>
+</ul>
+<h2 id="_2">前置知識<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<p>開始之前，請確保你已經：</p>
+<ul>
+<li>準備好 Windows 主機（建議 16GB+ RAM）</li>
+<li>下載 DCKA 課程虛擬機映像檔</li>
+<li>下載 VMware Workstation 安裝程式</li>
+</ul>
 <hr>
-<h2 id="_1">容器管理<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
-<h3 id="_2">執行容器<a class="headerlink" href="#_2" title="Permanent link">¶</a></h3>
-<table>
-<thead>
-<tr>
-<th>指令</th>
-<th>說明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>docker run &lt;image&gt;</code></td>
-<td>執行容器</td>
-</tr>
-<tr>
-<td><code>docker run -d &lt;image&gt;</code></td>
-<td>背景執行</td>
-</tr>
-<tr>
-<td><code>docker run -it &lt;image&gt; /bin/bash</code></td>
-<td>互動模式</td>
-</tr>
-<tr>
-<td><code>docker run --name &lt;name&gt; &lt;image&gt;</code></td>
-<td>指定名稱</td>
-</tr>
-<tr>
-<td><code>docker run -p 8080:80 &lt;image&gt;</code></td>
-<td>Port 對應</td>
-</tr>
-<tr>
-<td><code>docker run -v /host:/container &lt;image&gt;</code></td>
-<td>掛載目錄</td>
-</tr>
-<tr>
-<td><code>docker run -e VAR=value &lt;image&gt;</code></td>
-<td>設定環境變數</td>
-</tr>
-<tr>
-<td><code>docker run --rm &lt;image&gt;</code></td>
-<td>結束後自動刪除</td>
-</tr>
-<tr>
-<td><code>docker run --restart=always &lt;image&gt;</code></td>
-<td>自動重啟</td>
-</tr>
-<tr>
-<td><code>docker run --network &lt;network&gt; &lt;image&gt;</code></td>
-<td>指定網路</td>
-</tr>
-</tbody>
-</table>
-<h3 id="_3">容器操作<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
-<table>
-<thead>
-<tr>
-<th>指令</th>
-<th>說明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>docker ps</code></td>
-<td>列出運行中的容器</td>
-</tr>
-<tr>
-<td><code>docker ps -a</code></td>
-<td>列出所有容器</td>
-</tr>
-<tr>
-<td><code>docker start &lt;container&gt;</code></td>
-<td>啟動容器</td>
-</tr>
-<tr>
-<td><code>docker stop &lt;container&gt;</code></td>
-<td>停止容器</td>
-</tr>
-<tr>
-<td><code>docker restart &lt;container&gt;</code></td>
-<td>重啟容器</td>
-</tr>
-<tr>
-<td><code>docker pause &lt;container&gt;</code></td>
-<td>暫停容器</td>
-</tr>
-<tr>
-<td><code>docker unpause &lt;container&gt;</code></td>
-<td>繼續容器</td>
-</tr>
-<tr>
-<td><code>docker rm &lt;container&gt;</code></td>
-<td>刪除容器</td>
-</tr>
-<tr>
-<td><code>docker rm -f &lt;container&gt;</code></td>
-<td>強制刪除運行中的容器</td>
-</tr>
-<tr>
-<td><code>docker container prune</code></td>
-<td>刪除所有已停止的容器</td>
-</tr>
-</tbody>
-</table>
-<h3 id="_4">容器操作與除錯<a class="headerlink" href="#_4" title="Permanent link">¶</a></h3>
-<table>
-<thead>
-<tr>
-<th>指令</th>
-<th>說明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>docker exec -it &lt;container&gt; /bin/bash</code></td>
-<td>進入容器</td>
-</tr>
-<tr>
-<td><code>docker exec &lt;container&gt; &lt;command&gt;</code></td>
-<td>執行指令</td>
-</tr>
-<tr>
-<td><code>docker logs &lt;container&gt;</code></td>
-<td>查看日誌</td>
-</tr>
-<tr>
-<td><code>docker logs -f &lt;container&gt;</code></td>
-<td>追蹤日誌</td>
-</tr>
-<tr>
-<td><code>docker logs --tail 100 &lt;container&gt;</code></td>
-<td>最後 100 行</td>
-</tr>
-<tr>
-<td><code>docker inspect &lt;container&gt;</code></td>
-<td>詳細資訊</td>
-</tr>
-<tr>
-<td><code>docker stats</code></td>
-<td>資源使用統計</td>
-</tr>
-<tr>
-<td><code>docker top &lt;container&gt;</code></td>
-<td>容器內程序</td>
-</tr>
-<tr>
-<td><code>docker cp &lt;src&gt; &lt;container&gt;:&lt;dest&gt;</code></td>
-<td>複製檔案到容器</td>
-</tr>
-<tr>
-<td><code>docker cp &lt;container&gt;:&lt;src&gt; &lt;dest&gt;</code></td>
-<td>從容器複製檔案</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h2 id="image">Image 管理<a class="headerlink" href="#image" title="Permanent link">¶</a></h2>
-<h3 id="_5">基本操作<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
-<table>
-<thead>
-<tr>
-<th>指令</th>
-<th>說明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>docker images</code></td>
-<td>列出本地 Image</td>
-</tr>
-<tr>
-<td><code>docker pull &lt;image&gt;</code></td>
-<td>拉取 Image</td>
-</tr>
-<tr>
-<td><code>docker push &lt;image&gt;</code></td>
-<td>推送 Image</td>
-</tr>
-<tr>
-<td><code>docker rmi &lt;image&gt;</code></td>
-<td>刪除 Image</td>
-</tr>
-<tr>
-<td><code>docker image prune</code></td>
-<td>刪除未使用的 Image</td>
-</tr>
-<tr>
-<td><code>docker image prune -a</code></td>
-<td>刪除所有未使用的 Image</td>
-</tr>
-</tbody>
-</table>
-<h3 id="_6">建置與標籤<a class="headerlink" href="#_6" title="Permanent link">¶</a></h3>
-<table>
-<thead>
-<tr>
-<th>指令</th>
-<th>說明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>docker build -t &lt;name&gt;:&lt;tag&gt; .</code></td>
-<td>建置 Image</td>
-</tr>
-<tr>
-<td><code>docker build -f Dockerfile.prod .</code></td>
-<td>指定 Dockerfile</td>
-</tr>
-<tr>
-<td><code>docker build --no-cache .</code></td>
-<td>不使用快取</td>
-</tr>
-<tr>
-<td><code>docker tag &lt;image&gt; &lt;new-tag&gt;</code></td>
-<td>加上標籤</td>
-</tr>
-<tr>
-<td><code>docker history &lt;image&gt;</code></td>
-<td>查看 Image 歷史</td>
-</tr>
-<tr>
-<td><code>docker save -o image.tar &lt;image&gt;</code></td>
-<td>匯出 Image</td>
-</tr>
-<tr>
-<td><code>docker load -i image.tar</code></td>
-<td>匯入 Image</td>
-</tr>
-</tbody>
-</table>
-<h3 id="_7">搜尋<a class="headerlink" href="#_7" title="Permanent link">¶</a></h3>
-<table>
-<thead>
-<tr>
-<th>指令</th>
-<th>說明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>docker search &lt;keyword&gt;</code></td>
-<td>搜尋 Docker Hub</td>
-</tr>
-<tr>
-<td><code>docker search --filter is-official=true &lt;keyword&gt;</code></td>
-<td>只搜尋官方 Image</td>
-</tr>
-<tr>
-<td><code>docker search --limit 5 &lt;keyword&gt;</code></td>
-<td>限制結果數量</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h2 id="volume">Volume 管理<a class="headerlink" href="#volume" title="Permanent link">¶</a></h2>
-<table>
-<thead>
-<tr>
-<th>指令</th>
-<th>說明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>docker volume ls</code></td>
-<td>列出所有 Volume</td>
-</tr>
-<tr>
-<td><code>docker volume create &lt;name&gt;</code></td>
-<td>建立 Volume</td>
-</tr>
-<tr>
-<td><code>docker volume inspect &lt;name&gt;</code></td>
-<td>查看詳細資訊</td>
-</tr>
-<tr>
-<td><code>docker volume rm &lt;name&gt;</code></td>
-<td>刪除 Volume</td>
-</tr>
-<tr>
-<td><code>docker volume prune</code></td>
-<td>刪除未使用的 Volume</td>
-</tr>
-</tbody>
-</table>
-<h3 id="_8">掛載方式<a class="headerlink" href="#_8" title="Permanent link">¶</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Volume 掛載</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>docker<span class="w"> </span>run<span class="w"> </span>-v<span class="w"> </span>my-volume:/app/data<span class="w"> </span>nginx
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Bind Mount</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>docker<span class="w"> </span>run<span class="w"> </span>-v<span class="w"> </span>/host/path:/container/path<span class="w"> </span>nginx
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># 唯讀掛載</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>docker<span class="w"> </span>run<span class="w"> </span>-v<span class="w"> </span>/host/path:/container/path:ro<span class="w"> </span>nginx
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># --mount 語法（推薦）</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>docker<span class="w"> </span>run<span class="w"> </span>--mount<span class="w"> </span><span class="nv">type</span><span class="o">=</span>volume,source<span class="o">=</span>my-volume,target<span class="o">=</span>/app/data<span class="w"> </span>nginx
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>docker<span class="w"> </span>run<span class="w"> </span>--mount<span class="w"> </span><span class="nv">type</span><span class="o">=</span>bind,source<span class="o">=</span>/host/path,target<span class="o">=</span>/container/path<span class="w"> </span>nginx
+<h2 id="01-vmware-workstation">0.1 安裝 VMware Workstation<a class="headerlink" href="#01-vmware-workstation" title="Permanent link">¶</a></h2>
+<h3 id="_3">取得安裝程式<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
+<p>課程提供的 VMware Workstation 17.6.4 安裝檔案位於：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>C:\DCKA-v8 (C:)\VMware\VMwareWorkstation_17.6.4\
 </span></code></pre></div>
-<hr>
-<h2 id="_9">網路管理<a class="headerlink" href="#_9" title="Permanent link">¶</a></h2>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../images/00_environment/vmware_installer.png" data-desc-position="bottom"><img alt="VMware 安裝檔案位置" src="../images/00_environment/vmware_installer.png"></a></p>
+<p>資料夾內包含：</p>
 <table>
 <thead>
 <tr>
-<th>指令</th>
+<th>檔案</th>
 <th>說明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>docker network ls</code></td>
-<td>列出所有網路</td>
+<td><code>VMware-workstation-full-17.6.4-2483....exe</code></td>
+<td>VMware Workstation 安裝程式</td>
 </tr>
 <tr>
-<td><code>docker network create &lt;name&gt;</code></td>
-<td>建立網路</td>
+<td><code>md5sum.txt</code></td>
+<td>MD5 校驗碼</td>
 </tr>
 <tr>
-<td><code>docker network connect &lt;network&gt; &lt;container&gt;</code></td>
-<td>連接網路</td>
-</tr>
-<tr>
-<td><code>docker network disconnect &lt;network&gt; &lt;container&gt;</code></td>
-<td>斷開網路</td>
-</tr>
-<tr>
-<td><code>docker network rm &lt;name&gt;</code></td>
-<td>刪除網路</td>
-</tr>
-<tr>
-<td><code>docker network prune</code></td>
-<td>刪除未使用的網路</td>
-</tr>
-<tr>
-<td><code>docker network inspect &lt;name&gt;</code></td>
-<td>查看詳細資訊</td>
+<td><code>md5sum.png</code></td>
+<td>校驗碼截圖</td>
 </tr>
 </tbody>
 </table>
-<h3 id="_10">網路類型<a class="headerlink" href="#_10" title="Permanent link">¶</a></h3>
-<table>
-<thead>
-<tr>
-<th>類型</th>
-<th>說明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>bridge</code></td>
-<td>預設，容器透過虛擬橋接器連接</td>
-</tr>
-<tr>
-<td><code>host</code></td>
-<td>直接使用主機網路</td>
-</tr>
-<tr>
-<td><code>none</code></td>
-<td>無網路</td>
-</tr>
-<tr>
-<td><code>overlay</code></td>
-<td>跨主機通訊（Swarm）</td>
-</tr>
-</tbody>
-</table>
+<h3 id="_4">安裝步驟<a class="headerlink" href="#_4" title="Permanent link">¶</a></h3>
+<ol>
+<li>執行 <code>VMware-workstation-full-17.6.4-2483....exe</code></li>
+<li>依照安裝精靈完成安裝</li>
+<li>安裝完成後重新啟動電腦</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">安裝提示</p>
+<p>安裝過程中建議選擇「典型安裝」，使用預設設定即可。</p>
+</div>
 <hr>
-<h2 id="_11">系統管理<a class="headerlink" href="#_11" title="Permanent link">¶</a></h2>
-<table>
-<thead>
-<tr>
-<th>指令</th>
-<th>說明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>docker info</code></td>
-<td>系統資訊</td>
-</tr>
-<tr>
-<td><code>docker version</code></td>
-<td>版本資訊</td>
-</tr>
-<tr>
-<td><code>docker system df</code></td>
-<td>磁碟使用量</td>
-</tr>
-<tr>
-<td><code>docker system prune</code></td>
-<td>清理未使用資源</td>
-</tr>
-<tr>
-<td><code>docker system prune -a --volumes</code></td>
-<td>完整清理</td>
-</tr>
-<tr>
-<td><code>docker events</code></td>
-<td>即時事件</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h2 id="docker-compose">Docker Compose<a class="headerlink" href="#docker-compose" title="Permanent link">¶</a></h2>
-<table>
-<thead>
-<tr>
-<th>指令</th>
-<th>說明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>docker compose up</code></td>
-<td>啟動服務</td>
-</tr>
-<tr>
-<td><code>docker compose up -d</code></td>
-<td>背景啟動</td>
-</tr>
-<tr>
-<td><code>docker compose down</code></td>
-<td>停止並移除</td>
-</tr>
-<tr>
-<td><code>docker compose down -v</code></td>
-<td>同時移除 Volume</td>
-</tr>
-<tr>
-<td><code>docker compose ps</code></td>
-<td>列出服務</td>
-</tr>
-<tr>
-<td><code>docker compose logs</code></td>
-<td>查看日誌</td>
-</tr>
-<tr>
-<td><code>docker compose logs -f</code></td>
-<td>追蹤日誌</td>
-</tr>
-<tr>
-<td><code>docker compose exec &lt;service&gt; &lt;command&gt;</code></td>
-<td>執行指令</td>
-</tr>
-<tr>
-<td><code>docker compose build</code></td>
-<td>建置服務</td>
-</tr>
-<tr>
-<td><code>docker compose pull</code></td>
-<td>拉取 Image</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h2 id="registry">Registry 登入<a class="headerlink" href="#registry" title="Permanent link">¶</a></h2>
-<table>
-<thead>
-<tr>
-<th>指令</th>
-<th>說明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>docker login</code></td>
-<td>登入 Docker Hub</td>
-</tr>
-<tr>
-<td><code>docker login &lt;registry&gt;</code></td>
-<td>登入私有 Registry</td>
-</tr>
-<tr>
-<td><code>docker logout</code></td>
-<td>登出</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h2 id="_12">常用組合指令<a class="headerlink" href="#_12" title="Permanent link">¶</a></h2>
-<div class="language-bash highlight"><span class="filename">常用操作</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 停止所有容器</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>docker<span class="w"> </span>stop<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-q<span class="k">)</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># 刪除所有容器</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>docker<span class="w"> </span>rm<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-aq<span class="k">)</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># 刪除所有 Image</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>docker<span class="w"> </span>rmi<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>images<span class="w"> </span>-q<span class="k">)</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c1"># 刪除 dangling Image</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>docker<span class="w"> </span>rmi<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>images<span class="w"> </span>-f<span class="w"> </span><span class="s2">"dangling=true"</span><span class="w"> </span>-q<span class="k">)</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="c1"># 取得容器 IP</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>docker<span class="w"> </span>inspect<span class="w"> </span>-f<span class="w"> </span><span class="s1">'{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}'</span><span class="w"> </span>&lt;container&gt;
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="c1"># 進入運行中的容器</span>
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-q<span class="w"> </span>-f<span class="w"> </span><span class="nv">name</span><span class="o">=</span>nginx<span class="k">)</span><span class="w"> </span>/bin/sh
+<h2 id="02">0.2 設定虛擬網路<a class="headerlink" href="#02" title="Permanent link">¶</a></h2>
+<h3 id="virtual-network-editor">開啟 Virtual Network Editor<a class="headerlink" href="#virtual-network-editor" title="Permanent link">¶</a></h3>
+<ol>
+<li>開啟 VMware Workstation</li>
+<li>選擇 <strong>Edit</strong> → <strong>Virtual Network Editor</strong></li>
+<li>點選 <strong>Change Settings</strong> 取得管理員權限</li>
+</ol>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../images/00_environment/virtual_network_editor.png" data-desc-position="bottom"><img alt="Virtual Network Editor" src="../images/00_environment/virtual_network_editor.png"></a></p>
+<h3 id="vmnet8-nat">設定 VMnet8 (NAT)<a class="headerlink" href="#vmnet8-nat" title="Permanent link">¶</a></h3>
+<p>選擇 <strong>VMnet8</strong>（NAT 模式），進行以下設定：</p>
+<h4 id="1-subnet-ip">步驟 1：設定 Subnet IP<a class="headerlink" href="#1-subnet-ip" title="Permanent link">¶</a></h4>
+<p>將 <strong>Subnet IP</strong> 修改為：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>192.168.66.0
 </span></code></pre></div>
-<hr>
-<h2 id="dockerfile">Dockerfile 指令<a class="headerlink" href="#dockerfile" title="Permanent link">¶</a></h2>
+<h4 id="2-nat-settings">步驟 2：設定 NAT Settings<a class="headerlink" href="#2-nat-settings" title="Permanent link">¶</a></h4>
+<p>點選 <strong>NAT Settings...</strong>，將 <strong>Gateway IP</strong> 設定為：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>192.168.66.2
+</span></code></pre></div>
+<h4 id="3-dhcp-settings">步驟 3：設定 DHCP Settings<a class="headerlink" href="#3-dhcp-settings" title="Permanent link">¶</a></h4>
+<p>點選 <strong>DHCP Settings...</strong>，確認以下設定：</p>
 <table>
 <thead>
 <tr>
-<th>指令</th>
-<th>說明</th>
+<th>設定項目</th>
+<th>值</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>FROM</code></td>
-<td>基礎 Image</td>
+<td>Starting IP address</td>
+<td><code>192.168.66.128</code></td>
 </tr>
 <tr>
-<td><code>RUN</code></td>
-<td>執行指令</td>
-</tr>
-<tr>
-<td><code>COPY</code></td>
-<td>複製檔案</td>
-</tr>
-<tr>
-<td><code>ADD</code></td>
-<td>複製檔案（支援 URL、解壓縮）</td>
-</tr>
-<tr>
-<td><code>WORKDIR</code></td>
-<td>工作目錄</td>
-</tr>
-<tr>
-<td><code>ENV</code></td>
-<td>環境變數</td>
-</tr>
-<tr>
-<td><code>EXPOSE</code></td>
-<td>暴露 Port</td>
-</tr>
-<tr>
-<td><code>CMD</code></td>
-<td>預設執行指令</td>
-</tr>
-<tr>
-<td><code>ENTRYPOINT</code></td>
-<td>入口點</td>
-</tr>
-<tr>
-<td><code>VOLUME</code></td>
-<td>掛載點</td>
-</tr>
-<tr>
-<td><code>USER</code></td>
-<td>執行身份</td>
-</tr>
-<tr>
-<td><code>ARG</code></td>
-<td>建置參數</td>
-</tr>
-<tr>
-<td><code>LABEL</code></td>
-<td>標籤</td>
-</tr>
-<tr>
-<td><code>HEALTHCHECK</code></td>
-<td>健康檢查</td>
+<td>Ending IP address</td>
+<td><code>192.168.66.254</code></td>
 </tr>
 </tbody>
 </table>
+<div class="admonition warning">
+<p class="admonition-title">重要</p>
+<p>請確保 Subnet IP 為 <code>192.168.66.0</code>，Gateway 為 <code>192.168.66.2</code>，否則後續實作可能無法正常連線。</p>
+</div>
+<p>點選 <strong>OK</strong> 儲存設定。</p>
 <hr>
-<h2 id="_13">環境變數<a class="headerlink" href="#_13" title="Permanent link">¶</a></h2>
+<h2 id="03">0.3 網路拓樸與虛擬機<a class="headerlink" href="#03" title="Permanent link">¶</a></h2>
+<h3 id="_5">網路架構<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
+<p>課程環境使用 VMware Workstation 的 NAT 網路（VMnet8），網段為 <code>192.168.66.0/24</code>：</p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../images/00_environment/network_topology.jpg" data-desc-position="bottom"><img alt="網路拓樸" src="../images/00_environment/network_topology.jpg"></a></p>
+<pre class="mermaid"><code>graph TB
+    subgraph "外部網路"
+        Internet((Internet))
+        ExtNet[10.0.1.0/24]
+    end
+
+    subgraph "VMware NAT Gateway"
+        NAT[".254"]
+    end
+
+    subgraph "VMnet8 - 192.168.66.0/24"
+        Host[".xxx&lt;br/&gt;VMware Workstation"]
+        D1["docker1&lt;br/&gt;.51"]
+        D2["docker2&lt;br/&gt;.52"]
+        KS["k8s-standalone&lt;br/&gt;.61"]
+        KM["k8s-master1&lt;br/&gt;.71"]
+        KN1["k8s-node1&lt;br/&gt;.81"]
+        KN2["k8s-node2&lt;br/&gt;.82"]
+    end
+
+    Internet --&gt; ExtNet --&gt; NAT
+    NAT --&gt; Host
+    Host --&gt; D1
+    Host --&gt; D2
+    Host --&gt; KS
+    Host --&gt; KM
+    Host --&gt; KN1
+    Host --&gt; KN2</code></pre>
+<h3 id="ip">虛擬機清單與 IP 配置<a class="headerlink" href="#ip" title="Permanent link">¶</a></h3>
+<p>課程提供六台已預先設定好的 Rocky Linux 9 虛擬機：</p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../images/00_environment/vmware_folder.png" data-desc-position="bottom"><img alt="虛擬機資料夾" src="../images/00_environment/vmware_folder.png"></a></p>
 <table>
 <thead>
 <tr>
-<th>變數</th>
-<th>說明</th>
+<th>虛擬機名稱</th>
+<th>IP 位址</th>
+<th>用途</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>DOCKER_HOST</code></td>
-<td>Docker 主機位址</td>
+<td><code>docker1</code></td>
+<td>192.168.66.<strong>51</strong></td>
+<td>Docker 實作主機 1</td>
 </tr>
 <tr>
-<td><code>DOCKER_TLS_VERIFY</code></td>
-<td>啟用 TLS 驗證</td>
+<td><code>docker2</code></td>
+<td>192.168.66.<strong>52</strong></td>
+<td>Docker 實作主機 2</td>
 </tr>
 <tr>
-<td><code>DOCKER_CERT_PATH</code></td>
-<td>TLS 憑證路徑</td>
+<td><code>k8s-standalone</code></td>
+<td>192.168.66.<strong>61</strong></td>
+<td>獨立 Kubernetes 環境（單節點）</td>
 </tr>
 <tr>
-<td><code>DOCKER_CONFIG</code></td>
-<td>設定檔目錄</td>
+<td><code>k8s-master1</code></td>
+<td>192.168.66.<strong>71</strong></td>
+<td>Kubernetes Master（控制平面）節點</td>
+</tr>
+<tr>
+<td><code>k8s-node1</code></td>
+<td>192.168.66.<strong>81</strong></td>
+<td>Kubernetes Worker 節點 1</td>
+</tr>
+<tr>
+<td><code>k8s-node2</code></td>
+<td>192.168.66.<strong>82</strong></td>
+<td>Kubernetes Worker 節點 2</td>
+</tr>
+<tr>
+<td><code>mirror</code></td>
+<td>-</td>
+<td>本地 Mirror 伺服器（套件庫映射）</td>
 </tr>
 </tbody>
 </table>
+<div class="admonition info">
+<p class="admonition-title">IP 配置規則</p>
+<ul>
+<li><strong>Docker 環境</strong>：192.168.66.5x</li>
+<li><strong>K8s Standalone</strong>：192.168.66.6x</li>
+<li><strong>K8s Master</strong>：192.168.66.7x</li>
+<li><strong>K8s Worker</strong>：192.168.66.8x</li>
+<li><strong>NAT Gateway</strong>：192.168.66.254</li>
+</ul>
+</div>
+<h3 id="_6">啟動所有虛擬機<a class="headerlink" href="#_6" title="Permanent link">¶</a></h3>
+<h4 id="1">方法 1：使用批次檔<a class="headerlink" href="#1" title="Permanent link">¶</a></h4>
+<p>執行 <code>PowerON-allVM.bat</code> 一次啟動所有虛擬機。</p>
+<h4 id="2">方法 2：手動啟動<a class="headerlink" href="#2" title="Permanent link">¶</a></h4>
+<ol>
+<li>在 VMware Workstation 中依序開啟每台虛擬機的 <code>.vmx</code> 檔案</li>
+<li>點選 <strong>Power on this virtual machine</strong></li>
+</ol>
+<h3 id="_7">驗證虛擬機狀態<a class="headerlink" href="#_7" title="Permanent link">¶</a></h3>
+<p>啟動完成後，應該可以看到所有虛擬機都在運行中，並顯示 Rocky Linux 登入畫面：</p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../images/00_environment/vms_running.png" data-desc-position="bottom"><img alt="虛擬機執行中" src="../images/00_environment/vms_running.png"></a></p>
+<h3 id="_8">登入資訊<a class="headerlink" href="#_8" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>帳號</th>
+<th>密碼</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>root</code></td>
+<td><code>container</code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition success">
+<p class="admonition-title">環境準備完成</p>
+<p>當所有虛擬機都成功啟動並可以登入後，即可開始進行 Docker 與 Kubernetes 實作練習。</p>
+</div>
+<hr>
+<h2 id="04-mirror">0.4 Mirror 伺服器<a class="headerlink" href="#04-mirror" title="Permanent link">¶</a></h2>
+<p>課程提供本地 Mirror 伺服器，加速套件下載並支援離線環境。</p>
+<h3 id="mirror">Mirror 網址<a class="headerlink" href="#mirror" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>網路環境</th>
+<th>網址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>內部網路</strong>（VMnet8）</td>
+<td><code>http://192.168.66.248/k8s/</code></td>
+</tr>
+<tr>
+<td><strong>外部網路</strong>（教室網路）</td>
+<td><code>http://10.0.1.249/k8s/</code></td>
+</tr>
+</tbody>
+</table>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../images/00_environment/mirror_internal.png" data-desc-position="bottom"><img alt="內部 Mirror 伺服器" src="../images/00_environment/mirror_internal.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../images/00_environment/mirror_external.png" data-desc-position="bottom"><img alt="外部 Mirror 伺服器" src="../images/00_environment/mirror_external.png"></a></p>
+<h3 id="mirror_1">Mirror 資源內容<a class="headerlink" href="#mirror_1" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>資料夾/檔案</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>248.repo</code></td>
+<td>YUM/DNF 套件庫設定檔</td>
+</tr>
+<tr>
+<td><code>ContainerImages/</code></td>
+<td>Docker/Container 映像檔</td>
+</tr>
+<tr>
+<td><code>Packages/</code></td>
+<td>RPM 套件</td>
+</tr>
+<tr>
+<td><code>command.txt</code></td>
+<td>指令參考</td>
+</tr>
+<tr>
+<td><code>docs/</code></td>
+<td>課程文件</td>
+</tr>
+<tr>
+<td><code>scripts/</code></td>
+<td>自動化腳本</td>
+</tr>
+<tr>
+<td><code>yaml/</code></td>
+<td>Kubernetes YAML 設定檔</td>
+</tr>
+<tr>
+<td><code>VMwareWorkstation_17.6.4/</code></td>
+<td>VMware 安裝程式（外部網路）</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">為什麼需要 Mirror？</p>
+<ul>
+<li><strong>加速下載</strong>：從本地伺服器下載比網際網路快很多</li>
+<li><strong>離線環境</strong>：教室可能沒有對外網路</li>
+<li><strong>版本一致</strong>：確保所有學員使用相同版本的套件。</li>
+</ul>
+</div>
+<hr>
+<h2 id="_9">常見問題<a class="headerlink" href="#_9" title="Permanent link">¶</a></h2>
+<details class="question">
+<summary>Q1：虛擬機無法開機，顯示 VT-x 錯誤</summary>
+<p><strong>原因</strong>：BIOS 未啟用虛擬化技術</p>
+<p><strong>解決方案</strong>：
+1. 重新啟動電腦，進入 BIOS 設定
+2. 找到 Intel VT-x 或 AMD-V 選項
+3. 將其設定為 Enabled
+4. 儲存並重新啟動</p>
+</details>
+<details class="question">
+<summary>Q2：網路無法連線</summary>
+<p><strong>原因</strong>：Virtual Network Editor 設定錯誤</p>
+<p><strong>解決方案</strong>：
+1. 確認 VMnet8 的 Subnet IP 為 <code>192.168.66.0</code>
+2. 確認 Gateway IP 為 <code>192.168.66.2</code>
+3. 確認虛擬機網路介面設定為 NAT 模式</p>
+</details>
+<details class="question">
+<summary>Q3：記憶體不足</summary>
+<p><strong>原因</strong>：主機記憶體不足以運行所有虛擬機</p>
+<p><strong>解決方案</strong>：
+- 依序啟動需要的虛擬機，不要一次全部啟動
+- 或升級主機記憶體至 16GB 以上</p>
+</details>
+<hr>
+<h2 id="_10">小結<a class="headerlink" href="#_10" title="Permanent link">¶</a></h2>
+<p>本章節重點回顧：</p>
+<ul>
+<li>✅ <strong>VMware 安裝</strong>：安裝 VMware Workstation 17.6.4</li>
+<li>✅ <strong>網路設定</strong>：VMnet8 設定為 192.168.66.0/24 網段</li>
+<li>✅ <strong>虛擬機啟動</strong>：六台 Rocky Linux 虛擬機全部啟動</li>
+<li>✅ <strong>環境驗證</strong>：確認可以正常登入虛擬機</li>
+</ul>
+<h2 id="_11">下一步<a class="headerlink" href="#_11" title="Permanent link">¶</a></h2>
+<p>環境準備完成後，請繼續前往 <a href="../01_docker_intro/">第 1 章：Docker Container &amp; Micro Service Introduction</a></p>
 
 
 
@@ -1927,7 +1664,7 @@
     <span class="md-icon" title="最後更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月26日 10:15:09 CST">2026年1月26日 10:15:09</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月26日 11:49:27 CST">2026年1月26日 11:49:27</span>
   </span>
 
     
@@ -1937,7 +1674,7 @@
     <span class="md-icon" title="建立日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月26日 10:15:09 CST">2026年1月26日 10:15:09</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月26日 11:49:27 CST">2026年1月26日 11:49:27</span>
   </span>
 
     
@@ -1974,7 +1711,7 @@
       <nav class="md-footer__inner md-grid" aria-label="頁腳">
         
           
-          <a href="../../04_kubernetes/" class="md-footer__link md-footer__link--prev" aria-label="上一頁: 第 4 章 Kubernetes 管理">
+          <a href=".." class="md-footer__link md-footer__link--prev" aria-label="上一頁: 首頁">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
@@ -1984,20 +1721,20 @@
                 上一頁
               </span>
               <div class="md-ellipsis">
-                第 4 章 Kubernetes 管理
+                首頁
               </div>
             </div>
           </a>
         
         
           
-          <a href="../k8s_cheatsheet/" class="md-footer__link md-footer__link--next" aria-label="下一頁: Kubernetes 指令速查">
+          <a href="../01_docker_intro/" class="md-footer__link md-footer__link--next" aria-label="下一頁: 第 1 章 Docker 介紹">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一頁
               </span>
               <div class="md-ellipsis">
-                Kubernetes 指令速查
+                第 1 章 Docker 介紹
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -2034,10 +1771,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.path", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "content.tabs.link", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u8907\u88fd", "clipboard.copy": "\u8907\u88fd", "search.result.more.one": "\u6b64\u9801\u5c1a\u6709 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.more.other": "\u6b64\u9801\u5c1a\u6709 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.none": "\u6c92\u6709\u7b26\u5408\u7684\u9805\u76ee", "search.result.one": "\u627e\u5230 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.other": "\u627e\u5230 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.placeholder": "\u6253\u5b57\u9032\u884c\u641c\u5c0b", "search.result.term.missing": "\u7f3a\u5c11\u5b57\u8a5e", "select.version": "\u9078\u64c7\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.path", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "content.tabs.link", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u8907\u88fd", "clipboard.copy": "\u8907\u88fd", "search.result.more.one": "\u6b64\u9801\u5c1a\u6709 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.more.other": "\u6b64\u9801\u5c1a\u6709 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.none": "\u6c92\u6709\u7b26\u5408\u7684\u9805\u76ee", "search.result.one": "\u627e\u5230 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.other": "\u627e\u5230 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.placeholder": "\u6253\u5b57\u9032\u884c\u641c\u5c0b", "search.result.term.missing": "\u7f3a\u5c11\u5b57\u8a5e", "select.version": "\u9078\u64c7\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   
