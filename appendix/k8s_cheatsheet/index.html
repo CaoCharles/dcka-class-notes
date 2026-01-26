@@ -1,0 +1,2271 @@
+<!DOCTYPE html><html lang="zh-TW" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="DCKA 課程學習筆記">
+      
+      
+        <meta name="author" content="Charles Cao">
+      
+      
+      
+        <link rel="prev" href="../docker_cheatsheet/">
+      
+      
+        <link rel="next" href="../troubleshooting/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Kubernetes 指令速查 - Docker Containers 與 Kubernetes 系統管理</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+TC:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Noto Sans TC";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#kubernetes" class="md-skip">
+          跳轉到
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="頁首">
+    <a href="../.." title="Docker Containers 與 Kubernetes 系統管理" class="md-header__button md-logo" aria-label="Docker Containers 與 Kubernetes 系統管理" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Docker Containers 與 Kubernetes 系統管理
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Kubernetes 指令速查
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="切換至深色模式" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切換至深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="切換至淺色模式" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切換至淺色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜尋" placeholder="搜尋" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="搜尋">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清除" aria-label="清除" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜尋引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="標籤" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首頁
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../01_docker_intro/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 1 章 Docker 介紹
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../02_docker_management/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 2 章 Docker 容器化管理
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../03_docker_images/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 3 章 客製化 Docker Images
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../04_kubernetes/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第 4 章 Kubernetes 管理
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../docker_cheatsheet/" class="md-tabs__link">
+          
+  
+  
+  附錄
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="導覽列" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Docker Containers 與 Kubernetes 系統管理" class="md-nav__button md-logo" aria-label="Docker Containers 與 Kubernetes 系統管理" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    Docker Containers 與 Kubernetes 系統管理
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首頁
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_docker_intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 1 章 Docker 介紹
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02_docker_management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 2 章 Docker 容器化管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_docker_images/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 3 章 客製化 Docker Images
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 4 章 Kubernetes 管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    附錄
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    附錄
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker_cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker 指令速查
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubernetes 指令速查
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubernetes 指令速查
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目錄">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目錄
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基本操作
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="基本操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        叢集資訊
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        資源查詢
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        資源管理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="資源管理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        建立與套用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        編輯與刪除
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        詳細資訊
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pod 操作
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pod 操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        執行與存取
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deployment 管理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deployment 管理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基本操作
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        滾動更新
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service 管理
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Namespace 管理
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configmap-secret" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ConfigMap &amp; Secret
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ConfigMap &amp; Secret">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ConfigMap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secret" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Secret
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pv-pvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PV &amp; PVC
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Node 管理
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rbac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RBAC
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        疑難排解
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        輸出格式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="輸出格式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jsonpath" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JSONPath 範例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常用組合指令
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minikube" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        minikube 指令
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        快捷別名
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    疑難排解
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目錄">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目錄
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基本操作
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="基本操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        叢集資訊
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        資源查詢
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        資源管理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="資源管理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        建立與套用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        編輯與刪除
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        詳細資訊
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pod 操作
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pod 操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        執行與存取
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deployment 管理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deployment 管理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基本操作
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        滾動更新
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service 管理
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Namespace 管理
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configmap-secret" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ConfigMap &amp; Secret
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ConfigMap &amp; Secret">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ConfigMap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secret" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Secret
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pv-pvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PV &amp; PVC
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Node 管理
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rbac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RBAC
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        疑難排解
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        輸出格式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="輸出格式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jsonpath" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JSONPath 範例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常用組合指令
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minikube" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        minikube 指令
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        快捷別名
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="導覽列">
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    首頁
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../docker_cheatsheet/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    附錄
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="kubernetes">Kubernetes 指令速查表<a class="headerlink" href="#kubernetes" title="Permanent link">¶</a></h1>
+<p>快速參考 kubectl 常用指令，適合日常操作與考試複習。</p>
+<hr>
+<h2 id="_1">基本操作<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<h3 id="_2">叢集資訊<a class="headerlink" href="#_2" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>kubectl cluster-info</code></td>
+<td>叢集資訊</td>
+</tr>
+<tr>
+<td><code>kubectl version</code></td>
+<td>版本資訊</td>
+</tr>
+<tr>
+<td><code>kubectl config view</code></td>
+<td>查看設定</td>
+</tr>
+<tr>
+<td><code>kubectl config get-contexts</code></td>
+<td>列出 Context</td>
+</tr>
+<tr>
+<td><code>kubectl config use-context &lt;name&gt;</code></td>
+<td>切換 Context</td>
+</tr>
+<tr>
+<td><code>kubectl api-resources</code></td>
+<td>列出 API 資源</td>
+</tr>
+<tr>
+<td><code>kubectl api-versions</code></td>
+<td>列出 API 版本</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_3">資源查詢<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>kubectl get &lt;resource&gt;</code></td>
+<td>列出資源</td>
+</tr>
+<tr>
+<td><code>kubectl get pods</code></td>
+<td>列出 Pod</td>
+</tr>
+<tr>
+<td><code>kubectl get pods -o wide</code></td>
+<td>詳細資訊（含 IP、Node）</td>
+</tr>
+<tr>
+<td><code>kubectl get pods -o yaml</code></td>
+<td>YAML 格式輸出</td>
+</tr>
+<tr>
+<td><code>kubectl get pods -o json</code></td>
+<td>JSON 格式輸出</td>
+</tr>
+<tr>
+<td><code>kubectl get pods -w</code></td>
+<td>持續監看</td>
+</tr>
+<tr>
+<td><code>kubectl get pods -l app=nginx</code></td>
+<td>依標籤過濾</td>
+</tr>
+<tr>
+<td><code>kubectl get pods -n &lt;namespace&gt;</code></td>
+<td>指定 Namespace</td>
+</tr>
+<tr>
+<td><code>kubectl get pods --all-namespaces</code></td>
+<td>所有 Namespace</td>
+</tr>
+<tr>
+<td><code>kubectl get all</code></td>
+<td>列出常見資源</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="_4">資源管理<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
+<h3 id="_5">建立與套用<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>kubectl apply -f &lt;file.yaml&gt;</code></td>
+<td>套用設定</td>
+</tr>
+<tr>
+<td><code>kubectl apply -f &lt;directory&gt;/</code></td>
+<td>套用目錄下所有設定</td>
+</tr>
+<tr>
+<td><code>kubectl create -f &lt;file.yaml&gt;</code></td>
+<td>建立資源</td>
+</tr>
+<tr>
+<td><code>kubectl create deployment &lt;name&gt; --image=&lt;image&gt;</code></td>
+<td>建立 Deployment</td>
+</tr>
+<tr>
+<td><code>kubectl create service clusterip &lt;name&gt; --tcp=80:80</code></td>
+<td>建立 Service</td>
+</tr>
+<tr>
+<td><code>kubectl create configmap &lt;name&gt; --from-literal=key=value</code></td>
+<td>建立 ConfigMap</td>
+</tr>
+<tr>
+<td><code>kubectl create secret generic &lt;name&gt; --from-literal=key=value</code></td>
+<td>建立 Secret</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_6">編輯與刪除<a class="headerlink" href="#_6" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>kubectl edit &lt;resource&gt; &lt;name&gt;</code></td>
+<td>編輯資源</td>
+</tr>
+<tr>
+<td><code>kubectl delete &lt;resource&gt; &lt;name&gt;</code></td>
+<td>刪除資源</td>
+</tr>
+<tr>
+<td><code>kubectl delete -f &lt;file.yaml&gt;</code></td>
+<td>依設定檔刪除</td>
+</tr>
+<tr>
+<td><code>kubectl delete pods --all</code></td>
+<td>刪除所有 Pod</td>
+</tr>
+<tr>
+<td><code>kubectl delete pods -l app=nginx</code></td>
+<td>依標籤刪除</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_7">詳細資訊<a class="headerlink" href="#_7" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>kubectl describe &lt;resource&gt; &lt;name&gt;</code></td>
+<td>詳細描述</td>
+</tr>
+<tr>
+<td><code>kubectl describe pod &lt;pod-name&gt;</code></td>
+<td>描述 Pod</td>
+</tr>
+<tr>
+<td><code>kubectl describe node &lt;node-name&gt;</code></td>
+<td>描述 Node</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="pod">Pod 操作<a class="headerlink" href="#pod" title="Permanent link">¶</a></h2>
+<h3 id="_8">執行與存取<a class="headerlink" href="#_8" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>kubectl run &lt;name&gt; --image=&lt;image&gt;</code></td>
+<td>建立 Pod</td>
+</tr>
+<tr>
+<td><code>kubectl exec -it &lt;pod&gt; -- /bin/sh</code></td>
+<td>進入 Pod</td>
+</tr>
+<tr>
+<td><code>kubectl exec &lt;pod&gt; -- &lt;command&gt;</code></td>
+<td>執行指令</td>
+</tr>
+<tr>
+<td><code>kubectl logs &lt;pod&gt;</code></td>
+<td>查看日誌</td>
+</tr>
+<tr>
+<td><code>kubectl logs -f &lt;pod&gt;</code></td>
+<td>追蹤日誌</td>
+</tr>
+<tr>
+<td><code>kubectl logs &lt;pod&gt; -c &lt;container&gt;</code></td>
+<td>多容器指定</td>
+</tr>
+<tr>
+<td><code>kubectl logs &lt;pod&gt; --previous</code></td>
+<td>前一個容器的日誌</td>
+</tr>
+<tr>
+<td><code>kubectl logs &lt;pod&gt; --tail=100</code></td>
+<td>最後 100 行</td>
+</tr>
+<tr>
+<td><code>kubectl port-forward &lt;pod&gt; 8080:80</code></td>
+<td>Port 轉發</td>
+</tr>
+<tr>
+<td><code>kubectl cp &lt;pod&gt;:&lt;path&gt; &lt;local-path&gt;</code></td>
+<td>複製檔案</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="deployment">Deployment 管理<a class="headerlink" href="#deployment" title="Permanent link">¶</a></h2>
+<h3 id="_9">基本操作<a class="headerlink" href="#_9" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>kubectl get deployments</code></td>
+<td>列出 Deployment</td>
+</tr>
+<tr>
+<td><code>kubectl describe deployment &lt;name&gt;</code></td>
+<td>詳細描述</td>
+</tr>
+<tr>
+<td><code>kubectl scale deployment &lt;name&gt; --replicas=3</code></td>
+<td>調整副本</td>
+</tr>
+<tr>
+<td><code>kubectl set image deployment/&lt;name&gt; &lt;container&gt;=&lt;image&gt;</code></td>
+<td>更新 Image</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_10">滾動更新<a class="headerlink" href="#_10" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>kubectl rollout status deployment/&lt;name&gt;</code></td>
+<td>查看更新狀態</td>
+</tr>
+<tr>
+<td><code>kubectl rollout history deployment/&lt;name&gt;</code></td>
+<td>查看歷史</td>
+</tr>
+<tr>
+<td><code>kubectl rollout undo deployment/&lt;name&gt;</code></td>
+<td>回滾</td>
+</tr>
+<tr>
+<td><code>kubectl rollout undo deployment/&lt;name&gt; --to-revision=2</code></td>
+<td>回滾到特定版本</td>
+</tr>
+<tr>
+<td><code>kubectl rollout restart deployment/&lt;name&gt;</code></td>
+<td>重啟</td>
+</tr>
+<tr>
+<td><code>kubectl rollout pause deployment/&lt;name&gt;</code></td>
+<td>暫停更新</td>
+</tr>
+<tr>
+<td><code>kubectl rollout resume deployment/&lt;name&gt;</code></td>
+<td>繼續更新</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="service">Service 管理<a class="headerlink" href="#service" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>kubectl get services</code></td>
+<td>列出 Service</td>
+</tr>
+<tr>
+<td><code>kubectl get endpoints</code></td>
+<td>列出 Endpoints</td>
+</tr>
+<tr>
+<td><code>kubectl expose deployment &lt;name&gt; --port=80</code></td>
+<td>建立 Service</td>
+</tr>
+<tr>
+<td><code>kubectl expose deployment &lt;name&gt; --type=NodePort --port=80</code></td>
+<td>NodePort</td>
+</tr>
+<tr>
+<td><code>kubectl expose deployment &lt;name&gt; --type=LoadBalancer --port=80</code></td>
+<td>LoadBalancer</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="namespace">Namespace 管理<a class="headerlink" href="#namespace" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>kubectl get namespaces</code></td>
+<td>列出 Namespace</td>
+</tr>
+<tr>
+<td><code>kubectl create namespace &lt;name&gt;</code></td>
+<td>建立 Namespace</td>
+</tr>
+<tr>
+<td><code>kubectl delete namespace &lt;name&gt;</code></td>
+<td>刪除 Namespace</td>
+</tr>
+<tr>
+<td><code>kubectl config set-context --current --namespace=&lt;name&gt;</code></td>
+<td>切換預設 Namespace</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="configmap-secret">ConfigMap &amp; Secret<a class="headerlink" href="#configmap-secret" title="Permanent link">¶</a></h2>
+<h3 id="configmap">ConfigMap<a class="headerlink" href="#configmap" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>kubectl get configmaps</code></td>
+<td>列出 ConfigMap</td>
+</tr>
+<tr>
+<td><code>kubectl create configmap &lt;name&gt; --from-literal=key=value</code></td>
+<td>從字面值建立</td>
+</tr>
+<tr>
+<td><code>kubectl create configmap &lt;name&gt; --from-file=&lt;file&gt;</code></td>
+<td>從檔案建立</td>
+</tr>
+<tr>
+<td><code>kubectl describe configmap &lt;name&gt;</code></td>
+<td>檢視內容</td>
+</tr>
+</tbody>
+</table>
+<h3 id="secret">Secret<a class="headerlink" href="#secret" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>kubectl get secrets</code></td>
+<td>列出 Secret</td>
+</tr>
+<tr>
+<td><code>kubectl create secret generic &lt;name&gt; --from-literal=key=value</code></td>
+<td>建立 Secret</td>
+</tr>
+<tr>
+<td><code>kubectl get secret &lt;name&gt; -o jsonpath='{.data.key}' \| base64 -d</code></td>
+<td>解碼 Secret</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="pv-pvc">PV &amp; PVC<a class="headerlink" href="#pv-pvc" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>kubectl get pv</code></td>
+<td>列出 PersistentVolume</td>
+</tr>
+<tr>
+<td><code>kubectl get pvc</code></td>
+<td>列出 PersistentVolumeClaim</td>
+</tr>
+<tr>
+<td><code>kubectl describe pv &lt;name&gt;</code></td>
+<td>描述 PV</td>
+</tr>
+<tr>
+<td><code>kubectl describe pvc &lt;name&gt;</code></td>
+<td>描述 PVC</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="node">Node 管理<a class="headerlink" href="#node" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>kubectl get nodes</code></td>
+<td>列出節點</td>
+</tr>
+<tr>
+<td><code>kubectl describe node &lt;name&gt;</code></td>
+<td>描述節點</td>
+</tr>
+<tr>
+<td><code>kubectl top nodes</code></td>
+<td>節點資源使用</td>
+</tr>
+<tr>
+<td><code>kubectl cordon &lt;node&gt;</code></td>
+<td>標記節點不可調度</td>
+</tr>
+<tr>
+<td><code>kubectl uncordon &lt;node&gt;</code></td>
+<td>取消標記</td>
+</tr>
+<tr>
+<td><code>kubectl drain &lt;node&gt;</code></td>
+<td>排空節點</td>
+</tr>
+<tr>
+<td><code>kubectl taint nodes &lt;node&gt; key=value:NoSchedule</code></td>
+<td>加上 Taint</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="rbac">RBAC<a class="headerlink" href="#rbac" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>kubectl get roles</code></td>
+<td>列出 Role</td>
+</tr>
+<tr>
+<td><code>kubectl get clusterroles</code></td>
+<td>列出 ClusterRole</td>
+</tr>
+<tr>
+<td><code>kubectl get rolebindings</code></td>
+<td>列出 RoleBinding</td>
+</tr>
+<tr>
+<td><code>kubectl get clusterrolebindings</code></td>
+<td>列出 ClusterRoleBinding</td>
+</tr>
+<tr>
+<td><code>kubectl auth can-i &lt;verb&gt; &lt;resource&gt;</code></td>
+<td>檢查權限</td>
+</tr>
+<tr>
+<td><code>kubectl auth can-i &lt;verb&gt; &lt;resource&gt; --as=&lt;user&gt;</code></td>
+<td>模擬使用者檢查</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="_11">疑難排解<a class="headerlink" href="#_11" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>kubectl get events</code></td>
+<td>查看事件</td>
+</tr>
+<tr>
+<td><code>kubectl get events --sort-by='.lastTimestamp'</code></td>
+<td>依時間排序</td>
+</tr>
+<tr>
+<td><code>kubectl top pods</code></td>
+<td>Pod 資源使用</td>
+</tr>
+<tr>
+<td><code>kubectl top nodes</code></td>
+<td>Node 資源使用</td>
+</tr>
+<tr>
+<td><code>kubectl describe pod &lt;name&gt;</code></td>
+<td>詳細描述</td>
+</tr>
+<tr>
+<td><code>kubectl logs &lt;pod&gt; --previous</code></td>
+<td>前一個容器日誌</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="_12">輸出格式<a class="headerlink" href="#_12" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>格式</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-o wide</code></td>
+<td>額外欄位</td>
+</tr>
+<tr>
+<td><code>-o yaml</code></td>
+<td>YAML 格式</td>
+</tr>
+<tr>
+<td><code>-o json</code></td>
+<td>JSON 格式</td>
+</tr>
+<tr>
+<td><code>-o name</code></td>
+<td>只顯示名稱</td>
+</tr>
+<tr>
+<td><code>-o jsonpath='{...}'</code></td>
+<td>JSONPath 查詢</td>
+</tr>
+<tr>
+<td><code>-o custom-columns=...</code></td>
+<td>自訂欄位</td>
+</tr>
+</tbody>
+</table>
+<h3 id="jsonpath">JSONPath 範例<a class="headerlink" href="#jsonpath" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 取得 Pod IP</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>&lt;name&gt;<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.status.podIP}'</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># 取得所有 Pod 名稱</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.items[*].metadata.name}'</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># 取得所有 Container Image</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.items[*].spec.containers[*].image}'</span>
+</span></code></pre></div>
+<hr>
+<h2 id="_13">常用組合指令<a class="headerlink" href="#_13" title="Permanent link">¶</a></h2>
+<div class="language-bash highlight"><span class="filename">實用指令</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 刪除所有 Evicted Pod</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>pods<span class="w"> </span>--field-selector<span class="o">=</span>status.phase<span class="o">=</span>Failed<span class="w"> </span>--all-namespaces
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># 取得所有 Pod 的 Image</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s2">"{.items[*].spec.containers[*].image}"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span>-s<span class="w"> </span><span class="s1">'[[:space:]]'</span><span class="w"> </span><span class="s1">'\n'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># 依記憶體使用量排序 Pod</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>kubectl<span class="w"> </span>top<span class="w"> </span>pods<span class="w"> </span>--sort-by<span class="o">=</span>memory
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c1"># 快速建立測試 Pod</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>kubectl<span class="w"> </span>run<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--image<span class="o">=</span>busybox<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>--<span class="w"> </span>/bin/sh
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="c1"># 產生 YAML 但不執行</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>kubectl<span class="w"> </span>create<span class="w"> </span>deployment<span class="w"> </span>nginx<span class="w"> </span>--image<span class="o">=</span>nginx<span class="w"> </span>--dry-run<span class="o">=</span>client<span class="w"> </span>-o<span class="w"> </span>yaml
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="c1"># 匯出現有資源</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>kubectl<span class="w"> </span>get<span class="w"> </span>deployment<span class="w"> </span>nginx<span class="w"> </span>-o<span class="w"> </span>yaml<span class="w"> </span>&gt;<span class="w"> </span>nginx-deployment.yaml
+</span></code></pre></div>
+<hr>
+<h2 id="minikube">minikube 指令<a class="headerlink" href="#minikube" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>minikube start</code></td>
+<td>啟動</td>
+</tr>
+<tr>
+<td><code>minikube stop</code></td>
+<td>停止</td>
+</tr>
+<tr>
+<td><code>minikube delete</code></td>
+<td>刪除</td>
+</tr>
+<tr>
+<td><code>minikube status</code></td>
+<td>狀態</td>
+</tr>
+<tr>
+<td><code>minikube dashboard</code></td>
+<td>開啟 Dashboard</td>
+</tr>
+<tr>
+<td><code>minikube ip</code></td>
+<td>取得 IP</td>
+</tr>
+<tr>
+<td><code>minikube ssh</code></td>
+<td>SSH 連線</td>
+</tr>
+<tr>
+<td><code>minikube service &lt;name&gt;</code></td>
+<td>開啟 Service</td>
+</tr>
+<tr>
+<td><code>minikube addons list</code></td>
+<td>列出插件</td>
+</tr>
+<tr>
+<td><code>minikube addons enable &lt;name&gt;</code></td>
+<td>啟用插件</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="_14">快捷別名<a class="headerlink" href="#_14" title="Permanent link">¶</a></h2>
+<div class="language-bash highlight"><span class="filename">建議加入 ~/.bashrc 或 ~/.zshrc</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">alias</span><span class="w"> </span><span class="nv">k</span><span class="o">=</span><span class="s1">'kubectl'</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">alias</span><span class="w"> </span><span class="nv">kgp</span><span class="o">=</span><span class="s1">'kubectl get pods'</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nb">alias</span><span class="w"> </span><span class="nv">kgs</span><span class="o">=</span><span class="s1">'kubectl get services'</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nb">alias</span><span class="w"> </span><span class="nv">kgd</span><span class="o">=</span><span class="s1">'kubectl get deployments'</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nb">alias</span><span class="w"> </span><span class="nv">kgn</span><span class="o">=</span><span class="s1">'kubectl get nodes'</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="nb">alias</span><span class="w"> </span><span class="nv">kd</span><span class="o">=</span><span class="s1">'kubectl describe'</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="nb">alias</span><span class="w"> </span><span class="nv">kl</span><span class="o">=</span><span class="s1">'kubectl logs'</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="nb">alias</span><span class="w"> </span><span class="nv">ke</span><span class="o">=</span><span class="s1">'kubectl exec -it'</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="nb">alias</span><span class="w"> </span><span class="nv">ka</span><span class="o">=</span><span class="s1">'kubectl apply -f'</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="nb">alias</span><span class="w"> </span><span class="nv">kd</span><span class="o">=</span><span class="s1">'kubectl delete -f'</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="c1"># 自動補全</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="nb">source</span><span class="w"> </span>&lt;<span class="o">(</span>kubectl<span class="w"> </span>completion<span class="w"> </span>bash<span class="o">)</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="nb">source</span><span class="w"> </span>&lt;<span class="o">(</span>kubectl<span class="w"> </span>completion<span class="w"> </span>zsh<span class="o">)</span>
+</span></code></pre></div>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最後更新">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月26日 10:15:09 CST">2026年1月26日 10:15:09</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="建立日期">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"></path></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月26日 10:15:09 CST">2026年1月26日 10:15:09</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  回到頂端
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="頁腳">
+        
+          
+          <a href="../docker_cheatsheet/" class="md-footer__link md-footer__link--prev" aria-label="上一頁: Docker 指令速查">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一頁
+              </span>
+              <div class="md-ellipsis">
+                Docker 指令速查
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../troubleshooting/" class="md-footer__link md-footer__link--next" aria-label="下一頁: 疑難排解">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一頁
+              </span>
+              <div class="md-ellipsis">
+                疑難排解
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.path", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "content.tabs.link", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u8907\u88fd", "clipboard.copy": "\u8907\u88fd", "search.result.more.one": "\u6b64\u9801\u5c1a\u6709 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.more.other": "\u6b64\u9801\u5c1a\u6709 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.none": "\u6c92\u6709\u7b26\u5408\u7684\u9805\u76ee", "search.result.one": "\u627e\u5230 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.other": "\u627e\u5230 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.placeholder": "\u6253\u5b57\u9032\u884c\u641c\u5c0b", "search.result.term.missing": "\u7f3a\u5c11\u5b57\u8a5e", "select.version": "\u9078\u64c7\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
