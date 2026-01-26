@@ -614,6 +614,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#11-podman" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Podman 簡介
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1 Podman 簡介">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#podman-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Podman 與 Docker 的關鍵差異
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -621,6 +649,45 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="實作步驟">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-podman" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 1：安裝 Podman 套件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-daemonless" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 2：驗證 Daemonless 架構（無需啟動服務）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-podman-container-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 3：使用 Podman 下載 Container Image
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1482,6 +1549,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#11-podman" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Podman 簡介
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1 Podman 簡介">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#podman-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Podman 與 Docker 的關鍵差異
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1489,6 +1584,45 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="實作步驟">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-podman" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 1：安裝 Podman 套件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-daemonless" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 2：驗證 Daemonless 架構（無需啟動服務）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-podman-container-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 3：使用 Podman 下載 Container Image
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1562,11 +1696,144 @@
 
 <h1 id="lab-03-podman">LAB 03 安裝 Podman<a class="headerlink" href="#lab-03-podman" title="Permanent link">¶</a></h1>
 <h2 id="_1">學習目標<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<p>完成本 Lab 後，你將能夠：</p>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 待補</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 理解 Podman 的核心架構 (Daemonless &amp; Rootless)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 在 Linux 上安裝 Podman</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 驗證 Podman 無需守護行程 (Daemon) 即可運作</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 處理 Image Registry 搜尋順序與驗證問題</li>
 </ul>
+<hr>
+<h2 id="11-podman">1.1 Podman 簡介<a class="headerlink" href="#11-podman" title="Permanent link">¶</a></h2>
+<p><strong>Podman</strong> (Pod Manager) 是一個由 Red Hat 開發的開源容器引擎，用於在 Linux 系統上開發、管理和執行 OCI (Open Container Initiative) 容器。</p>
+<ul>
+<li><strong>官方網站</strong>：<a href="https://podman.io/">https://podman.io/</a></li>
+<li><strong>最新文件</strong>：<a href="https://docs.podman.io/en/latest/">Podman Documentation</a></li>
+</ul>
+<h3 id="podman-docker">Podman 與 Docker 的關鍵差異<a class="headerlink" href="#podman-docker" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Docker</th>
+<th>Podman</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>架構</strong></td>
+<td><strong>Client-Server</strong> (依賴 dockerd 守護行程)</td>
+<td><strong>Daemonless</strong> (直接 Fork/Exec 程序)</td>
+</tr>
+<tr>
+<td><strong>執行權限</strong></td>
+<td>預設需要 <strong>Root</strong></td>
+<td>原生支援 <strong>Rootless</strong> (一般使用者可執行)</td>
+</tr>
+<tr>
+<td><strong>Pod 支援</strong></td>
+<td>需透過 Docker Compose 或 K8S</td>
+<td><strong>原生支援 Pod</strong> (可在一個 Pod 跑多個容器)</td>
+</tr>
+<tr>
+<td><strong>服務相依</strong></td>
+<td>若 Daemon 掛掉，所有容器都受影響</td>
+<td>容器是獨立程序，互不影響</td>
+</tr>
+<tr>
+<td><strong>Systemd</strong></td>
+<td>整合較弱</td>
+<td>原生整合，容易將容器作成系統服務</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition quote">
+<p class="admonition-title">Podman 的設計理念</p>
+<p>"Alias docker=podman" —— Podman 的 CLI 指令與 Docker 高度相容，絕大多數情況下，你可以直接把 <code>docker</code> 指令換成 <code>podman</code> 執行。</p>
+</div>
+<hr>
 <h2 id="_2">實作步驟<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
-<p><em>(本章節內容待補)</em></p>
+<h3 id="1-podman">步驟 1：安裝 Podman 套件<a class="headerlink" href="#1-podman" title="Permanent link">¶</a></h3>
+<p>在 RHEL 9 / Rocky Linux 9 中，Podman 通常已經預裝。如果沒有，可以使用 <code>dnf</code> 安裝。</p>
+<ol>
+<li>
+<p><strong>安裝 Podman</strong>
+    </p><div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>dnf<span class="w"> </span>install<span class="w"> </span>podman<span class="w"> </span>-y
+</span></code></pre></div>
+    &gt; <strong>指令說明</strong>：
+    &gt; - 套件名稱就是 <code>podman</code>，不需要像 Docker 還要去找 <code>docker-ce</code>。
+    &gt; - 如果系統顯示 <code>Nothing to do</code>，表示已經安裝過了。<p></p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../images/lab03/podman_install.png" data-desc-position="bottom"><img alt="安裝 podman" src="../images/lab03/podman_install.png"></a></p>
+</li>
+<li>
+<p><strong>檢查版本與環境資訊</strong>
+    </p><div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>podman<span class="w"> </span>version
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>podman<span class="w"> </span>info
+</span></code></pre></div>
+    &gt; - <code>podman version</code>: 顯示 Client/Server 版本（注意：Podman 的 Client 和 Server 通常是同一個 binary，除非是遠端操作）。
+    &gt; - <code>podman info</code>: 顯示詳細的系統設定，包括 Storage Driver (通常是 overlay)、cgroup version (v2) 以及預設的 Registry。<p></p>
+</li>
+</ol>
+<hr>
+<h3 id="2-daemonless">步驟 2：驗證 Daemonless 架構（無需啟動服務）<a class="headerlink" href="#2-daemonless" title="Permanent link">¶</a></h3>
+<p>這是 Podman 最特別的地方：<strong>你不需要啟動任何服務</strong>。</p>
+<ol>
+<li>
+<p><strong>嘗試尋找 podman 服務</strong>
+    在你安裝完 Docker 時，通常下一步是 <code>systemctl start docker</code>。但在 Podman：</p>
+<blockquote>
+<p>你**不需要**執行 <code>systemctl start podman</code>。</p>
+</blockquote>
+<p>Podman 是一個單純的 binary執行檔。當你執行 <code>podman run</code> 時，它會直接在當前使用者的權限下產生容器程序。</p>
+</li>
+<li>
+<p><strong>為什麼會有 <code>podman.socket</code>？</strong>
+    如果你檢查 systemd，可能會看到 <code>podman.socket</code> 或 <code>podman.service</code>。這主要是為了提供 API 給遠端工具（如 Docker Compose 或 IDE）連線使用，對於本地 CLI 操作並非必要。</p>
+</li>
+</ol>
+<hr>
+<h3 id="3-podman-container-image">步驟 3：使用 Podman 下載 Container Image<a class="headerlink" href="#3-podman-container-image" title="Permanent link">¶</a></h3>
+<p>Podman 預設會搜尋多個 Registry。</p>
+<ol>
+<li>
+<p><strong>查看目前的 Image</strong>
+    </p><div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>podman<span class="w"> </span>images
+</span></code></pre></div><p></p>
+</li>
+<li>
+<p><strong>嘗試下載 MySQL Image</strong>
+    執行以下指令：
+    </p><div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>podman<span class="w"> </span>pull<span class="w"> </span>mysql
+</span></code></pre></div><p></p>
+<p><strong>觀察輸出結果：</strong></p>
+<p>Podman 會依序嘗試設定檔 (<code>/etc/containers/registries.conf</code>) 中定義的 Registry：</p>
+<ol>
+<li>
+<p>❌ <strong><code>registry.access.redhat.com/mysql:latest</code></strong>
+    &gt; <code>name unknown: Repo not found</code> (Red Hat 官方庫沒有這個 Image)</p>
+</li>
+<li>
+<p>❌ <strong><code>registry.redhat.io/mysql:latest</code></strong>
+    &gt; <code>unauthorized: Please login</code> (需要 Red Hat 訂閱帳號才能存取)</p>
+</li>
+<li>
+<p>✅ <strong><code>docker.io/library/mysql:latest</code></strong>
+    &gt; 成功從 Docker Hub 下載。</p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>驗證下載結果</strong>
+    </p><div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>podman<span class="w"> </span>images
+</span></code></pre></div>
+    &gt; 應該會看到來自 <code>docker.io/library/mysql</code> 的 Image。<p></p>
+</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Registry 搜尋順序並非隨機</p>
+<p>RHEL/CentOS 預設的 <code>/etc/containers/registries.conf</code> 檔案定義了搜尋順序 (Search Registries)。這就是為什麼 Podman 會先去問 Red Hat，最後才問 Docker Hub。
+而 Docker CE 預設只會找 Docker Hub (<code>docker.io</code>)。</p>
+</div>
 
 
 
@@ -1589,7 +1856,7 @@
     <span class="md-icon" title="最後更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月26日 14:01:45 CST">2026年1月26日 14:01:45</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月26日 14:52:23 CST">2026年1月26日 14:52:23</span>
   </span>
 
     
