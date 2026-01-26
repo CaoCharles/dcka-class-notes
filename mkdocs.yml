@@ -14,14 +14,14 @@ theme:
   favicon: assets/images/favicon.png
   palette:
     - scheme: default
-      primary: deep purple
-      accent: purple
+      primary: black
+      accent: indigo
       toggle:
         icon: material/brightness-7
         name: 切換至深色模式
     - scheme: slate
-      primary: deep purple
-      accent: purple
+      primary: black
+      accent: indigo
       toggle:
         icon: material/brightness-4
         name: 切換至淺色模式
