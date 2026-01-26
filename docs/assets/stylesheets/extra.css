@@ -1,3 +1,101 @@
+/* DCKA Course Custom Styles - Modern Dark Theme */
+
+:root {
+    --primary-dark: #1e1e2e;
+    --primary-medium: #2d2d3f;
+    --accent-purple: #a78bfa;
+    --accent-light: #c4b5fd;
+}
+
+/* Header 深色統一 */
+.md-header {
+    background-color: var(--primary-dark) !important;
+}
+
+/* Tabs 同色系 */
+.md-tabs {
+    background-color: var(--primary-medium) !important;
+}
+
+/* Tabs 連結顏色 */
+.md-tabs__link {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.md-tabs__link:hover,
+.md-tabs__link--active {
+    color: var(--accent-purple) !important;
+}
+
+/* 深色模式 */
+[data-md-color-scheme="slate"] .md-header {
+    background-color: #0f0f17 !important;
+}
+
+[data-md-color-scheme="slate"] .md-tabs {
+    background-color: #1a1a2e !important;
+}
+
+/* H2 底線 */
+.md-typeset h2 {
+    border-bottom: 2px solid var(--accent-purple);
+    padding-bottom: 0.4em;
+}
+
+/* 表格標題 */
+.md-typeset table:not([class]) th {
+    background-color: var(--primary-dark) !important;
+    color: white !important;
+}
+
+/* 連結 hover */
+.md-typeset a:hover {
+    color: var(--accent-purple);
+}
+
+/* 導航選中 */
+.md-nav__link--active {
+    color: var(--accent-purple) !important;
+    font-weight: 600;
+}
+
+/* Footer 統一深色 */
+.md-footer {
+    background-color: var(--primary-dark) !important;
+}
+
+/* Checkbox */
+.md-typeset .task-list-item input[type="checkbox"]:checked {
+    background-color: var(--accent-purple);
+    border-color: var(--accent-purple);
+}
+
+/* 標籤頁 */
+.md-typeset .tabbed-set>input:checked+label {
+    color: var(--accent-purple);
+    border-color: var(--accent-purple);
+}
+
+/* Mermaid */
+.mermaid {
+    text-align: center;
+}
+
+/* 圖片圓角 */
+.md-typeset img {
+    border-radius: 8px;
+}
+
+/* FAQ */
+.md-typeset details.question {
+    border-left: 4px solid var(--accent-purple);
+}
+
+/* 搜尋框 */
+.md-search__input {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
 /* Invert logo color to make specific black logos white in the dark header */
 .md-header__button.md-logo img,
 .md-nav__title .md-nav__button.md-logo img {
