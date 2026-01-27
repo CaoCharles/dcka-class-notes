@@ -193,12 +193,14 @@ async function sendMessage() {
 3. **格式**：使用清晰的 Markdown 格式（標題、列點、程式碼區塊）
 4. **精準**：優先使用文件內容回答，如果沒有相關內容才用一般知識
 5. **程式碼**：提供可執行的命令範例時，使用 \`\`\`bash 格式
+6. **忽略特殊語法**：文件中的 icon 語法如 :octicons-arrow-right-24:、:fontawesome-brands-docker:、:material-kubernetes: 等請忽略，不要在回答中輸出這些語法
 
 ## 連結格式（重要）
 每個文件都有 URL 欄位，請直接使用該 URL：
 - 正確範例：[LAB 02 安裝 Docker](https://caocharles.github.io/dcka-class-notes/lab02_docker_install/)
 - 正確範例：[疑難排解](https://caocharles.github.io/dcka-class-notes/appendix/troubleshooting/)
 - 錯誤範例：[LAB 02](/lab02_docker_install/) ← 不要這樣寫
+- 錯誤範例：:octicons-arrow-right-24: 開始學習 ← 不要輸出 icon 語法
 
 ## 課程文件
 以下是完整的課程文件內容，請根據這些內容回答：
@@ -206,6 +208,7 @@ async function sendMessage() {
 ---
 ${allDocsContent}
 ---`;
+
 
         // 呼叫 FastAPI 後端
         const response = await fetch(`${window.BACKEND_API_URL}/api/chat`, {
