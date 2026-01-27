@@ -525,9 +525,49 @@
    通用樣式
    ========================================== */
 
-/* === Mermaid 圖表置中 === */
+/* === Mermaid 圖表優化 === */
 .mermaid {
     text-align: center;
+    overflow-x: auto;
+    padding: 1rem 0;
+}
+
+/* Mermaid 圖表字體放大 */
+.mermaid svg {
+    max-width: 100%;
+    height: auto;
+    font-size: 16px !important;
+}
+
+/* Mermaid 節點文字放大 */
+.mermaid .nodeLabel,
+.mermaid .edgeLabel,
+.mermaid .label,
+.mermaid text {
+    font-size: 14px !important;
+    font-family: 'Noto Sans TC', sans-serif !important;
+}
+
+/* Mermaid 節點放大 */
+.mermaid .node rect,
+.mermaid .node circle,
+.mermaid .node ellipse,
+.mermaid .node polygon,
+.mermaid .node path {
+    stroke-width: 2px;
+}
+
+/* Mermaid 流程圖容器可滾動 */
+.md-typeset .mermaid {
+    overflow-x: auto;
+    max-width: 100%;
+}
+
+/* 確保 Mermaid 在小螢幕上可以水平滾動 */
+@media screen and (max-width: 76.25em) {
+    .mermaid svg {
+        min-width: 600px;
+    }
 }
 
 /* === 圖片圓角 === */
