@@ -18,7 +18,7 @@ const repoName = '/dcka-class-notes'; // GitHub Repo 名稱
 const basePath = isGitHubPages ? repoName : '';
 window.ALL_CONTENT_URL = window.ALL_CONTENT_URL || `${basePath}/content.json`;
 // 初始歡迎訊息
-window.INITIAL_PROMPT = "嗨！我是 DCKA 課程助教 🤖\n\n我可以幫你解答 Docker 與 Kubernetes 的問題，並提供相關文章連結。\n\n試試問我：\n- 如何安裝 Docker？\n- 什麼是 Kubernetes？\n- 如何建立 Private Registry？";
+window.INITIAL_PROMPT = "嗨！我是 DCKA 課程助教 🕶️\n\n我可以幫你解答 Docker 與 Kubernetes 的問題，並提供相關文章連結。\n\n試試問我：\n- 如何安裝 Docker？\n- 什麼是 Kubernetes？\n- 如何建立 Private Registry？";
 
 // ====== 小工具：把 history 畫回畫面 ======
 function rebuildChatFromHistory() {
