@@ -35,8 +35,11 @@ def on_post_build(config, **kwargs):
             with open(md_file, 'r', encoding='utf-8') as f:
                 text = f.read()
             
+            # 從 mkdocs.yml 讀取 site_url 作為 base
+            site_url = config.get('site_url', '').rstrip('/')
+            
             # 計算這個檔案對應的 URL 路徑
-            # 例如: docs/java/basics.md → /java/basics/
+            # 例如: docs/java/basics.md → /dcka-class-notes/java/basics/
             rel_path = md_file.relative_to(docs_dir)
             url_path = '/' + str(rel_path).replace('\\', '/').replace('.md', '/')
             
@@ -47,6 +50,9 @@ def on_post_build(config, **kwargs):
             # 如果是根目錄的 index.md，URL 就是 '/'
             if url_path == '/index/':
                 url_path = '/'
+            
+            # 組合完整 URL
+            full_url = site_url + url_path
             
             # 提取標題
             # 優先使用第一個 # 開頭的標題
@@ -61,11 +67,11 @@ def on_post_build(config, **kwargs):
             # 加入到內容列表
             content.append({
                 'title': title,
-                'url': url_path,
+                'url': full_url,
                 'content': text
             })
             
-            print(f"  [OK] {md_file.name} -> {url_path}")
+            print(f"  [OK] {md_file.name} -> {full_url}")
             
         except Exception as e:
             print(f"  [ERROR] {md_file}: {e}")
