@@ -37,14 +37,14 @@
     --code-bg: #f5f5f5;
 }
 
-/* === 導航列 === */
+/* === 導航列 (淺色模式也使用黑色系) === */
 [data-md-color-scheme="default"] .md-header {
-    background: linear-gradient(135deg, var(--dcka-dark-purple) 0%, var(--dcka-purple) 100%);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(135deg, #0f0f17 0%, var(--dcka-dark-gray) 100%);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 [data-md-color-scheme="default"] .md-tabs {
-    background: linear-gradient(135deg, var(--dcka-purple) 0%, var(--dcka-light-purple) 100%);
+    background: linear-gradient(135deg, var(--dcka-dark-gray) 0%, var(--dcka-medium-gray) 100%);
 }
 
 [data-md-color-scheme="default"] .md-tabs__link {
@@ -53,7 +53,7 @@
 
 [data-md-color-scheme="default"] .md-tabs__link:hover,
 [data-md-color-scheme="default"] .md-tabs__link--active {
-    color: #ffffff !important;
+    color: var(--dcka-light-purple) !important;
     opacity: 1;
 }
 
