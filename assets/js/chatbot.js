@@ -1,7 +1,8 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // IMPORTANT: Inject the chatbot HTML if it doesn't exist
-    if (!document.getElementById('gemini-chatbot')) {
-        const chatbotHTML = `
+const initChatbot = () => {
+    // Prevent double initialization
+    if (document.getElementById('gemini-chatbot')) return;
+
+    const chatbotHTML = `
         <button id="open-chat">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30"><path fill="currentColor" d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
         </button>
@@ -29,8 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         </div>
         `;
-        document.body.insertAdjacentHTML('beforeend', chatbotHTML);
-    }
+    document.body.insertAdjacentHTML('beforeend', chatbotHTML);
 
     const chatbot = document.getElementById('gemini-chatbot');
     const openChatBtn = document.getElementById('open-chat');
@@ -42,9 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const clearHistoryBtn = document.getElementById('clear-history-btn');
 
     // Configuration
-    // Replace this with your deployed Railway URL, e.g., "https://your-app.railway.app"
-    // For local testing, use "http://localhost:8001"
-    window.BACKEND_API_URL = window.BACKEND_API_URL || "http://localhost:8001";
+    // Railway production URL
+    window.BACKEND_API_URL = window.BACKEND_API_URL || "https://dcka-class-notes-production.up.railway.app";
     window.INITIAL_PROMPT = "Hi! I'm your class AI assistant. Ask me anything about Docker or Kubernetes!";
     // In a real scenario, we might want to generate this JSON during build time or fetch sitemap.xml
     // For now, we assume search_index.json is available or we scan the page.
@@ -202,4 +201,16 @@ Answer the user's question based on the context if possible. If not, use your ge
             addMessage('bot', `Sorry, I encountered an error connecting to the server: ${error.message}. Please check if the backend is running.`);
         }
     }
-});
+
+    // Ensure button is visible
+    if (openChatBtn) openChatBtn.style.display = 'block';
+};
+
+
+// Robust loading
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initChatbot);
+} else {
+    initChatbot();
+}
+

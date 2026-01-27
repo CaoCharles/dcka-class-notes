@@ -697,7 +697,7 @@
   <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        驗證虛擬機狀態
+        關閉所有虛擬機
       
     </span>
   </a>
@@ -706,6 +706,17 @@
         
           <li class="md-nav__item">
   <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        驗證虛擬機狀態
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
         登入資訊
@@ -760,7 +771,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
         常見問題
@@ -771,7 +782,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
       
         小結
@@ -782,7 +793,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
+  <a href="#_12" class="md-nav__link">
     <span class="md-ellipsis">
       
         下一步
@@ -1843,7 +1854,7 @@
   <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        驗證虛擬機狀態
+        關閉所有虛擬機
       
     </span>
   </a>
@@ -1852,6 +1863,17 @@
         
           <li class="md-nav__item">
   <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        驗證虛擬機狀態
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
         登入資訊
@@ -1906,7 +1928,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
         常見問題
@@ -1917,7 +1939,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
       
         小結
@@ -1928,7 +1950,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
+  <a href="#_12" class="md-nav__link">
     <span class="md-ellipsis">
       
         下一步
@@ -2177,17 +2199,47 @@
 </ul>
 </div>
 <h3 id="_6">啟動所有虛擬機<a class="headerlink" href="#_6" title="Permanent link">¶</a></h3>
-<h4 id="1">方法 1：使用批次檔<a class="headerlink" href="#1" title="Permanent link">¶</a></h4>
-<p>執行 <code>PowerON-allVM.bat</code> 一次啟動所有虛擬機。</p>
+<h4 id="1">方法 1：使用批次檔（推薦）<a class="headerlink" href="#1" title="Permanent link">¶</a></h4>
+<p>執行 <code>PowerON-allVM.bat</code> 一次啟動所有虛擬機：</p>
+<div class="language-batch highlight"><span class="filename">PowerON-allVM.bat</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="s2">"C:\Program Files (x86)\VMware\VMware Workstation\vmrun"</span> -T ws start <span class="s2">"C:\VMware\DCKA-Rocky9\mirror\mirror.vmx"</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="s2">"C:\Program Files (x86)\VMware\VMware Workstation\vmrun"</span> -T ws start <span class="s2">"C:\VMware\DCKA-Rocky9\docker1\docker1.vmx"</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="s2">"C:\Program Files (x86)\VMware\VMware Workstation\vmrun"</span> -T ws start <span class="s2">"C:\VMware\DCKA-Rocky9\docker2\docker2.vmx"</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="s2">"C:\Program Files (x86)\VMware\VMware Workstation\vmrun"</span> -T ws start <span class="s2">"C:\VMware\DCKA-Rocky9\k8s-standalone\k8s-standalone.vmx"</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="s2">"C:\Program Files (x86)\VMware\VMware Workstation\vmrun"</span> -T ws start <span class="s2">"C:\VMware\DCKA-Rocky9\k8s-master1\k8s-master1.vmx"</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="s2">"C:\Program Files (x86)\VMware\VMware Workstation\vmrun"</span> -T ws start <span class="s2">"C:\VMware\DCKA-Rocky9\k8s-node1\k8s-node1.vmx"</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="s2">"C:\Program Files (x86)\VMware\VMware Workstation\vmrun"</span> -T ws start <span class="s2">"C:\VMware\DCKA-Rocky9\k8s-node2\k8s-node2.vmx"</span>
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">批次檔使用說明</p>
+<ul>
+<li>此批次檔使用 VMware 的 <code>vmrun</code> 命令列工具</li>
+<li><code>-T ws</code> 指定使用 VMware Workstation</li>
+<li><code>start</code> 參數表示啟動虛擬機</li>
+</ul>
+</div>
 <h4 id="2">方法 2：手動啟動<a class="headerlink" href="#2" title="Permanent link">¶</a></h4>
 <ol>
 <li>在 VMware Workstation 中依序開啟每台虛擬機的 <code>.vmx</code> 檔案</li>
 <li>點選 <strong>Power on this virtual machine</strong></li>
 </ol>
-<h3 id="_7">驗證虛擬機狀態<a class="headerlink" href="#_7" title="Permanent link">¶</a></h3>
+<h3 id="_7">關閉所有虛擬機<a class="headerlink" href="#_7" title="Permanent link">¶</a></h3>
+<p>課程結束後，可使用 <code>Shutdown-allVM.bat</code> 一次關閉所有虛擬機：</p>
+<div class="language-batch highlight"><span class="filename">Shutdown-allVM.bat</span><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="s2">"C:\Program Files (x86)\VMware\VMware Workstation\vmrun"</span> -T ws stop <span class="s2">"C:\VMware\DCKA-Rocky9\mirror\mirror.vmx"</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="s2">"C:\Program Files (x86)\VMware\VMware Workstation\vmrun"</span> -T ws stop <span class="s2">"C:\VMware\DCKA-Rocky9\docker1\docker1.vmx"</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="s2">"C:\Program Files (x86)\VMware\VMware Workstation\vmrun"</span> -T ws stop <span class="s2">"C:\VMware\DCKA-Rocky9\docker2\docker2.vmx"</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="s2">"C:\Program Files (x86)\VMware\VMware Workstation\vmrun"</span> -T ws stop <span class="s2">"C:\VMware\DCKA-Rocky9\k8s-standalone\k8s-standalone.vmx"</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="s2">"C:\Program Files (x86)\VMware\VMware Workstation\vmrun"</span> -T ws stop <span class="s2">"C:\VMware\DCKA-Rocky9\k8s-master1\k8s-master1.vmx"</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="s2">"C:\Program Files (x86)\VMware\VMware Workstation\vmrun"</span> -T ws stop <span class="s2">"C:\VMware\DCKA-Rocky9\k8s-node1\k8s-node1.vmx"</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="s2">"C:\Program Files (x86)\VMware\VMware Workstation\vmrun"</span> -T ws stop <span class="s2">"C:\VMware\DCKA-Rocky9\k8s-node2\k8s-node2.vmx"</span>
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">正確關機</p>
+<p>使用 <code>stop</code> 命令會執行正常關機程序（相當於按下電源按鈕）。如需強制關機，可改用 <code>stop hard</code> 參數，但不建議經常使用。</p>
+</div>
+<h3 id="_8">驗證虛擬機狀態<a class="headerlink" href="#_8" title="Permanent link">¶</a></h3>
 <p>啟動完成後，應該可以看到所有虛擬機都在運行中，並顯示 Rocky Linux 登入畫面：</p>
 <p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../images/00_environment/vms_running.png" data-desc-position="bottom"><img alt="虛擬機執行中" src="../images/00_environment/vms_running.png"></a></p>
-<h3 id="_8">登入資訊<a class="headerlink" href="#_8" title="Permanent link">¶</a></h3>
+<h3 id="_9">登入資訊<a class="headerlink" href="#_9" title="Permanent link">¶</a></h3>
 <table>
 <thead>
 <tr>
@@ -2282,7 +2334,7 @@
 </ul>
 </div>
 <hr>
-<h2 id="_9">常見問題<a class="headerlink" href="#_9" title="Permanent link">¶</a></h2>
+<h2 id="_10">常見問題<a class="headerlink" href="#_10" title="Permanent link">¶</a></h2>
 <details class="question">
 <summary>Q1：虛擬機無法開機，顯示 VT-x 錯誤</summary>
 <p><strong>原因</strong>：BIOS 未啟用虛擬化技術</p>
@@ -2308,7 +2360,7 @@
 - 或升級主機記憶體至 16GB 以上</p>
 </details>
 <hr>
-<h2 id="_10">小結<a class="headerlink" href="#_10" title="Permanent link">¶</a></h2>
+<h2 id="_11">小結<a class="headerlink" href="#_11" title="Permanent link">¶</a></h2>
 <p>本章節重點回顧：</p>
 <ul>
 <li>✅ <strong>VMware 安裝</strong>：安裝 VMware Workstation 17.6.4</li>
@@ -2316,7 +2368,7 @@
 <li>✅ <strong>虛擬機啟動</strong>：六台 Rocky Linux 虛擬機全部啟動</li>
 <li>✅ <strong>環境驗證</strong>：確認可以正常登入虛擬機</li>
 </ul>
-<h2 id="_11">下一步<a class="headerlink" href="#_11" title="Permanent link">¶</a></h2>
+<h2 id="_12">下一步<a class="headerlink" href="#_12" title="Permanent link">¶</a></h2>
 <p>環境準備完成後，請繼續前往 <a href="../lab02_docker_install/">LAB 02 安裝 DOCKER/DOCKER-CE</a></p>
 
 
