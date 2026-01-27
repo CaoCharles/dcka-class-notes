@@ -1,0 +1,7 @@
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun" -T ws start "C:\VMware\DCKA-Rocky9\mirror\mirror.vmx"
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun" -T ws start "C:\VMware\DCKA-Rocky9\docker1\docker1.vmx"
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun" -T ws start "C:\VMware\DCKA-Rocky9\docker2\docker2.vmx"
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun" -T ws start "C:\VMware\DCKA-Rocky9\k8s-standalone\k8s-standalone.vmx"
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun" -T ws start "C:\VMware\DCKA-Rocky9\k8s-master1\k8s-master1.vmx"
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun" -T ws start "C:\VMware\DCKA-Rocky9\k8s-node1\k8s-node1.vmx"
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun" -T ws start "C:\VMware\DCKA-Rocky9\k8s-node2\k8s-node2.vmx"

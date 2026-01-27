@@ -7,8 +7,15 @@ requires-python = ">=3.12"
 dependencies = [
     "mkdocs>=1.6.1",
     "mkdocs-gemini-chatbot>=1.0.1",
+    "mkdocs-git-authors-plugin>=0.10.0",
     "mkdocs-git-revision-date-localized-plugin>=1.5.0",
     "mkdocs-glightbox>=0.5.2",
     "mkdocs-material>=9.7.1",
     "pymdown-extensions>=10.20.1",
+    "fastapi>=0.110.0",
+    "uvicorn>=0.27.0",
+    "google-generativeai>=0.4.0",
+    "python-dotenv>=1.0.1",
+    "pydantic>=2.6.0",
 ]
+

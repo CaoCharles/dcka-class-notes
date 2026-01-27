@@ -159,14 +159,46 @@ graph TB
 
 ### 啟動所有虛擬機
 
-#### 方法 1：使用批次檔
+#### 方法 1：使用批次檔（推薦）
 
-執行 `PowerON-allVM.bat` 一次啟動所有虛擬機。
+執行 `PowerON-allVM.bat` 一次啟動所有虛擬機：
+
+```batch title="PowerON-allVM.bat"
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun" -T ws start "C:\VMware\DCKA-Rocky9\mirror\mirror.vmx"
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun" -T ws start "C:\VMware\DCKA-Rocky9\docker1\docker1.vmx"
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun" -T ws start "C:\VMware\DCKA-Rocky9\docker2\docker2.vmx"
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun" -T ws start "C:\VMware\DCKA-Rocky9\k8s-standalone\k8s-standalone.vmx"
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun" -T ws start "C:\VMware\DCKA-Rocky9\k8s-master1\k8s-master1.vmx"
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun" -T ws start "C:\VMware\DCKA-Rocky9\k8s-node1\k8s-node1.vmx"
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun" -T ws start "C:\VMware\DCKA-Rocky9\k8s-node2\k8s-node2.vmx"
+```
+
+!!! tip "批次檔使用說明"
+    - 此批次檔使用 VMware 的 `vmrun` 命令列工具
+    - `-T ws` 指定使用 VMware Workstation
+    - `start` 參數表示啟動虛擬機
 
 #### 方法 2：手動啟動
 
 1. 在 VMware Workstation 中依序開啟每台虛擬機的 `.vmx` 檔案
 2. 點選 **Power on this virtual machine**
+
+### 關閉所有虛擬機
+
+課程結束後，可使用 `Shutdown-allVM.bat` 一次關閉所有虛擬機：
+
+```batch title="Shutdown-allVM.bat"
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun" -T ws stop "C:\VMware\DCKA-Rocky9\mirror\mirror.vmx"
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun" -T ws stop "C:\VMware\DCKA-Rocky9\docker1\docker1.vmx"
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun" -T ws stop "C:\VMware\DCKA-Rocky9\docker2\docker2.vmx"
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun" -T ws stop "C:\VMware\DCKA-Rocky9\k8s-standalone\k8s-standalone.vmx"
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun" -T ws stop "C:\VMware\DCKA-Rocky9\k8s-master1\k8s-master1.vmx"
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun" -T ws stop "C:\VMware\DCKA-Rocky9\k8s-node1\k8s-node1.vmx"
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun" -T ws stop "C:\VMware\DCKA-Rocky9\k8s-node2\k8s-node2.vmx"
+```
+
+!!! warning "正確關機"
+    使用 `stop` 命令會執行正常關機程序（相當於按下電源按鈕）。如需強制關機，可改用 `stop hard` 參數，但不建議經常使用。
 
 ### 驗證虛擬機狀態
 

@@ -107,8 +107,12 @@ markdown_extensions:
       custom_checkbox: true
   - pymdownx.tilde
 
+extra_javascript:
+  - assets/js/chatbot.js
+
 extra_css:
   - assets/stylesheets/extra.css
+  - assets/css/chatbot.css
 
 nav:
   - 首頁: index.md
