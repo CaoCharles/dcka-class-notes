@@ -52,7 +52,7 @@ async def chat_endpoint(request: ChatRequest):
 
     try:
         # Construct the model
-        model = genai.GenerativeModel('gemini-flash-latest') # Using a supported model with better quota
+        model = genai.GenerativeModel('gemini-2.0-flash-lite-preview-02-05') # Using Gemini 2.5 Flash Lite (Preview ID)
 
         # Prepare chat history for Gemini
         # Gemini expects 'user' or 'model' roles. 
