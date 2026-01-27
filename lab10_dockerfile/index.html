@@ -876,7 +876,374 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        實作步驟
+        前置知識
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#101" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.1 環境準備
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10.1 環境準備">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        切換到 docker2 虛擬機
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        確認環境已清理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        執行清理腳本（如有需要）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#102-dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.2 建立專用目錄與 Dockerfile
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10.2 建立專用目錄與 Dockerfile">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        建立工作目錄
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        建立 Dockerfile
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#103-alpine-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3 測試基礎 Alpine Image
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#104-dockerfile-docker-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.4 使用 Dockerfile 建置新的 Docker Image
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10.4 使用 Dockerfile 建置新的 Docker Image">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        執行 docker build
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#105-container-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.5 測試新的 Container Image
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10.5 測試新的 Container Image">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用新 Image 啟動容器
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        確認 Bash 已安裝
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#106" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.6 清理環境
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#107-docker-image-docker-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.7 上傳 Docker Image 到 Docker Hub
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10.7 上傳 Docker Image 到 Docker Hub">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        註冊 Docker Hub 帳號
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-login" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用 docker login 登入
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重新建置 Docker Image
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#image-tag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        為 Image 加上 Tag
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#108-docker-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.8 上傳 Docker Image
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10.8 上傳 Docker Image">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-push" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        執行 docker push
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#109" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.9 驗證上傳結果
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10.9 驗證上傳結果">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-hub_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        在 Docker Hub 網站確認
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-hub_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        清理本地環境並從 Docker Hub 下載
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        指令參考
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="指令參考">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dockerfile_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dockerfile 基本指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-hub_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Docker Hub 相關指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常見問題
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        小結
       
     </span>
   </a>
@@ -1487,7 +1854,374 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        實作步驟
+        前置知識
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#101" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.1 環境準備
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10.1 環境準備">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        切換到 docker2 虛擬機
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        確認環境已清理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        執行清理腳本（如有需要）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#102-dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.2 建立專用目錄與 Dockerfile
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10.2 建立專用目錄與 Dockerfile">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        建立工作目錄
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        建立 Dockerfile
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#103-alpine-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3 測試基礎 Alpine Image
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#104-dockerfile-docker-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.4 使用 Dockerfile 建置新的 Docker Image
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10.4 使用 Dockerfile 建置新的 Docker Image">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        執行 docker build
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#105-container-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.5 測試新的 Container Image
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10.5 測試新的 Container Image">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用新 Image 啟動容器
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        確認 Bash 已安裝
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#106" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.6 清理環境
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#107-docker-image-docker-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.7 上傳 Docker Image 到 Docker Hub
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10.7 上傳 Docker Image 到 Docker Hub">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        註冊 Docker Hub 帳號
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-login" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用 docker login 登入
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重新建置 Docker Image
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#image-tag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        為 Image 加上 Tag
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#108-docker-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.8 上傳 Docker Image
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10.8 上傳 Docker Image">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-push" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        執行 docker push
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#109" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.9 驗證上傳結果
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10.9 驗證上傳結果">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-hub_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        在 Docker Hub 網站確認
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-hub_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        清理本地環境並從 Docker Hub 下載
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        指令參考
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="指令參考">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dockerfile_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dockerfile 基本指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-hub_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Docker Hub 相關指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常見問題
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        小結
       
     </span>
   </a>
@@ -1524,7 +2258,7 @@
     <span class="twemoji">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span style="font-weight: 500;">更新:</span> <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月26日 14:01:45 CST">2026年1月26日 14:01:45</span>
+    <span style="font-weight: 500;">更新:</span> <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月27日 13:44:39 CST">2026年1月27日 13:44:39</span>
   </span>
   
 
@@ -1541,13 +2275,497 @@
   
 
 
-<h1 id="lab-10-container-images-dockerfile">LAB 10 客製化 Container images - dockerfile<a class="headerlink" href="#lab-10-container-images-dockerfile" title="Permanent link">¶</a></h1>
+<h1 id="lab-10-container-images-dockerfile">LAB 10 客製化 Container Images - Dockerfile<a class="headerlink" href="#lab-10-container-images-dockerfile" title="Permanent link">¶</a></h1>
 <h2 id="_1">學習目標<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<p>完成本章節後，你將能夠：</p>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 待補</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 撰寫 Dockerfile 建立客製化 Image</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 使用 <code>docker build</code> 建置 Image</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 使用 <code>docker login</code> 登入 Docker Hub</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 使用 <code>docker tag</code> 標記 Image</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 使用 <code>docker push</code> 上傳 Image 到 Docker Hub</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 從 Docker Hub 下載自己上傳的 Image</li>
 </ul>
-<h2 id="_2">實作步驟<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
-<p><em>(本章節內容待補)</em></p>
+<h2 id="_2">前置知識<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<p>開始之前，請確保你已經：</p>
+<ul>
+<li>完成 LAB 09 的內容</li>
+<li>了解 Docker Image 的基本概念</li>
+<li>已註冊 Docker Hub 帳號（<a href="https://hub.docker.com">https://hub.docker.com</a>）</li>
+</ul>
+<hr>
+<h2 id="101">10.1 環境準備<a class="headerlink" href="#101" title="Permanent link">¶</a></h2>
+<h3 id="docker2">切換到 docker2 虛擬機<a class="headerlink" href="#docker2" title="Permanent link">¶</a></h3>
+<p>本 Lab 在 docker2 虛擬機上執行。</p>
+<h3 id="_3">確認環境已清理<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">檢視現有的 Container Images</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker<span class="w"> </span>images
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>IMAGE   ID             DISK USAGE   CONTENT SIZE   EXTRA
+</span></code></pre></div>
+<div class="language-bash highlight"><span class="filename">檢視現有的 Container</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker<span class="w"> </span>ps<span class="w"> </span>-a
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+</span></code></pre></div>
+<h3 id="_4">執行清理腳本（如有需要）<a class="headerlink" href="#_4" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">執行清理腳本</span><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>./docker_clean_all.sh
+</span></code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">腳本說明</p>
+<p>如果沒有 Container 或 Image，指令會顯示錯誤訊息，這是正常的，不影響後續操作。</p>
+</div>
+<hr>
+<h2 id="102-dockerfile">10.2 建立專用目錄與 Dockerfile<a class="headerlink" href="#102-dockerfile" title="Permanent link">¶</a></h2>
+<h3 id="_5">建立工作目錄<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">建立 Dockerfile 專用目錄</span><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>mkdir<span class="w"> </span>/root/dockerfile-1
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nb">cd</span><span class="w"> </span>/root/dockerfile-1
+</span></code></pre></div>
+<h3 id="dockerfile">建立 Dockerfile<a class="headerlink" href="#dockerfile" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">編輯 Dockerfile</span><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>vi<span class="w"> </span>dockerfile
+</span></code></pre></div>
+<p>Dockerfile 內容：</p>
+<div class="language-dockerfile highlight"><span class="filename">dockerfile</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">docker1.training.lab:5000/alpine</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="c">#FROM 192.168.66.51:5000/alpine</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="k">RUN</span><span class="w"> </span>apk<span class="w"> </span>add<span class="w"> </span>--no-cache<span class="w"> </span>--update-cache<span class="w"> </span>bash
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">"/bin/bash"</span><span class="p">]</span>
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Dockerfile 指令說明</p>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FROM</code></td>
+<td>指定基礎映像，這裡使用 Private Registry 的 Alpine</td>
+</tr>
+<tr>
+<td><code>RUN</code></td>
+<td>在建置過程中執行指令，這裡安裝 bash</td>
+</tr>
+<tr>
+<td><code>CMD</code></td>
+<td>指定容器啟動時預設執行的指令</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="language-bash highlight"><span class="filename">確認 Dockerfile 內容</span><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>cat<span class="w"> </span>dockerfile
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>FROM docker1.training.lab:5000/alpine
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>#FROM 192.168.66.51:5000/alpine
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>RUN apk add --no-cache --update-cache bash
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>CMD ["/bin/bash"]
+</span></code></pre></div>
+<hr>
+<h2 id="103-alpine-image">10.3 測試基礎 Alpine Image<a class="headerlink" href="#103-alpine-image" title="Permanent link">¶</a></h2>
+<p>在建置自訂 Image 之前，先確認基礎 Alpine 沒有 Bash：</p>
+<div class="language-bash highlight"><span class="filename">啟動 Alpine Container 測試</span><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--name<span class="w"> </span>alpine-1<span class="w"> </span>docker1.training.lab:5000/alpine<span class="w"> </span>/bin/sh
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Unable to find image 'docker1.training.lab:5000/alpine:latest' locally
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>latest: Pulling from alpine
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>77cae8ab23bf: Pull complete 
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>Digest: sha256:d0a0f8e7bf9a6287c7dab568b947b6c3dd6b84e9c67ab9f1e95f79751d808641
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>Status: Downloaded newer image for docker1.training.lab:5000/alpine:latest
+</span></code></pre></div>
+<p>在容器內測試 Bash：</p>
+<div class="language-bash highlight"><span class="filename">測試 bash（在 Container 內執行）</span><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>bash
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>/bin/sh: bash: not found
+</span></code></pre></div>
+<div class="language-bash highlight"><span class="filename">退出容器</span><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nb">exit</span>
+</span></code></pre></div>
+<hr>
+<h2 id="104-dockerfile-docker-image">10.4 使用 Dockerfile 建置新的 Docker Image<a class="headerlink" href="#104-dockerfile-docker-image" title="Permanent link">¶</a></h2>
+<h3 id="docker-build">執行 docker build<a class="headerlink" href="#docker-build" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">建置 Docker Image</span><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>alpine-bash-2<span class="w"> </span>.
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>[+] Building 2.9s (6/6) FINISHED                                                docker:default
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a> =&gt; [internal] load build definition from dockerfile                                      0.0s
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a> =&gt; =&gt; transferring dockerfile: 171B                                                      0.0s
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a> =&gt; [internal] load metadata for docker1.training.lab:5000/alpine:latest                  0.0s
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a> =&gt; [internal] load .dockerignore                                                         0.0s
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a> =&gt; =&gt; transferring context: 2B                                                           0.0s
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a> =&gt; [1/2] FROM docker1.training.lab:5000/alpine:latest                                    0.0s
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a> =&gt; [2/2] RUN apk add --no-cache --update-cache bash                                      2.7s
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a> =&gt; exporting to image                                                                    0.2s
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a> =&gt; =&gt; exporting layers                                                                   0.1s
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a> =&gt; =&gt; naming to docker.io/library/alpine-bash-2:latest                                   0.0s
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a> =&gt; =&gt; unpacking to docker.io/library/alpine-bash-2:latest                                0.0s
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">docker build 語法</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>docker build -t &lt;image_name&gt;:&lt;tag&gt; &lt;path&gt;
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>參數</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-t</code></td>
+<td>指定 Image 名稱和標籤</td>
+</tr>
+<tr>
+<td><code>.</code></td>
+<td>指定 Dockerfile 所在目錄（當前目錄）</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition info">
+<p class="admonition-title">建置過程說明</p>
+<ul>
+<li><code>[1/2] FROM</code>：載入基礎映像</li>
+<li><code>[2/2] RUN</code>：執行 Dockerfile 中的 RUN 指令（安裝 bash）</li>
+<li><code>exporting to image</code>：匯出為新的 Image</li>
+</ul>
+</div>
+<hr>
+<h2 id="105-container-image">10.5 測試新的 Container Image<a class="headerlink" href="#105-container-image" title="Permanent link">¶</a></h2>
+<h3 id="image">使用新 Image 啟動容器<a class="headerlink" href="#image" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">使用新 Image 啟動 Container</span><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--name<span class="w"> </span>alpine-3<span class="w"> </span>alpine-bash-2<span class="w"> </span>/bin/bash
+</span></code></pre></div>
+<p>進入容器後會看到 <code>bash-5.0#</code> 提示符號，表示 Bash 已成功安裝。</p>
+<h3 id="bash">確認 Bash 已安裝<a class="headerlink" href="#bash" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">確認 bash（在 Container 內執行）</span><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>ls<span class="w"> </span>-l<span class="w"> </span>/bin/bash
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>-rwxr-xr-x    1 root     root        735488 May  3  2019 /bin/bash
+</span></code></pre></div>
+<div class="language-bash highlight"><span class="filename">退出容器</span><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="nb">exit</span>
+</span></code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">建置成功</p>
+<p>使用 Dockerfile 建置的 Image 已包含 Bash，與 LAB 09 使用 <code>docker commit</code> 的結果相同，但 Dockerfile 方式更具可重現性。</p>
+</div>
+<hr>
+<h2 id="106">10.6 清理環境<a class="headerlink" href="#106" title="Permanent link">¶</a></h2>
+<div class="language-bash highlight"><span class="filename">切換到家目錄並清理</span><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nb">cd</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>./docker_clean_all.sh
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>254f09eaadac
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>9ae97d52cd65
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>254f09eaadac
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>9ae97d52cd65
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>Untagged: alpine-bash-2:latest
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>Deleted: sha256:fe1c0340426860bdd7792a7e560d3dfbb1c6a4d0bf4caadd5e987a4b71fbd169
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a>Untagged: docker1.training.lab:5000/alpine:latest
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a>Deleted: sha256:d0a0f8e7bf9a6287c7dab568b947b6c3dd6b84e9c67ab9f1e95f79751d808641
+</span></code></pre></div>
+<hr>
+<h2 id="107-docker-image-docker-hub">10.7 上傳 Docker Image 到 Docker Hub<a class="headerlink" href="#107-docker-image-docker-hub" title="Permanent link">¶</a></h2>
+<h3 id="docker-hub">註冊 Docker Hub 帳號<a class="headerlink" href="#docker-hub" title="Permanent link">¶</a></h3>
+<div class="admonition tip">
+<p class="admonition-title">事前準備</p>
+<p>請先到 <a href="https://hub.docker.com">https://hub.docker.com</a> 註冊帳號。</p>
+</div>
+<h3 id="docker-login">使用 docker login 登入<a class="headerlink" href="#docker-login" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">登入 Docker Hub</span><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>docker<span class="w"> </span>login<span class="w"> </span>-u<span class="w"> </span>&lt;你的帳號&gt;
+</span></code></pre></div>
+<p><strong>範例</strong>：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>docker<span class="w"> </span>login<span class="w"> </span>-u<span class="w"> </span>caocharles
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>Password: 
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>WARNING! Your credentials are stored unencrypted in '/root/.docker/config.json'.
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>Configure a credential helper to remove this warning. See
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>https://docs.docker.com/go/credential-store/
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>Login Succeeded
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">密碼儲存警告</p>
+<p>登入後，Docker 會將認證資訊儲存在 <code>/root/.docker/config.json</code>，這是 Base64 編碼（非加密），請注意安全。</p>
+</div>
+<h3 id="docker-image">重新建置 Docker Image<a class="headerlink" href="#docker-image" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">切換到 Dockerfile 目錄</span><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="nb">cd</span><span class="w"> </span>/root/dockerfile-1
+</span></code></pre></div>
+<div class="language-bash highlight"><span class="filename">建置要上傳的 Image</span><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>alpine-bash-charles<span class="w"> </span>.
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>[+] Building 0.1s (6/6) FINISHED                                                docker:default
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a> =&gt; [internal] load build definition from dockerfile                                      0.0s
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a> =&gt; CACHED [2/2] RUN apk add --no-cache --update-cache bash                               0.0s
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a> =&gt; exporting to image                                                                    0.0s
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a> =&gt; =&gt; naming to docker.io/library/alpine-bash-charles:latest                             0.0s
+</span></code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">CACHED 說明</p>
+<p>如果之前已建置過相同的層，Docker 會使用快取，加快建置速度。</p>
+</div>
+<h3 id="image-tag">為 Image 加上 Tag<a class="headerlink" href="#image-tag" title="Permanent link">¶</a></h3>
+<p>要上傳到 Docker Hub，Image 名稱必須包含你的 Docker Hub 帳號名稱：</p>
+<div class="language-bash highlight"><span class="filename">為 Image 加上 Tag</span><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>docker<span class="w"> </span>tag<span class="w"> </span>alpine-bash-charles:latest<span class="w"> </span>&lt;你的帳號&gt;/alpine-bash-charles:latest
+</span></code></pre></div>
+<p><strong>範例</strong>：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>docker<span class="w"> </span>tag<span class="w"> </span>alpine-bash-charles:latest<span class="w"> </span>caocharles/alpine-bash-charles:latest
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">docker tag 語法</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>docker tag &lt;source_image&gt;:&lt;tag&gt; &lt;target_image&gt;:&lt;tag&gt;
+</span></code></pre></div>
+<ul>
+<li>Target image 格式：<code>&lt;Docker Hub 帳號&gt;/&lt;Image 名稱&gt;:&lt;tag&gt;</code></li>
+</ul>
+</div>
+<div class="language-bash highlight"><span class="filename">確認 Tag 已建立</span><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>docker<span class="w"> </span>images
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>IMAGE                                   ID             DISK USAGE   CONTENT SIZE   EXTRA
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>alpine-bash-charles:latest              28024b3ae76e       14.5MB          6.6MB        
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>caocharles/alpine-bash-charles:latest   28024b3ae76e       14.5MB          6.6MB        
+</span></code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">兩個 Image 使用相同 ID</p>
+<p><code>docker tag</code> 只是建立一個新的標籤指向同一個 Image，不會佔用額外空間。</p>
+</div>
+<hr>
+<h2 id="108-docker-image">10.8 上傳 Docker Image<a class="headerlink" href="#108-docker-image" title="Permanent link">¶</a></h2>
+<h3 id="docker-push">執行 docker push<a class="headerlink" href="#docker-push" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">上傳 Image 到 Docker Hub</span><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>docker<span class="w"> </span>push<span class="w"> </span>&lt;你的帳號&gt;/alpine-bash-charles:latest
+</span></code></pre></div>
+<p><strong>範例</strong>：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>docker<span class="w"> </span>push<span class="w"> </span>caocharles/alpine-bash-charles:latest
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>The push refers to repository [docker.io/caocharles/alpine-bash-charles]
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>77cae8ab23bf: Pushed 
+</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>34b2f2a4fe94: Pushed 
+</span><span id="__span-37-4"><a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a>01bc7f934740: Pushed 
+</span><span id="__span-37-5"><a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a>latest: digest: sha256:28024b3ae76eb1a9400407051085821a6f0a76b1b96cb2f4a92cec35f350d29f size: 855
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">常見錯誤：push access denied</p>
+<p>如果出現以下錯誤：
+</p><div class="language-text highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>push access denied, repository does not exist or may require authorization
+</span></code></pre></div><p></p>
+<p><strong>可能原因</strong>：</p>
+<ol>
+<li>Image 標籤的帳號名稱與登入帳號不符</li>
+<li>尚未登入或登入憑證過期</li>
+</ol>
+<p><strong>解決方案</strong>：
+</p><div class="language-bash highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="c1"># 確認使用正確的帳號名稱</span>
+</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>docker<span class="w"> </span>tag<span class="w"> </span>alpine-bash-charles:latest<span class="w"> </span>&lt;正確帳號&gt;/alpine-bash-charles:latest
+</span><span id="__span-39-3"><a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a>
+</span><span id="__span-39-4"><a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a><span class="c1"># 重新登入</span>
+</span><span id="__span-39-5"><a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a>docker<span class="w"> </span><span class="nb">logout</span>
+</span><span id="__span-39-6"><a id="__codelineno-39-6" name="__codelineno-39-6" href="#__codelineno-39-6"></a>docker<span class="w"> </span>login<span class="w"> </span>-u<span class="w"> </span>&lt;你的帳號&gt;
+</span></code></pre></div><p></p>
+</div>
+<hr>
+<h2 id="109">10.9 驗證上傳結果<a class="headerlink" href="#109" title="Permanent link">¶</a></h2>
+<h3 id="docker-hub_1">在 Docker Hub 網站確認<a class="headerlink" href="#docker-hub_1" title="Permanent link">¶</a></h3>
+<ol>
+<li>開啟 <a href="https://hub.docker.com">https://hub.docker.com</a></li>
+<li>登入你的帳號</li>
+<li>進入 Repositories</li>
+<li>確認可以看到剛上傳的 Image</li>
+</ol>
+<h3 id="docker-hub_2">清理本地環境並從 Docker Hub 下載<a class="headerlink" href="#docker-hub_2" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">清理本地環境</span><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="nb">cd</span>
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>./docker_clean_all.sh
+</span></code></pre></div>
+<div class="language-bash highlight"><span class="filename">確認已清理</span><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>docker<span class="w"> </span>images
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>IMAGE   ID             DISK USAGE   CONTENT SIZE   EXTRA
+</span></code></pre></div>
+<div class="language-bash highlight"><span class="filename">從 Docker Hub 下載 Image</span><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>docker<span class="w"> </span>pull<span class="w"> </span>&lt;你的帳號&gt;/alpine-bash-charles
+</span></code></pre></div>
+<p><strong>範例</strong>：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>docker<span class="w"> </span>pull<span class="w"> </span>caocharles/alpine-bash-charles
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a>Using default tag: latest
+</span><span id="__span-45-2"><a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a>latest: Pulling from caocharles/alpine-bash-charles
+</span><span id="__span-45-3"><a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a>01bc7f934740: Pull complete 
+</span><span id="__span-45-4"><a id="__codelineno-45-4" name="__codelineno-45-4" href="#__codelineno-45-4"></a>34b2f2a4fe94: Download complete 
+</span><span id="__span-45-5"><a id="__codelineno-45-5" name="__codelineno-45-5" href="#__codelineno-45-5"></a>Digest: sha256:28024b3ae76eb1a9400407051085821a6f0a76b1b96cb2f4a92cec35f350d29f
+</span><span id="__span-45-6"><a id="__codelineno-45-6" name="__codelineno-45-6" href="#__codelineno-45-6"></a>Status: Downloaded newer image for caocharles/alpine-bash-charles:latest
+</span><span id="__span-45-7"><a id="__codelineno-45-7" name="__codelineno-45-7" href="#__codelineno-45-7"></a>docker.io/caocharles/alpine-bash-charles:latest
+</span></code></pre></div>
+<div class="language-bash highlight"><span class="filename">確認下載成功</span><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a>docker<span class="w"> </span>images
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>IMAGE                                   ID             DISK USAGE   CONTENT SIZE   EXTRA
+</span><span id="__span-47-2"><a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a>caocharles/alpine-bash-charles:latest   28024b3ae76e       14.5MB          6.6MB    
+</span></code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">完成確認</p>
+<p>成功從 Docker Hub 下載剛才上傳的 Image！</p>
+</div>
+<hr>
+<h2 id="_6">指令參考<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
+<h3 id="dockerfile_1">Dockerfile 基本指令<a class="headerlink" href="#dockerfile_1" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>說明</th>
+<th>範例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FROM</code></td>
+<td>指定基礎映像</td>
+<td><code>FROM alpine:latest</code></td>
+</tr>
+<tr>
+<td><code>RUN</code></td>
+<td>建置時執行指令</td>
+<td><code>RUN apk add bash</code></td>
+</tr>
+<tr>
+<td><code>CMD</code></td>
+<td>容器啟動時預設指令</td>
+<td><code>CMD ["/bin/bash"]</code></td>
+</tr>
+<tr>
+<td><code>COPY</code></td>
+<td>複製檔案到 Image</td>
+<td><code>COPY ./src /app</code></td>
+</tr>
+<tr>
+<td><code>WORKDIR</code></td>
+<td>設定工作目錄</td>
+<td><code>WORKDIR /app</code></td>
+</tr>
+<tr>
+<td><code>EXPOSE</code></td>
+<td>宣告開放的 Port</td>
+<td><code>EXPOSE 80</code></td>
+</tr>
+<tr>
+<td><code>ENV</code></td>
+<td>設定環境變數</td>
+<td><code>ENV APP_HOME=/app</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="docker-hub_3">Docker Hub 相關指令<a class="headerlink" href="#docker-hub_3" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>說明</th>
+<th>範例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>docker login</code></td>
+<td>登入 Docker Registry</td>
+<td><code>docker login -u username</code></td>
+</tr>
+<tr>
+<td><code>docker logout</code></td>
+<td>登出 Docker Registry</td>
+<td><code>docker logout</code></td>
+</tr>
+<tr>
+<td><code>docker tag</code></td>
+<td>為 Image 加上標籤</td>
+<td><code>docker tag image:tag user/image:tag</code></td>
+</tr>
+<tr>
+<td><code>docker push</code></td>
+<td>上傳 Image</td>
+<td><code>docker push user/image:tag</code></td>
+</tr>
+<tr>
+<td><code>docker pull</code></td>
+<td>下載 Image</td>
+<td><code>docker pull user/image:tag</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="_7">常見問題<a class="headerlink" href="#_7" title="Permanent link">¶</a></h2>
+<details class="question">
+<summary>Q1：docker build 時出現 'no such file or directory' 錯誤？</summary>
+<p><strong>可能原因</strong>：</p>
+<ol>
+<li>Dockerfile 檔名不正確（注意大小寫）</li>
+<li>不在正確的目錄</li>
+</ol>
+<p><strong>解決方案</strong>：
+</p><div class="language-bash highlight"><pre><span></span><code><span id="__span-48-1"><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="c1"># 確認檔案存在</span>
+</span><span id="__span-48-2"><a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a>ls<span class="w"> </span>-la<span class="w"> </span>dockerfile
+</span><span id="__span-48-3"><a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a>
+</span><span id="__span-48-4"><a id="__codelineno-48-4" name="__codelineno-48-4" href="#__codelineno-48-4"></a><span class="c1"># 使用 -f 指定 Dockerfile 路徑</span>
+</span><span id="__span-48-5"><a id="__codelineno-48-5" name="__codelineno-48-5" href="#__codelineno-48-5"></a>docker<span class="w"> </span>build<span class="w"> </span>-f<span class="w"> </span>./dockerfile<span class="w"> </span>-t<span class="w"> </span>my-image<span class="w"> </span>.
+</span></code></pre></div><p></p>
+</details>
+<details class="question">
+<summary>Q2：docker push 失敗，顯示 'access denied'？</summary>
+<p><strong>解決方案</strong>：</p>
+<ol>
+<li>確認已登入：<code>docker login</code></li>
+<li>確認 Image 標籤包含正確的帳號名稱</li>
+<li>標籤格式必須是：<code>&lt;帳號&gt;/&lt;image名稱&gt;:&lt;tag&gt;</code></li>
+</ol>
+</details>
+<details class="question">
+<summary>Q3：Dockerfile 與 docker commit 有什麼差別？</summary>
+<table>
+<thead>
+<tr>
+<th>比較</th>
+<th>docker commit</th>
+<th>Dockerfile</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>可追蹤性</td>
+<td>無法追蹤變更</td>
+<td>可版本控制</td>
+</tr>
+<tr>
+<td>可重現性</td>
+<td>難以重現</td>
+<td>可重複建置</td>
+</tr>
+<tr>
+<td>自動化</td>
+<td>手動操作</td>
+<td>可自動化</td>
+</tr>
+<tr>
+<td>建議用途</td>
+<td>測試/除錯</td>
+<td>生產環境</td>
+</tr>
+</tbody>
+</table>
+</details>
+<hr>
+<h2 id="_8">小結<a class="headerlink" href="#_8" title="Permanent link">¶</a></h2>
+<p>本章節重點回顧：</p>
+<ul>
+<li>✅ <strong>Dockerfile</strong>：使用 FROM、RUN、CMD 指令建立客製化 Image</li>
+<li>✅ <strong>docker build</strong>：根據 Dockerfile 建置 Image</li>
+<li>✅ <strong>docker login</strong>：登入 Docker Hub</li>
+<li>✅ <strong>docker tag</strong>：為 Image 加上符合 Docker Hub 格式的標籤</li>
+<li>✅ <strong>docker push</strong>：上傳 Image 到 Docker Hub</li>
+<li>✅ <strong>docker pull</strong>：從 Docker Hub 下載 Image</li>
+</ul>
 
 
 

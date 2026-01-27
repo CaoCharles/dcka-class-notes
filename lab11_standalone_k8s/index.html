@@ -965,7 +965,440 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        實作步驟
+        前置知識
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#111" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1 環境說明
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11.1 環境說明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#standalone-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        什麼是 Standalone Kubernetes？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        虛擬機資訊
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#112-k8s-standalone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2 切換到 k8s-standalone 虛擬機
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11.2 切換到 k8s-standalone 虛擬機">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        確認網路設定
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        確認主機名稱
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        確認 hosts 檔案
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#113-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3 下載安裝 Script
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11.3 下載安裝 Script">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wget" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用 wget 下載
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        設定執行權限
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#114-shell-script-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.4 使用 Shell Script 自動化安裝 Kubernetes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11.4 使用 Shell Script 自動化安裝 Kubernetes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        查看安裝選項
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#standalone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        執行 Standalone 安裝
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安裝過程輸出（部分）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubeadm-init" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        kubeadm init 輸出
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#antrea-cni" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安裝 Antrea CNI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#master-taint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        移除 Master 節點的 Taint
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#115-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.5 監控 Kubernetes 狀態
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11.5 監控 Kubernetes 狀態">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        檢視節點狀態
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        檢視系統 Pod 狀態
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        持續監控節點狀態
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#116" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.6 部署測試
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11.6 部署測試">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        建立測試 Deployment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deployment_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        檢視 Deployment 狀態
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pod_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        檢視 Pod 狀態
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pod_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        檢視 Pod 詳細資訊
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        等待節點就緒後確認
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deployment_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        清理測試 Deployment
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#117-snapshot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.7 建立快照 Snapshot
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11.7 建立快照 Snapshot">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        建立快照步驟
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        指令參考
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="指令參考">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kubectl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        kubectl 基本指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安裝相關元件版本
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常見問題
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        小結
       
     </span>
   </a>
@@ -1487,7 +1920,440 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        實作步驟
+        前置知識
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#111" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1 環境說明
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11.1 環境說明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#standalone-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        什麼是 Standalone Kubernetes？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        虛擬機資訊
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#112-k8s-standalone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2 切換到 k8s-standalone 虛擬機
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11.2 切換到 k8s-standalone 虛擬機">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        確認網路設定
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        確認主機名稱
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        確認 hosts 檔案
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#113-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3 下載安裝 Script
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11.3 下載安裝 Script">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wget" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用 wget 下載
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        設定執行權限
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#114-shell-script-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.4 使用 Shell Script 自動化安裝 Kubernetes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11.4 使用 Shell Script 自動化安裝 Kubernetes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        查看安裝選項
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#standalone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        執行 Standalone 安裝
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安裝過程輸出（部分）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubeadm-init" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        kubeadm init 輸出
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#antrea-cni" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安裝 Antrea CNI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#master-taint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        移除 Master 節點的 Taint
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#115-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.5 監控 Kubernetes 狀態
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11.5 監控 Kubernetes 狀態">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        檢視節點狀態
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        檢視系統 Pod 狀態
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        持續監控節點狀態
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#116" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.6 部署測試
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11.6 部署測試">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        建立測試 Deployment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deployment_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        檢視 Deployment 狀態
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pod_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        檢視 Pod 狀態
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pod_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        檢視 Pod 詳細資訊
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        等待節點就緒後確認
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deployment_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        清理測試 Deployment
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#117-snapshot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.7 建立快照 Snapshot
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11.7 建立快照 Snapshot">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        建立快照步驟
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        指令參考
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="指令參考">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kubectl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        kubectl 基本指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安裝相關元件版本
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常見問題
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        小結
       
     </span>
   </a>
@@ -1524,7 +2390,7 @@
     <span class="twemoji">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span style="font-weight: 500;">更新:</span> <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月26日 14:01:45 CST">2026年1月26日 14:01:45</span>
+    <span style="font-weight: 500;">更新:</span> <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月27日 13:44:39 CST">2026年1月27日 13:44:39</span>
   </span>
   
 
@@ -1541,13 +2407,551 @@
   
 
 
-<h1 id="lab-11-standalone-kubernetes">LAB 11 standalone kubernetes 安裝<a class="headerlink" href="#lab-11-standalone-kubernetes" title="Permanent link">¶</a></h1>
+<h1 id="lab-11-standalone-kubernetes">LAB 11 Standalone Kubernetes 安裝<a class="headerlink" href="#lab-11-standalone-kubernetes" title="Permanent link">¶</a></h1>
 <h2 id="_1">學習目標<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<p>完成本章節後，你將能夠：</p>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 待補</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 使用 Shell Script 自動化安裝 Kubernetes</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 了解 Standalone Kubernetes 的架構</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 監控 Kubernetes 叢集狀態</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 在 Standalone Master 節點上部署 Pod</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 建立虛擬機快照保留狀態</li>
 </ul>
-<h2 id="_2">實作步驟<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
-<p><em>(本章節內容待補)</em></p>
+<h2 id="_2">前置知識<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<p>開始之前，請確保你已經：</p>
+<ul>
+<li>完成 Docker 相關章節</li>
+<li>了解基本的 Linux 指令操作</li>
+<li>了解容器化的基本概念</li>
+</ul>
+<hr>
+<h2 id="111">11.1 環境說明<a class="headerlink" href="#111" title="Permanent link">¶</a></h2>
+<h3 id="standalone-kubernetes">什麼是 Standalone Kubernetes？<a class="headerlink" href="#standalone-kubernetes" title="Permanent link">¶</a></h3>
+<p>Standalone Kubernetes 是一個單節點的 Kubernetes 叢集，Master 節點同時也作為 Worker 節點使用。這種架構適合：</p>
+<ul>
+<li>學習與測試環境</li>
+<li>開發環境</li>
+<li>小型專案</li>
+</ul>
+<pre class="mermaid"><code>graph TB
+    subgraph "Standalone Kubernetes"
+        M[k8s-standalone&lt;br/&gt;Master + Worker&lt;br/&gt;192.168.66.61]
+        subgraph "Control Plane"
+            API[API Server]
+            ETCD[etcd]
+            SCHED[Scheduler]
+            CM[Controller Manager]
+        end
+        subgraph "Node Components"
+            KL[Kubelet]
+            KP[Kube-Proxy]
+            CR[CRI-O]
+        end
+        subgraph "Pods"
+            P1[Pod 1]
+            P2[Pod 2]
+        end
+    end</code></pre>
+<h3 id="_3">虛擬機資訊<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主機名稱</td>
+<td>k8s-standalone.training.lab</td>
+</tr>
+<tr>
+<td>IP 位址</td>
+<td>192.168.66.61</td>
+</tr>
+<tr>
+<td>作業系統</td>
+<td>Rocky Linux 9</td>
+</tr>
+<tr>
+<td>Kubernetes 版本</td>
+<td>1.32</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="112-k8s-standalone">11.2 切換到 k8s-standalone 虛擬機<a class="headerlink" href="#112-k8s-standalone" title="Permanent link">¶</a></h2>
+<h3 id="_4">確認網路設定<a class="headerlink" href="#_4" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">檢視網路介面</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ifconfig<span class="w"> </span>ens160
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ens160: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>        inet 192.168.66.61  netmask 255.255.255.0  broadcast 192.168.66.255
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>        inet6 fe80::20c:29ff:fe91:c3  prefixlen 64  scopeid 0x20&lt;link&gt;
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>        ether 00:0c:29:91:00:c3  txqueuelen 1000  (Ethernet)
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        RX packets 41897  bytes 25015527 (23.8 MiB)
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>        RX errors 0  dropped 0  overruns 0  frame 0
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        TX packets 672  bytes 55461 (54.1 KiB)
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+</span></code></pre></div>
+<h3 id="_5">確認主機名稱<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">檢視主機名稱</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>hostname
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>k8s-standalone.training.lab
+</span></code></pre></div>
+<h3 id="hosts">確認 hosts 檔案<a class="headerlink" href="#hosts" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">檢視 /etc/hosts</span><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>cat<span class="w"> </span>/etc/hosts
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>192.168.66.10   master.training.lab master
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>192.168.66.11   node1.training.lab  node1
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>192.168.66.12   node2.training.lab  node2
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>192.168.66.21   docker.training.lab docker
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>192.168.66.22   minikube.training.lab   minikube
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>192.168.66.51       docker1.training.lab        docker1
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>192.168.66.52       docker2.training.lab        docker2
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>192.168.66.61       k8s-standalone.training.lab k8s-standalone
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>192.168.66.71       k8s-master1.training.lab    k8s-master1
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>192.168.66.81       k8s-node1.training.lab      k8s-node1
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>192.168.66.82       k8s-node2.training.lab      k8s-node2
+</span></code></pre></div>
+<hr>
+<h2 id="113-script">11.3 下載安裝 Script<a class="headerlink" href="#113-script" title="Permanent link">¶</a></h2>
+<h3 id="wget">使用 wget 下載<a class="headerlink" href="#wget" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">下載安裝腳本</span><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>wget<span class="w"> </span>http://10.0.1.249/k8s/scripts/install_k8s-latest.sh
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>--2026-01-27 11:21:14--  http://10.0.1.249/k8s/scripts/install_k8s-latest.sh
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>Connecting to 10.0.1.249:80... connected.
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>HTTP request sent, awaiting response... 200 OK
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>Length: 22517 (22K) [application/x-sh]
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>Saving to: 'install_k8s-latest.sh'
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>install_k8s-latest.sh       100%[========================================&gt;]  21.99K  --.-KB/s    in 0s      
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>2026-01-27 11:21:14 (61.0 MB/s) - 'install_k8s-latest.sh' saved [22517/22517]
+</span></code></pre></div>
+<h3 id="_6">設定執行權限<a class="headerlink" href="#_6" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">設定執行權限</span><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>chmod<span class="w"> </span><span class="m">755</span><span class="w"> </span>install_k8s-latest.sh
+</span></code></pre></div>
+<hr>
+<h2 id="114-shell-script-kubernetes">11.4 使用 Shell Script 自動化安裝 Kubernetes<a class="headerlink" href="#114-shell-script-kubernetes" title="Permanent link">¶</a></h2>
+<h3 id="_7">查看安裝選項<a class="headerlink" href="#_7" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">執行腳本查看使用說明</span><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>./install_k8s-latest.sh
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>請輸入 完整安裝(full) 或是 standalone
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>./install_k8s-latest.sh -full
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>或 
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>./install_k8s-latest.sh -standalone
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">安裝模式說明</p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-full</code></td>
+<td>完整安裝，包含 Master 與 Worker 節點設定</td>
+</tr>
+<tr>
+<td><code>-standalone</code></td>
+<td>單機安裝，Master 節點同時作為 Worker 節點</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="standalone">執行 Standalone 安裝<a class="headerlink" href="#standalone" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">執行 Standalone 安裝</span><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>./install_k8s-latest.sh<span class="w"> </span>-standalone
+</span></code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">安裝過程說明</p>
+<p>腳本會自動執行以下步驟：</p>
+<ol>
+<li><strong>安裝必要套件</strong>：sshpass、bash-completion</li>
+<li><strong>安裝 Docker CE</strong>：包含 containerd.io、docker-ce-cli</li>
+<li><strong>關閉 Swap</strong>：Kubernetes 要求關閉 Swap</li>
+<li><strong>設定核心參數</strong>：啟用 IP 轉發、設定網路參數</li>
+<li><strong>安裝 Kubernetes 套件</strong>：kubelet、kubeadm、kubectl</li>
+<li><strong>安裝 CRI-O</strong>：Container Runtime Interface</li>
+<li><strong>關閉防火牆</strong>：停用 firewalld</li>
+<li><strong>執行 kubeadm init</strong>：初始化 Kubernetes 叢集</li>
+<li><strong>安裝 CNI</strong>：安裝 Antrea 網路套件</li>
+<li><strong>移除 Taint</strong>：允許在 Master 節點上部署 Pod</li>
+</ol>
+</div>
+<h3 id="_8">安裝過程輸出（部分）<a class="headerlink" href="#_8" title="Permanent link">¶</a></h3>
+<p>安裝 Docker CE：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>Installing:
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a> docker-ce                    x86_64    3:29.2.0-1.el9    docker-ce-stable     24 M
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a> containerd.io                x86_64    2.2.1-1.el9       docker-ce-stable     35 M
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a> docker-ce-cli                x86_64    1:29.2.0-1.el9    docker-ce-stable    8.4 M
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a> docker-buildx-plugin         x86_64    0.30.1-1.el9      docker-ce-stable     17 M
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a> docker-compose-plugin        x86_64    5.0.2-1.el9       docker-ce-stable    8.1 M
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>Complete!
+</span></code></pre></div>
+<p>安裝 Kubernetes 套件：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Installing:
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a> kubeadm       x86_64    1.32.11-150500.1.1    kubernetes    12 M
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a> kubectl       x86_64    1.32.11-150500.1.1    kubernetes    11 M
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a> kubelet       x86_64    1.32.11-150500.1.1    kubernetes    15 M
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a> cri-tools     x86_64    1.32.0-150500.1.1     kubernetes   7.1 M
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a> kubernetes-cni x86_64   1.6.0-150500.1.1      kubernetes   8.0 M
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>Complete!
+</span></code></pre></div>
+<p>安裝 CRI-O：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>Installing:
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a> cri-o         x86_64    1.32.1-150500.1.1     cri-o         20 M
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>Complete!
+</span></code></pre></div>
+<h3 id="kubeadm-init">kubeadm init 輸出<a class="headerlink" href="#kubeadm-init" title="Permanent link">¶</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>[init] Using Kubernetes version: v1.32.11
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>[preflight] Running pre-flight checks
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>[preflight] Pulling images required for setting up a Kubernetes cluster
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>[certs] Using certificateDir folder "/etc/kubernetes/pki"
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>[certs] Generating "ca" certificate and key
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>[certs] Generating "apiserver" certificate and key
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>[certs] apiserver serving cert is signed for DNS names [k8s-standalone.training.lab kubernetes kubernetes.default kubernetes.default.svc kubernetes.default.svc.cluster.local] and IPs [172.30.0.1 192.168.66.61]
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>...
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>[kubelet-start] Starting the kubelet
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>[kubelet-check] The kubelet is healthy after 515.21134ms
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>[api-check] The API server is healthy after 3.001460102s
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>...
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>[addons] Applied essential addon: CoreDNS
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>[addons] Applied essential addon: kube-proxy
+</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a>
+</span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a>Your Kubernetes control-plane has initialized successfully!
+</span></code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">初始化成功</p>
+<p>看到 <code>Your Kubernetes control-plane has initialized successfully!</code> 表示 Kubernetes 控制平面已成功初始化。</p>
+</div>
+<h3 id="antrea-cni">安裝 Antrea CNI<a class="headerlink" href="#antrea-cni" title="Permanent link">¶</a></h3>
+<p>腳本會自動安裝 Antrea 作為 CNI（Container Network Interface）：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>customresourcedefinition.apiextensions.k8s.io/antreaagentinfos.crd.antrea.io created
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>serviceaccount/antrea-agent created
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>serviceaccount/antrea-controller created
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>clusterrole.rbac.authorization.k8s.io/antrea-agent created
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>clusterrole.rbac.authorization.k8s.io/antrea-controller created
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>...
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>deployment.apps/antrea-controller created
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>daemonset.apps/antrea-agent created
+</span></code></pre></div>
+<h3 id="master-taint">移除 Master 節點的 Taint<a class="headerlink" href="#master-taint" title="Permanent link">¶</a></h3>
+<p>預設情況下，Kubernetes 不允許在 Master 節點上部署 Pod。腳本會自動移除這個限制：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>node/k8s-standalone.training.lab untainted
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Taint 說明</p>
+<p>Taint（汙點）是 Kubernetes 用來限制 Pod 調度的機制。Master 節點預設有 <code>node-role.kubernetes.io/control-plane:NoSchedule</code> 的 Taint，表示不接受一般 Pod 的調度。</p>
+</div>
+<hr>
+<h2 id="115-kubernetes">11.5 監控 Kubernetes 狀態<a class="headerlink" href="#115-kubernetes" title="Permanent link">¶</a></h2>
+<h3 id="_9">檢視節點狀態<a class="headerlink" href="#_9" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">檢視節點狀態</span><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+</span></code></pre></div>
+<p><strong>預期結果</strong>（初始狀態）：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>NAME                          STATUS     ROLES           AGE   VERSION
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>k8s-standalone.training.lab   NotReady   control-plane   35s   v1.32.11
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">NotReady 狀態</p>
+<p>節點剛初始化時會顯示 <code>NotReady</code>，等待 CNI 套件完全啟動後會變成 <code>Ready</code>。</p>
+</div>
+<p>等待約 30 秒後再次檢查：</p>
+<div class="language-bash highlight"><span class="filename">再次檢視節點狀態</span><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>NAME                          STATUS   ROLES           AGE   VERSION
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>k8s-standalone.training.lab   Ready    control-plane   2m    v1.32.11
+</span></code></pre></div>
+<h3 id="pod">檢視系統 Pod 狀態<a class="headerlink" href="#pod" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">檢視 kube-system namespace 的 Pod</span><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>kube-system
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>NAME                                                  READY   STATUS    RESTARTS   AGE
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>antrea-agent-xxxxx                                    2/2     Running   0          2m
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>antrea-controller-xxxxx                               1/1     Running   0          2m
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>coredns-xxxxx                                         1/1     Running   0          2m
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>coredns-xxxxx                                         1/1     Running   0          2m
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>etcd-k8s-standalone.training.lab                      1/1     Running   0          2m
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a>kube-apiserver-k8s-standalone.training.lab            1/1     Running   0          2m
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a>kube-controller-manager-k8s-standalone.training.lab   1/1     Running   0          2m
+</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a>kube-proxy-xxxxx                                      1/1     Running   0          2m
+</span><span id="__span-23-10"><a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a>kube-scheduler-k8s-standalone.training.lab            1/1     Running   0          2m
+</span></code></pre></div>
+<h3 id="_10">持續監控節點狀態<a class="headerlink" href="#_10" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">使用 watch 持續監控</span><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>watch<span class="w"> </span>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">watch 指令</p>
+<p><code>watch</code> 指令會每 2 秒重新執行一次指令，按 <code>Ctrl+C</code> 可以退出。</p>
+</div>
+<hr>
+<h2 id="116">11.6 部署測試<a class="headerlink" href="#116" title="Permanent link">¶</a></h2>
+<h3 id="deployment">建立測試 Deployment<a class="headerlink" href="#deployment" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">建立 nginx Deployment</span><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>kubectl<span class="w"> </span>create<span class="w"> </span>deployment<span class="w"> </span>test1<span class="w"> </span>--image<span class="o">=</span>nginx
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>deployment.apps/test1 created
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">kubectl create deployment 語法</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>kubectl create deployment &lt;name&gt; --image=&lt;image&gt;
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>參數</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;name&gt;</code></td>
+<td>Deployment 名稱</td>
+</tr>
+<tr>
+<td><code>--image</code></td>
+<td>使用的容器映像</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="deployment_1">檢視 Deployment 狀態<a class="headerlink" href="#deployment_1" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">檢視 Deployment</span><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>deployments.apps
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>NAME    READY   UP-TO-DATE   AVAILABLE   AGE
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>test1   0/1     1            0           15s
+</span></code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Deployment 欄位說明</p>
+<table>
+<thead>
+<tr>
+<th>欄位</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>READY</code></td>
+<td>就緒的 Pod 數量 / 預期數量</td>
+</tr>
+<tr>
+<td><code>UP-TO-DATE</code></td>
+<td>已更新到最新版本的 Pod 數量</td>
+</tr>
+<tr>
+<td><code>AVAILABLE</code></td>
+<td>可用的 Pod 數量</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="pod_1">檢視 Pod 狀態<a class="headerlink" href="#pod_1" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">檢視 Pod 狀態</span><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>NAME                     READY   STATUS    RESTARTS   AGE
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>test1-7d9bdc56f4-mbtc5   0/1     Pending   0          27s
+</span></code></pre></div>
+<h3 id="pod_2">檢視 Pod 詳細資訊<a class="headerlink" href="#pod_2" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">檢視 Pod 詳細資訊（含節點資訊）</span><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-o<span class="w"> </span>wide
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>NAME                     READY   STATUS    RESTARTS   AGE   IP       NODE     NOMINATED NODE   READINESS GATES
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>test1-7d9bdc56f4-mbtc5   0/1     Pending   0          33s   &lt;none&gt;   &lt;none&gt;   &lt;none&gt;           &lt;none&gt;
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Pod 處於 Pending 狀態</p>
+<p>如果 Pod 持續處於 <code>Pending</code> 狀態且 <code>NODE</code> 顯示 <code>&lt;none&gt;</code>，可能是因為：</p>
+<ol>
+<li>節點尚未就緒（NotReady）</li>
+<li>節點仍有 Taint 限制</li>
+</ol>
+<p>需要等待節點變成 Ready 狀態，或確認 Taint 已移除。</p>
+</div>
+<h3 id="_11">等待節點就緒後確認<a class="headerlink" href="#_11" title="Permanent link">¶</a></h3>
+<p>等待節點變成 Ready 後，Pod 會自動調度並啟動：</p>
+<div class="language-bash highlight"><span class="filename">確認節點狀態</span><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+</span></code></pre></div>
+<p>當節點顯示 <code>Ready</code> 後：</p>
+<div class="language-bash highlight"><span class="filename">再次檢視 Pod 狀態</span><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-o<span class="w"> </span>wide
+</span></code></pre></div>
+<p><strong>預期結果</strong>（節點就緒後）：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>NAME                     READY   STATUS    RESTARTS   AGE   IP            NODE                          NOMINATED NODE   READINESS GATES
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>test1-7d9bdc56f4-mbtc5   1/1     Running   0          2m    10.244.0.5    k8s-standalone.training.lab   &lt;none&gt;           &lt;none&gt;
+</span></code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">部署成功</p>
+<p>當 Pod 狀態變成 <code>Running</code> 且 <code>NODE</code> 顯示 <code>k8s-standalone.training.lab</code>，表示已成功在 Standalone Master 節點上部署 Pod。</p>
+</div>
+<h3 id="deployment_2">清理測試 Deployment<a class="headerlink" href="#deployment_2" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">刪除測試 Deployment</span><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>deployment<span class="w"> </span>test1
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>deployment.apps "test1" deleted
+</span></code></pre></div>
+<hr>
+<h2 id="117-snapshot">11.7 建立快照 Snapshot<a class="headerlink" href="#117-snapshot" title="Permanent link">¶</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">建議</p>
+<p>完成安裝後，建議在 VMware 中建立虛擬機快照，以便日後需要時可以快速還原到乾淨的 Kubernetes 環境。</p>
+</div>
+<h3 id="_12">建立快照步驟<a class="headerlink" href="#_12" title="Permanent link">¶</a></h3>
+<ol>
+<li>在 VMware vSphere Client 或 VMware Workstation 中</li>
+<li>選擇 k8s-standalone 虛擬機</li>
+<li>右鍵選擇 <strong>快照</strong> &gt; <strong>拍攝快照</strong></li>
+<li>輸入快照名稱，例如：<code>K8s 1.32 安裝完成</code></li>
+<li>點擊確定</li>
+</ol>
+<hr>
+<h2 id="_13">指令參考<a class="headerlink" href="#_13" title="Permanent link">¶</a></h2>
+<h3 id="kubectl">kubectl 基本指令<a class="headerlink" href="#kubectl" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>kubectl get nodes</code></td>
+<td>檢視節點狀態</td>
+</tr>
+<tr>
+<td><code>kubectl get pods</code></td>
+<td>檢視 Pod 列表</td>
+</tr>
+<tr>
+<td><code>kubectl get pods -n kube-system</code></td>
+<td>檢視系統 Pod</td>
+</tr>
+<tr>
+<td><code>kubectl describe node &lt;name&gt;</code></td>
+<td>檢視節點詳細資訊</td>
+</tr>
+<tr>
+<td><code>kubectl describe pod &lt;name&gt;</code></td>
+<td>檢視 Pod 詳細資訊</td>
+</tr>
+<tr>
+<td><code>kubectl run &lt;name&gt; --image=&lt;image&gt;</code></td>
+<td>建立 Pod</td>
+</tr>
+<tr>
+<td><code>kubectl delete pod &lt;name&gt;</code></td>
+<td>刪除 Pod</td>
+</tr>
+<tr>
+<td><code>kubectl exec -it &lt;name&gt; -- &lt;cmd&gt;</code></td>
+<td>在 Pod 中執行指令</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_14">安裝相關元件版本<a class="headerlink" href="#_14" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>元件</th>
+<th>版本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kubernetes</td>
+<td>1.32.11</td>
+</tr>
+<tr>
+<td>Docker CE</td>
+<td>29.2.0</td>
+</tr>
+<tr>
+<td>containerd.io</td>
+<td>2.2.1</td>
+</tr>
+<tr>
+<td>CRI-O</td>
+<td>1.32.1</td>
+</tr>
+<tr>
+<td>Antrea CNI</td>
+<td>最新版</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="_15">常見問題<a class="headerlink" href="#_15" title="Permanent link">¶</a></h2>
+<details class="question">
+<summary>Q1：節點一直顯示 NotReady？</summary>
+<p><strong>可能原因</strong>：</p>
+<ol>
+<li>CNI 套件尚未完全啟動</li>
+<li>kubelet 服務異常</li>
+</ol>
+<p><strong>解決方案</strong>：
+</p><div class="language-bash highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="c1"># 檢視 kubelet 狀態</span>
+</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>systemctl<span class="w"> </span>status<span class="w"> </span>kubelet
+</span><span id="__span-39-3"><a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a>
+</span><span id="__span-39-4"><a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a><span class="c1"># 檢視 kubelet 日誌</span>
+</span><span id="__span-39-5"><a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a>journalctl<span class="w"> </span>-u<span class="w"> </span>kubelet<span class="w"> </span>-f
+</span><span id="__span-39-6"><a id="__codelineno-39-6" name="__codelineno-39-6" href="#__codelineno-39-6"></a>
+</span><span id="__span-39-7"><a id="__codelineno-39-7" name="__codelineno-39-7" href="#__codelineno-39-7"></a><span class="c1"># 檢視系統 Pod 狀態</span>
+</span><span id="__span-39-8"><a id="__codelineno-39-8" name="__codelineno-39-8" href="#__codelineno-39-8"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>kube-system
+</span></code></pre></div><p></p>
+</details>
+<details class="question">
+<summary>Q2：Pod 無法在 Master 節點上執行？</summary>
+<p><strong>可能原因</strong>：Master 節點有 Taint 限制</p>
+<p><strong>解決方案</strong>：
+</p><div class="language-bash highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="c1"># 檢視節點 Taint</span>
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>kubectl<span class="w"> </span>describe<span class="w"> </span>node<span class="w"> </span>k8s-standalone.training.lab<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>Taint
+</span><span id="__span-40-3"><a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>
+</span><span id="__span-40-4"><a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a><span class="c1"># 移除 control-plane Taint</span>
+</span><span id="__span-40-5"><a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a>kubectl<span class="w"> </span>taint<span class="w"> </span>nodes<span class="w"> </span>k8s-standalone.training.lab<span class="w"> </span>node-role.kubernetes.io/control-plane:NoSchedule-
+</span></code></pre></div><p></p>
+</details>
+<details class="question">
+<summary>Q3：如何重新安裝 Kubernetes？</summary>
+<p><strong>解決方案</strong>：
+</p><div class="language-bash highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="c1"># 重置 kubeadm</span>
+</span><span id="__span-41-2"><a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>kubeadm<span class="w"> </span>reset<span class="w"> </span>-f
+</span><span id="__span-41-3"><a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a>
+</span><span id="__span-41-4"><a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a><span class="c1"># 清理 iptables</span>
+</span><span id="__span-41-5"><a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a>iptables<span class="w"> </span>-F<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>iptables<span class="w"> </span>-t<span class="w"> </span>nat<span class="w"> </span>-F<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>iptables<span class="w"> </span>-t<span class="w"> </span>mangle<span class="w"> </span>-F<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>iptables<span class="w"> </span>-X
+</span><span id="__span-41-6"><a id="__codelineno-41-6" name="__codelineno-41-6" href="#__codelineno-41-6"></a>
+</span><span id="__span-41-7"><a id="__codelineno-41-7" name="__codelineno-41-7" href="#__codelineno-41-7"></a><span class="c1"># 重新執行安裝腳本</span>
+</span><span id="__span-41-8"><a id="__codelineno-41-8" name="__codelineno-41-8" href="#__codelineno-41-8"></a>./install_k8s-latest.sh<span class="w"> </span>-standalone
+</span></code></pre></div><p></p>
+</details>
+<hr>
+<h2 id="_16">小結<a class="headerlink" href="#_16" title="Permanent link">¶</a></h2>
+<p>本章節重點回顧：</p>
+<ul>
+<li>✅ <strong>環境準備</strong>：切換到 k8s-standalone 虛擬機，確認網路設定</li>
+<li>✅ <strong>下載安裝腳本</strong>：使用 wget 下載自動化安裝腳本</li>
+<li>✅ <strong>自動化安裝</strong>：使用 <code>-standalone</code> 參數執行單機安裝</li>
+<li>✅ <strong>監控狀態</strong>：使用 <code>kubectl get nodes</code> 確認節點 Ready</li>
+<li>✅ <strong>部署測試</strong>：成功在 Standalone Master 上部署 Pod</li>
+<li>✅ <strong>建立快照</strong>：保留乾淨的 Kubernetes 環境</li>
+</ul>
 
 
 

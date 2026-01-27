@@ -12,8 +12,8 @@ let chatHistory = [];
 // ====== 設定 ======
 // Railway 後端 URL
 window.BACKEND_API_URL = window.BACKEND_API_URL || "https://dcka-class-notes-production.up.railway.app";
-// 全站文件 JSON URL
-window.ALL_CONTENT_URL = window.ALL_CONTENT_URL || "./content.json";
+// 全站文件 JSON URL (使用絕對路徑)
+window.ALL_CONTENT_URL = window.ALL_CONTENT_URL || "https://caocharles.github.io/dcka-class-notes/content.json";
 // 初始歡迎訊息
 window.INITIAL_PROMPT = "嗨！我是 DCKA 課程助教 🤖\n\n我可以幫你解答 Docker 與 Kubernetes 的問題，並提供相關文章連結。\n\n試試問我：\n- 如何安裝 Docker？\n- 什麼是 Kubernetes？\n- 如何建立 Private Registry？";
 
