@@ -155,15 +155,16 @@ async function sendMessage() {
 
 ## 回答規則
 1. **語言**：使用繁體中文回答
-2. **連結**：當提到相關主題時，提供文章的 Markdown 連結（使用 URL 欄位）
+2. **連結**：當提到相關主題時，**必須使用文件中的完整 URL**（不要自己組合路徑）
 3. **格式**：使用清晰的 Markdown 格式（標題、列點、程式碼區塊）
 4. **精準**：優先使用文件內容回答，如果沒有相關內容才用一般知識
 5. **程式碼**：提供可執行的命令範例時，使用 \`\`\`bash 格式
 
-## 連結格式範例
-當提到某個主題時，這樣提供連結：
-- 想了解更多，請參考 [LAB 02 安裝 Docker](/lab02_docker_install/)
-- 詳細步驟請見 [Private Registry 建置](/lab05_private_registry/)
+## 連結格式（重要）
+每個文件都有 URL 欄位，請直接使用該 URL：
+- 正確範例：[LAB 02 安裝 Docker](https://caocharles.github.io/dcka-class-notes/lab02_docker_install/)
+- 正確範例：[疑難排解](https://caocharles.github.io/dcka-class-notes/appendix/troubleshooting/)
+- 錯誤範例：[LAB 02](/lab02_docker_install/) ← 不要這樣寫
 
 ## 課程文件
 以下是完整的課程文件內容，請根據這些內容回答：
