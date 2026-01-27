@@ -1,0 +1,12 @@
+[project]
+name = "dcka-chatbot-backend"
+version = "0.1.0"
+description = "AI Chatbot Backend for DCKA Course Documentation"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.110.0",
+    "uvicorn>=0.27.0",
+    "google-generativeai>=0.4.0",
+    "python-dotenv>=1.0.1",
+    "pydantic>=2.6.0",
+]
