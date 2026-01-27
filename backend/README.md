@@ -72,8 +72,9 @@
 ```
 backend/
 ├── chat_server.py      # FastAPI 主程式
-├── Dockerfile          # Docker 容器設定 (Railway 部署用)
-├── requirements.txt    # Python 依賴套件
+├── Dockerfile          # Docker 容器設定 (Python 3.12 + uv)
+├── pyproject.toml      # Python 依賴套件（uv 格式）
+├── requirements.txt    # Python 依賴套件（pip 格式，備用）
 └── README.md           # 本文件
 ```
 
@@ -168,27 +169,68 @@ sequenceDiagram
     F->>U: 10. 顯示回答
 ```
 
-### 完整 System Prompt 範例
+### 完整 System Prompt 範例（v2.0 - 全站預載版）
 
-前端 `chatbot.js` 會自動組合以下系統提示詞：
+> ⚠️ **v2.0 更新**：現在使用 `content.json` 預載全站文件，而非僅抓取當前頁面。
+
+前端 `chatbot.js` 會在使用者開啟聊天視窗時，載入 `content.json` 並組合以下系統提示詞：
 
 ```javascript
-const systemInstruction = `You are a helpful teaching assistant for a Docker and Kubernetes course.
-        
-CURRENT PAGE CONTEXT:
-${pageContext}  // ← 自動擷取當前頁面的文字內容
+// 載入全站文件
+const res = await fetch('./content.json');
+const data = await res.json();
 
-Answer the user's question based on the context if possible. 
-If not, use your general knowledge but mention you are going beyond the page context.`;
+// 組合成 DOCUMENTATION 字串
+allDocsContent = data
+  .map(doc => `Page: ${doc.title}\nURL: ${doc.url}\nContent:\n${doc.content}`)
+  .join("\n\n---\n\n");
+
+// 系統提示詞
+const systemInstruction = `你是 DCKA 課程（Docker Containers 與 Kubernetes 系統管理）的 AI 助教。
+
+## 回答規則
+1. **語言**：使用繁體中文回答
+2. **連結**：當提到相關主題時，提供文章的 Markdown 連結（使用 URL 欄位）
+3. **格式**：使用清晰的 Markdown 格式（標題、列點、程式碼區塊）
+4. **精準**：優先使用文件內容回答，如果沒有相關內容才用一般知識
+5. **程式碼**：提供可執行的命令範例時，使用 \`\`\`bash 格式
+
+## 連結格式範例
+當提到某個主題時，這樣提供連結：
+- 想了解更多，請參考 [LAB 02 安裝 Docker](/lab02_docker_install/)
+- 詳細步驟請見 [Private Registry 建置](/lab05_private_registry/)
+
+## 課程文件
+以下是完整的課程文件內容，請根據這些內容回答：
+
+---
+${allDocsContent}  // ← 全站 24 個頁面的完整內容
+---`;
 ```
+
+### content.json 生成機制
+
+`content.json` 由 MkDocs Hook 自動生成：
+
+```
+hooks/
+└── generate_content.py  # 在 mkdocs build 時自動執行
+```
+
+**生成流程：**
+
+1. `mkdocs build` 或 `mkdocs gh-deploy` 執行
+2. Hook `on_post_build()` 自動觸發
+3. 掃描 `docs/` 目錄下所有 `.md` 檔案
+4. 輸出 `site/content.json`
 
 ### 提示詞組成結構
 
 | 組成部分 | 來源 | 說明 |
 |----------|------|------|
-| **角色設定** | 寫死在程式碼 | "You are a helpful teaching assistant..." |
-| **頁面內容** | `getPageContent()` 動態擷取 | 當前 `.md-content` 元素的純文字 |
-| **使用者問題** | 使用者輸入 | 聊天輸入框的內容 |
+| **角色設定** | 寫死在程式碼 | "你是 DCKA 課程的 AI 助教" |
+| **回答規則** | 寫死在程式碼 | 繁體中文、提供連結、格式要求 |
+| **全站文件** | `content.json` (動態載入) | 24 個頁面的完整 Markdown 內容 |
 | **對話歷史** | sessionStorage | 保持對話上下文連貫 |
 
 ### 後端如何處理提示詞

@@ -5,6 +5,10 @@ site_url: https://caocharles.github.io/dcka-class-notes/
 repo_name: CaoCharles/dcka-class-notes
 repo_url: https://github.com/CaoCharles/dcka-class-notes
 
+# Hooks - 在 build 完成後自動生成 content.json
+hooks:
+  - hooks/generate_content.py
+
 theme:
   name: material
   language: zh-TW
@@ -108,6 +112,7 @@ markdown_extensions:
   - pymdownx.tilde
 
 extra_javascript:
+  - https://cdn.jsdelivr.net/npm/marked/marked.min.js
   - assets/js/chatbot.js
 
 extra_css:

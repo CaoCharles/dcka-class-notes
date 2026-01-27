@@ -31,12 +31,17 @@ dcka-class-notes/
 │   ├── index.md             # 首頁
 │   ├── lab01_*.md ~ lab20_*.md  # LAB 實作文件
 │   ├── appendix/            # 附錄（速查表、疑難排解）
-│   ├── assets/              # 靜態資源（CSS、JS）
+│   ├── assets/              # 靜態資源
+│   │   ├── css/chatbot.css  # 聊天機器人樣式
+│   │   └── js/chatbot.js    # 聊天機器人邏輯 (v2.0)
 │   └── images/              # 文件圖片
 ├── backend/                 # FastAPI 後端服務
 │   ├── chat_server.py       # Gemini API Proxy
-│   ├── Dockerfile           # Docker 容器設定
-│   └── requirements.txt     # 後端依賴
+│   ├── Dockerfile           # Docker 容器設定 (Python 3.12 + uv)
+│   ├── pyproject.toml       # 後端依賴（uv 格式）
+│   └── README.md            # 後端詳細說明
+├── hooks/                   # MkDocs Hooks
+│   └── generate_content.py  # 自動生成 content.json
 ├── overrides/               # MkDocs 主題覆寫
 ├── mkdocs.yml               # MkDocs 設定檔
 ├── pyproject.toml           # Python 專案設定（uv）
