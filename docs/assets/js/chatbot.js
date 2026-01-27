@@ -58,6 +58,38 @@ function addCopyButtons(parentElement) {
     });
 }
 
+// ====== 修正 AI 回應中的連結 ======
+// 確保所有連結都有正確的 base URL
+const BASE_URL = "https://caocharles.github.io/dcka-class-notes";
+
+function fixBrokenLinks(text) {
+    // 修正 Markdown 連結格式: [text](url)
+    // 匹配所有 Markdown 連結
+    return text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, linkText, url) => {
+        // 如果已經是完整 URL，不處理
+        if (url.startsWith('http://') || url.startsWith('https://')) {
+            // 檢查是否是 github.io 但缺少 /dcka-class-notes/
+            if (url.includes('github.io') && !url.includes('/dcka-class-notes/')) {
+                // 修正: caocharles.github.io/lab05 -> caocharles.github.io/dcka-class-notes/lab05
+                url = url.replace(/(caocharles\.github\.io)(\/)/i, '$1/dcka-class-notes/');
+            }
+            return `[${linkText}](${url})`;
+        }
+
+        // 如果是相對路徑（以 / 開頭但不是 /dcka-class-notes/）
+        if (url.startsWith('/') && !url.startsWith('/dcka-class-notes/')) {
+            return `[${linkText}](${BASE_URL}${url})`;
+        }
+
+        // 如果是不以 / 開頭的相對路徑
+        if (!url.startsWith('/') && !url.startsWith('#')) {
+            return `[${linkText}](${BASE_URL}/${url})`;
+        }
+
+        return match;
+    });
+}
+
 // ====== 加一則訊息到畫面 & 歷史 ======
 function addMessage(sender, text, addToHistory = true) {
     if (!chatMessages) return;
@@ -67,7 +99,9 @@ function addMessage(sender, text, addToHistory = true) {
 
     // 機器人訊息用 marked 把 Markdown 轉成 HTML
     if (sender === "bot") {
-        const html = window.marked ? marked.parse(text) : text;
+        // 修正可能不完整的連結
+        const fixedText = fixBrokenLinks(text);
+        const html = window.marked ? marked.parse(fixedText) : fixedText;
         message.innerHTML = html;
         addCopyButtons(message);
     } else {
