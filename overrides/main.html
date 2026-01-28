@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% if page.meta.git_revision_date_localized or page.meta.git_creation_date_localized or git_authors %}
 <div
   style="margin-bottom: 2rem; padding: 0.5rem 0; border-bottom: 1px solid rgba(0,0,0,0.1); font-size: 0.85em; color: #777; display: flex; flex-wrap: wrap; gap: 1.5rem;">
 
@@ -31,7 +30,6 @@
   </span>
 
 </div>
-{% endif %}
 
 {{ super() }}
 {% endblock %}
