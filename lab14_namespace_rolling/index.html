@@ -91,7 +91,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#lab-14-namespaces-rolling-update" class="md-skip">
+        <a href="#lab-14-namespace-rolling-update" class="md-skip">
           跳轉到
         </a>
       
@@ -1049,7 +1049,317 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        實作步驟
+        前置知識
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心概念說明
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="核心概念說明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Namespace 是什麼？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rolling-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rolling Update 是什麼？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 實作練習：Namespace 管理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 實作練習：Namespace 管理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-kubectl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 1：啟用 kubectl 指令自動補齊
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 2：清理所有資源
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 3：查看現有 Namespace
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 4：建立自訂 Namespace
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-namespace-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 5：在不同 Namespace 建立 Deployment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 6：查詢不同 Namespace 的資源
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 7：刪除 Namespace
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-rolling-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 實作練習：Rolling Update 滾動更新
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 實作練習：Rolling Update 滾動更新">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-dry-run-yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 1：使用 dry-run 產生 YAML
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-yaml-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 2：套用 YAML 建立 Deployment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 3：監控 Deployment 狀態
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 4：產生新版本 YAML
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-rolling-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 5：執行 Rolling Update
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-rollout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 6：查看 Rollout 歷史紀錄
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 7：回滾到先前版本
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-url-yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 8：從 URL 套用與刪除 YAML
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常用指令對照表
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="常用指令對照表">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#namespace_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Namespace 操作
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rolling-update_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rolling Update 操作
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常見問題
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        小結
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        延伸閱讀
       
     </span>
   </a>
@@ -1487,7 +1797,317 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        實作步驟
+        前置知識
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心概念說明
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="核心概念說明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Namespace 是什麼？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rolling-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rolling Update 是什麼？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 實作練習：Namespace 管理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 實作練習：Namespace 管理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-kubectl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 1：啟用 kubectl 指令自動補齊
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 2：清理所有資源
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 3：查看現有 Namespace
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 4：建立自訂 Namespace
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-namespace-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 5：在不同 Namespace 建立 Deployment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 6：查詢不同 Namespace 的資源
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 7：刪除 Namespace
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-rolling-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 實作練習：Rolling Update 滾動更新
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 實作練習：Rolling Update 滾動更新">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-dry-run-yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 1：使用 dry-run 產生 YAML
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-yaml-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 2：套用 YAML 建立 Deployment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 3：監控 Deployment 狀態
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 4：產生新版本 YAML
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-rolling-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 5：執行 Rolling Update
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-rollout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 6：查看 Rollout 歷史紀錄
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 7：回滾到先前版本
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-url-yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 8：從 URL 套用與刪除 YAML
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常用指令對照表
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="常用指令對照表">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#namespace_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Namespace 操作
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rolling-update_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rolling Update 操作
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常見問題
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        小結
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        延伸閱讀
       
     </span>
   </a>
@@ -1524,7 +2144,7 @@
     <span class="twemoji">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span style="font-weight: 500;">更新:</span> <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月26日 14:01:45 CST">2026年1月26日 14:01:45</span>
+    <span style="font-weight: 500;">更新:</span> <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月28日 15:27:35 CST">2026年1月28日 15:27:35</span>
   </span>
   
 
@@ -1541,13 +2161,571 @@
   
 
 
-<h1 id="lab-14-namespaces-rolling-update">LAB 14 namespaces 與 rolling update<a class="headerlink" href="#lab-14-namespaces-rolling-update" title="Permanent link">¶</a></h1>
+<h1 id="lab-14-namespace-rolling-update">LAB 14 Namespace 與 Rolling Update<a class="headerlink" href="#lab-14-namespace-rolling-update" title="Permanent link">¶</a></h1>
 <h2 id="_1">學習目標<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<p>完成本章節後，你將能夠：</p>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 待補</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 使用 kubectl 建立與管理 Namespace</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 在不同 Namespace 中部署與查詢資源</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 使用 <code>--dry-run=client -o yaml</code> 產生 YAML 檔案</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 使用 <code>kubectl apply -f</code> 套用 YAML 更新進行 Rolling Update</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 使用 <code>kubectl rollout</code> 查看歷史紀錄與回滾版本</li>
 </ul>
-<h2 id="_2">實作步驟<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
-<p><em>(本章節內容待補)</em></p>
+<h2 id="_2">前置知識<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<p>開始之前，請確保你已經：</p>
+<ul>
+<li>完成 LAB 13 Kubernetes 常用指令</li>
+<li>熟悉 Pod、Deployment 基本概念</li>
+<li>準備好 Kubernetes 叢集環境（k8s-master1）</li>
+</ul>
+<hr>
+<h2 id="_3">核心概念說明<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<h3 id="namespace">Namespace 是什麼？<a class="headerlink" href="#namespace" title="Permanent link">¶</a></h3>
+<p><strong>Namespace（命名空間）</strong> 是 Kubernetes 中用來**隔離資源的虛擬分區**。不同 Namespace 中的資源名稱可以相同，彼此不會衝突。</p>
+<pre class="mermaid"><code>graph TB
+    subgraph "Kubernetes Cluster"
+        subgraph "default namespace"
+            D1[Deployment A]
+            P1[Pod A]
+        end
+        subgraph "ns1 namespace"
+            D2[Deployment A]
+            P2[Pod A]
+        end
+        subgraph "kube-system namespace"
+            D3[CoreDNS]
+            D4[Antrea]
+        end
+    end</code></pre>
+<table>
+<thead>
+<tr>
+<th>Namespace 用途</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>資源隔離</strong></td>
+<td>不同團隊或專案使用不同 Namespace</td>
+</tr>
+<tr>
+<td><strong>權限控制</strong></td>
+<td>可以設定不同 Namespace 的存取權限</td>
+</tr>
+<tr>
+<td><strong>資源配額</strong></td>
+<td>可以限制各 Namespace 的資源使用量</td>
+</tr>
+<tr>
+<td><strong>名稱區隔</strong></td>
+<td>同名資源可以存在於不同 Namespace</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="rolling-update">Rolling Update 是什麼？<a class="headerlink" href="#rolling-update" title="Permanent link">¶</a></h3>
+<p><strong>Rolling Update（滾動更新）</strong> 是 Kubernetes 更新 Deployment 的預設策略，會**逐步**將舊版 Pod 替換成新版，確保服務不中斷。</p>
+<pre class="mermaid"><code>graph LR
+    subgraph "更新前"
+        P1[Pod v1.7.1]
+        P2[Pod v1.7.1]
+        P3[Pod v1.7.1]
+    end
+
+    subgraph "更新中"
+        P4[Pod v1.7.1]
+        P5[Pod v1.9.1]
+        P6[Pod v1.9.1]
+    end
+
+    subgraph "更新後"
+        P7[Pod v1.9.1]
+        P8[Pod v1.9.1]
+        P9[Pod v1.9.1]
+    end
+
+    更新前 --&gt; 更新中 --&gt; 更新後</code></pre>
+<table>
+<thead>
+<tr>
+<th>Rolling Update 特性</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>零停機時間</strong></td>
+<td>更新過程中服務不中斷</td>
+</tr>
+<tr>
+<td><strong>逐步替換</strong></td>
+<td>一次只替換部分 Pod</td>
+</tr>
+<tr>
+<td><strong>可回滾</strong></td>
+<td>發現問題可以回到先前版本</td>
+</tr>
+<tr>
+<td><strong>歷史紀錄</strong></td>
+<td>保留部署版本歷史</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="lab-namespace">Lab 實作練習：Namespace 管理<a class="headerlink" href="#lab-namespace" title="Permanent link">¶</a></h2>
+<h3 id="1-kubectl">步驟 1：啟用 kubectl 指令自動補齊<a class="headerlink" href="#1-kubectl" title="Permanent link">¶</a></h3>
+<p>設定 bash 自動補齊功能，方便操作：</p>
+<div class="language-bash highlight"><span class="filename">啟用 bash completion</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">source</span><span class="w"> </span>&lt;<span class="o">(</span>kubectl<span class="w"> </span>completion<span class="w"> </span>bash<span class="o">)</span>
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">永久生效</p>
+<p>將上述指令加入 <code>~/.bashrc</code>，每次登入自動啟用：
+</p><div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">'source &lt;(kubectl completion bash)'</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+</span></code></pre></div><p></p>
+</div>
+<hr>
+<h3 id="2">步驟 2：清理所有資源<a class="headerlink" href="#2" title="Permanent link">¶</a></h3>
+<p>使用 <code>kubectl delete all --all</code> 刪除目前 Namespace 中的所有資源：</p>
+<div class="language-bash highlight"><span class="filename">刪除所有資源</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>all<span class="w"> </span>--all
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>pod "test4" deleted
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>pod "test5-8464657978-5jgj6" deleted
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>service "kubernetes" deleted
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>deployment.apps "test5" deleted
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>deployment.apps "test6" deleted
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>replicaset.apps "test5-8464657978" deleted
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>horizontalpodautoscaler.autoscaling "test5" deleted
+</span></code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">all 包含哪些資源？</p>
+<p><code>kubectl delete all --all</code> 會刪除以下資源類型：</p>
+<ul>
+<li>Pod</li>
+<li>Service</li>
+<li>Deployment</li>
+<li>ReplicaSet</li>
+<li>StatefulSet</li>
+<li>DaemonSet</li>
+<li>Job</li>
+<li>CronJob</li>
+</ul>
+<p><strong>不包含</strong>：ConfigMap、Secret、PV、PVC、Namespace 等。</p>
+</div>
+<hr>
+<h3 id="3-namespace">步驟 3：查看現有 Namespace<a class="headerlink" href="#3-namespace" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">查看所有 Namespace</span><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>namespaces
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>NAME              STATUS   AGE
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>default           Active   19h
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>kube-node-lease   Active   19h
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>kube-public       Active   19h
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>kube-system       Active   19h
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Namespace</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>default</strong></td>
+<td>預設命名空間，未指定時使用</td>
+</tr>
+<tr>
+<td><strong>kube-system</strong></td>
+<td>Kubernetes 系統元件（CoreDNS、CNI 等）</td>
+</tr>
+<tr>
+<td><strong>kube-public</strong></td>
+<td>公開資源，所有使用者可讀取</td>
+</tr>
+<tr>
+<td><strong>kube-node-lease</strong></td>
+<td>節點心跳資訊</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="4-namespace">步驟 4：建立自訂 Namespace<a class="headerlink" href="#4-namespace" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">建立 Namespace</span><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>kubectl<span class="w"> </span>create<span class="w"> </span>namespace<span class="w"> </span>ns1
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>kubectl<span class="w"> </span>create<span class="w"> </span>namespace<span class="w"> </span>ns2
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>namespace/ns1 created
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>namespace/ns2 created
+</span></code></pre></div>
+<p>驗證建立結果：</p>
+<div class="language-bash highlight"><span class="filename">查看 Namespace</span><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>namespaces
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>NAME              STATUS   AGE
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>default           Active   19h
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>kube-node-lease   Active   19h
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>kube-public       Active   19h
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>kube-system       Active   19h
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>ns1               Active   12s
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>ns2               Active   8s
+</span></code></pre></div>
+<hr>
+<h3 id="5-namespace-deployment">步驟 5：在不同 Namespace 建立 Deployment<a class="headerlink" href="#5-namespace-deployment" title="Permanent link">¶</a></h3>
+<p>使用 <code>--namespace=</code> 參數指定 Namespace：</p>
+<div class="language-bash highlight"><span class="filename">在 ns1 建立 Deployment</span><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>kubectl<span class="w"> </span>create<span class="w"> </span>deployment<span class="w"> </span>test1<span class="w"> </span>--image<span class="o">=</span>docker1.training.lab:5000/nginx<span class="w"> </span>--namespace<span class="o">=</span>ns1
+</span></code></pre></div>
+<div class="language-bash highlight"><span class="filename">在 ns2 建立 Deployment</span><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>kubectl<span class="w"> </span>create<span class="w"> </span>deployment<span class="w"> </span>test2<span class="w"> </span>--image<span class="o">=</span>docker1.training.lab:5000/nginx<span class="w"> </span>--namespace<span class="o">=</span>ns2
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>deployment.apps/test1 created
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>deployment.apps/test2 created
+</span></code></pre></div>
+<hr>
+<h3 id="6-namespace">步驟 6：查詢不同 Namespace 的資源<a class="headerlink" href="#6-namespace" title="Permanent link">¶</a></h3>
+<p>查詢預設 Namespace（會找不到資源）：</p>
+<div class="language-bash highlight"><span class="filename">查詢 default Namespace</span><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>deployments.apps
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>No resources found in default namespace.
+</span></code></pre></div>
+<p>查詢所有 Namespace：</p>
+<div class="language-bash highlight"><span class="filename">查詢所有 Namespace（完整參數）</span><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>deployments.apps<span class="w"> </span>--all-namespaces
+</span></code></pre></div>
+<div class="language-bash highlight"><span class="filename">查詢所有 Namespace（簡寫）</span><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>deployments.apps<span class="w"> </span>-A
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>NAMESPACE     NAME                READY   UP-TO-DATE   AVAILABLE   AGE
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>kube-system   antrea-controller   1/1     1            1           19h
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>kube-system   coredns             2/2     2            2           19h
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>ns1           test1               1/1     1            1           43s
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>ns2           test2               1/1     1            1           27s
+</span></code></pre></div>
+<p>查詢特定 Namespace：</p>
+<div class="language-bash highlight"><span class="filename">查詢 ns1 的 Deployment</span><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>deployments.apps<span class="w"> </span>--namespace<span class="o">=</span>ns1
+</span></code></pre></div>
+<div class="language-bash highlight"><span class="filename">查詢 ns2 的 Deployment（簡寫）</span><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>deployments.apps<span class="w"> </span>-n<span class="w"> </span>ns2
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">常見錯誤</p>
+<p><strong>錯誤寫法</strong>：<code>--namespaces=ns1</code>（多了 s）</p>
+<p><strong>正確寫法</strong>：<code>--namespace=ns1</code> 或 <code>-n ns1</code></p>
+</div>
+<hr>
+<h3 id="7-namespace">步驟 7：刪除 Namespace<a class="headerlink" href="#7-namespace" title="Permanent link">¶</a></h3>
+<p>刪除 Namespace 會**同時刪除該 Namespace 中的所有資源**：</p>
+<div class="language-bash highlight"><span class="filename">刪除 Namespace</span><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>namespace<span class="w"> </span>ns1
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>namespace<span class="w"> </span>ns2
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">刪除時間</p>
+<p>Namespace 刪除可能需要一段時間，狀態會變成 <code>Terminating</code>：
+</p><div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>NAME   STATUS        AGE
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>ns1    Terminating   3m5s
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>ns2    Terminating   3m1s
+</span></code></pre></div>
+等待刪除完成即可。<p></p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">系統 Namespace 無法刪除</p>
+<p><code>default</code>、<code>kube-public</code>、<code>kube-system</code> 為系統保護的 Namespace，無法被刪除。</p>
+</div>
+<hr>
+<h2 id="lab-rolling-update">Lab 實作練習：Rolling Update 滾動更新<a class="headerlink" href="#lab-rolling-update" title="Permanent link">¶</a></h2>
+<h3 id="1-dry-run-yaml">步驟 1：使用 dry-run 產生 YAML<a class="headerlink" href="#1-dry-run-yaml" title="Permanent link">¶</a></h3>
+<p>使用 <code>--dry-run=client -o yaml</code> 可以產生 YAML 檔案而不實際建立資源：</p>
+<div class="language-bash highlight"><span class="filename">產生 nginx 1.7.1 的 Deployment YAML</span><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>kubectl<span class="w"> </span>create<span class="w"> </span>deployment<span class="w"> </span>test1<span class="w"> </span>--image<span class="o">=</span>docker1.training.lab:5000/nginx:1.7.1<span class="w"> </span>--replicas<span class="o">=</span><span class="m">3</span><span class="w"> </span>--dry-run<span class="o">=</span>client<span class="w"> </span>-o<span class="w"> </span>yaml<span class="w"> </span>&gt;<span class="w"> </span>test1-1.7.1.yaml
+</span></code></pre></div>
+<p>查看產生的 YAML：</p>
+<div class="language-bash highlight"><span class="filename">查看 YAML 內容</span><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>cat<span class="w"> </span>test1-1.7.1.yaml
+</span></code></pre></div>
+<p><strong>YAML 內容</strong>：</p>
+<div class="language-yaml highlight"><span class="filename">test1-1.7.1.yaml</span><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="w">  </span><span class="nt">creationTimestamp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="w">  </span><span class="nt">labels</span><span class="p">:</span>
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test1</span>
+</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test1</span>
+</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-24-9"><a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a><span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+</span><span id="__span-24-10"><a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a><span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
+</span><span id="__span-24-11"><a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span>
+</span><span id="__span-24-12"><a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a><span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test1</span>
+</span><span id="__span-24-13"><a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a><span class="w">  </span><span class="nt">strategy</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+</span><span id="__span-24-14"><a id="__codelineno-24-14" name="__codelineno-24-14" href="#__codelineno-24-14"></a><span class="w">  </span><span class="nt">template</span><span class="p">:</span>
+</span><span id="__span-24-15"><a id="__codelineno-24-15" name="__codelineno-24-15" href="#__codelineno-24-15"></a><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-24-16"><a id="__codelineno-24-16" name="__codelineno-24-16" href="#__codelineno-24-16"></a><span class="w">      </span><span class="nt">creationTimestamp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
+</span><span id="__span-24-17"><a id="__codelineno-24-17" name="__codelineno-24-17" href="#__codelineno-24-17"></a><span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
+</span><span id="__span-24-18"><a id="__codelineno-24-18" name="__codelineno-24-18" href="#__codelineno-24-18"></a><span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test1</span>
+</span><span id="__span-24-19"><a id="__codelineno-24-19" name="__codelineno-24-19" href="#__codelineno-24-19"></a><span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-24-20"><a id="__codelineno-24-20" name="__codelineno-24-20" href="#__codelineno-24-20"></a><span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
+</span><span id="__span-24-21"><a id="__codelineno-24-21" name="__codelineno-24-21" href="#__codelineno-24-21"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker1.training.lab:5000/nginx:1.7.1</span>
+</span><span id="__span-24-22"><a id="__codelineno-24-22" name="__codelineno-24-22" href="#__codelineno-24-22"></a><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+</span><span id="__span-24-23"><a id="__codelineno-24-23" name="__codelineno-24-23" href="#__codelineno-24-23"></a><span class="w">        </span><span class="nt">resources</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+</span><span id="__span-24-24"><a id="__codelineno-24-24" name="__codelineno-24-24" href="#__codelineno-24-24"></a><span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">dry-run 的用途</p>
+<ul>
+<li><strong>產生 YAML 模板</strong>：快速產生標準格式的 YAML</li>
+<li><strong>版本管理</strong>：將 YAML 存入 Git 進行版本控制</li>
+<li><strong>測試指令</strong>：驗證指令語法正確但不實際執行</li>
+</ul>
+</div>
+<hr>
+<h3 id="2-yaml-deployment">步驟 2：套用 YAML 建立 Deployment<a class="headerlink" href="#2-yaml-deployment" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">套用 YAML</span><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>test1-1.7.1.yaml
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>deployment.apps/test1 created
+</span></code></pre></div>
+<hr>
+<h3 id="3-deployment">步驟 3：監控 Deployment 狀態<a class="headerlink" href="#3-deployment" title="Permanent link">¶</a></h3>
+<p>使用 while 迴圈持續監控映像檔版本：</p>
+<div class="language-bash highlight"><span class="filename">監控 Pod 映像檔版本</span><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="k">while</span><span class="w"> </span>true<span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="w">  </span><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span>+2<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">'{ print $1 }'</span><span class="k">)</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="w">    </span>kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span><span class="si">${</span><span class="nv">i</span><span class="si">}</span><span class="w"> </span>-o<span class="w"> </span>yaml<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">"\- image: .*nginx"</span>
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="w">  </span><span class="k">done</span>
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="w">  </span><span class="nb">echo</span>
+</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a><span class="w">  </span>kubectl<span class="w"> </span>get<span class="w"> </span>deployments<span class="w"> </span>-o<span class="w"> </span>wide
+</span><span id="__span-27-7"><a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a><span class="w">  </span><span class="nb">echo</span>
+</span><span id="__span-27-8"><a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a><span class="w">  </span>sleep<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-27-9"><a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a><span class="k">done</span>
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>  - image: docker1.training.lab:5000/nginx:1.7.1
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>  - image: docker1.training.lab:5000/nginx:1.7.1
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>  - image: docker1.training.lab:5000/nginx:1.7.1
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>NAME    READY   UP-TO-DATE   AVAILABLE   AGE     CONTAINERS   IMAGES                                  SELECTOR
+</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a>test1   3/3     3            3           3m45s   nginx        docker1.training.lab:5000/nginx:1.7.1   app=test1
+</span></code></pre></div>
+<p>按 <code>Ctrl+C</code> 停止監控。</p>
+<hr>
+<h3 id="4-yaml">步驟 4：產生新版本 YAML<a class="headerlink" href="#4-yaml" title="Permanent link">¶</a></h3>
+<p>產生 nginx 1.9.1 版本的 YAML：</p>
+<div class="language-bash highlight"><span class="filename">產生 nginx 1.9.1 的 YAML</span><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>kubectl<span class="w"> </span>create<span class="w"> </span>deployment<span class="w"> </span>test1<span class="w"> </span>--image<span class="o">=</span>docker1.training.lab:5000/nginx:1.9.1<span class="w"> </span>--replicas<span class="o">=</span><span class="m">3</span><span class="w"> </span>--dry-run<span class="o">=</span>client<span class="w"> </span>-o<span class="w"> </span>yaml<span class="w"> </span>&gt;<span class="w"> </span>test1-1.9.1.yaml
+</span></code></pre></div>
+<hr>
+<h3 id="5-rolling-update">步驟 5：執行 Rolling Update<a class="headerlink" href="#5-rolling-update" title="Permanent link">¶</a></h3>
+<p>使用 <code>kubectl apply -f</code> 套用新版本 YAML，觸發滾動更新：</p>
+<div class="language-bash highlight"><span class="filename">套用新版本進行滾動更新</span><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>test1-1.9.1.yaml
+</span></code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">apply vs create</p>
+<ul>
+<li><code>kubectl create</code>：建立新資源，如果已存在會報錯</li>
+<li><code>kubectl apply</code>：建立或更新資源，如果已存在會進行更新</li>
+</ul>
+</div>
+<hr>
+<h3 id="6-rollout">步驟 6：查看 Rollout 歷史紀錄<a class="headerlink" href="#6-rollout" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">查看部署歷史</span><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>kubectl<span class="w"> </span>rollout<span class="w"> </span><span class="nb">history</span><span class="w"> </span>deployment<span class="w"> </span>test1
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>deployment.apps/test1
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>REVISION  CHANGE-CAUSE
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>1         &lt;none&gt;
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>2         &lt;none&gt;
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>欄位</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>REVISION</strong></td>
+<td>版本號，每次更新遞增</td>
+</tr>
+<tr>
+<td><strong>CHANGE-CAUSE</strong></td>
+<td>變更原因（可用 <code>--record</code> 記錄）</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="7">步驟 7：回滾到先前版本<a class="headerlink" href="#7" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">回滾 Deployment</span><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>kubectl<span class="w"> </span>rollout<span class="w"> </span>undo<span class="w"> </span>deployment<span class="w"> </span>test1
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>deployment.apps/test1 rolled back
+</span></code></pre></div>
+<p>查看回滾後的歷史：</p>
+<div class="language-bash highlight"><span class="filename">查看回滾後的歷史</span><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>kubectl<span class="w"> </span>rollout<span class="w"> </span><span class="nb">history</span><span class="w"> </span>deployment<span class="w"> </span>test1
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>deployment.apps/test1
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>REVISION  CHANGE-CAUSE
+</span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>2         &lt;none&gt;
+</span><span id="__span-36-4"><a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a>3         &lt;none&gt;
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">版本號說明</p>
+<p>回滾後，REVISION 不會回到 1，而是產生新的版本號 3。這是因為回滾操作本身也算是一次部署。</p>
+</div>
+<hr>
+<h3 id="8-url-yaml">步驟 8：從 URL 套用與刪除 YAML<a class="headerlink" href="#8-url-yaml" title="Permanent link">¶</a></h3>
+<p>可以直接從 URL 套用 YAML 檔案：</p>
+<div class="language-bash highlight"><span class="filename">從 URL 套用 YAML</span><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>https://raw.githubusercontent.com/kubernetes/website/main/content/en/examples/controllers/nginx-deployment.yaml
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>deployment.apps/nginx-deployment created
+</span></code></pre></div>
+<p>查看部署結果：</p>
+<div class="language-bash highlight"><span class="filename">查看 Deployment</span><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>deployments.apps
+</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>NAME               READY   UP-TO-DATE   AVAILABLE   AGE
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>nginx-deployment   3/3     3            3           77s
+</span><span id="__span-40-3"><a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>test1              3/3     3            3           9m18s
+</span><span id="__span-40-4"><a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a>
+</span><span id="__span-40-5"><a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a>NAME                                READY   STATUS    RESTARTS   AGE
+</span><span id="__span-40-6"><a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a>nginx-deployment-647677fc66-2m6ww   1/1     Running   0          82s
+</span><span id="__span-40-7"><a id="__codelineno-40-7" name="__codelineno-40-7" href="#__codelineno-40-7"></a>nginx-deployment-647677fc66-4zmqw   1/1     Running   0          82s
+</span><span id="__span-40-8"><a id="__codelineno-40-8" name="__codelineno-40-8" href="#__codelineno-40-8"></a>nginx-deployment-647677fc66-8h9zg   1/1     Running   0          82s
+</span></code></pre></div>
+<p>從 URL 刪除資源：</p>
+<div class="language-bash highlight"><span class="filename">從 URL 刪除 YAML 定義的資源</span><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>https://raw.githubusercontent.com/kubernetes/website/main/content/en/examples/controllers/nginx-deployment.yaml
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>deployment.apps "nginx-deployment" deleted
+</span></code></pre></div>
+<hr>
+<h2 id="_4">常用指令對照表<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
+<h3 id="namespace_1">Namespace 操作<a class="headerlink" href="#namespace_1" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>指令</th>
+<th>範例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>建立 Namespace</strong></td>
+<td><code>kubectl create namespace</code></td>
+<td><code>kubectl create namespace ns1</code></td>
+</tr>
+<tr>
+<td><strong>查看 Namespace</strong></td>
+<td><code>kubectl get namespaces</code></td>
+<td><code>kubectl get ns</code></td>
+</tr>
+<tr>
+<td><strong>刪除 Namespace</strong></td>
+<td><code>kubectl delete namespace</code></td>
+<td><code>kubectl delete namespace ns1</code></td>
+</tr>
+<tr>
+<td><strong>指定 Namespace</strong></td>
+<td><code>--namespace=</code> 或 <code>-n</code></td>
+<td><code>kubectl get pods -n ns1</code></td>
+</tr>
+<tr>
+<td><strong>查看所有 Namespace</strong></td>
+<td><code>--all-namespaces</code> 或 <code>-A</code></td>
+<td><code>kubectl get pods -A</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="rolling-update_1">Rolling Update 操作<a class="headerlink" href="#rolling-update_1" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>指令</th>
+<th>範例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>產生 YAML</strong></td>
+<td><code>--dry-run=client -o yaml</code></td>
+<td><code>kubectl create deploy test --image=nginx --dry-run=client -o yaml</code></td>
+</tr>
+<tr>
+<td><strong>套用 YAML</strong></td>
+<td><code>kubectl apply -f</code></td>
+<td><code>kubectl apply -f deployment.yaml</code></td>
+</tr>
+<tr>
+<td><strong>查看歷史</strong></td>
+<td><code>kubectl rollout history</code></td>
+<td><code>kubectl rollout history deployment test</code></td>
+</tr>
+<tr>
+<td><strong>回滾版本</strong></td>
+<td><code>kubectl rollout undo</code></td>
+<td><code>kubectl rollout undo deployment test</code></td>
+</tr>
+<tr>
+<td><strong>回滾到指定版本</strong></td>
+<td><code>--to-revision</code></td>
+<td><code>kubectl rollout undo deployment test --to-revision=1</code></td>
+</tr>
+<tr>
+<td><strong>查看狀態</strong></td>
+<td><code>kubectl rollout status</code></td>
+<td><code>kubectl rollout status deployment test</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="_5">常見問題<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
+<details class="question">
+<summary>Q1：Namespace 刪除一直卡在 Terminating 狀態？</summary>
+<p><strong>原因</strong>：Namespace 中可能有無法正常刪除的資源。</p>
+<p><strong>解決方案</strong>：
+</p><div class="language-bash highlight"><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="c1"># 查看卡住的資源</span>
+</span><span id="__span-43-2"><a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>all<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
+</span><span id="__span-43-3"><a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a>
+</span><span id="__span-43-4"><a id="__codelineno-43-4" name="__codelineno-43-4" href="#__codelineno-43-4"></a><span class="c1"># 強制刪除</span>
+</span><span id="__span-43-5"><a id="__codelineno-43-5" name="__codelineno-43-5" href="#__codelineno-43-5"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>namespace<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>--force<span class="w"> </span>--grace-period<span class="o">=</span><span class="m">0</span>
+</span></code></pre></div><p></p>
+</details>
+<details class="question">
+<summary>Q2：如何回滾到特定版本？</summary>
+<p><strong>解答</strong>：使用 <code>--to-revision</code> 參數：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="c1"># 先查看版本歷史</span>
+</span><span id="__span-44-2"><a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a>kubectl<span class="w"> </span>rollout<span class="w"> </span><span class="nb">history</span><span class="w"> </span>deployment<span class="w"> </span>test1
+</span><span id="__span-44-3"><a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a>
+</span><span id="__span-44-4"><a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a><span class="c1"># 回滾到指定版本</span>
+</span><span id="__span-44-5"><a id="__codelineno-44-5" name="__codelineno-44-5" href="#__codelineno-44-5"></a>kubectl<span class="w"> </span>rollout<span class="w"> </span>undo<span class="w"> </span>deployment<span class="w"> </span>test1<span class="w"> </span>--to-revision<span class="o">=</span><span class="m">1</span>
+</span></code></pre></div>
+</details>
+<details class="question">
+<summary>Q3：--dry-run=client 和 --dry-run=server 的差別？</summary>
+<p><strong>解答</strong>：</p>
+<ul>
+<li><code>--dry-run=client</code>：在客戶端執行，不與 API Server 通訊</li>
+<li><code>--dry-run=server</code>：送到 API Server 驗證，但不實際建立資源</li>
+</ul>
+<p>一般產生 YAML 使用 <code>--dry-run=client</code> 即可。</p>
+</details>
+<hr>
+<h2 id="_6">小結<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
+<p>本章節重點回顧：</p>
+<ul>
+<li>✅ <strong>Namespace 管理</strong>：使用 <code>kubectl create/delete namespace</code> 建立與刪除命名空間</li>
+<li>✅ <strong>跨 Namespace 查詢</strong>：使用 <code>--namespace=</code>、<code>-n</code>、<code>-A</code> 參數</li>
+<li>✅ <strong>YAML 產生</strong>：使用 <code>--dry-run=client -o yaml</code> 產生 YAML 模板</li>
+<li>✅ <strong>Rolling Update</strong>：使用 <code>kubectl apply -f</code> 進行滾動更新</li>
+<li>✅ <strong>歷史紀錄</strong>：使用 <code>kubectl rollout history</code> 查看部署歷史</li>
+<li>✅ <strong>版本回滾</strong>：使用 <code>kubectl rollout undo</code> 回滾到先前版本</li>
+</ul>
+<h2 id="_7">延伸閱讀<a class="headerlink" href="#_7" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/">Kubernetes Namespaces</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#updating-a-deployment">Deployment 滾動更新</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#rolling-back-a-deployment">Rollback 部署回滾</a></li>
+</ul>
 
 
 

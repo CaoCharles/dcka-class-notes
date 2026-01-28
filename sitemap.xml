@@ -2,98 +2,98 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://caocharles.github.io/dcka-class-notes/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-28</lastmod>
     </url>
     <url>
          <loc>https://caocharles.github.io/dcka-class-notes/lab01_environment_setup/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-28</lastmod>
     </url>
     <url>
          <loc>https://caocharles.github.io/dcka-class-notes/lab02_docker_install/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-28</lastmod>
     </url>
     <url>
          <loc>https://caocharles.github.io/dcka-class-notes/lab03_podman/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-28</lastmod>
     </url>
     <url>
          <loc>https://caocharles.github.io/dcka-class-notes/lab04_docker_hub_rate_limit/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-28</lastmod>
     </url>
     <url>
          <loc>https://caocharles.github.io/dcka-class-notes/lab05_private_registry/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-28</lastmod>
     </url>
     <url>
          <loc>https://caocharles.github.io/dcka-class-notes/lab06_docker_basics/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-28</lastmod>
     </url>
     <url>
          <loc>https://caocharles.github.io/dcka-class-notes/lab07_persistent_storage/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-28</lastmod>
     </url>
     <url>
          <loc>https://caocharles.github.io/dcka-class-notes/lab08_wordpress/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-28</lastmod>
     </url>
     <url>
          <loc>https://caocharles.github.io/dcka-class-notes/lab09_commit/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-28</lastmod>
     </url>
     <url>
          <loc>https://caocharles.github.io/dcka-class-notes/lab10_dockerfile/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-28</lastmod>
     </url>
     <url>
          <loc>https://caocharles.github.io/dcka-class-notes/lab11_standalone_k8s/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-28</lastmod>
     </url>
     <url>
          <loc>https://caocharles.github.io/dcka-class-notes/lab12_k8s_install/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-28</lastmod>
     </url>
     <url>
          <loc>https://caocharles.github.io/dcka-class-notes/lab13_k8s_commands/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-28</lastmod>
     </url>
     <url>
          <loc>https://caocharles.github.io/dcka-class-notes/lab14_namespace_rolling/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-28</lastmod>
     </url>
     <url>
          <loc>https://caocharles.github.io/dcka-class-notes/lab15_service/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-28</lastmod>
     </url>
     <url>
          <loc>https://caocharles.github.io/dcka-class-notes/lab16_pv_pvc/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-28</lastmod>
     </url>
     <url>
          <loc>https://caocharles.github.io/dcka-class-notes/lab17_secret/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-28</lastmod>
     </url>
     <url>
          <loc>https://caocharles.github.io/dcka-class-notes/lab18_rbac_event_log/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-28</lastmod>
     </url>
     <url>
          <loc>https://caocharles.github.io/dcka-class-notes/lab19_k8s_wordpress_mysql/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-28</lastmod>
     </url>
     <url>
          <loc>https://caocharles.github.io/dcka-class-notes/lab20_dashboard/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-28</lastmod>
     </url>
     <url>
          <loc>https://caocharles.github.io/dcka-class-notes/appendix/docker_cheatsheet/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-28</lastmod>
     </url>
     <url>
          <loc>https://caocharles.github.io/dcka-class-notes/appendix/k8s_cheatsheet/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-28</lastmod>
     </url>
     <url>
          <loc>https://caocharles.github.io/dcka-class-notes/appendix/troubleshooting/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-28</lastmod>
     </url>
 </urlset>

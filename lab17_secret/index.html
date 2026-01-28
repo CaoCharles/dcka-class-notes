@@ -91,7 +91,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#lab-17-secret" class="md-skip">
+        <a href="#lab-17-kubernetes-secret" class="md-skip">
           跳轉到
         </a>
       
@@ -1194,7 +1194,190 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        實作步驟
+        前置知識
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心概念說明
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="核心概念說明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#secret" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Secret 是什麼？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secret_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Secret 建立與存取的組合
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-secret" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 實作練習：建立 Secret
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 實作練習：建立 Secret">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#secret_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方式一：從檔案建立 Secret
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secret-from-literal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方式二：從指令建立 Secret（--from-literal）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yaml-secret" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方式三：從 YAML 建立 Secret
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-pod-secret" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 實作練習：Pod 存取 Secret
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 實作練習：Pod 存取 Secret">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方式一：透過環境變數存取
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方式二：透過 Volume 掛載存取
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vs-volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        環境變數 vs Volume 掛載
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三種建立方式比較
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常見問題
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        小結
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        延伸閱讀
       
     </span>
   </a>
@@ -1487,7 +1670,190 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        實作步驟
+        前置知識
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心概念說明
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="核心概念說明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#secret" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Secret 是什麼？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secret_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Secret 建立與存取的組合
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-secret" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 實作練習：建立 Secret
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 實作練習：建立 Secret">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#secret_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方式一：從檔案建立 Secret
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secret-from-literal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方式二：從指令建立 Secret（--from-literal）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yaml-secret" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方式三：從 YAML 建立 Secret
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-pod-secret" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 實作練習：Pod 存取 Secret
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 實作練習：Pod 存取 Secret">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方式一：透過環境變數存取
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方式二：透過 Volume 掛載存取
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vs-volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        環境變數 vs Volume 掛載
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三種建立方式比較
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常見問題
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        小結
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        延伸閱讀
       
     </span>
   </a>
@@ -1524,7 +1890,7 @@
     <span class="twemoji">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span style="font-weight: 500;">更新:</span> <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月26日 14:01:45 CST">2026年1月26日 14:01:45</span>
+    <span style="font-weight: 500;">更新:</span> <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月28日 15:27:35 CST">2026年1月28日 15:27:35</span>
   </span>
   
 
@@ -1541,13 +1907,468 @@
   
 
 
-<h1 id="lab-17-secret">LAB 17 secret<a class="headerlink" href="#lab-17-secret" title="Permanent link">¶</a></h1>
+<h1 id="lab-17-kubernetes-secret">LAB 17 Kubernetes Secret<a class="headerlink" href="#lab-17-kubernetes-secret" title="Permanent link">¶</a></h1>
 <h2 id="_1">學習目標<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<p>完成本章節後，你將能夠：</p>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 待補</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 理解 Secret 的用途與類型</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 使用三種方式建立 Secret（從檔案、從指令、從 YAML）</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 透過環境變數將 Secret 傳遞給 Pod</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 透過 Volume 掛載將 Secret 傳遞給 Pod</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 理解 base64 編碼在 Secret 中的作用</li>
 </ul>
-<h2 id="_2">實作步驟<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
-<p><em>(本章節內容待補)</em></p>
+<h2 id="_2">前置知識<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<p>開始之前，請確保你已經：</p>
+<ul>
+<li>完成 LAB 16 PV/PVC</li>
+<li>熟悉 Pod、Volume 基本概念</li>
+<li>準備好 Kubernetes 叢集環境（k8s-master1）</li>
+</ul>
+<hr>
+<h2 id="_3">核心概念說明<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<h3 id="secret">Secret 是什麼？<a class="headerlink" href="#secret" title="Permanent link">¶</a></h3>
+<p><strong>Secret</strong> 是 Kubernetes 中用來儲存**敏感資訊**的資源，例如密碼、API 金鑰、憑證等。Secret 會以 base64 編碼儲存，避免明文暴露在 YAML 檔案中。</p>
+<pre class="mermaid"><code>graph LR
+    Admin[管理員] --&gt;|建立| Secret[Secret&lt;br/&gt;username: root&lt;br/&gt;password: ****]
+    Secret --&gt;|環境變數| Pod1[Pod]
+    Secret --&gt;|掛載 Volume| Pod2[Pod]</code></pre>
+<hr>
+<h3 id="secret_1">Secret 建立與存取的組合<a class="headerlink" href="#secret_1" title="Permanent link">¶</a></h3>
+<p>Secret 有 <strong>3 種建立方式</strong> 和 <strong>2 種存取方式</strong>，共 <strong>6 種組合</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>建立方式</th>
+<th>說明</th>
+<th>base64 編碼</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>從檔案</strong>（--from-file）</td>
+<td>將檔案內容匯入成 Secret</td>
+<td>自動處理</td>
+</tr>
+<tr>
+<td><strong>從指令</strong>（--from-literal）</td>
+<td>直接在指令中指定值</td>
+<td>自動處理</td>
+</tr>
+<tr>
+<td><strong>從 YAML</strong></td>
+<td>使用 YAML 檔案定義</td>
+<td>⚠️ 需手動編碼</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>存取方式</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>環境變數</strong></td>
+<td>Secret 值注入為環境變數</td>
+</tr>
+<tr>
+<td><strong>Volume 掛載</strong></td>
+<td>Secret 掛載為檔案</td>
+</tr>
+</tbody>
+</table>
+<pre class="mermaid"><code>graph TB
+    subgraph "建立 Secret（3 種）"
+        File[從檔案&lt;br/&gt;--from-file]
+        Literal[從指令&lt;br/&gt;--from-literal]
+        YAML[從 YAML&lt;br/&gt;需 base64]
+    end
+
+    subgraph "存取 Secret（2 種）"
+        Env[環境變數&lt;br/&gt;env]
+        Mount[Volume 掛載&lt;br/&gt;volumeMounts]
+    end
+
+    File --&gt; Env
+    File --&gt; Mount
+    Literal --&gt; Env
+    Literal --&gt; Mount
+    YAML --&gt; Env
+    YAML --&gt; Mount</code></pre>
+<hr>
+<h2 id="lab-secret">Lab 實作練習：建立 Secret<a class="headerlink" href="#lab-secret" title="Permanent link">¶</a></h2>
+<h3 id="secret_2">方式一：從檔案建立 Secret<a class="headerlink" href="#secret_2" title="Permanent link">¶</a></h3>
+<h4 id="1">步驟 1：建立包含敏感資料的檔案<a class="headerlink" href="#1" title="Permanent link">¶</a></h4>
+<div class="language-bash highlight"><span class="filename">建立 username 和 password 檔案</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">"root"</span><span class="w"> </span>&gt;<span class="w"> </span>./username.txt
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">"pass1234"</span><span class="w"> </span>&gt;<span class="w"> </span>./password.txt
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">注意 -n 參數</p>
+<p>使用 <code>echo -n</code> 避免在檔案末尾加入換行符號，否則密碼會包含多餘的換行。</p>
+</div>
+<p>驗證檔案內容：</p>
+<div class="language-bash highlight"><span class="filename">查看檔案內容</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>cat<span class="w"> </span>username.txt
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>cat<span class="w"> </span>password.txt
+</span></code></pre></div>
+<p><strong>預期結果</strong>（注意沒有換行）：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>root[root@k8s-master1 ~]#
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>pass1234[root@k8s-master1 ~]#
+</span></code></pre></div>
+<h4 id="2-secret">步驟 2：從檔案建立 Secret<a class="headerlink" href="#2-secret" title="Permanent link">¶</a></h4>
+<div class="language-bash highlight"><span class="filename">從檔案建立 Secret</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>kubectl<span class="w"> </span>create<span class="w"> </span>secret<span class="w"> </span>generic<span class="w"> </span>demo-secret-from-file<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span>--from-file<span class="o">=</span>./username.txt<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span>--from-file<span class="o">=</span>./password.txt
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>secret/demo-secret-from-file created
+</span></code></pre></div>
+<p>查看 Secret：</p>
+<div class="language-bash highlight"><span class="filename">查看 Secret 列表</span><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>secrets
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>NAME                    TYPE     DATA   AGE
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>demo-secret-from-file   Opaque   2      7s
+</span></code></pre></div>
+<div class="language-bash highlight"><span class="filename">查看 Secret 詳細資訊</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>kubectl<span class="w"> </span>describe<span class="w"> </span>secrets<span class="w"> </span>demo-secret-from-file
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>Name:         demo-secret-from-file
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>Namespace:    default
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>Type:  Opaque
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>Data
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>====
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>password.txt:  8 bytes
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>username.txt:  4 bytes
+</span></code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">檔名作為 Key</p>
+<p>使用 <code>--from-file</code> 時，<strong>檔名會成為 Secret 的 Key</strong>（如 <code>password.txt</code>、<code>username.txt</code>）。</p>
+</div>
+<hr>
+<h3 id="secret-from-literal">方式二：從指令建立 Secret（--from-literal）<a class="headerlink" href="#secret-from-literal" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">從指令建立 Secret</span><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>kubectl<span class="w"> </span>create<span class="w"> </span>secret<span class="w"> </span>generic<span class="w"> </span>demo-secret-from-literal<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span>--from-literal<span class="o">=</span><span class="nv">username</span><span class="o">=</span>root<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">  </span>--from-literal<span class="o">=</span><span class="nv">password</span><span class="o">=</span>pass1234
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>secret/demo-secret-from-literal created
+</span></code></pre></div>
+<p>查看 Secret：</p>
+<div class="language-bash highlight"><span class="filename">查看 Secret</span><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>kubectl<span class="w"> </span>describe<span class="w"> </span>secrets<span class="w"> </span>demo-secret-from-literal
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>Name:         demo-secret-from-literal
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>Namespace:    default
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>Type:  Opaque
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>Data
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>====
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>password:  8 bytes
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>username:  4 bytes
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">自訂 Key 名稱</p>
+<p>使用 <code>--from-literal</code> 時，可以直接指定 Key 名稱（如 <code>username</code>、<code>password</code>），比 <code>--from-file</code> 更靈活。</p>
+</div>
+<hr>
+<h3 id="yaml-secret">方式三：從 YAML 建立 Secret<a class="headerlink" href="#yaml-secret" title="Permanent link">¶</a></h3>
+<h4 id="1-base64">步驟 1：使用 base64 編碼資料<a class="headerlink" href="#1-base64" title="Permanent link">¶</a></h4>
+<div class="language-bash highlight"><span class="filename">base64 編碼</span><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">"root"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">"pass1234"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>cm9vdA==
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>cGFzczEyMzQ=
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">YAML 方式需要手動 base64 編碼</p>
+<p>只有使用 YAML 建立 Secret 時，需要先將資料進行 base64 編碼。<code>--from-file</code> 和 <code>--from-literal</code> 會自動處理。</p>
+</div>
+<h4 id="2-yaml">步驟 2：下載並查看 YAML<a class="headerlink" href="#2-yaml" title="Permanent link">¶</a></h4>
+<div class="language-bash highlight"><span class="filename">下載 Secret YAML</span><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>wget<span class="w"> </span>http://10.0.1.248/k8s/yaml/my-secret.yaml
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>cat<span class="w"> </span>my-secret.yaml
+</span></code></pre></div>
+<p><strong>YAML 內容</strong>：</p>
+<div class="language-yaml highlight"><span class="filename">my-secret.yaml</span><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Secret</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">demo-secret-from-yaml</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Opaque</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="nt">data</span><span class="p">:</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">  </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cm9vdA==</span><span class="w">          </span><span class="c1"># base64 編碼的 "root"</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="w">  </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cGFzczEyMzQ=</span><span class="w">      </span><span class="c1"># base64 編碼的 "pass1234"</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>欄位</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>type: Opaque</strong></td>
+<td>通用型 Secret</td>
+</tr>
+<tr>
+<td><strong>data</strong></td>
+<td>存放 base64 編碼的資料</td>
+</tr>
+</tbody>
+</table>
+<h4 id="3-yaml">步驟 3：套用 YAML<a class="headerlink" href="#3-yaml" title="Permanent link">¶</a></h4>
+<div class="language-bash highlight"><span class="filename">建立 Secret</span><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>my-secret.yaml
+</span></code></pre></div>
+<p>查看所有 Secret：</p>
+<div class="language-bash highlight"><span class="filename">查看所有 Secret</span><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>secrets
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>NAME                       TYPE     DATA   AGE
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>demo-secret-from-file      Opaque   2      3m32s
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>demo-secret-from-literal   Opaque   2      2m13s
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>demo-secret-from-yaml      Opaque   2      5s
+</span></code></pre></div>
+<hr>
+<h2 id="lab-pod-secret">Lab 實作練習：Pod 存取 Secret<a class="headerlink" href="#lab-pod-secret" title="Permanent link">¶</a></h2>
+<h3 id="_4">方式一：透過環境變數存取<a class="headerlink" href="#_4" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">下載 Pod YAML</span><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>wget<span class="w"> </span>http://10.0.1.248/k8s/yaml/my-pod.yaml
+</span></code></pre></div>
+<p><strong>Pod YAML 內容</strong>：</p>
+<div class="language-yaml highlight"><span class="filename">my-pod.yaml</span><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-pod</span>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="w">  </span><span class="nt">containers</span><span class="p">:</span>
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-container</span>
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker1.training.lab:5000/nginx</span>
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="w">    </span><span class="nt">env</span><span class="p">:</span>
+</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SECRET_USERNAME</span><span class="w">           </span><span class="c1"># 環境變數名稱</span>
+</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a><span class="w">      </span><span class="nt">valueFrom</span><span class="p">:</span>
+</span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a><span class="w">        </span><span class="nt">secretKeyRef</span><span class="p">:</span>
+</span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a><span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">demo-secret-from-yaml</span><span class="w"> </span><span class="c1"># Secret 名稱</span>
+</span><span id="__span-21-14"><a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a><span class="w">          </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">username</span><span class="w">               </span><span class="c1"># Secret 中的 Key</span>
+</span><span id="__span-21-15"><a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SECRET_PASSWORD</span>
+</span><span id="__span-21-16"><a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a><span class="w">      </span><span class="nt">valueFrom</span><span class="p">:</span>
+</span><span id="__span-21-17"><a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a><span class="w">        </span><span class="nt">secretKeyRef</span><span class="p">:</span>
+</span><span id="__span-21-18"><a id="__codelineno-21-18" name="__codelineno-21-18" href="#__codelineno-21-18"></a><span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">demo-secret-from-yaml</span>
+</span><span id="__span-21-19"><a id="__codelineno-21-19" name="__codelineno-21-19" href="#__codelineno-21-19"></a><span class="w">          </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">password</span>
+</span></code></pre></div>
+<p>套用 Pod：</p>
+<div class="language-bash highlight"><span class="filename">建立 Pod</span><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>my-pod.yaml
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>NAME     READY   STATUS    RESTARTS   AGE
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>my-pod   1/1     Running   0          16s
+</span></code></pre></div>
+<p>進入 Pod 驗證環境變數：</p>
+<div class="language-bash highlight"><span class="filename">驗證環境變數</span><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>my-pod<span class="w"> </span>-it<span class="w"> </span>--<span class="w"> </span>bash
+</span></code></pre></div>
+<div class="language-bash highlight"><span class="filename">在容器內執行</span><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>env<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>SEC
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>SECRET_USERNAME=root
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>SECRET_PASSWORD=pass1234
+</span></code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">自動解碼</p>
+<p>Pod 存取 Secret 時，Kubernetes 會**自動將 base64 解碼**，應用程式直接取得原始值。</p>
+</div>
+<hr>
+<h3 id="volume">方式二：透過 Volume 掛載存取<a class="headerlink" href="#volume" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">下載 Pod YAML</span><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>wget<span class="w"> </span>http://192.168.66.248/k8s/yaml/my-pod-with-mounting-secret.yaml
+</span></code></pre></div>
+<p><strong>Pod YAML 內容</strong>：</p>
+<div class="language-yaml highlight"><span class="filename">my-pod-with-mounting-secret.yaml</span><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-pod-with-mounting-secret</span>
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="w">  </span><span class="nt">containers</span><span class="p">:</span>
+</span><span id="__span-28-7"><a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-container</span>
+</span><span id="__span-28-8"><a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker1.training.lab:5000/nginx</span>
+</span><span id="__span-28-9"><a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a><span class="w">    </span><span class="nt">volumeMounts</span><span class="p">:</span>
+</span><span id="__span-28-10"><a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">secret-volume</span>
+</span><span id="__span-28-11"><a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a><span class="w">      </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="s">"/etc/creds"</span><span class="w">         </span><span class="c1"># 掛載路徑</span>
+</span><span id="__span-28-12"><a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a><span class="w">      </span><span class="nt">readOnly</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-28-13"><a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a><span class="w">  </span><span class="nt">volumes</span><span class="p">:</span>
+</span><span id="__span-28-14"><a id="__codelineno-28-14" name="__codelineno-28-14" href="#__codelineno-28-14"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">secret-volume</span>
+</span><span id="__span-28-15"><a id="__codelineno-28-15" name="__codelineno-28-15" href="#__codelineno-28-15"></a><span class="w">    </span><span class="nt">secret</span><span class="p">:</span>
+</span><span id="__span-28-16"><a id="__codelineno-28-16" name="__codelineno-28-16" href="#__codelineno-28-16"></a><span class="w">      </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">demo-secret-from-yaml</span><span class="w">  </span><span class="c1"># Secret 名稱</span>
+</span></code></pre></div>
+<p>套用 Pod：</p>
+<div class="language-bash highlight"><span class="filename">建立 Pod</span><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>my-pod-with-mounting-secret.yaml
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>NAME                          READY   STATUS    RESTARTS   AGE
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>my-pod                        1/1     Running   0          22m
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>my-pod-with-mounting-secret   1/1     Running   0          7s
+</span></code></pre></div>
+<p>進入 Pod 驗證掛載的檔案：</p>
+<div class="language-bash highlight"><span class="filename">驗證掛載</span><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>my-pod-with-mounting-secret<span class="w"> </span>-it<span class="w"> </span>--<span class="w"> </span>bash
+</span></code></pre></div>
+<div class="language-bash highlight"><span class="filename">在容器內執行</span><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>ls<span class="w"> </span>-l<span class="w"> </span>/etc/creds
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>cat<span class="w"> </span>/etc/creds/username
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>cat<span class="w"> </span>/etc/creds/password
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>total 0
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>lrwxrwxrwx 1 root root 15 Feb  4 08:06 password -&gt; ..data/password
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>lrwxrwxrwx 1 root root 15 Feb  4 08:06 username -&gt; ..data/username
+</span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>
+</span><span id="__span-33-5"><a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a>root
+</span><span id="__span-33-6"><a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a>pass1234
+</span></code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">掛載方式的特點</p>
+<ul>
+<li>Secret 的每個 Key 會變成一個檔案</li>
+<li>檔案內容是解碼後的原始值</li>
+<li>適合需要以檔案形式讀取的場景（如憑證、設定檔）</li>
+</ul>
+</div>
+<hr>
+<h2 id="vs-volume">環境變數 vs Volume 掛載<a class="headerlink" href="#vs-volume" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>環境變數</th>
+<th>Volume 掛載</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>存取方式</strong></td>
+<td><code>$ENV_NAME</code></td>
+<td>讀取檔案</td>
+</tr>
+<tr>
+<td><strong>更新行為</strong></td>
+<td>Pod 重啟才更新</td>
+<td>自動更新（kubelet 同步）</td>
+</tr>
+<tr>
+<td><strong>資料格式</strong></td>
+<td>字串</td>
+<td>檔案</td>
+</tr>
+<tr>
+<td><strong>適用場景</strong></td>
+<td>簡單的 key-value</td>
+<td>憑證、設定檔</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="_5">三種建立方式比較<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>--from-file</th>
+<th>--from-literal</th>
+<th>YAML</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>base64 編碼</strong></td>
+<td>自動</td>
+<td>自動</td>
+<td>⚠️ 手動</td>
+</tr>
+<tr>
+<td><strong>Key 名稱</strong></td>
+<td>檔名</td>
+<td>自訂</td>
+<td>自訂</td>
+</tr>
+<tr>
+<td><strong>版本控制</strong></td>
+<td>需額外管理檔案</td>
+<td>不易版控</td>
+<td>✅ 易於版控</td>
+</tr>
+<tr>
+<td><strong>適用場景</strong></td>
+<td>現有檔案</td>
+<td>快速測試</td>
+<td>生產環境</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="_6">常見問題<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
+<details class="question">
+<summary>Q1：如何查看 Secret 的實際內容？</summary>
+<p><strong>解答</strong>：使用 <code>kubectl get secret -o yaml</code> 並解碼：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>secret<span class="w"> </span>demo-secret-from-yaml<span class="w"> </span>-o<span class="w"> </span>yaml
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="c1"># 解碼 base64</span>
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"cm9vdA=="</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>-d
+</span></code></pre></div>
+</details>
+<details class="question">
+<summary>Q2：Secret 和 ConfigMap 有什麼差別？</summary>
+<p><strong>解答</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Secret</th>
+<th>ConfigMap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>用途</strong></td>
+<td>敏感資料</td>
+<td>一般設定</td>
+</tr>
+<tr>
+<td><strong>編碼</strong></td>
+<td>base64</td>
+<td>明文</td>
+</tr>
+<tr>
+<td><strong>儲存</strong></td>
+<td>記憶體（tmpfs）</td>
+<td>一般儲存</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="question">
+<summary>Q3：忘記加 -n 導致密碼包含換行怎麼辦？</summary>
+<p><strong>解答</strong>：重新建立檔案或使用 <code>tr</code> 移除換行：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"pass1234"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span>-d<span class="w"> </span><span class="s1">'\n'</span><span class="w"> </span>&gt;<span class="w"> </span>password.txt
+</span></code></pre></div>
+</details>
+<hr>
+<h2 id="_7">小結<a class="headerlink" href="#_7" title="Permanent link">¶</a></h2>
+<p>本章節重點回顧：</p>
+<ul>
+<li>✅ <strong>Secret 用途</strong>：儲存敏感資訊（密碼、金鑰、憑證）</li>
+<li>✅ <strong>三種建立方式</strong>：</li>
+<li><code>--from-file</code>：從檔案建立，自動 base64</li>
+<li><code>--from-literal</code>：從指令建立，自動 base64</li>
+<li>YAML：需手動 base64 編碼</li>
+<li>✅ <strong>兩種存取方式</strong>：</li>
+<li>環境變數（env + secretKeyRef）</li>
+<li>Volume 掛載（volumes + volumeMounts）</li>
+<li>✅ <strong>自動解碼</strong>：Pod 存取時自動將 base64 解碼為原始值</li>
+</ul>
+<h2 id="_8">延伸閱讀<a class="headerlink" href="#_8" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="https://kubernetes.io/docs/concepts/configuration/secret/">Kubernetes Secrets</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/inject-data-application/distribute-credentials-secure/">Distribute Credentials Securely Using Secrets</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/configuration/secret/#secret-types">Secret Types</a></li>
+</ul>
 
 
 

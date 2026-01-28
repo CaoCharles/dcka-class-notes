@@ -91,7 +91,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#lab-15-service" class="md-skip">
+        <a href="#lab-15-kubernetes-service" class="md-skip">
           跳轉到
         </a>
       
@@ -1077,7 +1077,339 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        實作步驟
+        前置知識
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心概念說明
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="核心概念說明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service 是什麼？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service 類型比較
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#port" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Port 對應關係
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-clusterip-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 實作練習：ClusterIP Service
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 實作練習：ClusterIP Service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clusterip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ClusterIP 概述
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-clusterip-yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 1：下載 ClusterIP YAML
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 2：套用 YAML
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 3：查看 Service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 4：查看 Pod 並修改內容
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-clusterip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 5：測試 ClusterIP 負載均衡
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-nodeport-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 實作練習：NodePort Service
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 實作練習：NodePort Service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nodeport" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NodePort 概述
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-nodeport-yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 1：下載 NodePort YAML
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-yaml_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 2：套用 YAML
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-service_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 3：查看 Service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-nodeport" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 4：測試 NodePort 存取
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-loadbalancer-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 實作練習：LoadBalancer Service
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 實作練習：LoadBalancer Service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#loadbalancer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LoadBalancer 概述
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-loadbalancer-yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 1：下載 LoadBalancer YAML
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-yaml_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 2：套用 YAML
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-service_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 3：查看 Service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-loadbalancer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 4：測試 LoadBalancer 存取
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service 類型總結
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常見問題
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        小結
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        延伸閱讀
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        YAML 實用工具
       
     </span>
   </a>
@@ -1487,7 +1819,339 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        實作步驟
+        前置知識
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心概念說明
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="核心概念說明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service 是什麼？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service 類型比較
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#port" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Port 對應關係
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-clusterip-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 實作練習：ClusterIP Service
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 實作練習：ClusterIP Service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clusterip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ClusterIP 概述
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-clusterip-yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 1：下載 ClusterIP YAML
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 2：套用 YAML
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 3：查看 Service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 4：查看 Pod 並修改內容
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-clusterip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 5：測試 ClusterIP 負載均衡
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-nodeport-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 實作練習：NodePort Service
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 實作練習：NodePort Service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nodeport" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NodePort 概述
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-nodeport-yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 1：下載 NodePort YAML
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-yaml_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 2：套用 YAML
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-service_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 3：查看 Service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-nodeport" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 4：測試 NodePort 存取
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-loadbalancer-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 實作練習：LoadBalancer Service
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 實作練習：LoadBalancer Service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#loadbalancer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LoadBalancer 概述
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-loadbalancer-yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 1：下載 LoadBalancer YAML
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-yaml_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 2：套用 YAML
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-service_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 3：查看 Service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-loadbalancer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 4：測試 LoadBalancer 存取
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service 類型總結
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常見問題
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        小結
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        延伸閱讀
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        YAML 實用工具
       
     </span>
   </a>
@@ -1524,7 +2188,7 @@
     <span class="twemoji">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span style="font-weight: 500;">更新:</span> <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月26日 14:01:45 CST">2026年1月26日 14:01:45</span>
+    <span style="font-weight: 500;">更新:</span> <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月28日 15:27:35 CST">2026年1月28日 15:27:35</span>
   </span>
   
 
@@ -1541,13 +2205,554 @@
   
 
 
-<h1 id="lab-15-service">LAB 15 service<a class="headerlink" href="#lab-15-service" title="Permanent link">¶</a></h1>
+<h1 id="lab-15-kubernetes-service">LAB 15 Kubernetes Service<a class="headerlink" href="#lab-15-kubernetes-service" title="Permanent link">¶</a></h1>
 <h2 id="_1">學習目標<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<p>完成本章節後，你將能夠：</p>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 待補</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 理解 Kubernetes Service 的三種類型</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 建立 ClusterIP 類型的 Service</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 建立 NodePort 類型的 Service</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 建立 LoadBalancer 類型的 Service</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 使用 curl 驗證 Service 的負載均衡功能</li>
 </ul>
-<h2 id="_2">實作步驟<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
-<p><em>(本章節內容待補)</em></p>
+<h2 id="_2">前置知識<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<p>開始之前，請確保你已經：</p>
+<ul>
+<li>完成 LAB 14 Namespace 與 Rolling Update</li>
+<li>熟悉 Pod、Deployment 基本概念</li>
+<li>準備好 Kubernetes 叢集環境（k8s-master1）</li>
+</ul>
+<hr>
+<h2 id="_3">核心概念說明<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<h3 id="service">Service 是什麼？<a class="headerlink" href="#service" title="Permanent link">¶</a></h3>
+<p><strong>Service（服務）</strong> 是 Kubernetes 中用來**暴露應用程式的穩定網路端點**。由於 Pod 的 IP 是動態的，每次重建可能會改變，Service 提供了一個固定的 IP 和 DNS 名稱，讓其他應用程式可以穩定地存取 Pod。</p>
+<pre class="mermaid"><code>graph LR
+    Client[客戶端] --&gt; Service[Service&lt;br/&gt;固定 IP]
+    Service --&gt; Pod1[Pod 1&lt;br/&gt;動態 IP]
+    Service --&gt; Pod2[Pod 2&lt;br/&gt;動態 IP]
+    Service --&gt; Pod3[Pod 3&lt;br/&gt;動態 IP]</code></pre>
+<hr>
+<h3 id="service_1">Service 類型比較<a class="headerlink" href="#service_1" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>類型</th>
+<th>存取範圍</th>
+<th>使用場景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ClusterIP</strong></td>
+<td>叢集內部</td>
+<td>內部服務、微服務間通訊</td>
+</tr>
+<tr>
+<td><strong>NodePort</strong></td>
+<td>叢集外部（透過 Node IP）</td>
+<td>開發測試、小型部署</td>
+</tr>
+<tr>
+<td><strong>LoadBalancer</strong></td>
+<td>叢集外部（透過 LB IP）</td>
+<td>生產環境、雲端部署</td>
+</tr>
+</tbody>
+</table>
+<pre class="mermaid"><code>graph TB
+    subgraph "ClusterIP (叢集內部)"
+        CI[Service ClusterIP] --&gt; P1[Pod]
+    end
+
+    subgraph "NodePort (節點 Port)"
+        NP[Node:30000-32767] --&gt; NPSVC[Service]
+        NPSVC --&gt; P2[Pod]
+    end
+
+    subgraph "LoadBalancer (負載均衡器)"
+        LB[External LB IP] --&gt; LBSVC[Service]
+        LBSVC --&gt; P3[Pod]
+    end</code></pre>
+<hr>
+<h3 id="port">Port 對應關係<a class="headerlink" href="#port" title="Permanent link">¶</a></h3>
+<p>Service 涉及三種 Port：</p>
+<table>
+<thead>
+<tr>
+<th>Port 名稱</th>
+<th>說明</th>
+<th>範例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>port</strong></td>
+<td>Service 的 Port（ClusterIP 使用）</td>
+<td>8081</td>
+</tr>
+<tr>
+<td><strong>targetPort</strong></td>
+<td>Pod/Container 的 Port</td>
+<td>80</td>
+</tr>
+<tr>
+<td><strong>nodePort</strong></td>
+<td>Node 對外開放的 Port（30000-32767）</td>
+<td>30008</td>
+</tr>
+</tbody>
+</table>
+<pre class="mermaid"><code>graph LR
+    External[外部請求] --&gt;|nodePort: 30008| Node[Node IP]
+    Node --&gt;|port: 8082| Service[Service ClusterIP]
+    Service --&gt;|targetPort: 80| Pod[Pod]</code></pre>
+<hr>
+<h2 id="lab-clusterip-service">Lab 實作練習：ClusterIP Service<a class="headerlink" href="#lab-clusterip-service" title="Permanent link">¶</a></h2>
+<h3 id="clusterip">ClusterIP 概述<a class="headerlink" href="#clusterip" title="Permanent link">¶</a></h3>
+<p><strong>ClusterIP</strong> 是 Service 的預設類型，只能從叢集**內部**存取。</p>
+<pre class="mermaid"><code>graph TB
+    subgraph "Kubernetes Cluster"
+        subgraph "service-clusterip-2 namespace"
+            SVC[svc-2-httpd&lt;br/&gt;ClusterIP: 172.30.24.63:8081]
+            SVC --&gt; Pod1[httpd-2&lt;br/&gt;10.128.1.14:80]
+            SVC --&gt; Pod2[httpd-2&lt;br/&gt;10.128.2.9:80]
+        end
+    end
+    External[外部網路] -.-&gt;|無法存取| SVC</code></pre>
+<hr>
+<h3 id="1-clusterip-yaml">步驟 1：下載 ClusterIP YAML<a class="headerlink" href="#1-clusterip-yaml" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">下載 ClusterIP 範例</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>wget<span class="w"> </span>http://10.0.1.249/k8s/yaml/service-clusterIP.yaml
+</span></code></pre></div>
+<p>查看 YAML 內容：</p>
+<div class="language-bash highlight"><span class="filename">查看 YAML</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>cat<span class="w"> </span>service-clusterIP.yaml
+</span></code></pre></div>
+<p><strong>YAML 內容</strong>：</p>
+<div class="language-yaml highlight"><span class="filename">service-clusterIP.yaml</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nn">---</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Namespace</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">service-clusterip-2</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="nn">---</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Service</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">svc-2-httpd</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">  </span><span class="nt">labels</span><span class="p">:</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">svc-2-httpd</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">service-clusterip-2</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ClusterIP</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">  </span><span class="nt">ports</span><span class="p">:</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8081</span><span class="w">        </span><span class="c1"># Service Port</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">    </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span><span class="w">    </span><span class="c1"># Pod Port</span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpd-2</span><span class="w">      </span><span class="c1"># 選擇帶有此 Label 的 Pod</span>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="nn">---</span>
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpd-2</span>
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="w">  </span><span class="nt">labels</span><span class="p">:</span>
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpd-2</span>
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">service-clusterip-2</span>
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a><span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
+</span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span>
+</span><span id="__span-2-33"><a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a><span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpd-2</span>
+</span><span id="__span-2-34"><a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a><span class="w">  </span><span class="nt">template</span><span class="p">:</span>
+</span><span id="__span-2-35"><a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-2-36"><a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a><span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
+</span><span id="__span-2-37"><a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a><span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpd-2</span>
+</span><span id="__span-2-38"><a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a><span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-2-39"><a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a><span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
+</span><span id="__span-2-40"><a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker1.training.lab:5000/httpd</span>
+</span><span id="__span-2-41"><a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpd</span>
+</span><span id="__span-2-42"><a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a><span class="w">        </span><span class="nt">ports</span><span class="p">:</span>
+</span><span id="__span-2-43"><a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+</span></code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">YAML 結構說明</p>
+<p>此 YAML 包含三個資源：</p>
+<ol>
+<li><strong>Namespace</strong>：建立 <code>service-clusterip-2</code> 命名空間</li>
+<li><strong>Service</strong>：建立 ClusterIP 類型的 Service</li>
+<li><strong>Deployment</strong>：建立 2 個 httpd Pod</li>
+</ol>
+</div>
+<hr>
+<h3 id="2-yaml">步驟 2：套用 YAML<a class="headerlink" href="#2-yaml" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">套用 YAML</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>service-clusterIP.yaml
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>namespace/service-clusterip-2 created
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>service/svc-2-httpd created
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>deployment.apps/httpd-2 created
+</span></code></pre></div>
+<hr>
+<h3 id="3-service">步驟 3：查看 Service<a class="headerlink" href="#3-service" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">查看所有 Service</span><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>service<span class="w"> </span>-A
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>NAMESPACE             NAME          TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                  AGE
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>default               kubernetes    ClusterIP   172.30.0.1       &lt;none&gt;        443/TCP                  13m
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>kube-system           antrea        ClusterIP   172.30.116.178   &lt;none&gt;        443/TCP                  105m
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>kube-system           kube-dns      ClusterIP   172.30.0.10      &lt;none&gt;        53/UDP,53/TCP,9153/TCP   106m
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>service-clusterip-2   svc-2-httpd   ClusterIP   172.30.24.63     &lt;none&gt;        8081/TCP                 95s
+</span></code></pre></div>
+<hr>
+<h3 id="4-pod">步驟 4：查看 Pod 並修改內容<a class="headerlink" href="#4-pod" title="Permanent link">¶</a></h3>
+<p>查看 Pod：</p>
+<div class="language-bash highlight"><span class="filename">查看 Pod</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>--namespace<span class="o">=</span>service-clusterip-2<span class="w"> </span>-o<span class="w"> </span>wide
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>NAME                       READY   STATUS    RESTARTS   AGE     IP            NODE
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>httpd-2-68b85d46c7-t4v87   1/1     Running   0          5m16s   10.128.1.14   k8s-node1.training.lab
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>httpd-2-68b85d46c7-trhk5   1/1     Running   0          5m16s   10.128.2.9    k8s-node2.training.lab
+</span></code></pre></div>
+<p>進入第一個 Pod 修改首頁：</p>
+<div class="language-bash highlight"><span class="filename">進入 Pod 1 修改內容</span><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>httpd-2-68b85d46c7-t4v87<span class="w"> </span>--namespace<span class="o">=</span>service-clusterip-2<span class="w"> </span>-it<span class="w"> </span>--<span class="w"> </span>bash
+</span></code></pre></div>
+<div class="language-bash highlight"><span class="filename">在容器內執行</span><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">cd</span><span class="w"> </span>htdocs/
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nb">echo</span><span class="w"> </span>AAA<span class="w"> </span>&gt;<span class="w"> </span>index.html
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="nb">exit</span>
+</span></code></pre></div>
+<p>進入第二個 Pod 修改首頁：</p>
+<div class="language-bash highlight"><span class="filename">進入 Pod 2 修改內容</span><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>httpd-2-68b85d46c7-trhk5<span class="w"> </span>--namespace<span class="o">=</span>service-clusterip-2<span class="w"> </span>-it<span class="w"> </span>--<span class="w"> </span>bash
+</span></code></pre></div>
+<div class="language-bash highlight"><span class="filename">在容器內執行</span><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nb">cd</span><span class="w"> </span>htdocs/
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="nb">echo</span><span class="w"> </span>BBB<span class="w"> </span>&gt;<span class="w"> </span>index.html
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="nb">exit</span>
+</span></code></pre></div>
+<hr>
+<h3 id="5-clusterip">步驟 5：測試 ClusterIP 負載均衡<a class="headerlink" href="#5-clusterip" title="Permanent link">¶</a></h3>
+<p>直接存取 Pod IP：</p>
+<div class="language-bash highlight"><span class="filename">直接存取 Pod IP</span><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>curl<span class="w"> </span><span class="m">10</span>.128.1.14
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>curl<span class="w"> </span><span class="m">10</span>.128.2.9
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>AAA
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>BBB
+</span></code></pre></div>
+<p>透過 Service ClusterIP 存取（會自動負載均衡）：</p>
+<div class="language-bash highlight"><span class="filename">存取 Service ClusterIP</span><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>curl<span class="w"> </span><span class="m">172</span>.30.24.63:8081
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>curl<span class="w"> </span><span class="m">172</span>.30.24.63:8081
+</span></code></pre></div>
+<p><strong>預期結果</strong>（每次可能不同）：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>BBB
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>AAA
+</span></code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">負載均衡驗證</p>
+<p>多次存取 Service IP，會發現回應內容在 AAA 和 BBB 之間切換，這表示 Service 正在進行負載均衡。</p>
+</div>
+<hr>
+<h2 id="lab-nodeport-service">Lab 實作練習：NodePort Service<a class="headerlink" href="#lab-nodeport-service" title="Permanent link">¶</a></h2>
+<h3 id="nodeport">NodePort 概述<a class="headerlink" href="#nodeport" title="Permanent link">¶</a></h3>
+<p><strong>NodePort</strong> 會在每個 Node 上開放一個固定的 Port（30000-32767），允許從叢集**外部**存取。</p>
+<pre class="mermaid"><code>graph TB
+    subgraph "Kubernetes Cluster"
+        subgraph "k8s-node1"
+            NP1[Port 30008]
+        end
+        subgraph "k8s-node2"
+            NP2[Port 30008]
+        end
+        subgraph "k8s-master1"
+            NP3[Port 30008]
+        end
+        SVC[Service NodePort&lt;br/&gt;172.30.21.179:8082]
+        NP1 --&gt; SVC
+        NP2 --&gt; SVC
+        NP3 --&gt; SVC
+        SVC --&gt; Pod1[httpd Pod 1]
+        SVC --&gt; Pod2[httpd Pod 2]
+    end
+    External[外部網路] --&gt; NP1
+    External --&gt; NP2
+    External --&gt; NP3</code></pre>
+<hr>
+<h3 id="1-nodeport-yaml">步驟 1：下載 NodePort YAML<a class="headerlink" href="#1-nodeport-yaml" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">下載 NodePort 範例</span><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>wget<span class="w"> </span>http://10.0.1.248/k8s/yaml/service-nodeport.yaml
+</span></code></pre></div>
+<p>查看 YAML 內容：</p>
+<div class="language-bash highlight"><span class="filename">查看 YAML</span><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>cat<span class="w"> </span>service-nodeport.yaml
+</span></code></pre></div>
+<p><strong>YAML 重點</strong>：</p>
+<div class="language-yaml highlight"><span class="filename">service-nodeport.yaml（摘錄）</span><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Service</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">svc-2-httpd-nodeport</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">service-nodeport-2</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NodePort</span><span class="w">          </span><span class="c1"># NodePort 類型</span>
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">  </span><span class="nt">ports</span><span class="p">:</span>
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8082</span><span class="w">            </span><span class="c1"># Service Port</span>
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a><span class="w">    </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span><span class="w">        </span><span class="c1"># Pod Port</span>
+</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a><span class="w">    </span><span class="nt">nodePort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30008</span><span class="w">       </span><span class="c1"># Node 對外 Port</span>
+</span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a><span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
+</span><span id="__span-19-13"><a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpd-2-nodeport</span>
+</span></code></pre></div>
+<hr>
+<h3 id="2-yaml_1">步驟 2：套用 YAML<a class="headerlink" href="#2-yaml_1" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">套用 YAML</span><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>service-nodeport.yaml
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>namespace/service-nodeport-2 created
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>service/svc-2-httpd-nodeport created
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>deployment.apps/httpd-2-nodeport created
+</span></code></pre></div>
+<hr>
+<h3 id="3-service_1">步驟 3：查看 Service<a class="headerlink" href="#3-service_1" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">查看 Service</span><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>services<span class="w"> </span>-A
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>NAMESPACE             NAME                   TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>service-clusterip-2   svc-2-httpd            ClusterIP   172.30.24.63     &lt;none&gt;        8081/TCP         9m25s
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>service-nodeport-2    svc-2-httpd-nodeport   NodePort    172.30.21.179    &lt;none&gt;        8082:30008/TCP   72s
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Port 格式說明</p>
+<p><code>8082:30008/TCP</code> 表示：</p>
+<ul>
+<li><strong>8082</strong>：Service 的 ClusterIP Port</li>
+<li><strong>30008</strong>：Node 對外的 NodePort</li>
+</ul>
+</div>
+<hr>
+<h3 id="4-nodeport">步驟 4：測試 NodePort 存取<a class="headerlink" href="#4-nodeport" title="Permanent link">¶</a></h3>
+<p>透過 Pod IP 存取：</p>
+<div class="language-bash highlight"><span class="filename">存取 Pod IP</span><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>--namespace<span class="o">=</span>service-nodeport-2<span class="w"> </span>-o<span class="w"> </span>wide
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>curl<span class="w"> </span><span class="m">10</span>.128.1.15
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>curl<span class="w"> </span><span class="m">10</span>.128.2.10
+</span></code></pre></div>
+<p>透過 Service ClusterIP 存取：</p>
+<div class="language-bash highlight"><span class="filename">存取 Service ClusterIP</span><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>curl<span class="w"> </span><span class="m">172</span>.30.21.179:8082
+</span></code></pre></div>
+<p><strong>透過任意 Node 的 NodePort 存取</strong>：</p>
+<div class="language-bash highlight"><span class="filename">存取 NodePort</span><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>curl<span class="w"> </span>k8s-node1:30008
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>curl<span class="w"> </span>k8s-node2:30008
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>curl<span class="w"> </span>k8s-master1:30008
+</span></code></pre></div>
+<p><strong>預期結果</strong>（三個都可以存取）：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>&lt;html&gt;&lt;body&gt;&lt;h1&gt;It works!&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;
+</span></code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">NodePort 特性</p>
+<p>NodePort 會在**所有 Node**（包含 Master 和 Worker）上開放相同的 Port，無論 Pod 實際運行在哪個 Node 上。</p>
+</div>
+<hr>
+<h2 id="lab-loadbalancer-service">Lab 實作練習：LoadBalancer Service<a class="headerlink" href="#lab-loadbalancer-service" title="Permanent link">¶</a></h2>
+<h3 id="loadbalancer">LoadBalancer 概述<a class="headerlink" href="#loadbalancer" title="Permanent link">¶</a></h3>
+<p><strong>LoadBalancer</strong> 是最高級的 Service 類型，會向雲端供應商請求一個**外部負載均衡器 IP**。</p>
+<pre class="mermaid"><code>graph TB
+    subgraph "Cloud Provider"
+        LB[External Load Balancer&lt;br/&gt;公開 IP]
+    end
+    subgraph "Kubernetes Cluster"
+        SVC[Service LoadBalancer&lt;br/&gt;172.30.227.169:8083]
+        SVC --&gt; Pod1[httpd Pod 1]
+        SVC --&gt; Pod2[httpd Pod 2]
+    end
+    Internet[Internet] --&gt; LB
+    LB --&gt; SVC</code></pre>
+<hr>
+<h3 id="1-loadbalancer-yaml">步驟 1：下載 LoadBalancer YAML<a class="headerlink" href="#1-loadbalancer-yaml" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">下載 LoadBalancer 範例</span><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>wget<span class="w"> </span>http://192.168.66.248/k8s/yaml/service-loadbalancer.yaml
+</span></code></pre></div>
+<p>查看 YAML 內容：</p>
+<div class="language-bash highlight"><span class="filename">查看 YAML</span><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>cat<span class="w"> </span>service-loadbalancer.yaml
+</span></code></pre></div>
+<p><strong>YAML 重點</strong>：</p>
+<div class="language-yaml highlight"><span class="filename">service-loadbalancer.yaml（摘錄）</span><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Service</span>
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">svc-2-httpd-lb</span>
+</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">service-loadbalancer-1</span>
+</span><span id="__span-30-6"><a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-30-7"><a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LoadBalancer</span><span class="w">      </span><span class="c1"># LoadBalancer 類型</span>
+</span><span id="__span-30-8"><a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a><span class="w">  </span><span class="nt">ports</span><span class="p">:</span>
+</span><span id="__span-30-9"><a id="__codelineno-30-9" name="__codelineno-30-9" href="#__codelineno-30-9"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8083</span><span class="w">            </span><span class="c1"># Service Port</span>
+</span><span id="__span-30-10"><a id="__codelineno-30-10" name="__codelineno-30-10" href="#__codelineno-30-10"></a><span class="w">    </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span><span class="w">        </span><span class="c1"># Pod Port</span>
+</span><span id="__span-30-11"><a id="__codelineno-30-11" name="__codelineno-30-11" href="#__codelineno-30-11"></a><span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
+</span><span id="__span-30-12"><a id="__codelineno-30-12" name="__codelineno-30-12" href="#__codelineno-30-12"></a><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpd-2-lb</span>
+</span></code></pre></div>
+<hr>
+<h3 id="2-yaml_2">步驟 2：套用 YAML<a class="headerlink" href="#2-yaml_2" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">套用 YAML</span><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>service-loadbalancer.yaml
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>namespace/service-loadbalancer-1 created
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>service/svc-2-httpd-lb created
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>deployment.apps/httpd-2-lb created
+</span></code></pre></div>
+<hr>
+<h3 id="3-service_2">步驟 3：查看 Service<a class="headerlink" href="#3-service_2" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">查看 Service</span><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>services<span class="w"> </span>--namespace<span class="o">=</span>service-loadbalancer-1
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>NAME             TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>svc-2-httpd-lb   LoadBalancer   172.30.227.169   &lt;pending&gt;     8083:32254/TCP   60s
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">EXTERNAL-IP 顯示 pending</p>
+<p>在非雲端環境（如本地 VMware），沒有外部負載均衡器可用，所以 EXTERNAL-IP 會一直顯示 <code>&lt;pending&gt;</code>。</p>
+<p>在 AWS、GCP、Azure 等雲端環境中，會自動分配一個公開 IP。</p>
+</div>
+<hr>
+<h3 id="4-loadbalancer">步驟 4：測試 LoadBalancer 存取<a class="headerlink" href="#4-loadbalancer" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">查看 Pod</span><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>--namespace<span class="o">=</span>service-loadbalancer-1<span class="w"> </span>-o<span class="w"> </span>wide
+</span></code></pre></div>
+<p>透過 Pod IP 存取：</p>
+<div class="language-bash highlight"><span class="filename">存取 Pod IP</span><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>curl<span class="w"> </span><span class="m">10</span>.128.2.11
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>curl<span class="w"> </span><span class="m">10</span>.128.1.16
+</span></code></pre></div>
+<p>透過 Service ClusterIP 存取：</p>
+<div class="language-bash highlight"><span class="filename">存取 Service ClusterIP</span><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>curl<span class="w"> </span><span class="m">172</span>.30.227.169:8083
+</span></code></pre></div>
+<p>透過 NodePort 存取（LoadBalancer 自動分配）：</p>
+<div class="language-bash highlight"><span class="filename">存取自動分配的 NodePort</span><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>curl<span class="w"> </span>k8s-node1:32254
+</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>curl<span class="w"> </span>k8s-node2:32254
+</span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a>curl<span class="w"> </span>k8s-master1:32254
+</span></code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">LoadBalancer 自動分配 NodePort</p>
+<p>LoadBalancer 類型的 Service 會自動分配一個 NodePort（此例為 32254），所以也可以透過 Node IP:NodePort 存取。</p>
+</div>
+<hr>
+<h2 id="service_2">Service 類型總結<a class="headerlink" href="#service_2" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>ClusterIP</th>
+<th>NodePort</th>
+<th>LoadBalancer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>存取範圍</strong></td>
+<td>叢集內部</td>
+<td>叢集內外</td>
+<td>叢集內外</td>
+</tr>
+<tr>
+<td><strong>固定 IP</strong></td>
+<td>ClusterIP</td>
+<td>ClusterIP + NodePort</td>
+<td>ClusterIP + NodePort + External IP</td>
+</tr>
+<tr>
+<td><strong>使用場景</strong></td>
+<td>微服務內部通訊</td>
+<td>開發測試</td>
+<td>生產環境</td>
+</tr>
+<tr>
+<td><strong>Port 範圍</strong></td>
+<td>不限</td>
+<td>30000-32767</td>
+<td>不限</td>
+</tr>
+<tr>
+<td><strong>需要雲端</strong></td>
+<td>否</td>
+<td>否</td>
+<td>是</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="_4">常見問題<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
+<details class="question">
+<summary>Q1：Service 如何找到對應的 Pod？</summary>
+<p><strong>解答</strong>：透過 <code>selector</code> 標籤選擇器。Service 會將流量導向所有符合 selector 條件的 Pod。</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
+</span><span id="__span-39-3"><a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpd-2</span><span class="w">  </span><span class="c1"># 選擇帶有 app=httpd-2 標籤的 Pod</span>
+</span></code></pre></div>
+</details>
+<details class="question">
+<summary>Q2：LoadBalancer 的 EXTERNAL-IP 一直是 pending？</summary>
+<p><strong>原因</strong>：在非雲端環境沒有外部負載均衡器。</p>
+<p><strong>解決方案</strong>：</p>
+<ul>
+<li>使用 MetalLB 在本地環境模擬 LoadBalancer</li>
+<li>或直接使用 NodePort 類型</li>
+</ul>
+</details>
+<details class="question">
+<summary>Q3：NodePort 的 Port 範圍可以修改嗎？</summary>
+<p><strong>解答</strong>：可以，修改 kube-apiserver 的 <code>--service-node-port-range</code> 參數。</p>
+<p>預設範圍：30000-32767</p>
+</details>
+<details class="question">
+<summary>Q4：Pod 一直處於 Pending 狀態？</summary>
+<p><strong>原因</strong>：通常是節點或 CNI 未就緒。</p>
+<p><strong>Debug 流程</strong>：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="c1"># 1. 檢查節點狀態</span>
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+</span><span id="__span-40-3"><a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>
+</span><span id="__span-40-4"><a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a><span class="c1"># 2. 檢查 CNI Pod（Antrea）</span>
+</span><span id="__span-40-5"><a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>kube-system<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>antrea
+</span><span id="__span-40-6"><a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a>
+</span><span id="__span-40-7"><a id="__codelineno-40-7" name="__codelineno-40-7" href="#__codelineno-40-7"></a><span class="c1"># 3. 查看 Pod 事件</span>
+</span><span id="__span-40-8"><a id="__codelineno-40-8" name="__codelineno-40-8" href="#__codelineno-40-8"></a>kubectl<span class="w"> </span>describe<span class="w"> </span>pod<span class="w"> </span>&lt;pod-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
+</span><span id="__span-40-9"><a id="__codelineno-40-9" name="__codelineno-40-9" href="#__codelineno-40-9"></a>
+</span><span id="__span-40-10"><a id="__codelineno-40-10" name="__codelineno-40-10" href="#__codelineno-40-10"></a><span class="c1"># 4. 查看容器日誌</span>
+</span><span id="__span-40-11"><a id="__codelineno-40-11" name="__codelineno-40-11" href="#__codelineno-40-11"></a>kubectl<span class="w"> </span>logs<span class="w"> </span>&lt;pod-name&gt;<span class="w"> </span>-n<span class="w"> </span>kube-system<span class="w"> </span>-c<span class="w"> </span>&lt;container-name&gt;<span class="w"> </span>--tail<span class="o">=</span><span class="m">50</span>
+</span></code></pre></div>
+<p>詳細 Debug 流程請參考 <a href="../lab18_rbac_event_log/#lab-實作練習debug-實戰流程">LAB 18 Debug 實戰</a>。</p>
+</details>
+<hr>
+<h2 id="_5">小結<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
+<p>本章節重點回顧：</p>
+<ul>
+<li>✅ <strong>Service 概念</strong>：提供穩定的網路端點存取 Pod</li>
+<li>✅ <strong>ClusterIP</strong>：預設類型，僅叢集內部存取</li>
+<li>✅ <strong>NodePort</strong>：透過 Node IP:Port 從外部存取（30000-32767）</li>
+<li>✅ <strong>LoadBalancer</strong>：透過外部負載均衡器存取（需雲端環境）</li>
+<li>✅ <strong>Port 對應</strong>：port（Service）→ targetPort（Pod）→ nodePort（Node）</li>
+<li>✅ <strong>負載均衡</strong>：Service 自動將流量分散到多個 Pod</li>
+</ul>
+<h2 id="_6">延伸閱讀<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="https://kubernetes.io/docs/concepts/services-networking/service/">Kubernetes Service</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types">Service Types</a></li>
+<li><a href="https://metallb.io/">MetalLB - LoadBalancer for Bare Metal</a></li>
+</ul>
+<h2 id="yaml">YAML 實用工具<a class="headerlink" href="#yaml" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>用途</th>
+<th>連結</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>YAMLint</strong></td>
+<td>驗證 YAML 語法</td>
+<td><a href="http://www.yamllint.com/">www.yamllint.com</a></td>
+</tr>
+<tr>
+<td><strong>YAML to JSON</strong></td>
+<td>將 YAML 轉換為 JSON</td>
+<td><a href="https://www.convertjson.com/yaml-to-json.htm">www.convertjson.com</a></td>
+</tr>
+<tr>
+<td><strong>YAML to JSON/XML/CSV</strong></td>
+<td>多格式轉換</td>
+<td><a href="https://codebeautify.org/yaml-to-json-xml-csv">codebeautify.org</a></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">YAML 驗證技巧</p>
+<p>在套用 YAML 檔案之前，建議先使用線上工具驗證語法是否正確，避免因縮排或格式錯誤導致部署失敗。</p>
+</div>
 
 
 

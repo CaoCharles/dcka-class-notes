@@ -1222,7 +1222,345 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        實作步驟
+        前置知識
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心概念說明
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="核心概念說明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rbac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RBAC 是什麼？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rbac_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RBAC 四種資源
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clusterrole" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        內建 ClusterRole
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-rbac-clusterrolebinding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 實作練習：RBAC ClusterRoleBinding
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 實作練習：RBAC ClusterRoleBinding">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-clusterrolebinding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 1：套用 ClusterRoleBinding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-clusterrolebinding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 2：查看 ClusterRoleBinding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-clusterrolebinding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 3：刪除 ClusterRoleBinding
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-event" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 實作練習：Event 事件監控
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 實作練習：Event 事件監控">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#event" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event 是什麼？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 1：建立測試 Pod
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 2：查看事件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event 生命週期
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 實作練習：Log 日誌查看
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 實作練習：Log 日誌查看">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-pod_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 1：查看 Pod 日誌
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常用 logs 參數
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 2：清理資源
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#event-vs-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event vs Log 比較
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-debug" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 實作練習：Debug 實戰流程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 實作練習：Debug 實戰流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 1：檢查節點狀態
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-cni-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 2：檢查 CNI Pod 狀態
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 3：查看 Pod 詳細事件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 4：查看容器日誌
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        完整狀態檢查腳本
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debug" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debug 常見問題對照表
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常見問題
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        小結
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        延伸閱讀
       
     </span>
   </a>
@@ -1487,7 +1825,345 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        實作步驟
+        前置知識
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心概念說明
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="核心概念說明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rbac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RBAC 是什麼？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rbac_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RBAC 四種資源
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clusterrole" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        內建 ClusterRole
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-rbac-clusterrolebinding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 實作練習：RBAC ClusterRoleBinding
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 實作練習：RBAC ClusterRoleBinding">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-clusterrolebinding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 1：套用 ClusterRoleBinding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-clusterrolebinding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 2：查看 ClusterRoleBinding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-clusterrolebinding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 3：刪除 ClusterRoleBinding
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-event" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 實作練習：Event 事件監控
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 實作練習：Event 事件監控">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#event" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event 是什麼？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 1：建立測試 Pod
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 2：查看事件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event 生命週期
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 實作練習：Log 日誌查看
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 實作練習：Log 日誌查看">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-pod_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 1：查看 Pod 日誌
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常用 logs 參數
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 2：清理資源
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#event-vs-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event vs Log 比較
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-debug" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 實作練習：Debug 實戰流程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 實作練習：Debug 實戰流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 1：檢查節點狀態
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-cni-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 2：檢查 CNI Pod 狀態
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 3：查看 Pod 詳細事件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 4：查看容器日誌
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        完整狀態檢查腳本
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debug" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debug 常見問題對照表
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常見問題
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        小結
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        延伸閱讀
       
     </span>
   </a>
@@ -1524,7 +2200,7 @@
     <span class="twemoji">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span style="font-weight: 500;">更新:</span> <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月26日 14:01:45 CST">2026年1月26日 14:01:45</span>
+    <span style="font-weight: 500;">更新:</span> <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月28日 15:27:35 CST">2026年1月28日 15:27:35</span>
   </span>
   
 
@@ -1541,13 +2217,497 @@
   
 
 
-<h1 id="lab-18-rbac-eventlog">LAB 18 RBAC 與 event/log<a class="headerlink" href="#lab-18-rbac-eventlog" title="Permanent link">¶</a></h1>
+<h1 id="lab-18-rbac-eventlog">LAB 18 RBAC 與 Event/Log<a class="headerlink" href="#lab-18-rbac-eventlog" title="Permanent link">¶</a></h1>
 <h2 id="_1">學習目標<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<p>完成本章節後，你將能夠：</p>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 待補</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 理解 RBAC（Role-Based Access Control）的概念</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 使用 ClusterRoleBinding 設定叢集層級的權限</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 使用 kubectl get events 查看叢集事件</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 使用 kubectl logs 查看 Pod 日誌</li>
 </ul>
-<h2 id="_2">實作步驟<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
-<p><em>(本章節內容待補)</em></p>
+<h2 id="_2">前置知識<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<p>開始之前，請確保你已經：</p>
+<ul>
+<li>完成 LAB 17 Secret</li>
+<li>熟悉 Pod、Deployment 基本概念</li>
+<li>準備好 Kubernetes 叢集環境（k8s-master1）</li>
+</ul>
+<hr>
+<h2 id="_3">核心概念說明<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<h3 id="rbac">RBAC 是什麼？<a class="headerlink" href="#rbac" title="Permanent link">¶</a></h3>
+<p><strong>RBAC（Role-Based Access Control）</strong> 是 Kubernetes 的**權限控制機制**，用來控制「誰」可以對「什麼資源」執行「什麼操作」。</p>
+<pre class="mermaid"><code>graph LR
+    User[使用者/ServiceAccount] --&gt;|綁定| RB[RoleBinding]
+    RB --&gt;|參照| Role[Role]
+    Role --&gt;|允許| Actions[操作權限&lt;br/&gt;get/list/create/delete]
+    Actions --&gt;|對象| Resources[資源&lt;br/&gt;pods/deployments/secrets]</code></pre>
+<hr>
+<h3 id="rbac_1">RBAC 四種資源<a class="headerlink" href="#rbac_1" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>資源</th>
+<th>作用範圍</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Role</strong></td>
+<td>Namespace</td>
+<td>定義單一 Namespace 內的權限</td>
+</tr>
+<tr>
+<td><strong>RoleBinding</strong></td>
+<td>Namespace</td>
+<td>將 Role 綁定給使用者</td>
+</tr>
+<tr>
+<td><strong>ClusterRole</strong></td>
+<td>叢集</td>
+<td>定義叢集層級的權限</td>
+</tr>
+<tr>
+<td><strong>ClusterRoleBinding</strong></td>
+<td>叢集</td>
+<td>將 ClusterRole 綁定給使用者</td>
+</tr>
+</tbody>
+</table>
+<pre class="mermaid"><code>graph TB
+    subgraph "Namespace 層級"
+        Role[Role] --&gt; RB[RoleBinding]
+        RB --&gt; User1[User/ServiceAccount]
+    end
+
+    subgraph "Cluster 層級"
+        CR[ClusterRole] --&gt; CRB[ClusterRoleBinding]
+        CRB --&gt; User2[User/ServiceAccount]
+    end</code></pre>
+<hr>
+<h3 id="clusterrole">內建 ClusterRole<a class="headerlink" href="#clusterrole" title="Permanent link">¶</a></h3>
+<p>Kubernetes 預設提供多個內建的 ClusterRole：</p>
+<table>
+<thead>
+<tr>
+<th>ClusterRole</th>
+<th>權限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>view</strong></td>
+<td>唯讀權限（get、list、watch）</td>
+</tr>
+<tr>
+<td><strong>edit</strong></td>
+<td>讀寫權限（不含 RBAC 設定）</td>
+</tr>
+<tr>
+<td><strong>admin</strong></td>
+<td>完整管理權限（含 RBAC 相關）</td>
+</tr>
+<tr>
+<td><strong>cluster-admin</strong></td>
+<td>超級管理員（所有權限）</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="lab-rbac-clusterrolebinding">Lab 實作練習：RBAC ClusterRoleBinding<a class="headerlink" href="#lab-rbac-clusterrolebinding" title="Permanent link">¶</a></h2>
+<h3 id="1-clusterrolebinding">步驟 1：套用 ClusterRoleBinding<a class="headerlink" href="#1-clusterrolebinding" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">套用 RBAC YAML</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>http://192.168.66.248/k8s/yaml/rbac3.yaml
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>clusterrolebinding.rbac.authorization.k8s.io/my-global-access created
+</span></code></pre></div>
+<p><strong>rbac3.yaml 內容範例</strong>：</p>
+<div class="language-yaml highlight"><span class="filename">rbac3.yaml（範例）</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io/v1</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ClusterRoleBinding</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-global-access</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nt">subjects</span><span class="p">:</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">User</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-user</span><span class="w">              </span><span class="c1"># 或 ServiceAccount</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span><span class="nt">apiGroup</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="nt">roleRef</span><span class="p">:</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">  </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ClusterRole</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">view</span><span class="w">                 </span><span class="c1"># 使用內建的 view ClusterRole</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">  </span><span class="nt">apiGroup</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>欄位</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>subjects</strong></td>
+<td>權限授予的對象（User、Group、ServiceAccount）</td>
+</tr>
+<tr>
+<td><strong>roleRef</strong></td>
+<td>參照的 Role 或 ClusterRole</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="2-clusterrolebinding">步驟 2：查看 ClusterRoleBinding<a class="headerlink" href="#2-clusterrolebinding" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">查看 ClusterRoleBinding</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>clusterrolebindings.rbac.authorization.k8s.io<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>my-global
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>my-global-access   ClusterRole/view   21s
+</span></code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">綁定說明</p>
+<p>此 ClusterRoleBinding 將 <code>view</code> ClusterRole 綁定給指定的使用者，讓該使用者擁有叢集的唯讀權限。</p>
+</div>
+<hr>
+<h3 id="3-clusterrolebinding">步驟 3：刪除 ClusterRoleBinding<a class="headerlink" href="#3-clusterrolebinding" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">刪除 ClusterRoleBinding</span><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>http://192.168.66.248/k8s/yaml/rbac3.yaml
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>clusterrolebinding.rbac.authorization.k8s.io "my-global-access" deleted
+</span></code></pre></div>
+<hr>
+<h2 id="lab-event">Lab 實作練習：Event 事件監控<a class="headerlink" href="#lab-event" title="Permanent link">¶</a></h2>
+<h3 id="event">Event 是什麼？<a class="headerlink" href="#event" title="Permanent link">¶</a></h3>
+<p><strong>Event（事件）</strong> 是 Kubernetes 記錄叢集中發生的重要事件，例如 Pod 調度、映像檔拉取、容器啟動等。</p>
+<hr>
+<h3 id="1-pod">步驟 1：建立測試 Pod<a class="headerlink" href="#1-pod" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">建立測試 Pod</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>http://192.168.66.248/k8s/yaml/log1.yaml
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>pod/log1 created
+</span></code></pre></div>
+<p><strong>log1.yaml 內容範例</strong>：</p>
+<div class="language-yaml highlight"><span class="filename">log1.yaml（範例）</span><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">log1</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">  </span><span class="nt">containers</span><span class="p">:</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">count</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker1.training.lab:5000/nginx</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">"/bin/sh"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"-c"</span><span class="p p-Indicator">]</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">    </span><span class="nt">args</span><span class="p">:</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">i=0; while true; do echo "$i</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$(date)"; i=$((i+1)); sleep 1; done</span>
+</span></code></pre></div>
+<hr>
+<h3 id="2">步驟 2：查看事件<a class="headerlink" href="#2" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">查看叢集事件</span><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>events
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>LAST SEEN   TYPE     REASON      OBJECT     MESSAGE
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>13s         Normal   Scheduled   pod/log1   Successfully assigned default/log1 to k8s-node1.training.lab
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>13s         Normal   Pulling     pod/log1   Pulling image "docker1.training.lab:5000/nginx"
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>13s         Normal   Pulled      pod/log1   Successfully pulled image "docker1.training.lab:5000/nginx" in 177ms
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>13s         Normal   Created     pod/log1   Created container: count
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>13s         Normal   Started     pod/log1   Started container count
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>欄位</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>LAST SEEN</strong></td>
+<td>事件發生時間</td>
+</tr>
+<tr>
+<td><strong>TYPE</strong></td>
+<td>事件類型（Normal、Warning）</td>
+</tr>
+<tr>
+<td><strong>REASON</strong></td>
+<td>事件原因（Scheduled、Pulling、Started 等）</td>
+</tr>
+<tr>
+<td><strong>OBJECT</strong></td>
+<td>相關的資源</td>
+</tr>
+<tr>
+<td><strong>MESSAGE</strong></td>
+<td>詳細訊息</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="event_1">Event 生命週期<a class="headerlink" href="#event_1" title="Permanent link">¶</a></h3>
+<pre class="mermaid"><code>sequenceDiagram
+    participant Scheduler
+    participant Node
+    participant Container
+
+    Scheduler-&gt;&gt;Node: Scheduled (調度到節點)
+    Node-&gt;&gt;Container: Pulling (拉取映像檔)
+    Node-&gt;&gt;Container: Pulled (拉取完成)
+    Node-&gt;&gt;Container: Created (建立容器)
+    Node-&gt;&gt;Container: Started (啟動容器)</code></pre>
+<hr>
+<h2 id="lab-log">Lab 實作練習：Log 日誌查看<a class="headerlink" href="#lab-log" title="Permanent link">¶</a></h2>
+<h3 id="1-pod_1">步驟 1：查看 Pod 日誌<a class="headerlink" href="#1-pod_1" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">查看 Pod 日誌</span><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>kubectl<span class="w"> </span>logs<span class="w"> </span>pod/log1
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>0: Tue Feb  4 08:17:29 UTC 2025
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>1: Tue Feb  4 08:17:30 UTC 2025
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>2: Tue Feb  4 08:17:31 UTC 2025
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>3: Tue Feb  4 08:17:32 UTC 2025
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>4: Tue Feb  4 08:17:33 UTC 2025
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>...
+</span></code></pre></div>
+<hr>
+<h3 id="logs">常用 logs 參數<a class="headerlink" href="#logs" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">即時追蹤日誌（類似 tail -f）</span><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>kubectl<span class="w"> </span>logs<span class="w"> </span>pod/log1<span class="w"> </span>-f
+</span></code></pre></div>
+<div class="language-bash highlight"><span class="filename">顯示最近 10 行</span><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>kubectl<span class="w"> </span>logs<span class="w"> </span>pod/log1<span class="w"> </span>--tail<span class="o">=</span><span class="m">10</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><span class="filename">顯示最近 1 小時的日誌</span><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>kubectl<span class="w"> </span>logs<span class="w"> </span>pod/log1<span class="w"> </span>--since<span class="o">=</span>1h
+</span></code></pre></div>
+<div class="language-bash highlight"><span class="filename">顯示時間戳記</span><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>kubectl<span class="w"> </span>logs<span class="w"> </span>pod/log1<span class="w"> </span>--timestamps
+</span></code></pre></div>
+<div class="language-bash highlight"><span class="filename">指定容器（多容器 Pod）</span><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>kubectl<span class="w"> </span>logs<span class="w"> </span>pod/log1<span class="w"> </span>-c<span class="w"> </span>count
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>參數</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-f</code></td>
+<td>即時追蹤（follow）</td>
+</tr>
+<tr>
+<td><code>--tail=N</code></td>
+<td>顯示最後 N 行</td>
+</tr>
+<tr>
+<td><code>--since=時間</code></td>
+<td>顯示指定時間內的日誌</td>
+</tr>
+<tr>
+<td><code>--timestamps</code></td>
+<td>顯示時間戳記</td>
+</tr>
+<tr>
+<td><code>-c 容器名</code></td>
+<td>指定容器</td>
+</tr>
+<tr>
+<td><code>--previous</code></td>
+<td>顯示前一個容器的日誌（重啟後）</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="2_1">步驟 2：清理資源<a class="headerlink" href="#2_1" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">刪除測試 Pod</span><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>http://192.168.66.248/k8s/yaml/log1.yaml
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>pod "log1" deleted
+</span></code></pre></div>
+<hr>
+<h2 id="event-vs-log">Event vs Log 比較<a class="headerlink" href="#event-vs-log" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Event</th>
+<th>Log</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>內容</strong></td>
+<td>叢集事件（調度、拉取映像檔）</td>
+<td>容器輸出（stdout/stderr）</td>
+</tr>
+<tr>
+<td><strong>來源</strong></td>
+<td>Kubernetes 元件</td>
+<td>應用程式</td>
+</tr>
+<tr>
+<td><strong>用途</strong></td>
+<td>排查調度問題</td>
+<td>排查應用程式問題</td>
+</tr>
+<tr>
+<td><strong>保留時間</strong></td>
+<td>約 1 小時</td>
+<td>取決於日誌輪替設定</td>
+</tr>
+<tr>
+<td><strong>指令</strong></td>
+<td><code>kubectl get events</code></td>
+<td><code>kubectl logs</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="lab-debug">Lab 實作練習：Debug 實戰流程<a class="headerlink" href="#lab-debug" title="Permanent link">¶</a></h2>
+<p>當 Pod 無法正常運行時，可以按照以下流程進行故障排除：</p>
+<pre class="mermaid"><code>graph TD
+    Start[Pod 異常] --&gt; Step1[檢查節點狀態]
+    Step1 --&gt; Step2[檢查 CNI Pod]
+    Step2 --&gt; Step3[查看 Pod 事件]
+    Step3 --&gt; Step4[查看容器日誌]
+    Step4 --&gt; Fix[找到問題並修復]</code></pre>
+<hr>
+<h3 id="1">步驟 1：檢查節點狀態<a class="headerlink" href="#1" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">檢查節點狀態</span><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>NAME                       STATUS     ROLES           AGE   VERSION
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>k8s-master1.training.lab   Ready      control-plane   21h   v1.32.11
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>k8s-node1.training.lab     NotReady   &lt;none&gt;          21h   v1.32.11
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>k8s-node2.training.lab     Ready      &lt;none&gt;          21h   v1.32.11
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">NotReady 狀態</p>
+<p>如果節點顯示 <code>NotReady</code>，通常是 CNI（Container Network Interface）或 kubelet 有問題。</p>
+</div>
+<hr>
+<h3 id="2-cni-pod">步驟 2：檢查 CNI Pod 狀態<a class="headerlink" href="#2-cni-pod" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">檢查 Antrea CNI Pod</span><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>kube-system<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>antrea
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>antrea-agent-7zn4h                                 2/2     Running   0          2m33s
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>antrea-agent-mdw2f                                 2/2     Running   0          2m34s
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>antrea-agent-sbv79                                 2/2     Running   0          2m34s
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>antrea-controller-57964d858f-bqwf8                 1/1     Running   0          37s
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">其他 CNI</p>
+<p>如果使用的是 Calico 或 Flannel，請改用：</p>
+<ul>
+<li>Calico：<code>kubectl get pods -n kube-system | grep calico</code></li>
+<li>Flannel：<code>kubectl get pods -n kube-system | grep flannel</code></li>
+</ul>
+</div>
+<hr>
+<h3 id="3-pod">步驟 3：查看 Pod 詳細事件<a class="headerlink" href="#3-pod" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">查看 Pod 事件（底部會顯示 Events）</span><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>kubectl<span class="w"> </span>describe<span class="w"> </span>pod<span class="w"> </span>&lt;pod-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
+</span></code></pre></div>
+<p><strong>範例</strong>：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>kubectl<span class="w"> </span>describe<span class="w"> </span>pod<span class="w"> </span>antrea-agent-mdw2f<span class="w"> </span>-n<span class="w"> </span>kube-system<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-20
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>Events:
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>  Type     Reason     Age   From               Message
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>  ----     ------     ----  ----               -------
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>  Normal   Scheduled  82s   default-scheduler  Successfully assigned kube-system/antrea-agent-mdw2f to k8s-node1.training.lab
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>  Normal   Pulling    82s   kubelet            Pulling image "antrea/antrea-agent-ubuntu:v2.2.0"
+</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>  Normal   Pulled     57s   kubelet            Successfully pulled image
+</span><span id="__span-27-7"><a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a>  Normal   Created    57s   kubelet            Created container: install-cni
+</span><span id="__span-27-8"><a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a>  Normal   Started    57s   kubelet            Started container install-cni
+</span><span id="__span-27-9"><a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a>  Warning  Unhealthy  43s   kubelet            Readiness probe failed: HTTP probe failed with statuscode: 500
+</span></code></pre></div>
+<hr>
+<h3 id="4">步驟 4：查看容器日誌<a class="headerlink" href="#4" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">查看特定容器的日誌</span><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>kubectl<span class="w"> </span>logs<span class="w"> </span>&lt;pod-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>-c<span class="w"> </span>&lt;container-name&gt;<span class="w"> </span>--tail<span class="o">=</span><span class="m">50</span>
+</span></code></pre></div>
+<p><strong>範例</strong>：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>kubectl<span class="w"> </span>logs<span class="w"> </span>antrea-agent-mdw2f<span class="w"> </span>-n<span class="w"> </span>kube-system<span class="w"> </span>-c<span class="w"> </span>antrea-agent<span class="w"> </span>--tail<span class="o">=</span><span class="m">50</span>
+</span></code></pre></div>
+<hr>
+<h3 id="_4">完整狀態檢查腳本<a class="headerlink" href="#_4" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">一次檢查所有關鍵狀態</span><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"=== 節點狀態 ==="</span>
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>
+</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">"\n=== CNI Pods ==="</span>
+</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>kube-system<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>antrea
+</span><span id="__span-30-6"><a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a>
+</span><span id="__span-30-7"><a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">"\n=== 應用 Pods ==="</span>
+</span><span id="__span-30-8"><a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-A<span class="w"> </span>-o<span class="w"> </span>wide
+</span><span id="__span-30-9"><a id="__codelineno-30-9" name="__codelineno-30-9" href="#__codelineno-30-9"></a>
+</span><span id="__span-30-10"><a id="__codelineno-30-10" name="__codelineno-30-10" href="#__codelineno-30-10"></a><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">"\n=== 系統核心 Pods ==="</span>
+</span><span id="__span-30-11"><a id="__codelineno-30-11" name="__codelineno-30-11" href="#__codelineno-30-11"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>kube-system<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s1">'coredns|kube-proxy'</span>
+</span></code></pre></div>
+<hr>
+<h2 id="debug">Debug 常見問題對照表<a class="headerlink" href="#debug" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>症狀</th>
+<th>可能原因</th>
+<th>檢查指令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Node <code>NotReady</code></td>
+<td>CNI 未就緒</td>
+<td><code>kubectl get pods -n kube-system</code></td>
+</tr>
+<tr>
+<td>Pod <code>Pending</code></td>
+<td>無可用節點</td>
+<td><code>kubectl describe pod &lt;name&gt;</code></td>
+</tr>
+<tr>
+<td>Pod <code>ImagePullBackOff</code></td>
+<td>映像檔拉取失敗</td>
+<td><code>kubectl describe pod &lt;name&gt;</code></td>
+</tr>
+<tr>
+<td>Pod <code>CrashLoopBackOff</code></td>
+<td>容器持續崩潰</td>
+<td><code>kubectl logs &lt;pod&gt; --previous</code></td>
+</tr>
+<tr>
+<td>Service 無法存取</td>
+<td>Endpoint 未綁定</td>
+<td><code>kubectl get endpoints</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="_5">常見問題<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
+<details class="question">
+<summary>Q1：如何查看特定 Pod 的事件？</summary>
+<p><strong>解答</strong>：使用 <code>kubectl describe pod</code> 會在底部顯示相關事件：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>kubectl<span class="w"> </span>describe<span class="w"> </span>pod<span class="w"> </span>log1
+</span></code></pre></div>
+</details>
+<details class="question">
+<summary>Q2：Pod 重啟後日誌消失了怎麼辦？</summary>
+<p><strong>解答</strong>：使用 <code>--previous</code> 參數查看前一個容器的日誌：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>kubectl<span class="w"> </span>logs<span class="w"> </span>pod/log1<span class="w"> </span>--previous
+</span></code></pre></div>
+</details>
+<details class="question">
+<summary>Q3：如何將日誌導出到檔案？</summary>
+<p><strong>解答</strong>：使用 shell 重導向：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>kubectl<span class="w"> </span>logs<span class="w"> </span>pod/log1<span class="w"> </span>&gt;<span class="w"> </span>pod-log.txt
+</span></code></pre></div>
+</details>
+<hr>
+<h2 id="_6">小結<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
+<p>本章節重點回顧：</p>
+<ul>
+<li>✅ <strong>RBAC 概念</strong>：Role-Based Access Control 控制資源存取權限</li>
+<li>✅ <strong>四種 RBAC 資源</strong>：Role、RoleBinding（Namespace 層級）、ClusterRole、ClusterRoleBinding（叢集層級）</li>
+<li>✅ <strong>內建 ClusterRole</strong>：view（唯讀）、edit（讀寫）、admin（管理）、cluster-admin（超級管理員）</li>
+<li>✅ <strong>Event 監控</strong>：<code>kubectl get events</code> 查看叢集事件</li>
+<li>✅ <strong>Log 查看</strong>：<code>kubectl logs</code> 查看容器輸出，支援 <code>-f</code>、<code>--tail</code>、<code>--since</code> 等參數</li>
+</ul>
+<h2 id="_7">延伸閱讀<a class="headerlink" href="#_7" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Kubernetes RBAC</a></li>
+<li><a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Using RBAC Authorization</a></li>
+<li><a href="https://kubernetes.io/docs/reference/kubectl/generated/kubectl_logs/">Kubectl Logs</a></li>
+</ul>
 
 
 

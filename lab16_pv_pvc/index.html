@@ -91,7 +91,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#lab-16-pvpvc" class="md-skip">
+        <a href="#lab-16-persistent-volumepv-persistent-volume-claimpvc" class="md-skip">
           跳轉到
         </a>
       
@@ -1166,7 +1166,278 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        實作步驟
+        前置知識
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心概念說明
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="核心概念說明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pvpvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        為什麼需要 PV/PVC？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pv-pvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PV 與 PVC 的關係
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PV 的生命週期
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        儲存類型比較
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-hostpath" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 實作練習：hostPath 本地儲存
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 實作練習：hostPath 本地儲存">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        架構說明
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-worker-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 1：在 Worker Node 準備本地目錄
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-pvpersistent-volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 2：建立 PV（Persistent Volume）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-pvcpersistent-volume-claim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 3：建立 PVC（Persistent Volume Claim）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-pvc-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 4：建立使用 PVC 的 Pod
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-nfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 實作練習：NFS 網路儲存
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 實作練習：NFS 網路儲存">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        架構說明
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-nfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 1：安裝 NFS 工具
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-nfs-serverk8s-master1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 2：設定 NFS Server（k8s-master1）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-nfs-k8s-node1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 3：測試 NFS 掛載（k8s-node1）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-nfs-pv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 4：建立 NFS PV
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-nfs-pvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 5：建立 NFS PVC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-nfs-pvc-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 6：建立使用 NFS PVC 的 Pod
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hostpath-vs-nfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hostPath vs NFS 比較
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常見問題
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        小結
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        延伸閱讀
       
     </span>
   </a>
@@ -1487,7 +1758,278 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        實作步驟
+        前置知識
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心概念說明
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="核心概念說明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pvpvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        為什麼需要 PV/PVC？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pv-pvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PV 與 PVC 的關係
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PV 的生命週期
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        儲存類型比較
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-hostpath" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 實作練習：hostPath 本地儲存
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 實作練習：hostPath 本地儲存">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        架構說明
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-worker-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 1：在 Worker Node 準備本地目錄
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-pvpersistent-volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 2：建立 PV（Persistent Volume）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-pvcpersistent-volume-claim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 3：建立 PVC（Persistent Volume Claim）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-pvc-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 4：建立使用 PVC 的 Pod
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-nfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 實作練習：NFS 網路儲存
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 實作練習：NFS 網路儲存">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        架構說明
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-nfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 1：安裝 NFS 工具
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-nfs-serverk8s-master1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 2：設定 NFS Server（k8s-master1）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-nfs-k8s-node1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 3：測試 NFS 掛載（k8s-node1）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-nfs-pv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 4：建立 NFS PV
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-nfs-pvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 5：建立 NFS PVC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-nfs-pvc-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 6：建立使用 NFS PVC 的 Pod
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hostpath-vs-nfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hostPath vs NFS 比較
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常見問題
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        小結
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        延伸閱讀
       
     </span>
   </a>
@@ -1524,7 +2066,7 @@
     <span class="twemoji">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span style="font-weight: 500;">更新:</span> <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月26日 14:01:45 CST">2026年1月26日 14:01:45</span>
+    <span style="font-weight: 500;">更新:</span> <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月28日 15:27:35 CST">2026年1月28日 15:27:35</span>
   </span>
   
 
@@ -1541,13 +2083,590 @@
   
 
 
-<h1 id="lab-16-pvpvc">LAB 16 PV/PVC<a class="headerlink" href="#lab-16-pvpvc" title="Permanent link">¶</a></h1>
+<h1 id="lab-16-persistent-volumepv-persistent-volume-claimpvc">LAB 16 Persistent Volume（PV）與 Persistent Volume Claim（PVC）<a class="headerlink" href="#lab-16-persistent-volumepv-persistent-volume-claimpvc" title="Permanent link">¶</a></h1>
 <h2 id="_1">學習目標<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<p>完成本章節後，你將能夠：</p>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 待補</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 理解 PV 與 PVC 的概念與關係</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 使用 hostPath 建立本地儲存的 PV</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 建立 PVC 並綁定 PV</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 在 Pod 中掛載 PVC</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 設定 NFS Server 提供網路儲存</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 使用 NFS 類型的 PV 實現跨節點共享儲存</li>
 </ul>
-<h2 id="_2">實作步驟<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
-<p><em>(本章節內容待補)</em></p>
+<h2 id="_2">前置知識<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<p>開始之前，請確保你已經：</p>
+<ul>
+<li>完成 LAB 15 Service</li>
+<li>熟悉 Pod、Deployment 基本概念</li>
+<li>準備好 Kubernetes 叢集環境（k8s-master1、k8s-node1、k8s-node2）</li>
+</ul>
+<hr>
+<h2 id="_3">核心概念說明<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<h3 id="pvpvc">為什麼需要 PV/PVC？<a class="headerlink" href="#pvpvc" title="Permanent link">¶</a></h3>
+<p>Pod 的儲存是**臨時性的**，當 Pod 被刪除或重新調度時，容器內的資料也會消失。PV/PVC 提供了**持久化儲存**的解決方案。</p>
+<pre class="mermaid"><code>graph TB
+    subgraph "沒有 PV/PVC"
+        Pod1[Pod] --&gt; Data1[容器內資料]
+        Data1 -.-&gt;|Pod 刪除| Lost[資料遺失]
+    end
+
+    subgraph "使用 PV/PVC"
+        Pod2[Pod] --&gt; PVC[PVC]
+        PVC --&gt; PV[PV]
+        PV --&gt; Storage[(儲存空間)]
+        Pod2 -.-&gt;|Pod 刪除| Storage
+    end</code></pre>
+<hr>
+<h3 id="pv-pvc">PV 與 PVC 的關係<a class="headerlink" href="#pv-pvc" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>說明</th>
+<th>誰管理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>PV（Persistent Volume）</strong></td>
+<td>叢集中的儲存資源，類似 Node</td>
+<td>管理員</td>
+</tr>
+<tr>
+<td><strong>PVC（Persistent Volume Claim）</strong></td>
+<td>使用者對儲存的請求，類似 Pod</td>
+<td>開發者</td>
+</tr>
+</tbody>
+</table>
+<pre class="mermaid"><code>graph LR
+    Admin[管理員] --&gt;|建立| PV[PV&lt;br/&gt;10Gi Storage]
+    Dev[開發者] --&gt;|建立| PVC[PVC&lt;br/&gt;請求 3Gi]
+    PVC --&gt;|自動綁定| PV
+    Pod[Pod] --&gt;|掛載| PVC</code></pre>
+<hr>
+<h3 id="pv">PV 的生命週期<a class="headerlink" href="#pv" title="Permanent link">¶</a></h3>
+<pre class="mermaid"><code>stateDiagram-v2
+    [*] --&gt; Available: 建立 PV
+    Available --&gt; Bound: PVC 綁定
+    Bound --&gt; Released: PVC 刪除
+    Released --&gt; Available: 回收
+    Released --&gt; [*]: 刪除</code></pre>
+<table>
+<thead>
+<tr>
+<th>狀態</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Available</strong></td>
+<td>可用，尚未被 PVC 綁定</td>
+</tr>
+<tr>
+<td><strong>Bound</strong></td>
+<td>已綁定，被某個 PVC 使用中</td>
+</tr>
+<tr>
+<td><strong>Released</strong></td>
+<td>PVC 已刪除，但資源尚未回收</td>
+</tr>
+<tr>
+<td><strong>Failed</strong></td>
+<td>自動回收失敗</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="_4">儲存類型比較<a class="headerlink" href="#_4" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>類型</th>
+<th>說明</th>
+<th>優點</th>
+<th>缺點</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>hostPath</strong></td>
+<td>節點本地路徑</td>
+<td>簡單、快速</td>
+<td>Pod 只能在特定節點運行</td>
+</tr>
+<tr>
+<td><strong>NFS</strong></td>
+<td>網路檔案系統</td>
+<td>跨節點共享</td>
+<td>需要 NFS Server</td>
+</tr>
+<tr>
+<td><strong>CSI</strong></td>
+<td>容器儲存介面</td>
+<td>支援各種雲端儲存</td>
+<td>設定較複雜</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="lab-hostpath">Lab 實作練習：hostPath 本地儲存<a class="headerlink" href="#lab-hostpath" title="Permanent link">¶</a></h2>
+<h3 id="_5">架構說明<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
+<p>使用 hostPath 時，Pod 會使用節點上的本地目錄作為儲存空間。</p>
+<pre class="mermaid"><code>graph TB
+    subgraph "k8s-node1"
+        Pod1[pv1-pod-local]
+        Path1[/mnt/data&lt;br/&gt;index.html: node1...AAA]
+        Pod1 --&gt; Path1
+    end
+
+    subgraph "k8s-node2"
+        Path2[/mnt/data&lt;br/&gt;index.html: node2...BBB]
+    end</code></pre>
+<div class="admonition warning">
+<p class="admonition-title">hostPath 限制</p>
+<p>使用 hostPath 時，Pod 只能運行在有該路徑的節點上。如果 Pod 被調度到其他節點，可能會找不到資料或看到不同的資料。</p>
+</div>
+<hr>
+<h3 id="1-worker-node">步驟 1：在 Worker Node 準備本地目錄<a class="headerlink" href="#1-worker-node" title="Permanent link">¶</a></h3>
+<p><strong>在 k8s-node1 上執行</strong>：</p>
+<div class="language-bash highlight"><span class="filename">在 node1 建立目錄和測試檔案</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>/mnt/data
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"node1...AAA"</span><span class="w"> </span>&gt;<span class="w"> </span>/mnt/data/index.html
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>cat<span class="w"> </span>/mnt/data/index.html
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>node1...AAA
+</span></code></pre></div>
+<p><strong>在 k8s-node2 上執行</strong>：</p>
+<div class="language-bash highlight"><span class="filename">在 node2 建立目錄和測試檔案</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>/mnt/data
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"node2...BBB"</span><span class="w"> </span>&gt;<span class="w"> </span>/mnt/data/index.html
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>cat<span class="w"> </span>/mnt/data/index.html
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>node2...BBB
+</span></code></pre></div>
+<hr>
+<h3 id="2-pvpersistent-volume">步驟 2：建立 PV（Persistent Volume）<a class="headerlink" href="#2-pvpersistent-volume" title="Permanent link">¶</a></h3>
+<p>回到 k8s-master1，下載並查看 PV YAML：</p>
+<div class="language-bash highlight"><span class="filename">下載 PV YAML</span><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>wget<span class="w"> </span>http://10.0.1.248/k8s/yaml/pv1-local.yaml
+</span></code></pre></div>
+<p><strong>PV YAML 內容</strong>：</p>
+<div class="language-yaml highlight"><span class="filename">pv1-local.yaml</span><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PersistentVolume</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pv1-local</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">  </span><span class="nt">capacity</span><span class="p">:</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10Gi</span><span class="w">            </span><span class="c1"># 儲存容量</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">  </span><span class="nt">accessModes</span><span class="p">:</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ReadWriteOnce</span><span class="w">          </span><span class="c1"># 存取模式</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">  </span><span class="nt">persistentVolumeReclaimPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Retain</span><span class="w">  </span><span class="c1"># 回收策略</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">  </span><span class="nt">storageClassName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">manual</span><span class="w">   </span><span class="c1"># 儲存類別</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">  </span><span class="nt">hostPath</span><span class="p">:</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">"/mnt/data"</span><span class="w">        </span><span class="c1"># 節點本地路徑</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>欄位</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>capacity</strong></td>
+<td>儲存容量（10Gi = 10 GiB）</td>
+</tr>
+<tr>
+<td><strong>accessModes</strong></td>
+<td>RWO（單節點讀寫）、ROX（多節點唯讀）、RWX（多節點讀寫）</td>
+</tr>
+<tr>
+<td><strong>persistentVolumeReclaimPolicy</strong></td>
+<td>Retain（保留）、Delete（刪除）、Recycle（回收）</td>
+</tr>
+<tr>
+<td><strong>storageClassName</strong></td>
+<td>用於 PVC 配對的類別名稱</td>
+</tr>
+<tr>
+<td><strong>hostPath</strong></td>
+<td>節點本地路徑</td>
+</tr>
+</tbody>
+</table>
+<p>套用 PV：</p>
+<div class="language-bash highlight"><span class="filename">建立 PV</span><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>pv1-local.yaml
+</span></code></pre></div>
+<p>查看 PV 狀態：</p>
+<div class="language-bash highlight"><span class="filename">查看 PV</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pv
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>NAME        CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS      CLAIM   STORAGECLASS   AGE
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>pv1-local   10Gi       RWO            Retain           Available           manual         3s
+</span></code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">PV 狀態</p>
+<p>狀態顯示 <code>Available</code>，表示 PV 可用，尚未被 PVC 綁定。</p>
+</div>
+<hr>
+<h3 id="3-pvcpersistent-volume-claim">步驟 3：建立 PVC（Persistent Volume Claim）<a class="headerlink" href="#3-pvcpersistent-volume-claim" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">下載 PVC YAML</span><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>wget<span class="w"> </span>http://10.0.1.248/k8s/yaml/pvc1-local.yaml
+</span></code></pre></div>
+<p><strong>PVC YAML 內容</strong>：</p>
+<div class="language-yaml highlight"><span class="filename">pvc1-local.yaml</span><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PersistentVolumeClaim</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pvc1-local</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">  </span><span class="nt">accessModes</span><span class="p">:</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ReadWriteOnce</span><span class="w">          </span><span class="c1"># 必須與 PV 相容</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">  </span><span class="nt">resources</span><span class="p">:</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">    </span><span class="nt">requests</span><span class="p">:</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">      </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3Gi</span><span class="w">           </span><span class="c1"># 請求的容量</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="w">  </span><span class="nt">storageClassName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">manual</span><span class="w">   </span><span class="c1"># 必須與 PV 相同</span>
+</span></code></pre></div>
+<p>套用 PVC：</p>
+<div class="language-bash highlight"><span class="filename">建立 PVC</span><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>pvc1-local.yaml
+</span></code></pre></div>
+<p>查看 PV 和 PVC 狀態：</p>
+<div class="language-bash highlight"><span class="filename">查看 PV 狀態</span><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pv
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>NAME        CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                STORAGECLASS   AGE
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>pv1-local   10Gi       RWO            Retain           Bound    default/pvc1-local   manual         95s
+</span></code></pre></div>
+<div class="language-bash highlight"><span class="filename">查看 PVC 狀態</span><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pvc
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>NAME         STATUS   VOLUME      CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>pvc1-local   Bound    pv1-local   10Gi       RWO            manual         5s
+</span></code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">綁定成功</p>
+<p>PV 和 PVC 的狀態都變成 <code>Bound</code>，表示綁定成功。CLAIM 欄位顯示 <code>default/pvc1-local</code>，表示被哪個 Namespace 的 PVC 綁定。</p>
+</div>
+<hr>
+<h3 id="4-pvc-pod">步驟 4：建立使用 PVC 的 Pod<a class="headerlink" href="#4-pvc-pod" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">下載 Pod YAML</span><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>wget<span class="w"> </span>http://10.0.1.248/k8s/yaml/pv1-pod-local.yaml
+</span></code></pre></div>
+<p><strong>Pod YAML 內容</strong>：</p>
+<div class="language-yaml highlight"><span class="filename">pv1-pod-local.yaml</span><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pv1-pod-local</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="w">  </span><span class="nt">containers</span><span class="p">:</span>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker1.training.lab:5000/nginx</span>
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="w">    </span><span class="nt">volumeMounts</span><span class="p">:</span>
+</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="s">"/usr/share/nginx/html"</span><span class="w">  </span><span class="c1"># 容器內掛載路徑</span>
+</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pv1-storage</span>
+</span><span id="__span-17-14"><a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a><span class="w">  </span><span class="nt">volumes</span><span class="p">:</span>
+</span><span id="__span-17-15"><a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pv1-storage</span>
+</span><span id="__span-17-16"><a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a><span class="w">    </span><span class="nt">persistentVolumeClaim</span><span class="p">:</span>
+</span><span id="__span-17-17"><a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a><span class="w">      </span><span class="nt">claimName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pvc1-local</span><span class="w">                </span><span class="c1"># 使用的 PVC 名稱</span>
+</span></code></pre></div>
+<p>套用 Pod：</p>
+<div class="language-bash highlight"><span class="filename">建立 Pod</span><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>pv1-pod-local.yaml
+</span></code></pre></div>
+<p>查看 Pod 狀態：</p>
+<div class="language-bash highlight"><span class="filename">查看 Pod</span><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-o<span class="w"> </span>wide
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>NAME            READY   STATUS    RESTARTS   AGE   IP            NODE
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>pv1-pod-local   1/1     Running   0          21s   10.128.1.17   k8s-node1.training.lab
+</span></code></pre></div>
+<p>測試存取：</p>
+<div class="language-bash highlight"><span class="filename">測試存取</span><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>curl<span class="w"> </span><span class="m">10</span>.128.1.17
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>node1...AAA
+</span></code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">hostPath 的侷限</p>
+<p>Pod 被調度到 node1，所以看到的是 node1 上的 <code>/mnt/data/index.html</code> 內容（node1...AAA）。如果 Pod 被調度到 node2，會看到不同的內容（node2...BBB）。</p>
+</div>
+<hr>
+<h2 id="lab-nfs">Lab 實作練習：NFS 網路儲存<a class="headerlink" href="#lab-nfs" title="Permanent link">¶</a></h2>
+<h3 id="_6">架構說明<a class="headerlink" href="#_6" title="Permanent link">¶</a></h3>
+<p>使用 NFS 時，所有節點都可以存取相同的共享儲存空間。</p>
+<pre class="mermaid"><code>graph TB
+    subgraph "k8s-master1 (NFS Server)"
+        NFS[NFS 服務]
+        Data[/data&lt;br/&gt;index.html: master...CCC]
+        NFS --&gt; Data
+    end
+
+    subgraph "k8s-node1"
+        Pod1[pv2-pod-nfs]
+        Pod1 -.-&gt;|NFS 掛載| NFS
+    end
+
+    subgraph "k8s-node2"
+        Pod2[Pod]
+        Pod2 -.-&gt;|NFS 掛載| NFS
+    end</code></pre>
+<hr>
+<h3 id="1-nfs">步驟 1：安裝 NFS 工具<a class="headerlink" href="#1-nfs" title="Permanent link">¶</a></h3>
+<p><strong>在所有節點（master1、node1、node2）安裝 nfs-utils</strong>：</p>
+<div class="language-bash highlight"><span class="filename">安裝 nfs-utils</span><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>yum<span class="w"> </span>install<span class="w"> </span>nfs-utils<span class="w"> </span>-y
+</span></code></pre></div>
+<hr>
+<h3 id="2-nfs-serverk8s-master1">步驟 2：設定 NFS Server（k8s-master1）<a class="headerlink" href="#2-nfs-serverk8s-master1" title="Permanent link">¶</a></h3>
+<p><strong>在 k8s-master1 上執行</strong>：</p>
+<p>建立共享目錄：</p>
+<div class="language-bash highlight"><span class="filename">建立共享目錄</span><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>/data
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"master...CCC"</span><span class="w"> </span>&gt;<span class="w"> </span>/data/index.html
+</span></code></pre></div>
+<p>設定 NFS 匯出：</p>
+<div class="language-bash highlight"><span class="filename">編輯 /etc/exports</span><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>vi<span class="w"> </span>/etc/exports
+</span></code></pre></div>
+<p>加入以下內容：</p>
+<div class="language-text highlight"><span class="filename">/etc/exports</span><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>/data *(rw,no_root_squash)
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>選項</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>*</code></td>
+<td>允許所有主機存取</td>
+</tr>
+<tr>
+<td><code>rw</code></td>
+<td>讀寫權限</td>
+</tr>
+<tr>
+<td><code>no_root_squash</code></td>
+<td>root 使用者保持 root 權限</td>
+</tr>
+</tbody>
+</table>
+<p>啟動 NFS 服務：</p>
+<div class="language-bash highlight"><span class="filename">啟動並啟用 NFS</span><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>systemctl<span class="w"> </span>start<span class="w"> </span>nfs-server.service
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>nfs-server.service
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>systemctl<span class="w"> </span>status<span class="w"> </span>nfs-server.service
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>● nfs-server.service - NFS server and services
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>     Loaded: loaded (/usr/lib/systemd/system/nfs-server.service; enabled)
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>     Active: active (exited)
+</span></code></pre></div>
+<hr>
+<h3 id="3-nfs-k8s-node1">步驟 3：測試 NFS 掛載（k8s-node1）<a class="headerlink" href="#3-nfs-k8s-node1" title="Permanent link">¶</a></h3>
+<p><strong>在 k8s-node1 上執行</strong>：</p>
+<div class="language-bash highlight"><span class="filename">建立掛載點並掛載 NFS</span><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>/mnt/nfs
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>mount<span class="w"> </span>-t<span class="w"> </span>nfs<span class="w"> </span>k8s-master1:/data<span class="w"> </span>/mnt/nfs
+</span></code></pre></div>
+<p>驗證掛載：</p>
+<div class="language-bash highlight"><span class="filename">驗證掛載</span><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>df<span class="w"> </span>-Th<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>nfs
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>cat<span class="w"> </span>/mnt/nfs/index.html
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>k8s-master1:/data   nfs4   70G  7.4G  63G  11% /mnt/nfs
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>master...CCC
+</span></code></pre></div>
+<p>卸載（測試完成後）：</p>
+<div class="language-bash highlight"><span class="filename">卸載 NFS</span><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>umount<span class="w"> </span>/mnt/nfs
+</span></code></pre></div>
+<hr>
+<h3 id="4-nfs-pv">步驟 4：建立 NFS PV<a class="headerlink" href="#4-nfs-pv" title="Permanent link">¶</a></h3>
+<p><strong>回到 k8s-master1</strong>：</p>
+<div class="language-bash highlight"><span class="filename">下載 NFS PV YAML</span><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>wget<span class="w"> </span>http://10.0.1.248/k8s/yaml/pv2-nfs.yaml
+</span></code></pre></div>
+<p><strong>NFS PV YAML 內容</strong>：</p>
+<div class="language-yaml highlight"><span class="filename">pv2-nfs.yaml</span><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PersistentVolume</span>
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pv2-nfs</span>
+</span><span id="__span-34-5"><a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-34-6"><a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a><span class="w">  </span><span class="nt">capacity</span><span class="p">:</span>
+</span><span id="__span-34-7"><a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a><span class="w">    </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10Gi</span>
+</span><span id="__span-34-8"><a id="__codelineno-34-8" name="__codelineno-34-8" href="#__codelineno-34-8"></a><span class="w">  </span><span class="nt">accessModes</span><span class="p">:</span>
+</span><span id="__span-34-9"><a id="__codelineno-34-9" name="__codelineno-34-9" href="#__codelineno-34-9"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ReadWriteOnce</span>
+</span><span id="__span-34-10"><a id="__codelineno-34-10" name="__codelineno-34-10" href="#__codelineno-34-10"></a><span class="w">  </span><span class="nt">persistentVolumeReclaimPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Retain</span>
+</span><span id="__span-34-11"><a id="__codelineno-34-11" name="__codelineno-34-11" href="#__codelineno-34-11"></a><span class="w">  </span><span class="nt">storageClassName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">manual</span>
+</span><span id="__span-34-12"><a id="__codelineno-34-12" name="__codelineno-34-12" href="#__codelineno-34-12"></a><span class="w">  </span><span class="nt">nfs</span><span class="p">:</span>
+</span><span id="__span-34-13"><a id="__codelineno-34-13" name="__codelineno-34-13" href="#__codelineno-34-13"></a><span class="w">    </span><span class="nt">server</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">k8s-master1</span><span class="w">              </span><span class="c1"># NFS Server 主機名稱</span>
+</span><span id="__span-34-14"><a id="__codelineno-34-14" name="__codelineno-34-14" href="#__codelineno-34-14"></a><span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">"/data"</span><span class="w">                    </span><span class="c1"># NFS 共享路徑</span>
+</span></code></pre></div>
+<p>套用 PV：</p>
+<div class="language-bash highlight"><span class="filename">建立 NFS PV</span><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>pv2-nfs.yaml
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pv
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>NAME        CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS      CLAIM                STORAGECLASS   AGE
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>pv1-local   10Gi       RWO            Retain           Bound       default/pvc1-local   manual         19m
+</span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>pv2-nfs     10Gi       RWO            Retain           Available                        manual         3s
+</span></code></pre></div>
+<hr>
+<h3 id="5-nfs-pvc">步驟 5：建立 NFS PVC<a class="headerlink" href="#5-nfs-pvc" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">下載 NFS PVC YAML</span><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>wget<span class="w"> </span>http://10.0.1.248/k8s/yaml/pvc2-nfs.yaml
+</span></code></pre></div>
+<p><strong>NFS PVC YAML 內容</strong>：</p>
+<div class="language-yaml highlight"><span class="filename">pvc2-nfs.yaml</span><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PersistentVolumeClaim</span>
+</span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-38-4"><a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pvc2-nfs</span>
+</span><span id="__span-38-5"><a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-38-6"><a id="__codelineno-38-6" name="__codelineno-38-6" href="#__codelineno-38-6"></a><span class="w">  </span><span class="nt">accessModes</span><span class="p">:</span>
+</span><span id="__span-38-7"><a id="__codelineno-38-7" name="__codelineno-38-7" href="#__codelineno-38-7"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ReadWriteOnce</span>
+</span><span id="__span-38-8"><a id="__codelineno-38-8" name="__codelineno-38-8" href="#__codelineno-38-8"></a><span class="w">  </span><span class="nt">resources</span><span class="p">:</span>
+</span><span id="__span-38-9"><a id="__codelineno-38-9" name="__codelineno-38-9" href="#__codelineno-38-9"></a><span class="w">    </span><span class="nt">requests</span><span class="p">:</span>
+</span><span id="__span-38-10"><a id="__codelineno-38-10" name="__codelineno-38-10" href="#__codelineno-38-10"></a><span class="w">      </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3Gi</span>
+</span><span id="__span-38-11"><a id="__codelineno-38-11" name="__codelineno-38-11" href="#__codelineno-38-11"></a><span class="w">  </span><span class="nt">storageClassName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">manual</span>
+</span></code></pre></div>
+<p>套用 PVC：</p>
+<div class="language-bash highlight"><span class="filename">建立 NFS PVC</span><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>pvc2-nfs.yaml
+</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pv
+</span><span id="__span-39-3"><a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pvc
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>NAME        CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                STORAGECLASS   AGE
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>pv1-local   10Gi       RWO            Retain           Bound    default/pvc1-local   manual         20m
+</span><span id="__span-40-3"><a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>pv2-nfs     10Gi       RWO            Retain           Bound    default/pvc2-nfs     manual         91s
+</span><span id="__span-40-4"><a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a>
+</span><span id="__span-40-5"><a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a>NAME         STATUS   VOLUME      CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+</span><span id="__span-40-6"><a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a>pvc1-local   Bound    pv1-local   10Gi       RWO            manual         19m
+</span><span id="__span-40-7"><a id="__codelineno-40-7" name="__codelineno-40-7" href="#__codelineno-40-7"></a>pvc2-nfs     Bound    pv2-nfs     10Gi       RWO            manual         5s
+</span></code></pre></div>
+<hr>
+<h3 id="6-nfs-pvc-pod">步驟 6：建立使用 NFS PVC 的 Pod<a class="headerlink" href="#6-nfs-pvc-pod" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">下載 NFS Pod YAML</span><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>wget<span class="w"> </span>http://10.0.1.248/k8s/yaml/pv2-pod-nfs.yaml
+</span></code></pre></div>
+<p><strong>NFS Pod YAML 內容</strong>：</p>
+<div class="language-yaml highlight"><span class="filename">pv2-pod-nfs.yaml</span><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+</span><span id="__span-42-2"><a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
+</span><span id="__span-42-3"><a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-42-4"><a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pv2-pod-nfs</span>
+</span><span id="__span-42-5"><a id="__codelineno-42-5" name="__codelineno-42-5" href="#__codelineno-42-5"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-42-6"><a id="__codelineno-42-6" name="__codelineno-42-6" href="#__codelineno-42-6"></a><span class="w">  </span><span class="nt">containers</span><span class="p">:</span>
+</span><span id="__span-42-7"><a id="__codelineno-42-7" name="__codelineno-42-7" href="#__codelineno-42-7"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+</span><span id="__span-42-8"><a id="__codelineno-42-8" name="__codelineno-42-8" href="#__codelineno-42-8"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker1.training.lab:5000/nginx</span>
+</span><span id="__span-42-9"><a id="__codelineno-42-9" name="__codelineno-42-9" href="#__codelineno-42-9"></a><span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+</span><span id="__span-42-10"><a id="__codelineno-42-10" name="__codelineno-42-10" href="#__codelineno-42-10"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+</span><span id="__span-42-11"><a id="__codelineno-42-11" name="__codelineno-42-11" href="#__codelineno-42-11"></a><span class="w">    </span><span class="nt">volumeMounts</span><span class="p">:</span>
+</span><span id="__span-42-12"><a id="__codelineno-42-12" name="__codelineno-42-12" href="#__codelineno-42-12"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="s">"/usr/share/nginx/html"</span>
+</span><span id="__span-42-13"><a id="__codelineno-42-13" name="__codelineno-42-13" href="#__codelineno-42-13"></a><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pv2-storage</span>
+</span><span id="__span-42-14"><a id="__codelineno-42-14" name="__codelineno-42-14" href="#__codelineno-42-14"></a><span class="w">  </span><span class="nt">volumes</span><span class="p">:</span>
+</span><span id="__span-42-15"><a id="__codelineno-42-15" name="__codelineno-42-15" href="#__codelineno-42-15"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pv2-storage</span>
+</span><span id="__span-42-16"><a id="__codelineno-42-16" name="__codelineno-42-16" href="#__codelineno-42-16"></a><span class="w">    </span><span class="nt">persistentVolumeClaim</span><span class="p">:</span>
+</span><span id="__span-42-17"><a id="__codelineno-42-17" name="__codelineno-42-17" href="#__codelineno-42-17"></a><span class="w">      </span><span class="nt">claimName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pvc2-nfs</span><span class="w">              </span><span class="c1"># 使用 NFS PVC</span>
+</span></code></pre></div>
+<p>套用 Pod：</p>
+<div class="language-bash highlight"><span class="filename">建立 NFS Pod</span><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>pv2-pod-nfs.yaml
+</span><span id="__span-43-2"><a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-o<span class="w"> </span>wide
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>NAME            READY   STATUS    RESTARTS   AGE   IP            NODE
+</span><span id="__span-44-2"><a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a>pv1-pod-local   1/1     Running   0          19m   10.128.1.17   k8s-node1.training.lab
+</span><span id="__span-44-3"><a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a>pv2-pod-nfs     1/1     Running   0          18s   10.128.1.18   k8s-node1.training.lab
+</span></code></pre></div>
+<p>測試存取：</p>
+<div class="language-bash highlight"><span class="filename">測試 NFS Pod</span><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a>curl<span class="w"> </span><span class="m">10</span>.128.1.18
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a>master...CCC
+</span></code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">NFS 共享儲存</p>
+<p>無論 Pod 運行在哪個節點，都會看到相同的內容（master...CCC），因為資料來自共享的 NFS Server。</p>
+</div>
+<hr>
+<h2 id="hostpath-vs-nfs">hostPath vs NFS 比較<a class="headerlink" href="#hostpath-vs-nfs" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>hostPath</th>
+<th>NFS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>資料位置</strong></td>
+<td>節點本地</td>
+<td>網路共享</td>
+</tr>
+<tr>
+<td><strong>跨節點存取</strong></td>
+<td>❌ 不支援</td>
+<td>✅ 支援</td>
+</tr>
+<tr>
+<td><strong>Pod 調度</strong></td>
+<td>限制在特定節點</td>
+<td>可調度到任意節點</td>
+</tr>
+<tr>
+<td><strong>設定複雜度</strong></td>
+<td>簡單</td>
+<td>需要設定 NFS Server</td>
+</tr>
+<tr>
+<td><strong>使用場景</strong></td>
+<td>測試、單節點</td>
+<td>生產環境、多節點共享</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="_7">常見問題<a class="headerlink" href="#_7" title="Permanent link">¶</a></h2>
+<details class="question">
+<summary>Q1：PVC 一直處於 Pending 狀態？</summary>
+<p><strong>原因</strong>：找不到符合條件的 PV。</p>
+<p><strong>檢查項目</strong>：</p>
+<ul>
+<li>storageClassName 是否相同</li>
+<li>accessModes 是否相容</li>
+<li>請求的 storage 是否超過 PV 容量</li>
+</ul>
+</details>
+<details class="question">
+<summary>Q2：NFS 掛載失敗？</summary>
+<p><strong>解決方案</strong>：</p>
+<ol>
+<li>確認 NFS Server 有啟動：<code>systemctl status nfs-server</code></li>
+<li>確認所有節點都安裝了 nfs-utils</li>
+<li>確認防火牆沒有阻擋 NFS 連線</li>
+<li>使用 <code>showmount -e k8s-master1</code> 查看匯出的目錄</li>
+</ol>
+</details>
+<details class="question">
+<summary>Q3：PV 刪除後如何重新使用？</summary>
+<p><strong>解答</strong>：當 persistentVolumeReclaimPolicy 設為 Retain 時：</p>
+<ol>
+<li>手動清除 PV 上的資料</li>
+<li>刪除舊的 PV</li>
+<li>重新建立 PV</li>
+</ol>
+</details>
+<hr>
+<h2 id="_8">小結<a class="headerlink" href="#_8" title="Permanent link">¶</a></h2>
+<p>本章節重點回顧：</p>
+<ul>
+<li>✅ <strong>PV/PVC 概念</strong>：PV 是儲存資源，PVC 是使用請求，兩者透過 storageClassName 配對</li>
+<li>✅ <strong>hostPath</strong>：使用節點本地目錄，簡單但無法跨節點</li>
+<li>✅ <strong>NFS</strong>：提供網路共享儲存，支援跨節點存取</li>
+<li>✅ <strong>綁定流程</strong>：建立 PV → 建立 PVC → 自動綁定 → Pod 掛載 PVC</li>
+<li>✅ <strong>存取模式</strong>：RWO（單節點讀寫）、ROX（多節點唯讀）、RWX（多節點讀寫）</li>
+<li>✅ <strong>回收策略</strong>：Retain（保留）、Delete（刪除）</li>
+</ul>
+<h2 id="_9">延伸閱讀<a class="headerlink" href="#_9" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">Kubernetes Persistent Volumes</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-persistent-volume-storage/">Configure a Pod to Use a PersistentVolume</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/storage/volumes/#nfs">NFS 儲存設定</a></li>
+</ul>
 
 
 

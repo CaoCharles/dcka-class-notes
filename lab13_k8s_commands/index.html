@@ -1021,7 +1021,250 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        實作步驟
+        前置知識
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心概念說明
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="核心概念說明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kubectl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        kubectl 是什麼？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pod 是什麼？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deployment 是什麼？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API 資源簡稱
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 實作練習：Kubernetes 基本指令操作
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 實作練習：Kubernetes 基本指令操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        環境準備
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-registry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 1：初始化私有 Registry 連線設定
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 2：清理現有資源
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 3：建立 Deployment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-pod-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 4：刪除 Pod 與 Deployment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-kubectl-run-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 5：使用 kubectl run 建立 Pod
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 6：建立與擴展 Deployment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-deploymentscale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 7：手動擴展 Deployment（Scale）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8autoscale-hpa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 8：設定自動擴展（Autoscale / HPA）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-labels-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 9：使用 Labels 標籤管理 Pod
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 10：使用 YAML 檔案部署
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kubectl_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常用 kubectl 指令對照表
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常見問題
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        小結
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        延伸閱讀
       
     </span>
   </a>
@@ -1487,7 +1730,250 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        實作步驟
+        前置知識
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心概念說明
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="核心概念說明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kubectl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        kubectl 是什麼？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pod 是什麼？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deployment 是什麼？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API 資源簡稱
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 實作練習：Kubernetes 基本指令操作
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 實作練習：Kubernetes 基本指令操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        環境準備
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-registry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 1：初始化私有 Registry 連線設定
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 2：清理現有資源
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 3：建立 Deployment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-pod-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 4：刪除 Pod 與 Deployment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-kubectl-run-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 5：使用 kubectl run 建立 Pod
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 6：建立與擴展 Deployment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-deploymentscale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 7：手動擴展 Deployment（Scale）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8autoscale-hpa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 8：設定自動擴展（Autoscale / HPA）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-labels-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 9：使用 Labels 標籤管理 Pod
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 10：使用 YAML 檔案部署
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kubectl_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常用 kubectl 指令對照表
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常見問題
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        小結
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        延伸閱讀
       
     </span>
   </a>
@@ -1524,7 +2010,7 @@
     <span class="twemoji">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span style="font-weight: 500;">更新:</span> <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月26日 14:01:45 CST">2026年1月26日 14:01:45</span>
+    <span style="font-weight: 500;">更新:</span> <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月28日 15:27:35 CST">2026年1月28日 15:27:35</span>
   </span>
   
 
@@ -1541,13 +2027,620 @@
   
 
 
-<h1 id="lab-13-kubernetes">LAB 13 kubernetes 常用指令<a class="headerlink" href="#lab-13-kubernetes" title="Permanent link">¶</a></h1>
+<h1 id="lab-13-kubernetes">LAB 13 Kubernetes 常用指令<a class="headerlink" href="#lab-13-kubernetes" title="Permanent link">¶</a></h1>
 <h2 id="_1">學習目標<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<p>完成本章節後，你將能夠：</p>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 待補</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 使用 kubectl 建立與管理 Deployment</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 使用 kubectl run 建立獨立 Pod</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 使用 kubectl scale 手動擴展 Deployment</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 使用 kubectl autoscale 設定自動擴展（HPA）</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 使用 Labels 標籤管理與查詢 Pod</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 使用 YAML 檔案部署與刪除資源</li>
 </ul>
-<h2 id="_2">實作步驟<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
-<p><em>(本章節內容待補)</em></p>
+<h2 id="_2">前置知識<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<p>開始之前，請確保你已經：</p>
+<ul>
+<li>完成 LAB 12 Kubernetes 叢集安裝</li>
+<li>熟悉 Kubernetes 基本概念（Pod、Deployment、Service）</li>
+<li>準備好 Kubernetes 叢集環境（k8s-master1）</li>
+</ul>
+<hr>
+<h2 id="_3">核心概念說明<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<h3 id="kubectl">kubectl 是什麼？<a class="headerlink" href="#kubectl" title="Permanent link">¶</a></h3>
+<p><code>kubectl</code>（讀音：kube-control 或 kube-C-T-L）是 Kubernetes 的**命令列工具（CLI）**，用來與 Kubernetes 叢集進行互動。</p>
+<pre class="mermaid"><code>graph LR
+    User[使用者] --&gt; kubectl[kubectl 指令]
+    kubectl --&gt; API[API Server]
+    API --&gt; Controller[Controller Manager]
+    API --&gt; Scheduler[Scheduler]
+    API --&gt; etcd[(etcd)]</code></pre>
+<div class="admonition info">
+<p class="admonition-title">kubectl 功能</p>
+<ul>
+<li>建立、查看、更新、刪除 Kubernetes 資源</li>
+<li>查看叢集狀態與日誌</li>
+<li>進入容器執行指令</li>
+<li>部署應用程式</li>
+</ul>
+</div>
+<hr>
+<h3 id="pod">Pod 是什麼？<a class="headerlink" href="#pod" title="Permanent link">¶</a></h3>
+<p><strong>Pod（豆莢）</strong> 是 Kubernetes 中**最小的部署單位**，一個 Pod 可以包含一個或多個容器（Container）。</p>
+<pre class="mermaid"><code>graph TB
+    subgraph "Pod"
+        C1[Container 1]
+        C2[Container 2]
+        Volume[(Shared Volume)]
+        C1 -.-&gt; Volume
+        C2 -.-&gt; Volume
+    end
+    Network[Shared Network&lt;br/&gt;同一個 IP]
+    Pod --&gt; Network</code></pre>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>共享網路</strong></td>
+<td>同一個 Pod 內的容器共享相同的 IP 位址和 Port</td>
+</tr>
+<tr>
+<td><strong>共享儲存</strong></td>
+<td>可以掛載共享的 Volume</td>
+</tr>
+<tr>
+<td><strong>生命週期</strong></td>
+<td>Pod 是臨時性的，可能隨時被重新調度</td>
+</tr>
+<tr>
+<td><strong>最小單位</strong></td>
+<td>無法部署「半個容器」，Pod 是不可分割的</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="deployment">Deployment 是什麼？<a class="headerlink" href="#deployment" title="Permanent link">¶</a></h3>
+<p><strong>Deployment（部署）</strong> 是 Kubernetes 中用來**管理 Pod 副本數量和更新策略**的控制器（Controller）。</p>
+<pre class="mermaid"><code>graph TB
+    D[Deployment] --&gt; RS[ReplicaSet]
+    RS --&gt; P1[Pod 1]
+    RS --&gt; P2[Pod 2]
+    RS --&gt; P3[Pod 3]</code></pre>
+<table>
+<thead>
+<tr>
+<th>Deployment 功能</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>副本管理</strong></td>
+<td>確保指定數量的 Pod 副本始終運行</td>
+</tr>
+<tr>
+<td><strong>自動修復</strong></td>
+<td>Pod 掛掉時自動建立新的 Pod</td>
+</tr>
+<tr>
+<td><strong>滾動更新</strong></td>
+<td>更新應用程式時逐步替換舊 Pod</td>
+</tr>
+<tr>
+<td><strong>回滾</strong></td>
+<td>發現問題時可以回到先前版本</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Pod vs Deployment</p>
+<ul>
+<li><strong>直接建立 Pod</strong>（使用 <code>kubectl run</code>）：適合測試，但 Pod 掛掉後**不會自動重建**</li>
+<li><strong>使用 Deployment</strong>（使用 <code>kubectl create deployment</code>）：正式環境推薦，會**自動維護指定數量的 Pod**</li>
+</ul>
+</div>
+<hr>
+<h3 id="api">API 資源簡稱<a class="headerlink" href="#api" title="Permanent link">¶</a></h3>
+<p>在 <code>kubectl</code> 指令中，你可能會看到不同的資源名稱寫法：</p>
+<table>
+<thead>
+<tr>
+<th>完整名稱</th>
+<th>簡稱</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pods</code></td>
+<td><code>po</code></td>
+<td>Pod 資源</td>
+</tr>
+<tr>
+<td><code>deployments.apps</code></td>
+<td><code>deploy</code></td>
+<td>Deployment 資源</td>
+</tr>
+<tr>
+<td><code>services</code></td>
+<td><code>svc</code></td>
+<td>Service 資源</td>
+</tr>
+<tr>
+<td><code>replicasets.apps</code></td>
+<td><code>rs</code></td>
+<td>ReplicaSet 資源</td>
+</tr>
+<tr>
+<td><code>namespaces</code></td>
+<td><code>ns</code></td>
+<td>Namespace 資源</td>
+</tr>
+<tr>
+<td><code>configmaps</code></td>
+<td><code>cm</code></td>
+<td>ConfigMap 資源</td>
+</tr>
+<tr>
+<td><code>secrets</code></td>
+<td><code>secret</code></td>
+<td>Secret 資源</td>
+</tr>
+<tr>
+<td><code>persistentvolumeclaims</code></td>
+<td><code>pvc</code></td>
+<td>PVC 資源</td>
+</tr>
+</tbody>
+</table>
+<p><strong>範例</strong>：以下指令效果相同：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 完整寫法</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>deployments.apps
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># 簡稱寫法</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>kubectl<span class="w"> </span>get<span class="w"> </span>deploy
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">deployments.apps 的由來</p>
+<p><code>deployments.apps</code> 表示 Deployment 資源屬於 <code>apps</code> API 群組。這是因為 Kubernetes 的 API 分成多個群組（如 <code>core</code>、<code>apps</code>、<code>batch</code>），完整寫法可以明確指定資源來源。</p>
+</div>
+<hr>
+<h2 id="lab-kubernetes">Lab 實作練習：Kubernetes 基本指令操作<a class="headerlink" href="#lab-kubernetes" title="Permanent link">¶</a></h2>
+<h3 id="_4">環境準備<a class="headerlink" href="#_4" title="Permanent link">¶</a></h3>
+<pre class="mermaid"><code>graph TB
+    subgraph "Kubernetes Cluster"
+        Master[k8s-master1&lt;br/&gt;192.168.66.71&lt;br/&gt;Control Plane]
+        Node1[k8s-node1&lt;br/&gt;192.168.66.81&lt;br/&gt;Worker Node]
+        Node2[k8s-node2&lt;br/&gt;192.168.66.82&lt;br/&gt;Worker Node]
+        Master --&gt; Node1
+        Master --&gt; Node2
+    end
+
+    subgraph "Private Registry"
+        Docker1[docker1.training.lab:5000&lt;br/&gt;私有映像檔倉庫]
+    end
+
+    Master -.-&gt; Docker1
+    Node1 -.-&gt; Docker1
+    Node2 -.-&gt; Docker1</code></pre>
+<hr>
+<h3 id="1-registry">步驟 1：初始化私有 Registry 連線設定<a class="headerlink" href="#1-registry" title="Permanent link">¶</a></h3>
+<p>為了讓所有節點都能從私有 Registry 拉取映像檔，需要先執行初始化腳本：</p>
+<div class="language-bash highlight"><span class="filename">下載初始化腳本</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>wget<span class="w"> </span>http://10.0.1.249/k8s/scripts/init_pull_from_private_registry.sh
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>--2026-01-28 10:40:26--  http://10.0.1.249/k8s/scripts/init_pull_from_private_registry.sh
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Connecting to 10.0.1.249:80... connected.
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>HTTP request sent, awaiting response... 200 OK
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>Length: 3711 (3.6K) [application/x-sh]
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>Saving to: 'init_pull_from_private_registry.sh'
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>init_pull_from_private_registry.sh   100%[======&gt;]   3.62K  --.-KB/s    in 0s      
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>2026-01-28 10:40:26 (760 MB/s) - 'init_pull_from_private_registry.sh' saved [3711/3711]
+</span></code></pre></div>
+<p>設定執行權限並執行腳本：</p>
+<div class="language-bash highlight"><span class="filename">設定權限並執行</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>chmod<span class="w"> </span><span class="m">755</span><span class="w"> </span>init_pull_from_private_registry.sh
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>./init_pull_from_private_registry.sh
+</span></code></pre></div>
+<p><strong>預期結果</strong>（部分輸出）：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker1
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Warning: Permanently added 'docker1' (ED25519) to the list of known hosts.
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>docker1.training.lab
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>docker-ce-29.1.5-1.el9.x86_64
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>Install docker-ce...
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>containerd.io-2.2.1-1.el9.x86_64
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>Install containerd.io...
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>...
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>k8s-master1
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>k8s-master1.training.lab
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>docker-ce-29.2.0-1.el9.x86_64
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>Install docker-ce...
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>containerd.io-2.2.1-1.el9.x86_64
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>Install containerd.io...
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>cri-o-1.32.1-150500.1.1.x86_64
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>Install cri-o...
+</span></code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">腳本功能</p>
+<p>此腳本會自動設定所有節點（docker1、docker2、k8s-standalone、k8s-master1、k8s-node1、k8s-node2）的 Docker、containerd 和 CRI-O 環境，使其能夠從私有 Registry 拉取映像檔。</p>
+</div>
+<hr>
+<h3 id="2">步驟 2：清理現有資源<a class="headerlink" href="#2" title="Permanent link">¶</a></h3>
+<p>下載並執行清理腳本：</p>
+<div class="language-bash highlight"><span class="filename">下載清理腳本</span><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>curl<span class="w"> </span>-LO<span class="w"> </span>http://10.0.1.249/k8s/scripts/kube_clean_all.sh
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>chmod<span class="w"> </span><span class="m">755</span><span class="w"> </span>kube_clean_all.sh
+</span></code></pre></div>
+<p>執行清理：</p>
+<div class="language-bash highlight"><span class="filename">清理所有資源</span><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>./kube_clean_all.sh
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>service "kubernetes" deleted
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>deployment.apps "test1" deleted
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>No resources found
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>configmap "kube-root-ca.crt" deleted
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>namespace "kube-node-lease" deleted
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>Error from server (Forbidden): namespaces "default" is forbidden: this namespace may not be deleted
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>Error from server (Forbidden): namespaces "kube-public" is forbidden: this namespace may not be deleted
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>Error from server (Forbidden): namespaces "kube-system" is forbidden: this namespace may not be deleted
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">系統命名空間</p>
+<p><code>default</code>、<code>kube-public</code>、<code>kube-system</code> 為系統保護的命名空間，無法被刪除，出現錯誤訊息是正常的。</p>
+</div>
+<hr>
+<h3 id="3-deployment">步驟 3：建立 Deployment<a class="headerlink" href="#3-deployment" title="Permanent link">¶</a></h3>
+<p>使用 <code>kubectl create deployment</code> 建立 Deployment：</p>
+<div class="language-bash highlight"><span class="filename">建立 Deployment (4 個副本)</span><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>kubectl<span class="w"> </span>create<span class="w"> </span>deployment<span class="w"> </span>test1<span class="w"> </span>--image<span class="o">=</span>docker1.training.lab:5000/httpd<span class="w"> </span>--replicas<span class="o">=</span><span class="m">4</span>
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>deployment.apps/test1 created
+</span></code></pre></div>
+<p>查看 Deployment 狀態：</p>
+<div class="language-bash highlight"><span class="filename">查看 Deployment</span><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>deployments.apps
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>NAME    READY   UP-TO-DATE   AVAILABLE   AGE
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>test1   0/4     4            0           13s
+</span></code></pre></div>
+<p>查看 Pod 詳細資訊：</p>
+<div class="language-bash highlight"><span class="filename">查看 Pod 詳細位置</span><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-o<span class="w"> </span>wide
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>NAME                    READY   STATUS    RESTARTS   AGE     IP       NODE     NOMINATED NODE   READINESS GATES
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>test1-dcd787f9d-9rkdj   0/1     Pending   0          5m49s   &lt;none&gt;   &lt;none&gt;   &lt;none&gt;           &lt;none&gt;
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>test1-dcd787f9d-cqqmc   0/1     Pending   0          5m49s   &lt;none&gt;   &lt;none&gt;   &lt;none&gt;           &lt;none&gt;
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>test1-dcd787f9d-l5rmx   0/1     Pending   0          5m49s   &lt;none&gt;   &lt;none&gt;   &lt;none&gt;           &lt;none&gt;
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>test1-dcd787f9d-rznwh   0/1     Pending   0          5m49s   &lt;none&gt;   &lt;none&gt;   &lt;none&gt;           &lt;none&gt;
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Pending 狀態</p>
+<p>如果 Pod 顯示 <code>Pending</code> 狀態，可能是因為：</p>
+<ul>
+<li>Worker Node 尚未 Ready</li>
+<li>資源不足</li>
+<li>無法拉取映像檔</li>
+</ul>
+<p>使用 <code>kubectl describe pod &lt;pod-name&gt;</code> 查看詳細原因。</p>
+</div>
+<hr>
+<h3 id="4-pod-deployment">步驟 4：刪除 Pod 與 Deployment<a class="headerlink" href="#4-pod-deployment" title="Permanent link">¶</a></h3>
+<p>刪除單一 Pod：</p>
+<div class="language-bash highlight"><span class="filename">刪除指定 Pod</span><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>pod/test1-dcd787f9d-rznwh
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>pod "test1-dcd787f9d-rznwh" deleted
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Pod 名稱格式</p>
+<p>Pod 名稱格式為 <code>&lt;deployment-name&gt;-&lt;replicaset-hash&gt;-&lt;pod-hash&gt;</code>。
+注意不要多打連字號（<code>--</code>），否則會找不到 Pod。</p>
+</div>
+<p>刪除整個 Deployment（會同時刪除所有相關 Pod）：</p>
+<div class="language-bash highlight"><span class="filename">刪除 Deployment</span><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>deployments.apps<span class="w"> </span>test1
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>deployment.apps "test1" deleted
+</span></code></pre></div>
+<p>驗證刪除結果：</p>
+<div class="language-bash highlight"><span class="filename">確認刪除完成</span><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>deployments.apps
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>No resources found in default namespace.
+</span></code></pre></div>
+<hr>
+<h3 id="5-kubectl-run-pod">步驟 5：使用 kubectl run 建立 Pod<a class="headerlink" href="#5-kubectl-run-pod" title="Permanent link">¶</a></h3>
+<p>使用 <code>kubectl run</code> 直接建立獨立 Pod（不透過 Deployment）：</p>
+<div class="language-bash highlight"><span class="filename">建立 Pod 並設定環境變數</span><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>kubectl<span class="w"> </span>run<span class="w"> </span>test4<span class="w"> </span>--image<span class="o">=</span>docker1.training.lab:5000/nginx<span class="w"> </span>--env<span class="o">=</span><span class="s2">"TEST=test4"</span>
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>pod/test4 created
+</span></code></pre></div>
+<p>進入 Pod 執行指令（使用 <code>kubectl exec</code>）：</p>
+<div class="language-bash highlight"><span class="filename">進入 Pod 執行 bash</span><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>test4<span class="w"> </span>-it<span class="w"> </span>--<span class="w"> </span>bash
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">常見錯誤</p>
+<p><strong>錯誤寫法</strong>：<code>kubectl exec test4 -it --bash</code>（缺少 <code>--</code> 分隔符）</p>
+<p><strong>正確寫法</strong>：<code>kubectl exec test4 -it -- bash</code></p>
+<p><code>--</code> 用來分隔 kubectl 參數和容器內要執行的指令。</p>
+</div>
+<hr>
+<h3 id="6-deployment">步驟 6：建立與擴展 Deployment<a class="headerlink" href="#6-deployment" title="Permanent link">¶</a></h3>
+<p>建立 Deployment：</p>
+<div class="language-bash highlight"><span class="filename">建立 test5 Deployment</span><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>kubectl<span class="w"> </span>create<span class="w"> </span>deployment<span class="w"> </span>test5<span class="w"> </span>--image<span class="o">=</span>docker1.training.lab:5000/nginx
+</span></code></pre></div>
+<div class="language-bash highlight"><span class="filename">建立 test6 Deployment（2 個副本）</span><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>kubectl<span class="w"> </span>create<span class="w"> </span>deployment<span class="w"> </span>test6<span class="w"> </span>--image<span class="o">=</span>docker1.training.lab:5000/nginx<span class="w"> </span>--replicas<span class="o">=</span><span class="m">2</span>
+</span></code></pre></div>
+<p>查看 Deployment 狀態：</p>
+<div class="language-bash highlight"><span class="filename">查看特定 Deployment</span><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>deployments.apps<span class="w"> </span>test5
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>deployments.apps<span class="w"> </span>test6
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>NAME    READY   UP-TO-DATE   AVAILABLE   AGE
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>test5   0/1     1            0           28s
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>NAME    READY   UP-TO-DATE   AVAILABLE   AGE
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>test6   0/2     2            0           4m43s
+</span></code></pre></div>
+<hr>
+<h3 id="7-deploymentscale">步驟 7：手動擴展 Deployment（Scale）<a class="headerlink" href="#7-deploymentscale" title="Permanent link">¶</a></h3>
+<p>使用 <code>kubectl scale</code> 手動調整副本數量：</p>
+<div class="language-bash highlight"><span class="filename">擴展 test5 到 3 個副本</span><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>kubectl<span class="w"> </span>scale<span class="w"> </span>deployment<span class="w"> </span>test5<span class="w"> </span>--replicas<span class="o">=</span><span class="m">3</span>
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>deployment.apps/test5 scaled
+</span></code></pre></div>
+<p>驗證擴展結果：</p>
+<div class="language-bash highlight"><span class="filename">查看擴展後的狀態</span><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>deployments.apps<span class="w"> </span>test5
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>test5
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>NAME    READY   UP-TO-DATE   AVAILABLE   AGE
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>test5   0/3     3            0           10m
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>
+</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>test5-8464657978-5jgj6   0/1     Pending   0          10m
+</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a>test5-8464657978-fc7zg   0/1     Pending   0          28s
+</span><span id="__span-30-6"><a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a>test5-8464657978-sqgql   0/1     Pending   0          28s
+</span></code></pre></div>
+<hr>
+<h3 id="8autoscale-hpa">步驟 8：設定自動擴展（Autoscale / HPA）<a class="headerlink" href="#8autoscale-hpa" title="Permanent link">¶</a></h3>
+<p>使用 <code>kubectl autoscale</code> 建立 Horizontal Pod Autoscaler（HPA）：</p>
+<div class="language-bash highlight"><span class="filename">設定自動擴展</span><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>kubectl<span class="w"> </span>autoscale<span class="w"> </span>deployment<span class="w"> </span>test5<span class="w"> </span>--min<span class="o">=</span><span class="m">4</span><span class="w"> </span>--max<span class="o">=</span><span class="m">9</span><span class="w"> </span>--cpu-percent<span class="o">=</span><span class="m">80</span>
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>horizontalpodautoscaler.autoscaling/test5 autoscaled
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">常見錯誤</p>
+<p><strong>錯誤寫法</strong>：</p>
+<ul>
+<li><code>--cpu80%</code>（缺少等號和 percent）</li>
+<li><code>--cpu 80%</code>（有空格、缺少 percent）</li>
+<li><code>--cpu=80%</code>（flag 名稱錯誤）</li>
+</ul>
+<p><strong>正確寫法</strong>：<code>--cpu-percent=80</code></p>
+</div>
+<p>驗證 HPA 效果：</p>
+<div class="language-bash highlight"><span class="filename">查看擴展後的 Deployment</span><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>deployments.apps<span class="w"> </span>test5
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>NAME    READY   UP-TO-DATE   AVAILABLE   AGE
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>test5   0/4     4            0           12m
+</span></code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">HPA 說明</p>
+<p>HPA 會根據 CPU 使用率自動調整 Pod 數量：</p>
+<ul>
+<li><strong>--min=4</strong>：最少維持 4 個副本</li>
+<li><strong>--max=9</strong>：最多擴展到 9 個副本</li>
+<li><strong>--cpu-percent=80</strong>：當 CPU 使用率超過 80% 時觸發擴展</li>
+</ul>
+</div>
+<hr>
+<h3 id="9-labels-pod">步驟 9：使用 Labels 標籤管理 Pod<a class="headerlink" href="#9-labels-pod" title="Permanent link">¶</a></h3>
+<p>建立帶有自訂 Label 的 Pod：</p>
+<div class="language-bash highlight"><span class="filename">建立帶有 Label 的 Pod</span><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>kubectl<span class="w"> </span>run<span class="w"> </span>test7<span class="w"> </span>--image<span class="o">=</span>docker1.training.lab:5000/nginx<span class="w"> </span>--labels<span class="o">=</span><span class="s2">"os=linux"</span>
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>pod/test7 created
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">常見錯誤</p>
+<p><strong>錯誤寫法</strong>：<code>kubectl run test8 --image=nginx ==labels="os=windows"</code>（兩個等號）</p>
+<p><strong>正確寫法</strong>：<code>kubectl run test8 --image=nginx --labels="os=windows"</code></p>
+</div>
+<p>查看 Pod Labels：</p>
+<div class="language-bash highlight"><span class="filename">顯示所有 Pod 的 Labels</span><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>--show-labels
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>NAME                     READY   STATUS    RESTARTS   AGE     LABELS
+</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>test4                    0/1     Pending   0          18m     run=test4
+</span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a>test5-8464657978-5jgj6   0/1     Pending   0          14m     app=test5,pod-template-hash=8464657978
+</span><span id="__span-38-4"><a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a>test7                    0/1     Pending   0          47s     os=linux
+</span><span id="__span-38-5"><a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a>test8                    0/1     Pending   0          13s     run=test8
+</span></code></pre></div>
+<p>依據 Label 過濾 Pod：</p>
+<div class="language-bash highlight"><span class="filename">過濾包含 os Label 的 Pod</span><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>--show-labels<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">'os='</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><span class="filename">顯示特定 Label 欄位</span><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-L<span class="w"> </span>os
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>NAME                     READY   STATUS    RESTARTS   AGE     OS
+</span><span id="__span-41-2"><a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>test4                    0/1     Pending   0          20m     
+</span><span id="__span-41-3"><a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a>test5-8464657978-5jgj6   0/1     Pending   0          16m     
+</span><span id="__span-41-4"><a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a>test7                    0/1     Pending   0          2m57s   linux
+</span><span id="__span-41-5"><a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a>test8                    0/1     Pending   0          2m23s   
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Label 使用技巧</p>
+<ul>
+<li><code>--show-labels</code>：顯示所有 Labels</li>
+<li><code>-L &lt;label-key&gt;</code>：將指定的 Label 顯示為獨立欄位</li>
+<li><code>-l &lt;label-selector&gt;</code>：依據 Label 過濾資源</li>
+</ul>
+</div>
+<hr>
+<h3 id="10-yaml">步驟 10：使用 YAML 檔案部署<a class="headerlink" href="#10-yaml" title="Permanent link">¶</a></h3>
+<p>從 URL 直接套用 YAML 檔案：</p>
+<div class="language-bash highlight"><span class="filename">從 URL 套用 YAML</span><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>http://10.0.1.249/k8s/yaml/test9.yaml
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>pod/test9 created
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">常見錯誤</p>
+<p>注意 URL 路徑要正確（<code>/k8s/yaml/</code>），打錯會出現 404 錯誤：
+</p><div class="language-text highlight"><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>error: unable to read URL "http://10.0.1.249/k8s/taml/test9.yaml", 
+</span><span id="__span-44-2"><a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a>server reported 404 Not Found, status code=404
+</span></code></pre></div><p></p>
+</div>
+<p>下載 YAML 檔案查看內容：</p>
+<div class="language-bash highlight"><span class="filename">下載 YAML 檔案</span><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a>wget<span class="w"> </span>http://10.0.1.249/k8s/yaml/test9.yaml
+</span></code></pre></div>
+<div class="language-bash highlight"><span class="filename">查看 YAML 內容</span><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a>cat<span class="w"> </span>test9.yaml
+</span></code></pre></div>
+<p><strong>YAML 內容</strong>：</p>
+<div class="language-yaml highlight"><span class="filename">test9.yaml</span><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+</span><span id="__span-47-2"><a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
+</span><span id="__span-47-3"><a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-47-4"><a id="__codelineno-47-4" name="__codelineno-47-4" href="#__codelineno-47-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test9</span>
+</span><span id="__span-47-5"><a id="__codelineno-47-5" name="__codelineno-47-5" href="#__codelineno-47-5"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-47-6"><a id="__codelineno-47-6" name="__codelineno-47-6" href="#__codelineno-47-6"></a><span class="w">  </span><span class="nt">containers</span><span class="p">:</span>
+</span><span id="__span-47-7"><a id="__codelineno-47-7" name="__codelineno-47-7" href="#__codelineno-47-7"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test9</span>
+</span><span id="__span-47-8"><a id="__codelineno-47-8" name="__codelineno-47-8" href="#__codelineno-47-8"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker1.training.lab:5000/nginx</span>
+</span></code></pre></div>
+<p>使用本地 YAML 檔案刪除資源：</p>
+<div class="language-bash highlight"><span class="filename">使用 YAML 刪除資源</span><pre><span></span><code><span id="__span-48-1"><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>test9.yaml
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-49-1"><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a>pod "test9" deleted
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">YAML 部署的優點</p>
+<ul>
+<li><strong>版本控制</strong>：可以將 YAML 檔案納入 Git 管理</li>
+<li><strong>重複使用</strong>：同一個 YAML 可以重複部署</li>
+<li><strong>完整定義</strong>：YAML 可以包含更多進階設定</li>
+</ul>
+</div>
+<hr>
+<h2 id="kubectl_1">常用 kubectl 指令對照表<a class="headerlink" href="#kubectl_1" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>指令</th>
+<th>範例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>建立 Deployment</strong></td>
+<td><code>kubectl create deployment</code></td>
+<td><code>kubectl create deployment test --image=nginx --replicas=3</code></td>
+</tr>
+<tr>
+<td><strong>建立 Pod</strong></td>
+<td><code>kubectl run</code></td>
+<td><code>kubectl run test --image=nginx --env="KEY=value"</code></td>
+</tr>
+<tr>
+<td><strong>查看資源</strong></td>
+<td><code>kubectl get</code></td>
+<td><code>kubectl get pods -o wide</code></td>
+</tr>
+<tr>
+<td><strong>擴展副本</strong></td>
+<td><code>kubectl scale</code></td>
+<td><code>kubectl scale deployment test --replicas=5</code></td>
+</tr>
+<tr>
+<td><strong>自動擴展</strong></td>
+<td><code>kubectl autoscale</code></td>
+<td><code>kubectl autoscale deployment test --min=2 --max=10 --cpu-percent=80</code></td>
+</tr>
+<tr>
+<td><strong>進入容器</strong></td>
+<td><code>kubectl exec</code></td>
+<td><code>kubectl exec test -it -- bash</code></td>
+</tr>
+<tr>
+<td><strong>刪除資源</strong></td>
+<td><code>kubectl delete</code></td>
+<td><code>kubectl delete pod/test</code></td>
+</tr>
+<tr>
+<td><strong>套用 YAML</strong></td>
+<td><code>kubectl apply -f</code></td>
+<td><code>kubectl apply -f deployment.yaml</code></td>
+</tr>
+<tr>
+<td><strong>刪除 YAML 資源</strong></td>
+<td><code>kubectl delete -f</code></td>
+<td><code>kubectl delete -f deployment.yaml</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="_5">常見問題<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
+<details class="question">
+<summary>Q1：Pod 一直處於 Pending 狀態怎麼辦？</summary>
+<p><strong>原因</strong>：通常是因為沒有可用的 Worker Node 或節點資源不足。</p>
+<p><strong>解決方案</strong>：
+</p><div class="language-bash highlight"><pre><span></span><code><span id="__span-50-1"><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="c1"># 查看詳細原因</span>
+</span><span id="__span-50-2"><a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a>kubectl<span class="w"> </span>describe<span class="w"> </span>pod<span class="w"> </span>&lt;pod-name&gt;
+</span><span id="__span-50-3"><a id="__codelineno-50-3" name="__codelineno-50-3" href="#__codelineno-50-3"></a>
+</span><span id="__span-50-4"><a id="__codelineno-50-4" name="__codelineno-50-4" href="#__codelineno-50-4"></a><span class="c1"># 確認節點狀態</span>
+</span><span id="__span-50-5"><a id="__codelineno-50-5" name="__codelineno-50-5" href="#__codelineno-50-5"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+</span></code></pre></div><p></p>
+</details>
+<details class="question">
+<summary>Q2：kubectl exec 出現錯誤 'unknown flag: --bash'</summary>
+<p><strong>原因</strong>：<code>--bash</code> 應該放在 <code>--</code> 後面，作為容器內執行的指令。</p>
+<p><strong>解決方案</strong>：
+</p><div class="language-bash highlight"><pre><span></span><code><span id="__span-51-1"><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="c1"># 錯誤</span>
+</span><span id="__span-51-2"><a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span><span class="nb">test</span><span class="w"> </span>-it<span class="w"> </span>--bash
+</span><span id="__span-51-3"><a id="__codelineno-51-3" name="__codelineno-51-3" href="#__codelineno-51-3"></a>
+</span><span id="__span-51-4"><a id="__codelineno-51-4" name="__codelineno-51-4" href="#__codelineno-51-4"></a><span class="c1"># 正確</span>
+</span><span id="__span-51-5"><a id="__codelineno-51-5" name="__codelineno-51-5" href="#__codelineno-51-5"></a>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span><span class="nb">test</span><span class="w"> </span>-it<span class="w"> </span>--<span class="w"> </span>bash
+</span></code></pre></div><p></p>
+</details>
+<details class="question">
+<summary>Q3：如何查看特定 Label 的 Pod？</summary>
+<p><strong>解答</strong>：使用 <code>-l</code> 或 <code>-L</code> 參數：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-52-1"><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="c1"># 依據 Label 過濾</span>
+</span><span id="__span-52-2"><a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">os</span><span class="o">=</span>linux
+</span><span id="__span-52-3"><a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a>
+</span><span id="__span-52-4"><a id="__codelineno-52-4" name="__codelineno-52-4" href="#__codelineno-52-4"></a><span class="c1"># 顯示 Label 欄位</span>
+</span><span id="__span-52-5"><a id="__codelineno-52-5" name="__codelineno-52-5" href="#__codelineno-52-5"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-L<span class="w"> </span>os
+</span></code></pre></div>
+</details>
+<hr>
+<h2 id="_6">小結<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
+<p>本章節重點回顧：</p>
+<ul>
+<li>✅ <strong>環境初始化</strong>：使用腳本設定私有 Registry 連線</li>
+<li>✅ <strong>Deployment 管理</strong>：使用 <code>kubectl create deployment</code> 建立並管理 Deployment</li>
+<li>✅ <strong>Pod 操作</strong>：使用 <code>kubectl run</code> 建立獨立 Pod，<code>kubectl exec</code> 進入容器</li>
+<li>✅ <strong>手動擴展</strong>：使用 <code>kubectl scale</code> 調整副本數量</li>
+<li>✅ <strong>自動擴展</strong>：使用 <code>kubectl autoscale</code> 設定 HPA</li>
+<li>✅ <strong>Labels 管理</strong>：使用 <code>--labels</code> 建立標籤，<code>--show-labels</code> 和 <code>-L</code> 查詢</li>
+<li>✅ <strong>YAML 部署</strong>：使用 <code>kubectl apply -f</code> 和 <code>kubectl delete -f</code> 管理資源</li>
+</ul>
+<h2 id="_7">延伸閱讀<a class="headerlink" href="#_7" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="https://kubernetes.io/docs/reference/kubectl/">kubectl 完整指令參考</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment/">Kubernetes Deployments</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/">Horizontal Pod Autoscaler</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/">Labels and Selectors</a></li>
+</ul>
 
 
 
