@@ -2066,7 +2066,7 @@
     <span class="twemoji">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span style="font-weight: 500;">更新:</span> <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月28日 15:27:35 CST">2026年1月28日 15:27:35</span>
+    <span style="font-weight: 500;">更新:</span> <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月28日 15:34:05 CST">2026年1月28日 15:34:05</span>
   </span>
   
 
@@ -2216,15 +2216,36 @@
 <h3 id="_5">架構說明<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
 <p>使用 hostPath 時，Pod 會使用節點上的本地目錄作為儲存空間。</p>
 <pre class="mermaid"><code>graph TB
-    subgraph "k8s-node1"
-        Pod1[pv1-pod-local]
-        Path1[/mnt/data&lt;br/&gt;index.html: node1...AAA]
+    subgraph node1["k8s-node1"]
+        Pod1["pv1-pod-local"]
+        Path1["/mnt/data"]
         Pod1 --&gt; Path1
     end
 
-    subgraph "k8s-node2"
-        Path2[/mnt/data&lt;br/&gt;index.html: node2...BBB]
+    subgraph node2["k8s-node2"]
+        Path2["/mnt/data"]
     end</code></pre>
+<table>
+<thead>
+<tr>
+<th>節點</th>
+<th>目錄</th>
+<th>檔案內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>k8s-node1</td>
+<td>/mnt/data/index.html</td>
+<td>node1...AAA</td>
+</tr>
+<tr>
+<td>k8s-node2</td>
+<td>/mnt/data/index.html</td>
+<td>node2...BBB</td>
+</tr>
+</tbody>
+</table>
 <div class="admonition warning">
 <p class="admonition-title">hostPath 限制</p>
 <p>使用 hostPath 時，Pod 只能運行在有該路徑的節點上。如果 Pod 被調度到其他節點，可能會找不到資料或看到不同的資料。</p>
@@ -2396,20 +2417,20 @@
 <h3 id="_6">架構說明<a class="headerlink" href="#_6" title="Permanent link">¶</a></h3>
 <p>使用 NFS 時，所有節點都可以存取相同的共享儲存空間。</p>
 <pre class="mermaid"><code>graph TB
-    subgraph "k8s-master1 (NFS Server)"
-        NFS[NFS 服務]
-        Data[/data&lt;br/&gt;index.html: master...CCC]
+    subgraph master["k8s-master1 NFS Server"]
+        NFS["NFS 服務"]
+        Data["/data"]
         NFS --&gt; Data
     end
 
-    subgraph "k8s-node1"
-        Pod1[pv2-pod-nfs]
-        Pod1 -.-&gt;|NFS 掛載| NFS
+    subgraph node1["k8s-node1"]
+        Pod1["pv2-pod-nfs"]
+        Pod1 -.-&gt; NFS
     end
 
-    subgraph "k8s-node2"
-        Pod2[Pod]
-        Pod2 -.-&gt;|NFS 掛載| NFS
+    subgraph node2["k8s-node2"]
+        Pod2["Pod"]
+        Pod2 -.-&gt; NFS
     end</code></pre>
 <hr>
 <h3 id="1-nfs">步驟 1：安裝 NFS 工具<a class="headerlink" href="#1-nfs" title="Permanent link">¶</a></h3>
