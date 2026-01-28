@@ -595,7 +595,7 @@ curl k8s-master1:32254
     kubectl logs <pod-name> -n kube-system -c <container-name> --tail=50
     ```
     
-    詳細 Debug 流程請參考 [LAB 18 Debug 實戰](lab18_rbac_event_log.md#lab-實作練習debug-實戰流程)。
+    詳細 Debug 流程請參考 [LAB 18 RBAC 與 Event/Log](lab18_rbac_event_log.md)。
 
 ---
 
