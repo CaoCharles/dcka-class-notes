@@ -9,13 +9,13 @@
         <meta name="author" content="Charles Cao">
       
       
-        <link rel="canonical" href="https://caocharles.github.io/dcka-class-notes/lab03_podman/">
+        <link rel="canonical" href="https://caocharles.github.io/dcka-class-notes/lab21_registry_web/">
       
       
-        <link rel="prev" href="../lab02_docker_install/">
+        <link rel="prev" href="../lab20_dashboard/">
       
       
-        <link rel="next" href="../lab04_docker_hub_rate_limit/">
+        <link rel="next" href="../appendix/docker_cheatsheet/">
       
       
         
@@ -26,7 +26,7 @@
     
     
       
-        <title>LAB 03 安裝 podman - DCKA 學習筆記</title>
+        <title>LAB 21 私庫圖形管理工具 docker-registry-web - DCKA 學習筆記</title>
       
     
     
@@ -91,7 +91,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#lab-03-podman" class="md-skip">
+        <a href="#lab-21-docker-registry-web" class="md-skip">
           跳轉到
         </a>
       
@@ -126,7 +126,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              LAB 03 安裝 podman
+              LAB 21 私庫圖形管理工具 docker-registry-web
             
           </span>
         </div>
@@ -250,12 +250,10 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
+      <li class="md-tabs__item">
         <a href="../lab01_environment_setup/" class="md-tabs__link">
           
   
@@ -312,10 +310,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../lab16_pv_pvc/" class="md-tabs__link">
           
   
@@ -429,31 +429,28 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2">
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
             
   
   
@@ -471,7 +468,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -542,37 +539,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    LAB 03 安裝 podman
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../lab03_podman/" class="md-nav__link">
         
   
   
@@ -588,115 +558,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目錄">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目錄
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        學習目標
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#11-podman" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1.1 Podman 簡介
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1.1 Podman 簡介">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#podman-docker" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Podman 與 Docker 的關鍵差異
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        實作步驟
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="實作步驟">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-podman" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        步驟 1：安裝 Podman 套件
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-daemonless" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        步驟 2：驗證 Daemonless 架構（無需啟動服務）
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-podman-container-image" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        步驟 3：使用 Podman 下載 Container Image
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1171,28 +1032,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5">
-        
-          
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
             
   
   
@@ -1210,7 +1074,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1365,10 +1229,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../lab21_registry_web/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LAB 21 私庫圖形管理工具 docker-registry-web
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1384,6 +1275,203 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目錄">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目錄
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        學習目標
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        前置知識
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心概念說明
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="核心概念說明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-registry-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        docker-registry-web 是什麼？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        架構說明
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 實作練習
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 實作練習">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 1：清除現有容器與映像檔
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-private-registry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 2：啟動 Private Registry
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-docker-registry-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 3：啟動 docker-registry-web
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 4：開啟 Web 管理介面
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        介面說明
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        清理資源
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常見問題
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        小結
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        延伸閱讀
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1579,22 +1667,44 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#11-podman" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.1 Podman 簡介
+        前置知識
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1.1 Podman 簡介">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心概念說明
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="核心概念說明">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#podman-docker" class="md-nav__link">
+  <a href="#docker-registry-web" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Podman 與 Docker 的關鍵差異
+        docker-registry-web 是什麼？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        架構說明
       
     </span>
   </a>
@@ -1607,22 +1717,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#lab" class="md-nav__link">
     <span class="md-ellipsis">
       
-        實作步驟
+        Lab 實作練習
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="實作步驟">
+    <nav class="md-nav" aria-label="Lab 實作練習">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-podman" class="md-nav__link">
+  <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        步驟 1：安裝 Podman 套件
+        步驟 1：清除現有容器與映像檔
       
     </span>
   </a>
@@ -1630,10 +1740,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-daemonless" class="md-nav__link">
+  <a href="#2-private-registry" class="md-nav__link">
     <span class="md-ellipsis">
       
-        步驟 2：驗證 Daemonless 架構（無需啟動服務）
+        步驟 2：啟動 Private Registry
       
     </span>
   </a>
@@ -1641,10 +1751,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-podman-container-image" class="md-nav__link">
+  <a href="#3-docker-registry-web" class="md-nav__link">
     <span class="md-ellipsis">
       
-        步驟 3：使用 Podman 下載 Container Image
+        步驟 3：啟動 docker-registry-web
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 4：開啟 Web 管理介面
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        介面說明
       
     </span>
   </a>
@@ -1653,6 +1785,50 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        清理資源
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常見問題
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        小結
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        延伸閱讀
+      
+    </span>
+  </a>
   
 </li>
       
@@ -1677,7 +1853,7 @@
     <span class="twemoji">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19V8H5v11zM16 1h2v2h1a2 2 0 0 1 2 2v14c0 1.11-.89 2-2 2H5a2 2 0 0 1-2-2V5c0-1.11.89-2 2-2h1V1h2v2h8zm-5 8.5h2v3h3v2h-3v3h-2v-3H8v-2h3z"></path></svg>
     </span>
-    <span style="font-weight: 500;">建立:</span> <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月26日 14:01:45 CST">2026年1月26日 14:01:45</span>
+    <span style="font-weight: 500;">建立:</span> <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月28日 17:07:34 CST">2026年1月28日 17:07:34</span>
   </span>
   
 
@@ -1686,7 +1862,7 @@
     <span class="twemoji">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span style="font-weight: 500;">更新:</span> <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月26日 14:52:23 CST">2026年1月26日 14:52:23</span>
+    <span style="font-weight: 500;">更新:</span> <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月28日 17:07:34 CST">2026年1月28日 17:07:34</span>
   </span>
   
 
@@ -1703,146 +1879,241 @@
   
 
 
-<h1 id="lab-03-podman">LAB 03 安裝 Podman<a class="headerlink" href="#lab-03-podman" title="Permanent link">¶</a></h1>
+<h1 id="lab-21-docker-registry-web">LAB 21 私庫圖形管理工具 docker-registry-web<a class="headerlink" href="#lab-21-docker-registry-web" title="Permanent link">¶</a></h1>
 <h2 id="_1">學習目標<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
-<p>完成本 Lab 後，你將能夠：</p>
+<p>完成本章節後，你將能夠：</p>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 理解 Podman 的核心架構 (Daemonless &amp; Rootless)</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 在 Linux 上安裝 Podman</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 驗證 Podman 無需守護行程 (Daemon) 即可運作</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 處理 Image Registry 搜尋順序與驗證問題</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 部署 docker-registry-web 圖形介面</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 透過網頁管理 Private Registry</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 查看映像檔清單與標籤</li>
+</ul>
+<h2 id="_2">前置知識<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<p>開始之前，請確保你已經：</p>
+<ul>
+<li>完成 LAB 05 Private Registry 建置</li>
+<li>熟悉 Docker 基本操作</li>
+<li>準備好 docker1 虛擬機環境</li>
 </ul>
 <hr>
-<h2 id="11-podman">1.1 Podman 簡介<a class="headerlink" href="#11-podman" title="Permanent link">¶</a></h2>
-<p><strong>Podman</strong> (Pod Manager) 是一個由 Red Hat 開發的開源容器引擎，用於在 Linux 系統上開發、管理和執行 OCI (Open Container Initiative) 容器。</p>
+<h2 id="_3">核心概念說明<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<h3 id="docker-registry-web">docker-registry-web 是什麼？<a class="headerlink" href="#docker-registry-web" title="Permanent link">¶</a></h3>
+<p><strong>docker-registry-web</strong> 是一個開源的 Web UI 工具，讓你可以透過瀏覽器管理 Private Registry：</p>
 <ul>
-<li><strong>官方網站</strong>：<a href="https://podman.io/">https://podman.io/</a></li>
-<li><strong>最新文件</strong>：<a href="https://docs.podman.io/en/latest/">Podman Documentation</a></li>
+<li>查看 Registry 中的所有映像檔（Repositories）</li>
+<li>瀏覽映像檔的標籤（Tags）</li>
+<li>查看映像檔的詳細資訊</li>
 </ul>
-<h3 id="podman-docker">Podman 與 Docker 的關鍵差異<a class="headerlink" href="#podman-docker" title="Permanent link">¶</a></h3>
+<div class="admonition info">
+<p class="admonition-title">官方文件</p>
+<p>Docker Hub: <a href="https://hub.docker.com/r/hyper/docker-registry-web">https://hub.docker.com/r/hyper/docker-registry-web</a></p>
+</div>
+<h3 id="_4">架構說明<a class="headerlink" href="#_4" title="Permanent link">¶</a></h3>
+<pre class="mermaid"><code>graph LR
+    subgraph docker1["docker1 虛擬機"]
+        Registry["registry-srv"]
+        Web["registry-web-1"]
+    end
+
+    Browser["瀏覽器"] --&gt; Web
+    Web --&gt; Registry
+    Registry --&gt; Data["/opt/data/registry"]</code></pre>
 <table>
 <thead>
 <tr>
-<th>特性</th>
-<th>Docker</th>
-<th>Podman</th>
+<th>容器</th>
+<th>說明</th>
+<th>Port</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>架構</strong></td>
-<td><strong>Client-Server</strong> (依賴 dockerd 守護行程)</td>
-<td><strong>Daemonless</strong> (直接 Fork/Exec 程序)</td>
+<td>registry-srv</td>
+<td>Private Registry 服務</td>
+<td>5000</td>
 </tr>
 <tr>
-<td><strong>執行權限</strong></td>
-<td>預設需要 <strong>Root</strong></td>
-<td>原生支援 <strong>Rootless</strong> (一般使用者可執行)</td>
-</tr>
-<tr>
-<td><strong>Pod 支援</strong></td>
-<td>需透過 Docker Compose 或 K8S</td>
-<td><strong>原生支援 Pod</strong> (可在一個 Pod 跑多個容器)</td>
-</tr>
-<tr>
-<td><strong>服務相依</strong></td>
-<td>若 Daemon 掛掉，所有容器都受影響</td>
-<td>容器是獨立程序，互不影響</td>
-</tr>
-<tr>
-<td><strong>Systemd</strong></td>
-<td>整合較弱</td>
-<td>原生整合，容易將容器作成系統服務</td>
+<td>registry-web-1</td>
+<td>Web 管理介面</td>
+<td>8080</td>
 </tr>
 </tbody>
 </table>
-<div class="admonition quote">
-<p class="admonition-title">Podman 的設計理念</p>
-<p>"Alias docker=podman" —— Podman 的 CLI 指令與 Docker 高度相容，絕大多數情況下，你可以直接把 <code>docker</code> 指令換成 <code>podman</code> 執行。</p>
+<hr>
+<h2 id="lab">Lab 實作練習<a class="headerlink" href="#lab" title="Permanent link">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">操作環境</p>
+<p>本 Lab 所有操作都在 <strong>docker1</strong> 虛擬機上執行。</p>
 </div>
 <hr>
-<h2 id="_2">實作步驟<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
-<h3 id="1-podman">步驟 1：安裝 Podman 套件<a class="headerlink" href="#1-podman" title="Permanent link">¶</a></h3>
-<p>在 RHEL 9 / Rocky Linux 9 中，Podman 通常已經預裝。如果沒有，可以使用 <code>dnf</code> 安裝。</p>
-<ol>
-<li>
-<p><strong>安裝 Podman</strong>
-    </p><div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>dnf<span class="w"> </span>install<span class="w"> </span>podman<span class="w"> </span>-y
+<h3 id="1">步驟 1：清除現有容器與映像檔<a class="headerlink" href="#1" title="Permanent link">¶</a></h3>
+<p>首先清除 docker1 上的所有容器和映像檔：</p>
+<div class="language-bash highlight"><span class="filename">清除所有容器和映像檔</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>./docker_clean_all.sh
 </span></code></pre></div>
-    &gt; <strong>指令說明</strong>：
-    &gt; - 套件名稱就是 <code>podman</code>，不需要像 Docker 還要去找 <code>docker-ce</code>。
-    &gt; - 如果系統顯示 <code>Nothing to do</code>，表示已經安裝過了。<p></p>
-<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../images/lab03/podman_install.png" data-desc-position="bottom"><img alt="安裝 podman" src="../images/lab03/podman_install.png"></a></p>
-</li>
-<li>
-<p><strong>檢查版本與環境資訊</strong>
-    </p><div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>podman<span class="w"> </span>version
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>podman<span class="w"> </span>info
+<p>或手動執行：</p>
+<div class="language-bash highlight"><span class="filename">手動清除</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>stop<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-aq<span class="k">)</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>docker<span class="w"> </span>rm<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-aq<span class="k">)</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>docker<span class="w"> </span>rmi<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>images<span class="w"> </span>-q<span class="k">)</span>
 </span></code></pre></div>
-    &gt; - <code>podman version</code>: 顯示 Client/Server 版本（注意：Podman 的 Client 和 Server 通常是同一個 binary，除非是遠端操作）。
-    &gt; - <code>podman info</code>: 顯示詳細的系統設定，包括 Storage Driver (通常是 overlay)、cgroup version (v2) 以及預設的 Registry。<p></p>
-</li>
-</ol>
 <hr>
-<h3 id="2-daemonless">步驟 2：驗證 Daemonless 架構（無需啟動服務）<a class="headerlink" href="#2-daemonless" title="Permanent link">¶</a></h3>
-<p>這是 Podman 最特別的地方：<strong>你不需要啟動任何服務</strong>。</p>
-<ol>
-<li>
-<p><strong>嘗試尋找 podman 服務</strong>
-    在你安裝完 Docker 時，通常下一步是 <code>systemctl start docker</code>。但在 Podman：</p>
-<blockquote>
-<p>你**不需要**執行 <code>systemctl start podman</code>。</p>
-</blockquote>
-<p>Podman 是一個單純的 binary執行檔。當你執行 <code>podman run</code> 時，它會直接在當前使用者的權限下產生容器程序。</p>
-</li>
-<li>
-<p><strong>為什麼會有 <code>podman.socket</code>？</strong>
-    如果你檢查 systemd，可能會看到 <code>podman.socket</code> 或 <code>podman.service</code>。這主要是為了提供 API 給遠端工具（如 Docker Compose 或 IDE）連線使用，對於本地 CLI 操作並非必要。</p>
-</li>
-</ol>
-<hr>
-<h3 id="3-podman-container-image">步驟 3：使用 Podman 下載 Container Image<a class="headerlink" href="#3-podman-container-image" title="Permanent link">¶</a></h3>
-<p>Podman 預設會搜尋多個 Registry。</p>
-<ol>
-<li>
-<p><strong>查看目前的 Image</strong>
-    </p><div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>podman<span class="w"> </span>images
-</span></code></pre></div><p></p>
-</li>
-<li>
-<p><strong>嘗試下載 MySQL Image</strong>
-    執行以下指令：
-    </p><div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>podman<span class="w"> </span>pull<span class="w"> </span>mysql
-</span></code></pre></div><p></p>
-<p><strong>觀察輸出結果：</strong></p>
-<p>Podman 會依序嘗試設定檔 (<code>/etc/containers/registries.conf</code>) 中定義的 Registry：</p>
-<ol>
-<li>
-<p>❌ <strong><code>registry.access.redhat.com/mysql:latest</code></strong>
-    &gt; <code>name unknown: Repo not found</code> (Red Hat 官方庫沒有這個 Image)</p>
-</li>
-<li>
-<p>❌ <strong><code>registry.redhat.io/mysql:latest</code></strong>
-    &gt; <code>unauthorized: Please login</code> (需要 Red Hat 訂閱帳號才能存取)</p>
-</li>
-<li>
-<p>✅ <strong><code>docker.io/library/mysql:latest</code></strong>
-    &gt; 成功從 Docker Hub 下載。</p>
-</li>
-</ol>
-</li>
-<li>
-<p><strong>驗證下載結果</strong>
-    </p><div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>podman<span class="w"> </span>images
-</span></code></pre></div>
-    &gt; 應該會看到來自 <code>docker.io/library/mysql</code> 的 Image。<p></p>
-</li>
-</ol>
-<div class="admonition tip">
-<p class="admonition-title">Registry 搜尋順序並非隨機</p>
-<p>RHEL/CentOS 預設的 <code>/etc/containers/registries.conf</code> 檔案定義了搜尋順序 (Search Registries)。這就是為什麼 Podman 會先去問 Red Hat，最後才問 Docker Hub。
-而 Docker CE 預設只會找 Docker Hub (<code>docker.io</code>)。</p>
+<h3 id="2-private-registry">步驟 2：啟動 Private Registry<a class="headerlink" href="#2-private-registry" title="Permanent link">¶</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">容器名稱注意事項</p>
+<p>根據官方文件說明，<strong>容器名稱不可以使用 <code>registry</code></strong>！</p>
+<p>因為 docker-registry-web 使用 <code>--link</code> 連接，如果 Registry 容器名稱是 <code>registry</code>，會與環境變數衝突導致錯誤。</p>
 </div>
+<p>啟動 Registry 服務（使用 <code>registry-srv</code> 作為名稱）：</p>
+<div class="language-bash highlight"><span class="filename">啟動 Registry</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span>-p<span class="w"> </span><span class="m">5000</span>:5000<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span>-v<span class="w"> </span>/opt/data/registry:/var/lib/registry<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span>--restart<span class="o">=</span>always<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span>--name<span class="w"> </span>registry-srv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span>registry
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Unable to find image 'registry:latest' locally
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>latest: Pulling from library/registry
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>...
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>Status: Downloaded newer image for registry:latest
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>238cf2ffba02232cb0356f437f9e6dafb9d0f531827b2feea7da24a35da670eb
+</span></code></pre></div>
+<p>驗證：</p>
+<div class="language-bash highlight"><span class="filename">檢查 Registry</span><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span>ps
+</span></code></pre></div>
+<hr>
+<h3 id="3-docker-registry-web">步驟 3：啟動 docker-registry-web<a class="headerlink" href="#3-docker-registry-web" title="Permanent link">¶</a></h3>
+<p>啟動 Web 管理介面：</p>
+<div class="language-bash highlight"><span class="filename">啟動 docker-registry-web</span><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span>-p<span class="w"> </span><span class="m">8080</span>:8080<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span>--name<span class="w"> </span>registry-web-1<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span>--link<span class="w"> </span>registry-srv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span>-e<span class="w"> </span><span class="nv">REGISTRY_URL</span><span class="o">=</span>http://registry-srv:5000/v2<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">  </span>-e<span class="w"> </span><span class="nv">REGISTRY_NAME</span><span class="o">=</span>localhost:5000<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">  </span>hyper/docker-registry-web
+</span></code></pre></div>
+<p><strong>參數說明</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>參數</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-p 8080:8080</code></td>
+<td>映射 Web 介面到 port 8080</td>
+</tr>
+<tr>
+<td><code>--link registry-srv</code></td>
+<td>連接到 Registry 容器</td>
+</tr>
+<tr>
+<td><code>REGISTRY_URL</code></td>
+<td>Registry API 位址</td>
+</tr>
+<tr>
+<td><code>REGISTRY_NAME</code></td>
+<td>顯示在 Web 介面的 Registry 名稱</td>
+</tr>
+</tbody>
+</table>
+<p><strong>預期結果</strong>（等待 Tomcat 啟動）：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Jan 28, 2026 8:49:21 AM org.apache.coyote.AbstractProtocol start
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>INFO: Starting ProtocolHandler ["http-bio-8080"]
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>Jan 28, 2026 8:49:21 AM org.apache.catalina.startup.Catalina start
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>INFO: Server startup in 12013 ms
+</span></code></pre></div>
+<div class="admonition danger">
+<p class="admonition-title">保持此視窗開啟</p>
+<p>docker-registry-web 使用 <code>-it</code> 前景執行，關閉視窗會停止服務。</p>
+<p>如需背景執行，可改用 <code>-d</code> 參數。</p>
+</div>
+<hr>
+<h3 id="4-web">步驟 4：開啟 Web 管理介面<a class="headerlink" href="#4-web" title="Permanent link">¶</a></h3>
+<p>在圖形環境中開啟瀏覽器，連線到：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>http://192.168.66.21:8080
+</span></code></pre></div>
+<p>或在 docker1 本機：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>http://localhost:8080
+</span></code></pre></div>
+<p>你會看到 Registry 中的所有映像檔清單：</p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/images/registry_web_repositories.png" data-desc-position="bottom"><img alt="docker-registry-web 映像檔列表" src="../assets/images/registry_web_repositories.png"></a></p>
+<h3 id="_5">介面說明<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>欄位</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Registry</strong></td>
+<td>Registry 名稱（localhost:5000）</td>
+</tr>
+<tr>
+<td><strong>Repository</strong></td>
+<td>映像檔名稱</td>
+</tr>
+<tr>
+<td><strong>Tags</strong></td>
+<td>該映像檔的標籤數量</td>
+</tr>
+</tbody>
+</table>
+<p>從畫面可以看到 Registry 中有多個映像檔：</p>
+<ul>
+<li>alpine (1 tag)</li>
+<li>httpd (1 tag)</li>
+<li>mariadb (1 tag)</li>
+<li>mysql (3 tags)</li>
+<li>nginx (3 tags)</li>
+<li>ubuntu (1 tag)</li>
+<li>wordpress (1 tag)</li>
+</ul>
+<p>點選映像檔名稱可以查看該映像檔的所有標籤和詳細資訊。</p>
+<hr>
+<h2 id="_6">清理資源<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
+<p>完成練習後，可以清理相關資源：</p>
+<div class="language-bash highlight"><span class="filename">停止並刪除容器</span><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>docker<span class="w"> </span>stop<span class="w"> </span>registry-web-1<span class="w"> </span>registry-srv
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>docker<span class="w"> </span>rm<span class="w"> </span>registry-web-1<span class="w"> </span>registry-srv
+</span></code></pre></div>
+<hr>
+<h2 id="_7">常見問題<a class="headerlink" href="#_7" title="Permanent link">¶</a></h2>
+<details class="question">
+<summary>Q1：Web 介面顯示空白或連線錯誤</summary>
+<p><strong>原因</strong>：Registry 容器名稱使用了 <code>registry</code></p>
+<p><strong>解決方案</strong>：
+刪除容器後重新建立，使用不同的名稱（如 <code>registry-srv</code>）</p>
+</details>
+<details class="question">
+<summary>Q2：無法連線到 8080 埠</summary>
+<p><strong>原因</strong>：docker-registry-web 尚未啟動完成</p>
+<p><strong>解決方案</strong>：
+等待 Tomcat 啟動完成（看到 <code>Server startup in xxxxx ms</code>）</p>
+</details>
+<details class="question">
+<summary>Q3：映像檔列表是空的</summary>
+<p><strong>原因</strong>：Registry 沒有映像檔，或 REGISTRY_URL 設定錯誤</p>
+<p><strong>解決方案</strong>：
+1. 確認 Registry 有映像檔：<code>curl http://localhost:5000/v2/_catalog</code>
+2. 確認 REGISTRY_URL 指向正確的 Registry 容器</p>
+</details>
+<hr>
+<h2 id="_8">小結<a class="headerlink" href="#_8" title="Permanent link">¶</a></h2>
+<p>本章節重點回顧：</p>
+<ul>
+<li>✅ <strong>docker-registry-web</strong>：Private Registry 的網頁管理介面</li>
+<li>✅ <strong>容器命名注意</strong>：Registry 容器名稱不可使用 <code>registry</code></li>
+<li>✅ <strong>--link 連接</strong>：Web 容器透過 Docker link 連接 Registry</li>
+<li>✅ <strong>映像檔管理</strong>：透過圖形介面查看 Repository 和 Tags</li>
+</ul>
+<h2 id="_9">延伸閱讀<a class="headerlink" href="#_9" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="https://hub.docker.com/r/hyper/docker-registry-web">docker-registry-web Docker Hub</a></li>
+<li><a href="https://github.com/mkuchin/docker-registry-web">docker-registry-web GitHub</a></li>
+<li><a href="https://docs.docker.com/registry/spec/api/">Docker Registry API v2</a></li>
+</ul>
 
 
 

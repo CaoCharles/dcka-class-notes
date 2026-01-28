@@ -320,7 +320,7 @@
           
   
   
-  Kubernetes 進階管理 (LAB 16-20)
+  Kubernetes 進階管理 (LAB 16-21)
 
         </a>
       </li>
@@ -703,7 +703,195 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        實作步驟
+        前置知識
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心概念說明
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="核心概念說明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Docker 容器生命週期
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常用 Docker 指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 實作練習
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 實作練習">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 1：啟動 MySQL 容器（背景執行）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 2：使用 --name 指定容器名稱
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 3：查看容器日誌
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-docker-inspect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 4：使用 docker inspect 查看容器詳細資訊
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-f" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 5：使用 -f 格式化輸出
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-docker-exec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 6：使用 docker exec 進入容器
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 7：啟動容器時執行自訂指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 8：停止與刪除容器
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        清理腳本
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常見問題
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        小結
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        延伸閱讀
       
     </span>
   </a>
@@ -1132,7 +1320,7 @@
   <span class="md-ellipsis">
     
   
-    Kubernetes 進階管理 (LAB 16-20)
+    Kubernetes 進階管理 (LAB 16-21)
   
 
     
@@ -1148,7 +1336,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Kubernetes 進階管理 (LAB 16-20)
+    Kubernetes 進階管理 (LAB 16-21)
   
 
           </label>
@@ -1281,6 +1469,34 @@
     
   
     LAB 20 圖形管理工具 Kubernetes Dashboard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab21_registry_web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LAB 21 私庫圖形管理工具 docker-registry-web
   
 
     
@@ -1487,7 +1703,195 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        實作步驟
+        前置知識
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心概念說明
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="核心概念說明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Docker 容器生命週期
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常用 Docker 指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 實作練習
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 實作練習">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 1：啟動 MySQL 容器（背景執行）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 2：使用 --name 指定容器名稱
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 3：查看容器日誌
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-docker-inspect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 4：使用 docker inspect 查看容器詳細資訊
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-f" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 5：使用 -f 格式化輸出
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-docker-exec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 6：使用 docker exec 進入容器
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 7：啟動容器時執行自訂指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 8：停止與刪除容器
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        清理腳本
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常見問題
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        小結
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        延伸閱讀
       
     </span>
   </a>
@@ -1524,7 +1928,7 @@
     <span class="twemoji">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span style="font-weight: 500;">更新:</span> <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月26日 14:01:45 CST">2026年1月26日 14:01:45</span>
+    <span style="font-weight: 500;">更新:</span> <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月28日 17:07:34 CST">2026年1月28日 17:07:34</span>
   </span>
   
 
@@ -1541,13 +1945,292 @@
   
 
 
-<h1 id="lab-06-docker">LAB 06 docker 基本操作<a class="headerlink" href="#lab-06-docker" title="Permanent link">¶</a></h1>
+<h1 id="lab-06-docker">LAB 06 Docker 基本操作<a class="headerlink" href="#lab-06-docker" title="Permanent link">¶</a></h1>
 <h2 id="_1">學習目標<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<p>完成本章節後，你將能夠：</p>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 待補</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 使用 <code>docker run</code> 啟動容器</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 使用 <code>docker ps</code> 查看容器狀態</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 使用 <code>docker logs</code> 查看容器日誌</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 使用 <code>docker inspect</code> 查看容器詳細資訊</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 使用 <code>docker exec</code> 進入運行中的容器</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 理解環境變數 <code>-e</code> 的使用</li>
 </ul>
-<h2 id="_2">實作步驟<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
-<p><em>(本章節內容待補)</em></p>
+<h2 id="_2">前置知識<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<p>開始之前，請確保你已經：</p>
+<ul>
+<li>完成 LAB 05 Private Registry 建置</li>
+<li>Docker 已安裝並正常運行</li>
+<li>已設定 Private Registry（insecure-registries）</li>
+</ul>
+<hr>
+<h2 id="_3">核心概念說明<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<h3 id="docker">Docker 容器生命週期<a class="headerlink" href="#docker" title="Permanent link">¶</a></h3>
+<pre class="mermaid"><code>graph LR
+    Image["映像檔"] --&gt; Create["建立"]
+    Create --&gt; Running["運行中"]
+    Running --&gt; Stopped["停止"]
+    Stopped --&gt; Running
+    Stopped --&gt; Removed["刪除"]
+    Running --&gt; Removed</code></pre>
+<h3 id="docker_1">常用 Docker 指令<a class="headerlink" href="#docker_1" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>docker run</code></td>
+<td>建立並啟動容器</td>
+</tr>
+<tr>
+<td><code>docker ps</code></td>
+<td>列出運行中的容器</td>
+</tr>
+<tr>
+<td><code>docker ps -a</code></td>
+<td>列出所有容器（包含停止的）</td>
+</tr>
+<tr>
+<td><code>docker logs</code></td>
+<td>查看容器日誌</td>
+</tr>
+<tr>
+<td><code>docker inspect</code></td>
+<td>查看容器詳細資訊</td>
+</tr>
+<tr>
+<td><code>docker exec</code></td>
+<td>在運行中的容器執行指令</td>
+</tr>
+<tr>
+<td><code>docker stop</code></td>
+<td>停止容器</td>
+</tr>
+<tr>
+<td><code>docker rm</code></td>
+<td>刪除容器</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="lab">Lab 實作練習<a class="headerlink" href="#lab" title="Permanent link">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">操作環境</p>
+<p>本 Lab 在 <strong>docker2</strong> 虛擬機上執行。</p>
+</div>
+<hr>
+<h3 id="1-mysql">步驟 1：啟動 MySQL 容器（背景執行）<a class="headerlink" href="#1-mysql" title="Permanent link">¶</a></h3>
+<p>使用 <code>-itd</code> 參數在背景啟動 MySQL 容器：</p>
+<div class="language-bash highlight"><span class="filename">啟動 MySQL 容器</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-itd<span class="w"> </span>-e<span class="w"> </span><span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>container<span class="w"> </span>docker1.training.lab:5000/mysql:5.6
+</span></code></pre></div>
+<p><strong>參數說明</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>參數</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-i</code></td>
+<td>保持標準輸入開啟（interactive）</td>
+</tr>
+<tr>
+<td><code>-t</code></td>
+<td>分配偽終端（tty）</td>
+</tr>
+<tr>
+<td><code>-d</code></td>
+<td>背景執行（detached）</td>
+</tr>
+<tr>
+<td><code>-e</code></td>
+<td>設定環境變數</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition info">
+<p class="admonition-title">MYSQL_ROOT_PASSWORD</p>
+<p>MySQL 容器**必須**指定 <code>MYSQL_ROOT_PASSWORD</code> 環境變數，否則容器會啟動失敗。</p>
+</div>
+<p>驗證：</p>
+<div class="language-bash highlight"><span class="filename">檢查運行中的容器</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>ps
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>CONTAINER ID   IMAGE                                    COMMAND                  STATUS         PORTS      NAMES
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>a28f39cbe620   docker1.training.lab:5000/mysql:5.6     "docker-entrypoint.s…"   Up 10 seconds  3306/tcp   pensive_einstein
+</span></code></pre></div>
+<hr>
+<h3 id="2-name">步驟 2：使用 --name 指定容器名稱<a class="headerlink" href="#2-name" title="Permanent link">¶</a></h3>
+<p>啟動第二個 MySQL 容器，並指定名稱：</p>
+<div class="language-bash highlight"><span class="filename">啟動並命名容器</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-itd<span class="w"> </span>--name<span class="w"> </span>mysql-2<span class="w"> </span>-e<span class="w"> </span><span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>container<span class="w"> </span>docker1.training.lab:5000/mysql:5.5
+</span></code></pre></div>
+<p>驗證：</p>
+<div class="language-bash highlight"><span class="filename">檢查容器</span><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span>ps
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>CONTAINER ID   IMAGE                                    COMMAND                  STATUS         NAMES
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>4ba163c72270   docker1.training.lab:5000/mysql:5.5     "docker-entrypoint.s…"   Up 5 seconds   mysql-2
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>a28f39cbe620   docker1.training.lab:5000/mysql:5.6     "docker-entrypoint.s…"   Up 2 minutes   pensive_einstein
+</span></code></pre></div>
+<hr>
+<h3 id="3">步驟 3：查看容器日誌<a class="headerlink" href="#3" title="Permanent link">¶</a></h3>
+<p>使用 <code>docker logs</code> 查看容器的輸出日誌：</p>
+<div class="language-bash highlight"><span class="filename">查看 mysql-2 日誌</span><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>docker<span class="w"> </span>logs<span class="w"> </span>mysql-2
+</span></code></pre></div>
+<p><strong>預期結果</strong>（部分）：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Initializing database
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>...
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>MySQL init process done. Ready for start up.
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>...
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>mysqld: ready for connections.
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>Version: '5.5.62'  socket: '/tmp/mysql.sock'  port: 3306  MySQL Community Server (GPL)
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">即時追蹤日誌</p>
+<p>使用 <code>-f</code> 參數可以即時追蹤日誌輸出：
+</p><div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>docker<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>mysql-2
+</span></code></pre></div>
+按 <code>Ctrl+C</code> 停止追蹤。<p></p>
+</div>
+<hr>
+<h3 id="4-docker-inspect">步驟 4：使用 docker inspect 查看容器詳細資訊<a class="headerlink" href="#4-docker-inspect" title="Permanent link">¶</a></h3>
+<p><code>docker inspect</code> 會輸出容器的完整 JSON 資訊：</p>
+<div class="language-bash highlight"><span class="filename">查看完整資訊</span><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>docker<span class="w"> </span>inspect<span class="w"> </span>mysql-2
+</span></code></pre></div>
+<p>輸出內容非常長，包含：</p>
+<ul>
+<li><strong>State</strong>：容器狀態（運行中、停止等）</li>
+<li><strong>Config</strong>：容器設定（環境變數、指令等）</li>
+<li><strong>NetworkSettings</strong>：網路設定（IP 位址等）</li>
+<li><strong>Mounts</strong>：掛載的 Volume</li>
+</ul>
+<hr>
+<h3 id="5-f">步驟 5：使用 -f 格式化輸出<a class="headerlink" href="#5-f" title="Permanent link">¶</a></h3>
+<p>使用 <code>-f</code> 參數搭配 Go Template 語法，可以只取出需要的資訊：</p>
+<div class="language-bash highlight"><span class="filename">取得容器 IP 位址</span><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>docker<span class="w"> </span>inspect<span class="w"> </span>-f<span class="w"> </span><span class="s1">'{{ .NetworkSettings.IPAddress }}'</span><span class="w"> </span>mysql-2
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>172.17.0.3
+</span></code></pre></div>
+<p>也可以使用 <code>grep</code> 過濾：</p>
+<div class="language-bash highlight"><span class="filename">使用 grep 過濾</span><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>docker<span class="w"> </span>inspect<span class="w"> </span>mysql-2<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>ipadd
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>            "SecondaryIPAddresses": null,
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>            "IPAddress": "172.17.0.3",
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>                    "IPAddress": "172.17.0.3",
+</span></code></pre></div>
+<hr>
+<h3 id="6-docker-exec">步驟 6：使用 docker exec 進入容器<a class="headerlink" href="#6-docker-exec" title="Permanent link">¶</a></h3>
+<p>使用 <code>docker exec</code> 可以在運行中的容器內執行指令：</p>
+<div class="language-bash highlight"><span class="filename">進入容器執行 bash</span><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>mysql-2<span class="w"> </span>/bin/bash
+</span></code></pre></div>
+<p>進入容器後，可以執行各種指令：</p>
+<div class="language-bash highlight"><span class="filename">在容器內操作</span><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># 查看主機名稱</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>hostname
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="c1"># 查看 MySQL 版本</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>mysql<span class="w"> </span>--version
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="c1"># 連線到 MySQL</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>mysql<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-pcontainer
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="c1"># 退出 MySQL</span>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="nb">exit</span>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="c1"># 退出容器</span>
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="nb">exit</span>
+</span></code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">exec vs run</p>
+<ul>
+<li><code>docker run</code>：建立**新容器**並執行指令</li>
+<li><code>docker exec</code>：在**已運行**的容器中執行指令</li>
+</ul>
+</div>
+<hr>
+<h3 id="7">步驟 7：啟動容器時執行自訂指令<a class="headerlink" href="#7" title="Permanent link">¶</a></h3>
+<p>可以在 <code>docker run</code> 後面指定要執行的指令（覆蓋預設 CMD）：</p>
+<div class="language-bash highlight"><span class="filename">啟動容器並進入 bash</span><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--name<span class="w"> </span>mysql-3<span class="w"> </span>-e<span class="w"> </span><span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>container<span class="w"> </span>docker1.training.lab:5000/mysql:5.5<span class="w"> </span>/bin/bash
+</span></code></pre></div>
+<p>這樣容器啟動後會直接進入 bash，而不是啟動 MySQL 服務：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>root@6502526623f3:/# hostname
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>6502526623f3
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>root@6502526623f3:/# exit
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">注意</p>
+<p>使用自訂指令啟動時，MySQL 服務不會自動啟動！</p>
+</div>
+<hr>
+<h3 id="8">步驟 8：停止與刪除容器<a class="headerlink" href="#8" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><span class="filename">停止容器</span><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>docker<span class="w"> </span>stop<span class="w"> </span>mysql-2<span class="w"> </span>mysql-3
+</span></code></pre></div>
+<div class="language-bash highlight"><span class="filename">刪除容器</span><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>docker<span class="w"> </span>rm<span class="w"> </span>mysql-2<span class="w"> </span>mysql-3
+</span></code></pre></div>
+<p>一次刪除所有停止的容器：</p>
+<div class="language-bash highlight"><span class="filename">刪除所有停止的容器</span><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>docker<span class="w"> </span>rm<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-aq<span class="w"> </span>-f<span class="w"> </span><span class="nv">status</span><span class="o">=</span>exited<span class="k">)</span>
+</span></code></pre></div>
+<hr>
+<h2 id="_4">清理腳本<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
+<p>建立一個清理所有容器和映像檔的腳本：</p>
+<div class="language-bash highlight"><span class="filename">docker_clean_all.sh</span><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="c1"># 停止所有容器</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>docker<span class="w"> </span>stop<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-aq<span class="k">)</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="c1"># 刪除所有容器</span>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>docker<span class="w"> </span>rm<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-aq<span class="k">)</span>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="c1"># 刪除所有映像檔</span>
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>docker<span class="w"> </span>rmi<span class="w"> </span>-f<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>images<span class="w"> </span>-aq<span class="k">)</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><span class="filename">設定執行權限</span><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>chmod<span class="w"> </span>+x<span class="w"> </span>docker_clean_all.sh
+</span></code></pre></div>
+<hr>
+<h2 id="_5">常見問題<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
+<details class="question">
+<summary>Q1：啟動 MySQL 容器失敗</summary>
+<p><strong>原因</strong>：沒有設定 <code>MYSQL_ROOT_PASSWORD</code> 環境變數</p>
+<p><strong>解決方案</strong>：
+</p><div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-itd<span class="w"> </span>-e<span class="w"> </span><span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>yourpassword<span class="w"> </span>mysql:5.6
+</span></code></pre></div><p></p>
+</details>
+<details class="question">
+<summary>Q2：docker exec 無法進入容器</summary>
+<p><strong>原因</strong>：容器已停止或 bash 不存在</p>
+<p><strong>解決方案</strong>：
+1. 確認容器運行中：<code>docker ps</code>
+2. 如果沒有 bash，嘗試 <code>/bin/sh</code></p>
+</details>
+<details class="question">
+<summary>Q3：容器名稱衝突</summary>
+<p><strong>錯誤訊息</strong>：<code>Conflict. The container name "xxx" is already in use</code></p>
+<p><strong>解決方案</strong>：
+</p><div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># 刪除舊容器</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>docker<span class="w"> </span>rm<span class="w"> </span>xxx
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="c1"># 或使用不同名稱</span>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>xxx-new<span class="w"> </span>...
+</span></code></pre></div><p></p>
+</details>
+<hr>
+<h2 id="_6">小結<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
+<p>本章節重點回顧：</p>
+<ul>
+<li>✅ <strong>docker run</strong>：使用 <code>-itd</code> 背景執行，<code>--name</code> 命名，<code>-e</code> 設定環境變數</li>
+<li>✅ <strong>docker logs</strong>：查看容器日誌，<code>-f</code> 即時追蹤</li>
+<li>✅ <strong>docker inspect</strong>：查看容器詳細資訊，<code>-f</code> 格式化輸出</li>
+<li>✅ <strong>docker exec</strong>：進入運行中的容器執行指令</li>
+</ul>
+<h2 id="_7">延伸閱讀<a class="headerlink" href="#_7" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="https://docs.docker.com/engine/reference/run/">Docker run 官方文件</a></li>
+<li><a href="https://docs.docker.com/engine/reference/commandline/exec/">Docker exec 官方文件</a></li>
+<li><a href="https://docs.docker.com/engine/reference/commandline/logs/">Docker logs 官方文件</a></li>
+</ul>
 
 
 

@@ -15,7 +15,7 @@
         <link rel="prev" href="../lab19_k8s_wordpress_mysql/">
       
       
-        <link rel="next" href="../appendix/docker_cheatsheet/">
+        <link rel="next" href="../lab21_registry_web/">
       
       
         
@@ -320,7 +320,7 @@
           
   
   
-  Kubernetes 進階管理 (LAB 16-20)
+  Kubernetes 進階管理 (LAB 16-21)
 
         </a>
       </li>
@@ -1063,7 +1063,7 @@
   <span class="md-ellipsis">
     
   
-    Kubernetes 進階管理 (LAB 16-20)
+    Kubernetes 進階管理 (LAB 16-21)
   
 
     
@@ -1079,7 +1079,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Kubernetes 進階管理 (LAB 16-20)
+    Kubernetes 進階管理 (LAB 16-21)
   
 
           </label>
@@ -1278,7 +1278,206 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        實作步驟
+        前置知識
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心概念說明
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="核心概念說明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kubernetes-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kubernetes Dashboard 是什麼？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dashboard 功能
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 實作練習
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 實作練習">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 1：清除現有資源
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-kubernetes-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 2：部署 Kubernetes Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 3：建立管理員帳號
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-kubectl-proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 4：啟動 kubectl proxy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 5：開啟 Dashboard 網頁
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 6：取得登入 Token
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 7：登入 Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 8：使用 Dashboard 管理資源
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        資源總覽
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常見問題
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        清理資源
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        小結
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        延伸閱讀
       
     </span>
   </a>
@@ -1289,6 +1488,34 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab21_registry_web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LAB 21 私庫圖形管理工具 docker-registry-web
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1487,7 +1714,206 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        實作步驟
+        前置知識
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心概念說明
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="核心概念說明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kubernetes-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kubernetes Dashboard 是什麼？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dashboard 功能
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 實作練習
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 實作練習">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 1：清除現有資源
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-kubernetes-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 2：部署 Kubernetes Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 3：建立管理員帳號
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-kubectl-proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 4：啟動 kubectl proxy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 5：開啟 Dashboard 網頁
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 6：取得登入 Token
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 7：登入 Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 8：使用 Dashboard 管理資源
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        資源總覽
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常見問題
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        清理資源
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        小結
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        延伸閱讀
       
     </span>
   </a>
@@ -1524,7 +1950,7 @@
     <span class="twemoji">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span style="font-weight: 500;">更新:</span> <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月26日 14:01:45 CST">2026年1月26日 14:01:45</span>
+    <span style="font-weight: 500;">更新:</span> <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月28日 17:07:34 CST">2026年1月28日 17:07:34</span>
   </span>
   
 
@@ -1543,11 +1969,341 @@
 
 <h1 id="lab-20-kubernetes-dashboard">LAB 20 圖形管理工具 Kubernetes Dashboard<a class="headerlink" href="#lab-20-kubernetes-dashboard" title="Permanent link">¶</a></h1>
 <h2 id="_1">學習目標<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<p>完成本章節後，你將能夠：</p>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 待補</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 部署 Kubernetes Dashboard</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 使用 kubectl proxy 連接 Dashboard</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 建立 ServiceAccount 並取得登入 Token</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 透過 Dashboard 管理 Kubernetes 資源</li>
 </ul>
-<h2 id="_2">實作步驟<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
-<p><em>(本章節內容待補)</em></p>
+<h2 id="_2">前置知識<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<p>開始之前，請確保你已經：</p>
+<ul>
+<li>完成 LAB 19 WordPress + MySQL 部署</li>
+<li>熟悉 RBAC 基本概念</li>
+<li>準備好 Kubernetes 叢集環境（k8s-master1）</li>
+</ul>
+<hr>
+<h2 id="_3">核心概念說明<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<h3 id="kubernetes-dashboard">Kubernetes Dashboard 是什麼？<a class="headerlink" href="#kubernetes-dashboard" title="Permanent link">¶</a></h3>
+<p><strong>Kubernetes Dashboard</strong> 是 Kubernetes 官方提供的**網頁式管理介面**，讓你可以透過圖形化界面管理叢集中的資源，而不需要記憶大量的 kubectl 指令。</p>
+<pre class="mermaid"><code>graph LR
+    subgraph browser["瀏覽器"]
+        User["使用者"]
+    end
+
+    subgraph master["k8s-master1"]
+        Proxy["kubectl proxy"]
+        Dashboard["Dashboard Pod"]
+        API["API Server"]
+    end
+
+    User --&gt; Proxy
+    Proxy --&gt; API
+    API --&gt; Dashboard</code></pre>
+<h3 id="dashboard">Dashboard 功能<a class="headerlink" href="#dashboard" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>資源檢視</strong></td>
+<td>查看 Pods、Deployments、Services 等資源狀態</td>
+</tr>
+<tr>
+<td><strong>資源建立</strong></td>
+<td>透過 YAML 或表單建立新資源</td>
+</tr>
+<tr>
+<td><strong>日誌查看</strong></td>
+<td>即時查看 Pod 的容器日誌</td>
+</tr>
+<tr>
+<td><strong>Shell 連線</strong></td>
+<td>直接在瀏覽器中開啟容器的 Shell</td>
+</tr>
+<tr>
+<td><strong>資源編輯</strong></td>
+<td>編輯現有資源的 YAML 設定</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="lab">Lab 實作練習<a class="headerlink" href="#lab" title="Permanent link">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">操作環境</p>
+<p>本 Lab 所有操作都在 <strong>k8s-master1</strong> 的**圖形環境**下執行，需要開啟 gnome-terminal。</p>
+</div>
+<hr>
+<h3 id="1">步驟 1：清除現有資源<a class="headerlink" href="#1" title="Permanent link">¶</a></h3>
+<p>在開始前，先清除之前 Lab 建立的資源：</p>
+<div class="language-bash highlight"><span class="filename">清除資源</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>all<span class="w"> </span>--all
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>pvc<span class="w"> </span>--all
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>pv<span class="w"> </span>--all
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>secrets<span class="w"> </span>mysql-pass
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>configmap<span class="w"> </span>mysql-config
+</span></code></pre></div>
+<hr>
+<h3 id="2-kubernetes-dashboard">步驟 2：部署 Kubernetes Dashboard<a class="headerlink" href="#2-kubernetes-dashboard" title="Permanent link">¶</a></h3>
+<p>Dashboard 使用官方提供的 YAML 檔部署：</p>
+<div class="admonition info">
+<p class="admonition-title">YAML 來源</p>
+<p>官方 YAML：<code>https://raw.githubusercontent.com/kubernetes/dashboard/v2.2.0/aio/deploy/recommended.yaml</code></p>
+<p>本課程使用講師提供的版本：<code>http://10.0.1.249/k8s/yaml/recommended.yaml</code></p>
+</div>
+<div class="language-bash highlight"><span class="filename">部署 Dashboard</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>http://10.0.1.249/k8s/yaml/recommended.yaml
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>namespace/kubernetes-dashboard created
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>serviceaccount/kubernetes-dashboard created
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>service/kubernetes-dashboard created
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>secret/kubernetes-dashboard-certs created
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>secret/kubernetes-dashboard-csrf created
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>secret/kubernetes-dashboard-key-holder created
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>configmap/kubernetes-dashboard-settings created
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>role.rbac.authorization.k8s.io/kubernetes-dashboard created
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>clusterrole.rbac.authorization.k8s.io/kubernetes-dashboard created
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>rolebinding.rbac.authorization.k8s.io/kubernetes-dashboard created
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>clusterrolebinding.rbac.authorization.k8s.io/kubernetes-dashboard created
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>deployment.apps/kubernetes-dashboard created
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>service/dashboard-metrics-scraper created
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>deployment.apps/dashboard-metrics-scraper created
+</span></code></pre></div>
+<p>驗證部署狀態：</p>
+<div class="language-bash highlight"><span class="filename">檢查 Dashboard Pod</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>kubernetes-dashboard
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>NAME                                         READY   STATUS    RESTARTS   AGE
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>dashboard-metrics-scraper-5cb4f4bb9c-xxxxx   1/1     Running   0          30s
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>kubernetes-dashboard-6967859bff-xxxxx        1/1     Running   0          30s
+</span></code></pre></div>
+<hr>
+<h3 id="3">步驟 3：建立管理員帳號<a class="headerlink" href="#3" title="Permanent link">¶</a></h3>
+<p>Dashboard 預設的 ServiceAccount 權限有限，我們需要建立一個擁有管理員權限的帳號：</p>
+<div class="language-bash highlight"><span class="filename">建立 admin-user</span><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>http://10.0.1.249/k8s/yaml/KubernetesDashboard.yaml
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>serviceaccount/admin-user created
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>clusterrolebinding.rbac.authorization.k8s.io/admin-user created
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">注意檔名大小寫</p>
+<p>檔名是 <code>KubernetesDashboard.yaml</code>（K 和 D 大寫），不是 <code>kubernetesDashboard.yaml</code>！</p>
+</div>
+<p>這個 YAML 會建立：</p>
+<ol>
+<li><strong>ServiceAccount <code>admin-user</code></strong>：在 <code>kubernetes-dashboard</code> namespace</li>
+<li><strong>ClusterRoleBinding</strong>：將 <code>cluster-admin</code> 角色綁定給 <code>admin-user</code></li>
+</ol>
+<hr>
+<h3 id="4-kubectl-proxy">步驟 4：啟動 kubectl proxy<a class="headerlink" href="#4-kubectl-proxy" title="Permanent link">¶</a></h3>
+<p>在圖形環境中開啟 <strong>gnome-terminal</strong>，執行 kubectl proxy：</p>
+<div class="language-bash highlight"><span class="filename">啟動 Proxy（保持此視窗開啟）</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>kubectl<span class="w"> </span>proxy
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>Starting to serve on 127.0.0.1:8001
+</span></code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/images/kubectl_proxy_terminal.png" data-desc-position="bottom"><img alt="kubectl proxy 執行畫面" src="../assets/images/kubectl_proxy_terminal.png"></a></p>
+<div class="admonition danger">
+<p class="admonition-title">重要：不要關閉這個視窗！</p>
+<p><code>kubectl proxy</code> 需要持續執行，關閉視窗會中斷與 Dashboard 的連線。</p>
+</div>
+<hr>
+<h3 id="5-dashboard">步驟 5：開啟 Dashboard 網頁<a class="headerlink" href="#5-dashboard" title="Permanent link">¶</a></h3>
+<p>在圖形環境中開啟瀏覽器（Firefox），連線到 Dashboard：</p>
+<p><strong>Dashboard URL</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>http://127.0.0.1:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/login
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">開啟新分頁</p>
+<p>在 gnome-terminal 按 <code>Ctrl+Shift+T</code> 開啟新分頁，或開啟新視窗。</p>
+</div>
+<p>你會看到 Dashboard 登入頁面：</p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/images/dashboard_login_page.png" data-desc-position="bottom"><img alt="Dashboard 登入頁面" src="../assets/images/dashboard_login_page.png"></a></p>
+<hr>
+<h3 id="6-token">步驟 6：取得登入 Token<a class="headerlink" href="#6-token" title="Permanent link">¶</a></h3>
+<p>在**另一個終端機視窗**（新分頁）執行：</p>
+<div class="language-bash highlight"><span class="filename">產生 Token</span><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>kubectl<span class="w"> </span>create<span class="w"> </span>token<span class="w"> </span>admin-user<span class="w"> </span>-n<span class="w"> </span>kubernetes-dashboard
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>eyJhbGciOiJSUzI1NiIsImtpZCI6Ik5na0NBUnl2Z1o4dU1uZmJqcER5ZnVjdDZa...
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Token 有效期限</p>
+<p>預設 Token 有效期限為 1 小時。如需更長時間，可使用 <code>--duration</code> 參數：
+</p><div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>kubectl<span class="w"> </span>create<span class="w"> </span>token<span class="w"> </span>admin-user<span class="w"> </span>-n<span class="w"> </span>kubernetes-dashboard<span class="w"> </span>--duration<span class="o">=</span>24h
+</span></code></pre></div><p></p>
+</div>
+<hr>
+<h3 id="7-dashboard">步驟 7：登入 Dashboard<a class="headerlink" href="#7-dashboard" title="Permanent link">¶</a></h3>
+<ol>
+<li>在登入頁面選擇 <strong>Token</strong> 選項</li>
+<li>將上一步產生的 Token 複製貼上</li>
+<li>點選 <strong>Sign in</strong></li>
+</ol>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/images/dashboard_token_input.png" data-desc-position="bottom"><img alt="輸入 Token 登入" src="../assets/images/dashboard_token_input.png"></a></p>
+<hr>
+<h3 id="8-dashboard">步驟 8：使用 Dashboard 管理資源<a class="headerlink" href="#8-dashboard" title="Permanent link">¶</a></h3>
+<p>登入成功後，你可以透過 Dashboard 進行各種操作：</p>
+<h4 id="deployment">建立測試 Deployment<a class="headerlink" href="#deployment" title="Permanent link">¶</a></h4>
+<p>先用 kubectl 建立一個測試資源：</p>
+<div class="language-bash highlight"><span class="filename">建立測試 Deployment</span><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>kubectl<span class="w"> </span>create<span class="w"> </span>deployment<span class="w"> </span>test1<span class="w"> </span>--image<span class="o">=</span>docker1.training.lab:5000/httpd
+</span></code></pre></div>
+<p>驗證：</p>
+<div class="language-bash highlight"><span class="filename">檢查 Deployment</span><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>deployments.apps
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>NAME    READY   UP-TO-DATE   AVAILABLE   AGE
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>test1   1/1     1            1           11s
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>NAME                    READY   STATUS    RESTARTS   AGE
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>test1-dcd787f9d-pmklm   1/1     Running   0          22s
+</span></code></pre></div>
+<h4 id="deployments">檢視 Deployments<a class="headerlink" href="#deployments" title="Permanent link">¶</a></h4>
+<p>在左側選單點選 <strong>Workloads</strong> &gt; <strong>Deployments</strong>，可以看到剛建立的 test1：</p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/images/dashboard_deployments.png" data-desc-position="bottom"><img alt="Dashboard Deployments 列表" src="../assets/images/dashboard_deployments.png"></a></p>
+<p>可以看到：</p>
+<ul>
+<li><strong>Name</strong>：Deployment 名稱（test1）</li>
+<li><strong>Namespace</strong>：所屬命名空間（default）</li>
+<li><strong>Pods</strong>：Pod 數量（1/1 表示 1 個就緒）</li>
+<li><strong>Images</strong>：使用的映像檔（docker1.training.lab:5000/httpd）</li>
+</ul>
+<h4 id="deployment_1">檢視 Deployment 詳細資訊<a class="headerlink" href="#deployment_1" title="Permanent link">¶</a></h4>
+<p>點選 Deployment 名稱可以查看詳細資訊：</p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/images/dashboard_deployment_detail.png" data-desc-position="bottom"><img alt="Dashboard Deployment 詳細頁面" src="../assets/images/dashboard_deployment_detail.png"></a></p>
+<p>詳細頁面顯示：</p>
+<ul>
+<li><strong>Metadata</strong>：名稱、命名空間、建立時間、UID</li>
+<li><strong>Labels</strong>：標籤（app: test1）</li>
+<li><strong>Resource information</strong>：更新策略（RollingUpdate）、Selector</li>
+<li><strong>Rolling update strategy</strong>：滾動更新參數（maxSurge: 25%, maxUnavailable: 25%）</li>
+</ul>
+<h4 id="pods">檢視 Pods<a class="headerlink" href="#pods" title="Permanent link">¶</a></h4>
+<p>在左側選單點選 <strong>Workloads</strong> &gt; <strong>Pods</strong>：</p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/images/dashboard_pods.png" data-desc-position="bottom"><img alt="Dashboard Pods 列表" src="../assets/images/dashboard_pods.png"></a></p>
+<p>Pods 列表顯示：</p>
+<ul>
+<li><strong>Name</strong>：Pod 完整名稱</li>
+<li><strong>Node</strong>：Pod 運行的節點（k8s-node1.training.lab）</li>
+<li><strong>Status</strong>：運行狀態（Running）</li>
+<li><strong>Restarts</strong>：重啟次數</li>
+<li><strong>CPU/Memory Usage</strong>：資源使用量</li>
+</ul>
+<h4 id="pod">檢視 Pod 詳細資訊<a class="headerlink" href="#pod" title="Permanent link">¶</a></h4>
+<p>點選 Pod 名稱可以查看完整詳細資訊：</p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/images/dashboard_pod_detail.png" data-desc-position="bottom"><img alt="Dashboard Pod 詳細頁面" src="../assets/images/dashboard_pod_detail.png"></a></p>
+<p>Pod 詳細頁面顯示：</p>
+<ul>
+<li><strong>Metadata</strong>：Pod 名稱、命名空間、建立時間、UID、Labels</li>
+<li><strong>Resource information</strong>：運行節點、IP（10.128.1.5）、QoS Class（BestEffort）</li>
+<li><strong>Conditions</strong>：Pod 狀態條件（PodReadyToStartContainers、Initialized、Ready、ContainersReady）</li>
+</ul>
+<div class="admonition success">
+<p class="admonition-title">Dashboard 功能</p>
+<p>除了檢視資源，你還可以：</p>
+<ul>
+<li>📝 <strong>編輯 YAML</strong>：點選右上角的編輯圖示</li>
+<li>📋 <strong>查看日誌</strong>：點選右上角的日誌圖示</li>
+<li>💻 <strong>開啟 Shell</strong>：直接在瀏覽器中連線容器</li>
+</ul>
+</div>
+<hr>
+<h2 id="_4">資源總覽<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
+<p>Dashboard 部署後會建立以下資源：</p>
+<table>
+<thead>
+<tr>
+<th>資源類型</th>
+<th>名稱</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Namespace</td>
+<td>kubernetes-dashboard</td>
+<td>Dashboard 專用命名空間</td>
+</tr>
+<tr>
+<td>Deployment</td>
+<td>kubernetes-dashboard</td>
+<td>Dashboard 主程式</td>
+</tr>
+<tr>
+<td>Deployment</td>
+<td>dashboard-metrics-scraper</td>
+<td>指標收集器</td>
+</tr>
+<tr>
+<td>Service</td>
+<td>kubernetes-dashboard</td>
+<td>Dashboard 服務</td>
+</tr>
+<tr>
+<td>ServiceAccount</td>
+<td>admin-user</td>
+<td>管理員帳號</td>
+</tr>
+<tr>
+<td>ClusterRoleBinding</td>
+<td>admin-user</td>
+<td>綁定 cluster-admin 權限</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="_5">常見問題<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
+<details class="question">
+<summary>Q1：Dashboard 頁面顯示空白或 403 錯誤</summary>
+<p><strong>原因</strong>：Token 過期或權限不足</p>
+<p><strong>解決方案</strong>：
+</p><div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1"># 重新產生 Token</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>kubectl<span class="w"> </span>create<span class="w"> </span>token<span class="w"> </span>admin-user<span class="w"> </span>-n<span class="w"> </span>kubernetes-dashboard
+</span></code></pre></div><p></p>
+</details>
+<details class="question">
+<summary>Q2：無法連線到 Dashboard</summary>
+<p><strong>原因</strong>：kubectl proxy 沒有執行</p>
+<p><strong>解決方案</strong>：
+1. 確認 kubectl proxy 視窗是否開啟
+2. 重新執行 <code>kubectl proxy</code></p>
+</details>
+<details class="question">
+<summary>Q3：Dashboard Pod 一直處於 Pending</summary>
+<p><strong>原因</strong>：資源不足或 Node 沒有 Ready</p>
+<p><strong>解決方案</strong>：
+</p><div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>kubectl<span class="w"> </span>describe<span class="w"> </span>pod<span class="w"> </span>-n<span class="w"> </span>kubernetes-dashboard
+</span></code></pre></div><p></p>
+</details>
+<hr>
+<h2 id="_6">清理資源<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
+<p>完成練習後，可以清理 Dashboard 相關資源：</p>
+<div class="language-bash highlight"><span class="filename">清理 Dashboard</span><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>http://10.0.1.249/k8s/yaml/KubernetesDashboard.yaml
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>http://10.0.1.249/k8s/yaml/recommended.yaml
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>deployment<span class="w"> </span>test1
+</span></code></pre></div>
+<hr>
+<h2 id="_7">小結<a class="headerlink" href="#_7" title="Permanent link">¶</a></h2>
+<p>本章節重點回顧：</p>
+<ul>
+<li>✅ <strong>Dashboard 部署</strong>：使用官方 recommended.yaml 部署</li>
+<li>✅ <strong>kubectl proxy</strong>：建立本地代理連線到 API Server</li>
+<li>✅ <strong>Token 認證</strong>：使用 <code>kubectl create token</code> 產生登入憑證</li>
+<li>✅ <strong>圖形化管理</strong>：透過網頁介面管理 Kubernetes 資源</li>
+</ul>
+<h2 id="_8">延伸閱讀<a class="headerlink" href="#_8" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/">Kubernetes Dashboard 官方文件</a></li>
+<li><a href="https://github.com/kubernetes/dashboard">Dashboard GitHub</a></li>
+<li><a href="https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/README.md">Dashboard 認證方式</a></li>
+</ul>
 
 
 

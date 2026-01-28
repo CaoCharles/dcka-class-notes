@@ -320,7 +320,7 @@
           
   
   
-  Kubernetes 進階管理 (LAB 16-20)
+  Kubernetes 進階管理 (LAB 16-21)
 
         </a>
       </li>
@@ -731,7 +731,195 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        實作步驟
+        前置知識
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心概念說明
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="核心概念說明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#persistent-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        為什麼需要 Persistent Storage？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Volume 類型
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 實作練習
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 實作練習">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 1：準備主機目錄
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-mariadb-volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 2：啟動 MariaDB 並掛載 Volume
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 3：確認資料已寫入主機目錄
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 4：驗證資料持久化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 5：刪除容器並重新建立
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-docker-volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 6：查看 Docker Volume
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-named-volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 7：使用 Named Volume
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bind-mount-vs-named-volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bind Mount vs Named Volume
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        清理資源
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常見問題
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        小結
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        延伸閱讀
       
     </span>
   </a>
@@ -1132,7 +1320,7 @@
   <span class="md-ellipsis">
     
   
-    Kubernetes 進階管理 (LAB 16-20)
+    Kubernetes 進階管理 (LAB 16-21)
   
 
     
@@ -1148,7 +1336,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Kubernetes 進階管理 (LAB 16-20)
+    Kubernetes 進階管理 (LAB 16-21)
   
 
           </label>
@@ -1281,6 +1469,34 @@
     
   
     LAB 20 圖形管理工具 Kubernetes Dashboard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab21_registry_web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LAB 21 私庫圖形管理工具 docker-registry-web
   
 
     
@@ -1487,7 +1703,195 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        實作步驟
+        前置知識
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心概念說明
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="核心概念說明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#persistent-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        為什麼需要 Persistent Storage？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Volume 類型
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 實作練習
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab 實作練習">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 1：準備主機目錄
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-mariadb-volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 2：啟動 MariaDB 並掛載 Volume
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 3：確認資料已寫入主機目錄
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 4：驗證資料持久化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 5：刪除容器並重新建立
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-docker-volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 6：查看 Docker Volume
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-named-volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 7：使用 Named Volume
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bind-mount-vs-named-volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bind Mount vs Named Volume
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        清理資源
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常見問題
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        小結
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        延伸閱讀
       
     </span>
   </a>
@@ -1524,7 +1928,7 @@
     <span class="twemoji">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span style="font-weight: 500;">更新:</span> <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月26日 14:01:45 CST">2026年1月26日 14:01:45</span>
+    <span style="font-weight: 500;">更新:</span> <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年1月28日 17:07:34 CST">2026年1月28日 17:07:34</span>
   </span>
   
 
@@ -1543,11 +1947,302 @@
 
 <h1 id="lab-07-persistent-storage">LAB 07 Persistent Storage<a class="headerlink" href="#lab-07-persistent-storage" title="Permanent link">¶</a></h1>
 <h2 id="_1">學習目標<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<p>完成本章節後，你將能夠：</p>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 待補</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 理解 Docker Volume 的用途</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 使用 <code>-v</code> 參數掛載目錄</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 使用 Docker Volume 管理資料持久化</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 實作 MariaDB 資料持久化</li>
 </ul>
-<h2 id="_2">實作步驟<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
-<p><em>(本章節內容待補)</em></p>
+<h2 id="_2">前置知識<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<p>開始之前，請確保你已經：</p>
+<ul>
+<li>完成 LAB 06 Docker 基本操作</li>
+<li>熟悉 <code>docker run</code> 指令</li>
+<li>準備好 docker2 虛擬機環境</li>
+</ul>
+<hr>
+<h2 id="_3">核心概念說明<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<h3 id="persistent-storage">為什麼需要 Persistent Storage？<a class="headerlink" href="#persistent-storage" title="Permanent link">¶</a></h3>
+<p>Docker 容器是「無狀態」的，當容器被刪除時，容器內的所有資料也會一併消失。對於資料庫這類需要持久化資料的應用，我們需要使用 <strong>Volume</strong> 來保存資料。</p>
+<pre class="mermaid"><code>graph TB
+    subgraph problem["問題：資料隨容器消失"]
+        C1["容器 1"] --&gt; Data1["資料"]
+        C1 --&gt; |刪除| Gone["資料消失 ❌"]
+    end
+
+    subgraph solution["解決：使用 Volume"]
+        C2["容器 2"] --&gt; Volume["Volume"]
+        Volume --&gt; Host["/docker_data"]
+        C2 --&gt; |刪除| Keep["資料保留 ✅"]
+    end</code></pre>
+<h3 id="volume">Volume 類型<a class="headerlink" href="#volume" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>類型</th>
+<th>說明</th>
+<th>範例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Bind Mount</strong></td>
+<td>掛載主機目錄</td>
+<td><code>-v /host/path:/container/path</code></td>
+</tr>
+<tr>
+<td><strong>Named Volume</strong></td>
+<td>Docker 管理的 Volume</td>
+<td><code>-v myvolume:/container/path</code></td>
+</tr>
+<tr>
+<td><strong>Anonymous Volume</strong></td>
+<td>自動建立的 Volume</td>
+<td>映像檔中 VOLUME 指令定義</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="lab">Lab 實作練習<a class="headerlink" href="#lab" title="Permanent link">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">操作環境</p>
+<p>本 Lab 在 <strong>docker2</strong> 虛擬機上執行。</p>
+</div>
+<hr>
+<h3 id="1">步驟 1：準備主機目錄<a class="headerlink" href="#1" title="Permanent link">¶</a></h3>
+<p>在主機上建立用於存放資料庫資料的目錄：</p>
+<div class="language-bash highlight"><span class="filename">建立資料目錄</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>/docker_data/db1
+</span></code></pre></div>
+<div class="language-bash highlight"><span class="filename">確認目錄</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ls<span class="w"> </span>-l<span class="w"> </span>/docker_data/
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>total 0
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>drwxr-xr-x 2 root root 6 Feb  4 12:22 db1
+</span></code></pre></div>
+<hr>
+<h3 id="2-mariadb-volume">步驟 2：啟動 MariaDB 並掛載 Volume<a class="headerlink" href="#2-mariadb-volume" title="Permanent link">¶</a></h3>
+<p>使用 <code>-v</code> 參數將主機目錄掛載到容器內：</p>
+<div class="language-bash highlight"><span class="filename">下載 MariaDB 映像檔</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker<span class="w"> </span>pull<span class="w"> </span>docker1.training.lab:5000/mariadb
+</span></code></pre></div>
+<div class="language-bash highlight"><span class="filename">啟動 MariaDB 並掛載 Volume</span><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-itd<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span>--name<span class="w"> </span>db1<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span>-p<span class="w"> </span><span class="m">3306</span>:3306<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span>-v<span class="w"> </span>/docker_data/db1:/var/lib/mysql<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span>-e<span class="w"> </span><span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>container<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">  </span>docker1.training.lab:5000/mariadb
+</span></code></pre></div>
+<p><strong>參數說明</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>參數</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-p 3306:3306</code></td>
+<td>將主機 3306 埠對應到容器 3306 埠</td>
+</tr>
+<tr>
+<td><code>-v /docker_data/db1:/var/lib/mysql</code></td>
+<td>掛載主機目錄到容器的 MySQL 資料目錄</td>
+</tr>
+<tr>
+<td><code>-e MYSQL_ROOT_PASSWORD=container</code></td>
+<td>設定 root 密碼</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="3">步驟 3：確認資料已寫入主機目錄<a class="headerlink" href="#3" title="Permanent link">¶</a></h3>
+<p>等待容器啟動完成後，檢查主機目錄：</p>
+<div class="language-bash highlight"><span class="filename">檢查資料目錄</span><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>ls<span class="w"> </span>-l<span class="w"> </span>/docker_data/db1/
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>total 122928
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>-rw-rw---- 1 systemd-coredump root    417792 Feb  4 12:24 aria_log.00000001
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>-rw-rw---- 1 systemd-coredump root        52 Feb  4 12:24 aria_log_control
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>-rw-rw---- 1 systemd-coredump root         0 Feb  4 12:24 multi-master.info
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>drwx------ 2 systemd-coredump root      4096 Feb  4 12:24 mysql
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>drwx------ 2 systemd-coredump root        20 Feb  4 12:24 performance_schema
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>...
+</span></code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">資料持久化成功</p>
+<p>看到這些檔案表示 MariaDB 的資料已經寫入到主機的 <code>/docker_data/db1</code> 目錄中！</p>
+</div>
+<hr>
+<h3 id="4">步驟 4：驗證資料持久化<a class="headerlink" href="#4" title="Permanent link">¶</a></h3>
+<p>建立測試資料庫：</p>
+<div class="language-bash highlight"><span class="filename">連線到 MariaDB</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>db1<span class="w"> </span>mysql<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-pcontainer
+</span></code></pre></div>
+<div class="language-sql highlight"><span class="filename">建立測試資料庫</span><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">testdb</span><span class="p">;</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">SHOW</span><span class="w"> </span><span class="n">DATABASES</span><span class="p">;</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">EXIT</span><span class="p">;</span>
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>+--------------------+
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>| Database           |
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>+--------------------+
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>| information_schema |
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>| mysql              |
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>| performance_schema |
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>| testdb             |
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>+--------------------+
+</span></code></pre></div>
+<hr>
+<h3 id="5">步驟 5：刪除容器並重新建立<a class="headerlink" href="#5" title="Permanent link">¶</a></h3>
+<p>刪除容器：</p>
+<div class="language-bash highlight"><span class="filename">停止並刪除容器</span><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>docker<span class="w"> </span>stop<span class="w"> </span>db1
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>docker<span class="w"> </span>rm<span class="w"> </span>db1
+</span></code></pre></div>
+<p>重新建立容器（使用相同的 Volume）：</p>
+<div class="language-bash highlight"><span class="filename">重新建立容器</span><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-itd<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">  </span>--name<span class="w"> </span>db1<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">  </span>-p<span class="w"> </span><span class="m">3306</span>:3306<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">  </span>-v<span class="w"> </span>/docker_data/db1:/var/lib/mysql<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">  </span>-e<span class="w"> </span><span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>container<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">  </span>docker1.training.lab:5000/mariadb
+</span></code></pre></div>
+<p>驗證資料是否保留：</p>
+<div class="language-bash highlight"><span class="filename">確認資料庫仍然存在</span><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>db1<span class="w"> </span>mysql<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-pcontainer<span class="w"> </span>-e<span class="w"> </span><span class="s2">"SHOW DATABASES;"</span>
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>+--------------------+
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>| Database           |
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>+--------------------+
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>| information_schema |
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>| mysql              |
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>| performance_schema |
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>| testdb             |   &lt;-- 資料保留！
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>+--------------------+
+</span></code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">資料持久化驗證成功</p>
+<p>即使容器被刪除重建，資料仍然保留！</p>
+</div>
+<hr>
+<h3 id="6-docker-volume">步驟 6：查看 Docker Volume<a class="headerlink" href="#6-docker-volume" title="Permanent link">¶</a></h3>
+<p>使用 <code>docker volume</code> 指令管理 Volume：</p>
+<div class="language-bash highlight"><span class="filename">列出所有 Volume</span><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>docker<span class="w"> </span>volume<span class="w"> </span>ls
+</span></code></pre></div>
+<div class="language-bash highlight"><span class="filename">檢查容器的 Volume 掛載</span><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>docker<span class="w"> </span>inspect<span class="w"> </span>db1<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-A<span class="w"> </span><span class="m">10</span><span class="w"> </span>Mounts
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nt">"Mounts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">        </span><span class="nt">"Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bind"</span><span class="p">,</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">        </span><span class="nt">"Source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/docker_data/db1"</span><span class="p">,</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">        </span><span class="nt">"Destination"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/var/lib/mysql"</span><span class="p">,</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">        </span><span class="nt">"Mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">        </span><span class="nt">"RW"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="w">        </span><span class="nt">"Propagation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rprivate"</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="p">],</span>
+</span></code></pre></div>
+<hr>
+<h3 id="7-named-volume">步驟 7：使用 Named Volume<a class="headerlink" href="#7-named-volume" title="Permanent link">¶</a></h3>
+<p>除了 Bind Mount，也可以使用 Docker 管理的 Named Volume：</p>
+<div class="language-bash highlight"><span class="filename">建立 Named Volume</span><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>docker<span class="w"> </span>volume<span class="w"> </span>create<span class="w"> </span>mydata
+</span></code></pre></div>
+<div class="language-bash highlight"><span class="filename">使用 Named Volume</span><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-itd<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">  </span>--name<span class="w"> </span>db2<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">  </span>-v<span class="w"> </span>mydata:/var/lib/mysql<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">  </span>-e<span class="w"> </span><span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>container<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="w">  </span>docker1.training.lab:5000/mariadb
+</span></code></pre></div>
+<div class="language-bash highlight"><span class="filename">查看 Volume 詳細資訊</span><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>docker<span class="w"> </span>volume<span class="w"> </span>inspect<span class="w"> </span>mydata
+</span></code></pre></div>
+<p><strong>預期結果</strong>：</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="p">[</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="w">        </span><span class="nt">"CreatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-02-04T12:30:00+08:00"</span><span class="p">,</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="w">        </span><span class="nt">"Driver"</span><span class="p">:</span><span class="w"> </span><span class="s2">"local"</span><span class="p">,</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="w">        </span><span class="nt">"Labels"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="w">        </span><span class="nt">"Mountpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/var/lib/docker/volumes/mydata/_data"</span><span class="p">,</span>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="w">        </span><span class="nt">"Name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mydata"</span><span class="p">,</span>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="w">        </span><span class="nt">"Options"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="w">        </span><span class="nt">"Scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"local"</span>
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a><span class="p">]</span>
+</span></code></pre></div>
+<hr>
+<h2 id="bind-mount-vs-named-volume">Bind Mount vs Named Volume<a class="headerlink" href="#bind-mount-vs-named-volume" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Bind Mount</th>
+<th>Named Volume</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>路徑指定</td>
+<td>必須指定完整路徑</td>
+<td>只需指定名稱</td>
+</tr>
+<tr>
+<td>資料位置</td>
+<td>自訂路徑</td>
+<td><code>/var/lib/docker/volumes/</code></td>
+</tr>
+<tr>
+<td>備份方便性</td>
+<td>較方便</td>
+<td>需透過 Docker 指令</td>
+</tr>
+<tr>
+<td>適用場景</td>
+<td>開發環境、需要直接存取</td>
+<td>生產環境、資料隔離</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="_4">清理資源<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
+<div class="language-bash highlight"><span class="filename">清理容器和 Volume</span><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>docker<span class="w"> </span>stop<span class="w"> </span>db1<span class="w"> </span>db2
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>docker<span class="w"> </span>rm<span class="w"> </span>db1<span class="w"> </span>db2
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>docker<span class="w"> </span>volume<span class="w"> </span>rm<span class="w"> </span>mydata
+</span></code></pre></div>
+<hr>
+<h2 id="_5">常見問題<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
+<details class="question">
+<summary>Q1：掛載目錄後容器內看不到資料</summary>
+<p><strong>原因</strong>：容器內原有的資料被主機空目錄覆蓋</p>
+<p><strong>解決方案</strong>：
+確保主機目錄是空的，讓容器初始化資料</p>
+</details>
+<details class="question">
+<summary>Q2：權限問題導致無法寫入</summary>
+<p><strong>原因</strong>：主機目錄權限不足</p>
+<p><strong>解決方案</strong>：
+</p><div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/docker_data/db1
+</span></code></pre></div><p></p>
+</details>
+<details class="question">
+<summary>Q3：Volume 佔用空間如何清理</summary>
+<p><strong>解決方案</strong>：
+</p><div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1"># 刪除未使用的 Volume</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>docker<span class="w"> </span>volume<span class="w"> </span>prune
+</span></code></pre></div><p></p>
+</details>
+<hr>
+<h2 id="_6">小結<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
+<p>本章節重點回顧：</p>
+<ul>
+<li>✅ <strong>Bind Mount</strong>：使用 <code>-v /host/path:/container/path</code> 掛載主機目錄</li>
+<li>✅ <strong>Named Volume</strong>：使用 <code>docker volume create</code> 建立管理型 Volume</li>
+<li>✅ <strong>資料持久化</strong>：容器刪除後資料仍保留在 Volume 中</li>
+<li>✅ <strong>Volume 管理</strong>：使用 <code>docker volume ls/inspect/rm/prune</code> 管理</li>
+</ul>
+<h2 id="_7">延伸閱讀<a class="headerlink" href="#_7" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="https://docs.docker.com/storage/volumes/">Docker Volume 官方文件</a></li>
+<li><a href="https://docs.docker.com/storage/bind-mounts/">Bind Mounts 官方文件</a></li>
+</ul>
 
 
 
