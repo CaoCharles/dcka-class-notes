@@ -99,16 +99,21 @@ stateDiagram-v2
 
 ```mermaid
 graph TB
-    subgraph "k8s-node1"
-        Pod1[pv1-pod-local]
-        Path1[/mnt/data<br/>index.html: node1...AAA]
+    subgraph node1["k8s-node1"]
+        Pod1["pv1-pod-local"]
+        Path1["/mnt/data"]
         Pod1 --> Path1
     end
     
-    subgraph "k8s-node2"
-        Path2[/mnt/data<br/>index.html: node2...BBB]
+    subgraph node2["k8s-node2"]
+        Path2["/mnt/data"]
     end
 ```
+
+| 節點 | 目錄 | 檔案內容 |
+|------|------|----------|
+| k8s-node1 | /mnt/data/index.html | node1...AAA |
+| k8s-node2 | /mnt/data/index.html | node2...BBB |
 
 !!! warning "hostPath 限制"
     使用 hostPath 時，Pod 只能運行在有該路徑的節點上。如果 Pod 被調度到其他節點，可能會找不到資料或看到不同的資料。
@@ -334,20 +339,20 @@ node1...AAA
 
 ```mermaid
 graph TB
-    subgraph "k8s-master1 (NFS Server)"
-        NFS[NFS 服務]
-        Data[/data<br/>index.html: master...CCC]
+    subgraph master["k8s-master1 NFS Server"]
+        NFS["NFS 服務"]
+        Data["/data"]
         NFS --> Data
     end
     
-    subgraph "k8s-node1"
-        Pod1[pv2-pod-nfs]
-        Pod1 -.->|NFS 掛載| NFS
+    subgraph node1["k8s-node1"]
+        Pod1["pv2-pod-nfs"]
+        Pod1 -.-> NFS
     end
     
-    subgraph "k8s-node2"
-        Pod2[Pod]
-        Pod2 -.->|NFS 掛載| NFS
+    subgraph node2["k8s-node2"]
+        Pod2["Pod"]
+        Pod2 -.-> NFS
     end
 ```
 
