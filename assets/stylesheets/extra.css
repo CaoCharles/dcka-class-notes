@@ -285,10 +285,22 @@
     border-color: var(--border-light);
 }
 
-/* === Checkbox === */
+/* === Checkbox 勾選樣式 (統一使用綠色勾勾) === */
 [data-md-color-scheme="default"] .md-typeset .task-list-item input[type="checkbox"]:checked {
-    background-color: var(--dcka-purple);
-    border-color: var(--dcka-purple);
+    background-color: var(--dcka-success);
+    border-color: var(--dcka-success);
+}
+
+/* 確保勾選圖示也是綠色 */
+[data-md-color-scheme="default"] .md-typeset .task-list-indicator:checked::before,
+[data-md-color-scheme="default"] .md-typeset [type="checkbox"]:checked::before {
+    color: white;
+}
+
+/* tasklist 使用綠色勾勾圖示 */
+[data-md-color-scheme="default"] .md-typeset .task-list-control [type="checkbox"]:checked {
+    background-color: var(--dcka-success) !important;
+    border-color: var(--dcka-success) !important;
 }
 
 /* === 標籤頁 === */
@@ -504,10 +516,15 @@
     text-decoration: none;
 }
 
-/* === 深色模式 Checkbox === */
+/* === 深色模式 Checkbox (統一使用綠色勾勾) === */
 [data-md-color-scheme="slate"] .md-typeset .task-list-item input[type="checkbox"]:checked {
-    background-color: var(--dcka-purple);
-    border-color: var(--dcka-purple);
+    background-color: var(--dcka-success);
+    border-color: var(--dcka-success);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .task-list-control [type="checkbox"]:checked {
+    background-color: var(--dcka-success) !important;
+    border-color: var(--dcka-success) !important;
 }
 
 /* === 深色模式標籤頁 === */
