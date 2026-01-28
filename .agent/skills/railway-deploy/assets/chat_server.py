@@ -28,7 +28,7 @@ if not api_key:
 genai.configure(api_key=api_key)
 
 # TODO: 可更換為其他 Gemini 模型
-MODEL_ID = "gemini-2.0-flash-lite-preview-02-05"
+MODEL_ID = "gemini-2.5-flash"
 
 
 class ChatRequest(BaseModel):

@@ -116,7 +116,7 @@ if not api_key:
     raise ValueError("GEMINI_API_KEY not set")
 
 genai.configure(api_key=api_key)
-MODEL_ID = "gemini-2.0-flash-lite-preview-02-05"
+MODEL_ID = "gemini-2.5-flash"
 
 class ChatRequest(BaseModel):
     history: list = []
