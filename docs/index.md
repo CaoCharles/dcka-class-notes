@@ -28,6 +28,42 @@ graph LR
 
 ---
 
+## 📚 學習資源
+
+!!! tip "多元學習管道"
+    我們提供多種學習資源，讓您可以選擇最適合的方式深入了解課程內容！
+
+<div class="grid cards" markdown>
+
+-   :material-podcast:{ .lg .middle } **課程介紹音檔**
+
+    ---
+
+    透過音檔快速了解課程重點與學習目標
+
+    <audio controls style="width: 100%;">
+      <source src="Docker_與_K8s_容器實戰筆記.m4a" type="audio/mp4">
+      您的瀏覽器不支援音訊播放
+    </audio>
+
+-   :material-robot:{ .lg .middle } **AI 互動問答**
+
+    ---
+
+    使用 Google NotebookLM 與 AI 進行課程內容問答
+
+    [:octicons-link-external-24: 開啟 NotebookLM](https://notebooklm.google.com/notebook/09af28d2-79ac-434c-af2e-30b182f0e099?artifactId=1083ab41-ec2c-4015-ba16-811fa32f6606){ .md-button target="_blank" }
+
+</div>
+
+### :material-file-pdf-box: 完整課程簡報預覽
+
+可直接在下方滑動查看簡報，或 [:octicons-download-24: 點此下載 PDF (15MB)](Kubernetes_Container_System_Administration.pdf)
+
+![](Kubernetes_Container_System_Administration.pdf#navpanes=0&toolbar=0){ type=application/pdf style="min-height:600px;width:100%" }
+
+---
+
 ## 學習目標
 
 完成本課程後，你將能夠：

@@ -70,6 +70,7 @@ plugins:
       show_contribution: true
       show_line_count: true
       show_email_address: false
+  - mkdocs-pdf
 
 markdown_extensions:
   - abbr
