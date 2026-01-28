@@ -4,6 +4,7 @@ site_author: Charles Cao
 site_url: https://caocharles.github.io/dcka-class-notes/
 repo_name: CaoCharles/dcka-class-notes
 repo_url: https://github.com/CaoCharles/dcka-class-notes
+copyright: Copyright &copy; 2026 Charles Cao - 筆記製作者
 
 # Hooks - 在 build 完成後自動生成 content.json
 hooks:

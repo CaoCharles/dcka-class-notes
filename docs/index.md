@@ -1,12 +1,13 @@
 # Docker Containers 與 Kubernetes 系統管理
 
-歡迎來到 **恆逸教育訓練中心 DCKA 課程** 學習筆記！
+歡迎來到由 **Charles** 製作的 **恆逸教育訓練中心 DCKA 課程** 學習筆記！
 
 !!! info "課程資訊"
     - **課程名稱**：Docker Containers 與 Kubernetes 系統管理
     - **課程代號**：DCKA
     - **總時數**：21 小時（3 天）
     - **適合對象**：網路工程師、雲端運算工程師
+    - **筆記製作**：:fontawesome-solid-user-pen: **Charles**
 
 ---
 

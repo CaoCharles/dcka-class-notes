@@ -23,17 +23,12 @@
   </span>
   {% endif %}
 
-  {% if git_authors %}
   <span style="display: inline-flex; align-items: center; gap: 0.4rem;">
     <span class="twemoji">
       {% include ".icons/material/account.svg" %}
     </span>
-    <span style="font-weight: 500;">作者:</span>
-    {% for author in git_authors %}
-    {{ author.name }}{% if not loop.last %}, {% endif %}
-    {% endfor %}
+    <span style="font-weight: 500;">作者:</span> Charles
   </span>
-  {% endif %}
 
 </div>
 {% endif %}
