@@ -101,6 +101,7 @@ hooks:
 | `glightbox` | 圖片放大檢視 |
 | `git-revision-date-localized` | 顯示最後更新時間 |
 | `git-authors` | 顯示作者資訊 |
+| `mkdocs-pdf` | 嵌入 PDF 預覽視窗 |
 
 ---
 

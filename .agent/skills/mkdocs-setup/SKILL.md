@@ -87,8 +87,6 @@ project/
 
 ---
 
-## pyproject.toml 設定
-
 ```toml
 [project]
 name = "my-course-site"
@@ -100,7 +98,105 @@ dependencies = [
     "mkdocs-glightbox>=0.4.0",
     "mkdocs-git-revision-date-localized-plugin>=1.2.0",
     "mkdocs-git-authors-plugin>=0.7.0",
+    "mkdocs-pdf>=0.1.2",
 ]
+```
+
+---
+
+## PDF 嵌入預覽 (mkdocs-pdf)
+
+### 安裝
+```bash
+uv add mkdocs-pdf
+```
+
+### mkdocs.yml 設定
+```yaml
+plugins:
+  - mkdocs-pdf
+```
+
+### 使用語法
+```markdown
+# 基本嵌入
+![](path/to/file.pdf){ type=application/pdf style="min-height:600px;width:100%" }
+
+# 隱藏左側欄位
+![](file.pdf#navpanes=0){ type=application/pdf style="min-height:600px;width:100%" }
+
+# 隱藏左側欄位 + 頂部工具列
+![](file.pdf#navpanes=0&toolbar=0){ type=application/pdf style="min-height:600px;width:100%" }
+```
+
+### PDF 參數說明
+| 參數 | 說明 |
+|------|------|
+| `navpanes=0` | 隱藏左側頁面縮略圖 |
+| `toolbar=0` | 隱藏頂部工具列 |
+| `scrollbar=0` | 隱藏右側滾動條 |
+| `page=N` | 跳到第 N 頁 |
+
+---
+
+## 音訊嵌入 (HTML5 Audio)
+
+不需要額外套件，直接使用 HTML5 audio 標籤：
+
+```markdown
+<audio controls style="width: 100%;">
+  <source src="audio_file.m4a" type="audio/mp4">
+  您的瀏覽器不支援音訊播放
+</audio>
+```
+
+支援格式：`.mp3`, `.m4a`, `.ogg`, `.wav`
+
+---
+
+## 作者資訊模板
+
+### 方法一：固定作者（不依賴 git）
+
+建立 `overrides/main.html`：
+
+```html
+{% extends "base.html" %}
+
+{% block content %}
+<div style="margin-bottom: 2rem; padding: 0.5rem 0; border-bottom: 1px solid rgba(0,0,0,0.1); font-size: 0.85em; color: #777; display: flex; flex-wrap: wrap; gap: 1.5rem;">
+
+  {% if page.meta.git_creation_date_localized %}
+  <span style="display: inline-flex; align-items: center; gap: 0.4rem;">
+    <span class="twemoji">{% include ".icons/material/calendar-plus.svg" %}</span>
+    <span style="font-weight: 500;">建立:</span> {{ page.meta.git_creation_date_localized }}
+  </span>
+  {% endif %}
+
+  {% if page.meta.git_revision_date_localized %}
+  <span style="display: inline-flex; align-items: center; gap: 0.4rem;">
+    <span class="twemoji">{% include ".icons/material/clock-edit-outline.svg" %}</span>
+    <span style="font-weight: 500;">更新:</span> {{ page.meta.git_revision_date_localized }}
+  </span>
+  {% endif %}
+
+  <span style="display: inline-flex; align-items: center; gap: 0.4rem;">
+    <span class="twemoji">{% include ".icons/material/account.svg" %}</span>
+    <span style="font-weight: 500;">作者:</span> Charles
+  </span>
+
+</div>
+
+{{ super() }}
+{% endblock %}
+```
+
+### 方法二：頁尾 Copyright
+
+在 `mkdocs.yml` 加入：
+
+```yaml
+copyright: Copyright &copy; 2026 Charles Cao - 筆記製作者
 ```
 
 ---
