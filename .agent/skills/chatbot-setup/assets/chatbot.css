@@ -1,0 +1,366 @@
+/* ====== AI Chatbot 樣式範本 ======
+   深紫色主題 - 可複製到新專案使用
+   ================================== */
+
+:root {
+    /* ====== 淺色模式配色 (可自訂) ====== */
+    --chatbot-bg: #ffffff;
+    --chatbot-header-bg: linear-gradient(135deg, #512da8 0%, #673ab7 100%);
+    --chatbot-header-text: #ffffff;
+    --chatbot-messages-bg: #f5f5f5;
+    --chatbot-bot-bubble-bg: #ffffff;
+    --chatbot-bot-bubble-text: #333333;
+    --chatbot-bot-bubble-border: #e0e0e0;
+    --chatbot-user-bubble-bg: #ffffff;
+    --chatbot-user-bubble-text: #333333;
+    --chatbot-user-bubble-border: #673ab7;
+    --chatbot-input-bg: #ffffff;
+    --chatbot-input-border: #e0e0e0;
+    --chatbot-input-text: #333333;
+    --chatbot-input-focus: #673ab7;
+    --chatbot-code-bg: #f5f5f5;
+    --chatbot-pre-bg: #1e1e2e;
+    --chatbot-pre-text: #e5e7eb;
+    --chatbot-button-bg: #673ab7;
+    --chatbot-button-text: #ffffff;
+    --chatbot-link-color: #512da8;
+    --chatbot-shadow: rgba(0, 0, 0, 0.15);
+}
+
+/* ====== 深色模式配色 ====== */
+[data-md-color-scheme="slate"] {
+    --chatbot-bg: #1e1e2e;
+    --chatbot-header-bg: linear-gradient(135deg, #0f0f17 0%, #1e1e2e 100%);
+    --chatbot-header-text: #ffffff;
+    --chatbot-messages-bg: #2d2d3f;
+    --chatbot-bot-bubble-bg: #3a3a4f;
+    --chatbot-bot-bubble-text: #e5e7eb;
+    --chatbot-bot-bubble-border: #4a4a5f;
+    --chatbot-user-bubble-bg: #3a3a4f;
+    --chatbot-user-bubble-text: #e5e7eb;
+    --chatbot-user-bubble-border: #9575cd;
+    --chatbot-input-bg: #3a3a4f;
+    --chatbot-input-border: #4a4a5f;
+    --chatbot-input-text: #e5e7eb;
+    --chatbot-input-focus: #9575cd;
+    --chatbot-code-bg: #3a3a4f;
+    --chatbot-pre-bg: #0f0f17;
+    --chatbot-pre-text: #b39ddb;
+    --chatbot-button-bg: #673ab7;
+    --chatbot-button-text: #ffffff;
+    --chatbot-link-color: #b39ddb;
+    --chatbot-shadow: rgba(0, 0, 0, 0.4);
+}
+
+/* ====== 浮動按鈕 ====== */
+#open-chat {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--chatbot-button-bg);
+    color: var(--chatbot-button-text);
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 12px var(--chatbot-shadow);
+    z-index: 10000;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#open-chat:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px var(--chatbot-shadow);
+    background: #7c4dff;
+}
+
+#open-chat svg {
+    width: 28px;
+    height: 28px;
+}
+
+/* ====== 聊天視窗 ====== */
+#gemini-chatbot {
+    display: none;
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 380px;
+    height: 560px;
+    max-width: 90vw;
+    max-height: 80vh;
+    border-radius: 16px;
+    background: var(--chatbot-bg);
+    box-shadow: 0 8px 32px var(--chatbot-shadow);
+    flex-direction: column;
+    z-index: 9999;
+    overflow: hidden;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    border: 1px solid var(--chatbot-bot-bubble-border);
+}
+
+#gemini-chatbot.fullscreen {
+    width: 100%;
+    height: 100%;
+    max-width: 100vw;
+    max-height: 100vh;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 0;
+}
+
+/* ====== 標題列 ====== */
+#chat-header {
+    background: var(--chatbot-header-bg);
+    color: var(--chatbot-header-text);
+    padding: 14px 16px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    font-size: 16px;
+}
+
+#chat-header span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#chat-header span::before {
+    content: "🤖";
+    font-size: 20px;
+}
+
+.header-buttons {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.header-buttons button {
+    background: transparent;
+    border: none;
+    color: var(--chatbot-header-text);
+    cursor: pointer;
+    opacity: 0.85;
+    width: 28px;
+    height: 28px;
+    padding: 4px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-buttons button:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.header-buttons svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+}
+
+/* ====== 訊息區域 ====== */
+#chat-messages {
+    flex-grow: 1;
+    padding: 16px;
+    overflow-y: auto;
+    background: var(--chatbot-messages-bg);
+}
+
+/* ====== 輸入區域 ====== */
+#chat-input-container {
+    display: flex;
+    padding: 12px 16px;
+    border-top: 1px solid var(--chatbot-input-border);
+    background: var(--chatbot-bg);
+    flex-shrink: 0;
+    align-items: center;
+    gap: 10px;
+}
+
+#chat-input {
+    flex-grow: 1;
+    border: 1px solid var(--chatbot-input-border);
+    border-radius: 24px;
+    padding: 10px 16px;
+    font-size: 14px;
+    background: var(--chatbot-input-bg);
+    color: var(--chatbot-input-text);
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+#chat-input:focus {
+    border-color: var(--chatbot-input-focus);
+    box-shadow: 0 0 0 2px rgba(103, 58, 183, 0.2);
+}
+
+#send-chat {
+    background: var(--chatbot-button-bg);
+    color: var(--chatbot-button-text);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+#send-chat:hover {
+    background: #7c4dff;
+    transform: scale(1.05);
+}
+
+/* ====== 訊息氣泡 ====== */
+.user-message,
+.bot-message {
+    padding: 12px 16px;
+    border-radius: 16px;
+    max-width: 85%;
+    line-height: 1.6;
+    overflow-wrap: break-word;
+    animation: fadeIn 0.2s ease;
+    margin-bottom: 12px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.user-message {
+    background: var(--chatbot-user-bubble-bg);
+    color: var(--chatbot-user-bubble-text);
+    border: 2px solid var(--chatbot-user-bubble-border);
+    border-radius: 16px 16px 4px 16px;
+    margin-left: auto;
+}
+
+.bot-message {
+    background: var(--chatbot-bot-bubble-bg);
+    color: var(--chatbot-bot-bubble-text);
+    border: 1px solid var(--chatbot-bot-bubble-border);
+    border-radius: 16px 16px 16px 4px;
+    margin-right: auto;
+}
+
+/* ====== 程式碼區塊 ====== */
+.bot-message code {
+    background-color: var(--chatbot-code-bg);
+    padding: 0.2em 0.5em;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', 'Consolas', monospace;
+    font-size: 0.9em;
+}
+
+.bot-message pre {
+    position: relative;
+    background: var(--chatbot-pre-bg);
+    color: var(--chatbot-pre-text);
+    padding: 14px;
+    border-radius: 8px;
+    white-space: pre-wrap;
+    margin: 10px 0;
+    font-size: 13px;
+}
+
+.bot-message pre code {
+    background: transparent;
+    padding: 0;
+    color: inherit;
+}
+
+.copy-code-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(149, 117, 205, 0.2);
+    color: #b39ddb;
+    border: none;
+    border-radius: 4px;
+    padding: 4px 10px;
+    font-size: 11px;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.2s ease;
+}
+
+.bot-message pre:hover .copy-code-btn {
+    opacity: 1;
+}
+
+/* ====== 連結 ====== */
+.bot-message a {
+    color: var(--chatbot-link-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.bot-message a:hover {
+    text-decoration: underline;
+    color: #7c4dff;
+}
+
+/* ====== 載入動畫 ====== */
+.typing-indicator {
+    display: flex;
+    gap: 4px;
+    padding: 12px 16px;
+    background: var(--chatbot-bot-bubble-bg);
+    border-radius: 16px;
+    width: fit-content;
+    margin-bottom: 12px;
+}
+
+.typing-indicator span {
+    width: 8px;
+    height: 8px;
+    background: #9575cd;
+    border-radius: 50%;
+    animation: typing 1.2s infinite;
+}
+
+.typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+.typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typing {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+    30% { transform: translateY(-4px); opacity: 1; }
+}
+
+/* ====== RWD 響應式 ====== */
+@media (max-width: 480px) {
+    #gemini-chatbot {
+        width: calc(100vw - 20px);
+        height: calc(100vh - 120px);
+        right: 10px;
+        bottom: 80px;
+        border-radius: 12px;
+    }
+
+    #open-chat {
+        bottom: 15px;
+        right: 15px;
+        width: 50px;
+        height: 50px;
+    }
+}

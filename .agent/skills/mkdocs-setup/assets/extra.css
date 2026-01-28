@@ -1,0 +1,159 @@
+/* ==========================================
+   網站自訂樣式範本
+   配色：Deep Purple (深紫色系)
+   ========================================== */
+
+:root {
+    /* === 深紫色系 === */
+    --custom-purple: #673ab7;
+    --custom-dark-purple: #512da8;
+    --custom-light-purple: #9575cd;
+    --custom-accent: #7c4dff;
+    --custom-dark-gray: #1e1e2e;
+    --custom-gray: #9ca3af;
+    --custom-light-gray: #e5e7eb;
+}
+
+/* ==========================================
+   淺色模式
+   ========================================== */
+[data-md-color-scheme="default"] {
+    --md-primary-fg-color: var(--custom-purple);
+    --md-accent-fg-color: var(--custom-accent);
+}
+
+/* === 導航列 (使用黑色系) === */
+[data-md-color-scheme="default"] .md-header {
+    background: linear-gradient(135deg, #0f0f17 0%, var(--custom-dark-gray) 100%);
+}
+
+[data-md-color-scheme="default"] .md-tabs {
+    background: linear-gradient(135deg, var(--custom-dark-gray) 0%, #2d2d3f 100%);
+}
+
+/* === 標題樣式 === */
+[data-md-color-scheme="default"] .md-typeset h1 {
+    color: #1e1e2e;
+    font-weight: 700;
+    border-bottom: 2px solid var(--custom-light-gray);
+    padding-bottom: 8px;
+}
+
+[data-md-color-scheme="default"] .md-typeset h2 {
+    border-bottom: 2px solid var(--custom-light-purple);
+    padding-bottom: 0.4em;
+}
+
+/* === 表格樣式 === */
+[data-md-color-scheme="default"] .md-typeset table:not([class]) thead {
+    background: linear-gradient(135deg, var(--custom-dark-purple) 0%, var(--custom-purple) 100%);
+}
+
+[data-md-color-scheme="default"] .md-typeset table:not([class]) thead th {
+    color: white;
+    font-weight: 600;
+}
+
+[data-md-color-scheme="default"] .md-typeset table:not([class]) tbody tr:hover {
+    background-color: rgba(103, 58, 183, 0.08);
+}
+
+/* === 按鈕樣式 === */
+[data-md-color-scheme="default"] .md-button {
+    background: var(--custom-purple);
+    color: white !important;
+    border: none;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+[data-md-color-scheme="default"] .md-button:hover {
+    background: var(--custom-dark-purple);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(103, 58, 183, 0.3);
+}
+
+/* ==========================================
+   深色模式
+   ========================================== */
+[data-md-color-scheme="slate"] {
+    --md-primary-fg-color: var(--custom-purple);
+    --md-accent-fg-color: var(--custom-accent);
+}
+
+[data-md-color-scheme="slate"] .md-header {
+    background: linear-gradient(135deg, #0f0f17 0%, var(--custom-dark-gray) 100%);
+}
+
+[data-md-color-scheme="slate"] .md-typeset h1,
+[data-md-color-scheme="slate"] .md-typeset h2,
+[data-md-color-scheme="slate"] .md-typeset h3 {
+    color: #ffffff !important;
+}
+
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) thead {
+    background: linear-gradient(135deg, var(--custom-dark-purple) 0%, var(--custom-purple) 100%);
+}
+
+/* ==========================================
+   通用樣式
+   ========================================== */
+
+/* === Mermaid 圖表優化 === */
+.mermaid {
+    text-align: center;
+    overflow-x: auto;
+    padding: 1rem 0;
+}
+
+.mermaid svg {
+    max-width: 100%;
+    height: auto;
+}
+
+/* === 圖片圓角 === */
+.md-typeset img {
+    border-radius: 8px;
+}
+
+/* === 滾動條樣式 === */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--custom-gray);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--custom-light-purple);
+}
+
+/* === 選取文字顏色 === */
+::selection {
+    background: var(--custom-light-purple);
+    color: white;
+}
+
+/* === 頁面過渡動畫 === */
+.md-content {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

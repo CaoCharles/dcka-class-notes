@@ -1,0 +1,79 @@
+# MkDocs 專案範本
+
+site_name: 我的課程網站
+site_description: 課程說明文件
+site_author: Your Name
+site_url: https://YOUR-USERNAME.github.io/YOUR-REPO-NAME/
+
+# TODO: 修改為你的 GitHub repo
+repo_name: YOUR-USERNAME/YOUR-REPO-NAME
+repo_url: https://github.com/YOUR-USERNAME/YOUR-REPO-NAME
+
+# Hooks - 自動生成 content.json
+hooks:
+  - hooks/generate_content.py
+
+theme:
+  name: material
+  language: zh-TW
+  palette:
+    - scheme: default
+      primary: deep purple
+      accent: purple
+      toggle:
+        icon: material/brightness-7
+        name: 切換至深色模式
+    - scheme: slate
+      primary: deep purple
+      accent: purple
+      toggle:
+        icon: material/brightness-4
+        name: 切換至淺色模式
+  font:
+    text: Noto Sans TC
+    code: JetBrains Mono
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+plugins:
+  - search:
+      lang: zh
+  - glightbox
+  - git-revision-date-localized:
+      enable_creation_date: true
+      type: datetime
+      timezone: Asia/Taipei
+      locale: zh
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - attr_list
+  - md_in_html
+
+# 載入 Chatbot
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/marked/marked.min.js
+  - assets/js/chatbot.js
+
+extra_css:
+  - assets/css/chatbot.css
+
+nav:
+  - 首頁: index.md

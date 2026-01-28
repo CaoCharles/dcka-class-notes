@@ -1,0 +1,16 @@
+[project]
+name = "my-course-site"
+version = "0.1.0"
+description = "課程文件網站"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "mkdocs-material>=9.5.0",
+    "mkdocs-glightbox>=0.4.0",
+    "mkdocs-git-revision-date-localized-plugin>=1.2.0",
+    "mkdocs-git-authors-plugin>=0.7.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
