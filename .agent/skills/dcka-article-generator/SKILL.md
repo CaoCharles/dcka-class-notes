@@ -289,6 +289,47 @@ stateDiagram-v2
 \`\`\`
 ```
 
+### 語法注意事項（重要！）
+
+> ⚠️ **避免 Mermaid 渲染錯誤的關鍵規則**
+
+1. **禁止使用 `<br/>` 標籤**：會導致語法錯誤
+   - ❌ 錯誤：`Node[文字<br/>換行]`
+   - ✅ 正確：使用表格補充說明，或分成多個節點
+
+2. **中文標籤必須用引號括住**：
+   - ❌ 錯誤：`Node[中文標籤]`
+   - ✅ 正確：`Node["中文標籤"]`
+
+3. **subgraph 必須使用 ID + 引號格式**：
+   - ❌ 錯誤：`subgraph "中文名稱"`
+   - ✅ 正確：`subgraph id["中文名稱"]`
+
+4. **避免在箭頭標籤中使用中文**：
+   - ❌ 容易出錯：`A -->|中文說明| B`
+   - ✅ 推薦：`A --> B` 然後用文字補充說明
+
+### 正確範例
+
+```markdown
+\`\`\`mermaid
+graph TB
+    subgraph master["k8s-master1"]
+        NFS["NFS 服務"]
+        Data["/data"]
+    end
+    
+    subgraph cluster["Kubernetes Cluster"]
+        Pod1["WordPress Pod"]
+        Pod2["MySQL Pod"]
+    end
+    
+    User["使用者"] --> Pod1
+    Pod1 --> Pod2
+    Pod1 -.-> NFS
+\`\`\`
+```
+
 ---
 
 ## 語言規範

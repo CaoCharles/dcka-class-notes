@@ -72,13 +72,14 @@ graph LR
 
 ---
 
-### 4. Kubernetes 進階管理 (LAB 16-20)
+### 4. Kubernetes 進階管理 (LAB 16-21)
 
 - 儲存管理 (PV/PVC)
 - 設定管理 (Secret/ConfigMap)
 - 權限控制 (RBAC)
 - 實作：WordPress + MySQL 完整部署
 - Kubernetes Dashboard
+- Private Registry 圖形管理 (docker-registry-web)
 
 [:octicons-arrow-right-24: 開始學習](lab16_pv_pvc.md)
 

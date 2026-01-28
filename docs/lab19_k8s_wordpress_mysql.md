@@ -26,32 +26,32 @@
 
 ```mermaid
 graph TB
-    subgraph "k8s-master1 (NFS Server)"
-        NFS[NFS 服務]
-        Data[/data]
+    subgraph master["k8s-master1 NFS Server"]
+        NFS["NFS 服務"]
+        Data["/data"]
     end
     
-    subgraph "Kubernetes Cluster"
-        subgraph "WordPress"
-            WP[WordPress Pod]
-            WP-SVC[WordPress Service<br/>LoadBalancer]
+    subgraph cluster["Kubernetes Cluster"]
+        subgraph wp["WordPress"]
+            WP["WordPress Pod"]
+            WP-SVC["WordPress Service"]
         end
         
-        subgraph "MySQL"
-            MySQL[MySQL Pod]
-            MySQL-SVC[MySQL Service<br/>ClusterIP: None]
+        subgraph db["MySQL"]
+            MySQL["MySQL Pod"]
+            MySQL-SVC["MySQL Service"]
         end
         
-        PV1[local-pv-1]
-        PV2[local-pv-2]
+        PV1["local-pv-1"]
+        PV2["local-pv-2"]
     end
     
-    User[使用者] -->|NodePort| WP-SVC
+    User["使用者"] --> WP-SVC
     WP-SVC --> WP
-    WP -->|連接 3306| MySQL-SVC
+    WP --> MySQL-SVC
     MySQL-SVC --> MySQL
-    PV1 -.->|NFS| NFS
-    PV2 -.->|NFS| NFS
+    PV1 -.-> NFS
+    PV2 -.-> NFS
 ```
 
 ---
