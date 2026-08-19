@@ -94,6 +94,21 @@ function fixBrokenLinks(text) {
     });
 }
 
+// ====== 思考中動畫 ======
+function showTyping() {
+    if (!chatMessages || document.getElementById("typing-indicator")) return;
+    const indicator = document.createElement("div");
+    indicator.id = "typing-indicator";
+    indicator.className = "typing-indicator";
+    indicator.innerHTML = "<span></span><span></span><span></span>";
+    chatMessages.appendChild(indicator);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function hideTyping() {
+    document.getElementById("typing-indicator")?.remove();
+}
+
 // ====== 加一則訊息到畫面 & 歷史 ======
 function addMessage(sender, text, addToHistory = true) {
     if (!chatMessages) return;
@@ -215,6 +230,7 @@ ${allDocsContent}
 
 
         // 呼叫 FastAPI 後端
+        showTyping();
         const response = await fetch(`${window.BACKEND_API_URL}/api/chat`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -236,6 +252,8 @@ ${allDocsContent}
     } catch (error) {
         console.error("API 呼叫錯誤:", error);
         addMessage("bot", `抱歉，發生錯誤：${error.message}\n\n請確認後端服務是否正常運作。`);
+    } finally {
+        hideTyping();
     }
 }
 
