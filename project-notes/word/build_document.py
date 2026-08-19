@@ -266,7 +266,7 @@ def add_components_table(doc):
         ("內容層", "Markdown / MkDocs", "保存教材並產生靜態網站與 content.json", "本機 → Pages"),
         ("互動層", "chatbot.js", "保存 Browser Session、組合 full-context prompt、渲染回答", "瀏覽器"),
         ("Delivery", "GitHub Actions", "分別建置 GitHub Pages 與部署 Cloud Run", "GitHub"),
-        ("Build", "Cloud Build / Registry", "依 Dockerfile 建置並保存可部署 container image", "Google Cloud"),
+        ("Build", "Cloud Build / Registry", "以 dcka-cloud-build（run.builder）建置並保存 container image", "Google Cloud"),
         ("API 層", "FastAPI / google-genai", "CORS、輸入與速率限制、保管 Key、呼叫模型", "Cloud Run"),
         ("模型層", "Gemini 3.5 Flash", "依 System Instruction 與 contents 產生回答", "Google API"),
         ("資料層", "Cloud Firestore", "遮罩匿名問答，保存 created_at 與 90 天 expires_at", "Google Cloud"),
@@ -470,16 +470,17 @@ def build():
         "GitHub Actions 取得 OIDC token，透過 Workload Identity Federation 換取短效 GCP 憑證。",
         "以 github-actions-deployer 專用帳號取得 Cloud Run source deploy 權限。",
         "設定 gcloud CLI 與專案。",
-        "執行 gcloud run deploy --source backend，並掛載 dcka-chatbot-runtime。",
-        "Cloud Build 依 Dockerfile 建置 image，Artifact Registry 保存 managed artifact。",
+        "執行 gcloud run deploy --source backend，指定 dcka-cloud-build 建置並掛載 dcka-chatbot-runtime。",
+        "Cloud Build 以 roles/run.builder 依 Dockerfile 建置 image，Artifact Registry 保存 managed artifact。",
         "Cloud Run 建立新 revision 並切換流量。",
         "部署時注入 GEMINI_API_KEY 環境變數。",
     ):
         add_number(doc, text)
     doc.add_heading("GitHub Variables 與 Secret", level=2)
-    add_bullet(doc, "Variables：GCP_PROJECT_ID、GCP_WIF_PROVIDER、GCP_DEPLOYER_SA、GCP_RUNTIME_SA。")
+    add_bullet(doc, "Variables：GCP_PROJECT_ID、GCP_WIF_PROVIDER、GCP_DEPLOYER_SA、GCP_BUILD_SA、GCP_RUNTIME_SA。")
     add_bullet(doc, "Secret：GEMINI_API_KEY，用於呼叫 Gemini API。")
     add_callout(doc, "無長效部署金鑰", "WIF Provider 只信任 CaoCharles/dcka-class-notes 的 main branch；repository 不保存 GCP Service Account JSON。", fill=LIGHT_GREEN, color=GREEN)
+    add_bullet(doc, "dcka-cloud-build 只具備 roles/run.builder；deployer 透過 roles/iam.serviceAccountUser 啟動這個建置身分。")
     add_callout(doc, "不可提交", "GEMINI_API_KEY 不得寫進 repository、Markdown、Draw.io 或 Word 文件。", fill=LIGHT_RED, color=RED)
     doc.add_heading("Firestore runtime dependency", level=2)
     add_bullet(doc, "Firestore 使用 Native mode，資料位置與 Cloud Run 同為 asia-east1。")

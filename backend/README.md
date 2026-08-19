@@ -403,7 +403,7 @@ flowchart TB
 | 1 | `git push` | 推送程式碼到 GitHub main 分支，且 `backend/` 有變動 |
 | 2 | GitHub Actions 觸發 | [`deploy-backend.yml`](../.github/workflows/deploy-backend.yml) 開始執行 |
 | 3 | 驗證 GCP | GitHub OIDC 經 WIF 換取 `github-actions-deployer` 的短效憑證，不保存 JSON key |
-| 4 | 建置並部署 | `gcloud run deploy --source backend`，Cloud Build 建置 Docker image 並部署到 Cloud Run |
+| 4 | 建置並部署 | `gcloud run deploy --source backend`，指定 `dcka-cloud-build` 建置 Docker image，再部署到 Cloud Run |
 | 5 | Frontend Workflow | `docs/**`、MkDocs 設定或前端 workflow 變更時觸發 |
 | 6 | MkDocs Build | 依 `uv.lock` 安裝依賴、建置 `site/` 並上傳 Pages artifact |
 | 7 | GitHub Pages | `deploy-pages` 將 artifact 發布為靜態網站 |
@@ -492,8 +492,11 @@ CaoCharles/dcka-class-notes main branch
 | 身分 | 權限／用途 |
 |------|-----------|
 | `github-actions-deployer` | `roles/run.sourceDeveloper`、`roles/serviceusage.serviceUsageConsumer` |
+| `dcka-cloud-build` | `roles/run.builder`，供 Cloud Build 建置與保存 Cloud Run source deploy image |
 | `dcka-chatbot-runtime` | `roles/datastore.user`，供 Cloud Run Runtime 寫入 Firestore |
 | WIF principal | 只能從 `CaoCharles/dcka-class-notes` 的 `main` branch impersonate deployer |
+
+`github-actions-deployer` 另外只能對 `dcka-cloud-build` 與 `dcka-chatbot-runtime` 使用 `roles/iam.serviceAccountUser`，分別啟動建置與掛載 Runtime 身分。
 
 **Step 4：設定 GitHub Actions Variables 與 Secret**
 
@@ -504,6 +507,7 @@ Settings → Secrets and variables → Actions：
 | Variable | `GCP_PROJECT_ID` | GCP Project ID |
 | Variable | `GCP_WIF_PROVIDER` | Workload Identity Provider 完整 resource name |
 | Variable | `GCP_DEPLOYER_SA` | `github-actions-deployer` email |
+| Variable | `GCP_BUILD_SA` | `dcka-cloud-build` 完整 Service Account resource name |
 | Variable | `GCP_RUNTIME_SA` | `dcka-chatbot-runtime` email |
 | Secret | `GEMINI_API_KEY` | Gemini API Key（[AI Studio](https://aistudio.google.com/apikey) 取得） |
 
@@ -517,6 +521,7 @@ gcloud run deploy dcka-chatbot-backend \
   --region asia-east1 \
   --project <PROJECT_ID> \
   --service-account dcka-chatbot-runtime@<PROJECT_ID>.iam.gserviceaccount.com \
+  --build-service-account projects/<PROJECT_NUMBER>/serviceAccounts/dcka-cloud-build@<PROJECT_ID>.iam.gserviceaccount.com \
   --allow-unauthenticated \
   --set-env-vars "GEMINI_API_KEY=<your_api_key>"
 ```
@@ -601,9 +606,9 @@ allow_origins=[
 
 **解決**：
 1. 檢查 GitHub Actions 的執行紀錄（repo → Actions → 對應的 workflow run）
-2. 確認 `GCP_PROJECT_ID`、`GCP_WIF_PROVIDER`、`GCP_DEPLOYER_SA`、`GCP_RUNTIME_SA` 四個 Variables 與 `GEMINI_API_KEY` Secret 都存在
+2. 確認 `GCP_PROJECT_ID`、`GCP_WIF_PROVIDER`、`GCP_DEPLOYER_SA`、`GCP_BUILD_SA`、`GCP_RUNTIME_SA` 五個 Variables 與 `GEMINI_API_KEY` Secret 都存在
 3. 確認 WIF Provider 為 `ACTIVE`，attribute condition 限制正確 repository 與 `refs/heads/main`
-4. 確認 deployer 具備 `roles/run.sourceDeveloper`、`roles/serviceusage.serviceUsageConsumer`，並可對 Runtime Service Account 使用 `roles/iam.serviceAccountUser`
+4. 確認 deployer 具備 `roles/run.sourceDeveloper`、`roles/serviceusage.serviceUsageConsumer`，並可對 Build 與 Runtime Service Account 使用 `roles/iam.serviceAccountUser`；Build Service Account 需具備 `roles/run.builder`
 5. 本地先測試 Docker 建置：
 
 ```bash

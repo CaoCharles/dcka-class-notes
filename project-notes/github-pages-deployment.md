@@ -61,8 +61,8 @@ https://caocharles.github.io/dcka-class-notes/
 
 - `.github/workflows/deploy-backend.yml` 已存在。
 - 當 `backend/**` 變更推到 `main`，GitHub Actions 會執行 `gcloud run deploy --source backend`。
-- GitHub Actions 透過 OIDC／Workload Identity Federation 取得短效 GCP 憑證；`GCP_PROJECT_ID`、WIF Provider 與 deployer/runtime Service Account 使用 GitHub Variables，`GEMINI_API_KEY` 使用 GitHub Secret。
-- `gcloud run deploy --source backend` 會委派 Cloud Build 建置 image，並由 Artifact Registry 保存 managed build artifact。
+- GitHub Actions 透過 OIDC／Workload Identity Federation 取得短效 GCP 憑證；`GCP_PROJECT_ID`、WIF Provider 與 deployer/build/runtime Service Account 使用 GitHub Variables，`GEMINI_API_KEY` 使用 GitHub Secret。
+- `gcloud run deploy --source backend` 會明確指定專用 `dcka-cloud-build`（`roles/run.builder`）建置 image，並由 Artifact Registry 保存 managed build artifact。
 - Cloud Run 建立新 revision 並切換流量；服務保持 stateless。
 - Firestore 是另行建立的 runtime dependency，不會因每次後端 deploy 重建；Cloud Run service account 需具備 `roles/datastore.user`。
 

@@ -40,6 +40,7 @@ jobs:
             --region "${{ env.REGION }}" \
             --project "${{ vars.GCP_PROJECT_ID }}" \
             --service-account "${{ vars.GCP_RUNTIME_SA }}" \
+            --build-service-account "${{ vars.GCP_BUILD_SA }}" \
             --set-env-vars "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" \
             --quiet
 

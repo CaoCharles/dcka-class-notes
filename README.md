@@ -192,8 +192,8 @@ uv run mkdocs gh-deploy --force
 後端跑在 Google Cloud Run，由 [`.github/workflows/deploy-backend.yml`](.github/workflows/deploy-backend.yml) 自動化：push 到 `main` 且 `backend/` 有變動時，會用 `gcloud run deploy --source backend` 自動建置並部署。
 
 1. GitHub Actions 透過 **Workload Identity Federation (WIF)** 交換短效 GCP 憑證，不保存 Service Account JSON key。
-2. `github-actions-deployer` 只具備原始碼部署權限；Cloud Run 使用獨立的 `dcka-chatbot-runtime` 執行，並以 `roles/datastore.user` 存取 Firestore。
-3. GitHub Actions Variables：`GCP_PROJECT_ID`、`GCP_WIF_PROVIDER`、`GCP_DEPLOYER_SA`、`GCP_RUNTIME_SA`。
+2. `github-actions-deployer` 只具備原始碼部署權限；Cloud Build 使用獨立的 `dcka-cloud-build`（`roles/run.builder`），Cloud Run 則使用 `dcka-chatbot-runtime` 執行並以 `roles/datastore.user` 存取 Firestore。
+3. GitHub Actions Variables：`GCP_PROJECT_ID`、`GCP_WIF_PROVIDER`、`GCP_DEPLOYER_SA`、`GCP_BUILD_SA`、`GCP_RUNTIME_SA`。
 4. GitHub Actions Secret：`GEMINI_API_KEY`。
 5. **手動部署一次**（首次或本機測試用）：
 
@@ -203,6 +203,7 @@ gcloud run deploy dcka-chatbot-backend \
   --region asia-east1 \
   --project <GCP_PROJECT_ID> \
   --service-account dcka-chatbot-runtime@<GCP_PROJECT_ID>.iam.gserviceaccount.com \
+  --build-service-account projects/<PROJECT_NUMBER>/serviceAccounts/dcka-cloud-build@<GCP_PROJECT_ID>.iam.gserviceaccount.com \
   --allow-unauthenticated \
   --set-env-vars "GEMINI_API_KEY=<your_key>"
 ```

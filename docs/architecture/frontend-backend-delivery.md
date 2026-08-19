@@ -55,17 +55,18 @@ Backend 由 GitHub Actions 監看 `backend/**`，再交給 Google Cloud 建置�
 |---|---|---|
 | Trigger | GitHub Push to `main` | 只有 `backend/**` 變更才觸發 Workflow |
 | Authentication | GitHub OIDC／WIF／Deployer Service Account | 取得短效 Google Cloud Deployment 權限 |
-| Build | Cloud Build | 依 `backend/Dockerfile` 建置 Container Image |
+| Build | Cloud Build／`dcka-cloud-build` | 以 `roles/run.builder` 依 `backend/Dockerfile` 建置 Container Image |
 | Artifact | Artifact Registry | 保存可部署的 Versioned Image |
 | Runtime | Cloud Run | 建立 Revision 並將 Traffic 切換到新版本 |
 | Persistence | Firestore | 由 Cloud Run Runtime IAM 寫入 `chat_logs` |
 
 ## Secrets 與 IAM
 
-- `GCP_PROJECT_ID`、`GCP_WIF_PROVIDER`、`GCP_DEPLOYER_SA`、`GCP_RUNTIME_SA`：GitHub Actions Variables。
+- `GCP_PROJECT_ID`、`GCP_WIF_PROVIDER`、`GCP_DEPLOYER_SA`、`GCP_BUILD_SA`、`GCP_RUNTIME_SA`：GitHub Actions Variables。
 - `GEMINI_API_KEY`：GitHub Secret，部署時注入 Cloud Run Runtime Environment。
 - Workload Identity Provider：只接受 `CaoCharles/dcka-class-notes` 的 `main` branch OIDC assertion。
 - `github-actions-deployer`：取得部署所需的 `roles/run.sourceDeveloper` 與 `roles/serviceusage.serviceUsageConsumer`。
+- `dcka-cloud-build`：以 `roles/run.builder` 執行 source deploy 的建置工作；deployer 只能以 `roles/iam.serviceAccountUser` 使用此身分。
 - `dcka-chatbot-runtime`：以 `roles/datastore.user` 寫入 Firestore。
 
 !!! success "無長效 GCP 部署金鑰"

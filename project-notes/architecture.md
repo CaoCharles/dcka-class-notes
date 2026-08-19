@@ -37,11 +37,11 @@
 - `main` 是 application source of truth。
 - GitHub Pages Artifact 是前端 deployable artifact，不是主要開發分支。
 - GitHub Actions 以兩條 workflow 分別處理 MkDocs Pages 與 Cloud Run 後端部署。
-- GitHub Actions 使用 OIDC／Workload Identity Federation 取得 `github-actions-deployer` 的短效憑證；`GCP_PROJECT_ID`、WIF Provider 與 Service Account email 使用 GitHub Variables，只有 `GEMINI_API_KEY` 使用 GitHub Secret。
+- GitHub Actions 使用 OIDC／Workload Identity Federation 取得 `github-actions-deployer` 的短效憑證；`GCP_PROJECT_ID`、WIF Provider 與 deployer/build/runtime Service Account 使用 GitHub Variables，只有 `GEMINI_API_KEY` 使用 GitHub Secret。
 
 ### Google Cloud Runtime
 
-- Cloud Build 依照 `backend/Dockerfile` 建置 image，Artifact Registry 保存 managed image artifact。
+- Cloud Build 以專用 `dcka-cloud-build`（`roles/run.builder`）依照 `backend/Dockerfile` 建置 image，Artifact Registry 保存 managed image artifact。
 - Cloud Run revision 執行 FastAPI／Uvicorn 與 `google-genai` SDK。
 - Cloud Run 對外提供 public HTTPS ingress，服務本身是 stateless。
 - `GEMINI_API_KEY` 以 runtime environment variable 注入，不會送到 GitHub Pages 或瀏覽器。
