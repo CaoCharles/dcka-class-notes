@@ -7,6 +7,7 @@ let openChatBtn, closeChatBtn, toggleFullscreenBtn, clearHistoryBtn;
 
 let allDocsContent = null;
 let isContentLoading = false;
+let isWaitingForResponse = false;
 let chatHistory = [];
 
 // ====== 設定 ======
@@ -192,7 +193,7 @@ function clearHistory() {
 // ====== 核心：送出訊息，呼叫 FastAPI 後端 ======
 async function sendMessage() {
     const messageText = chatInput.value.trim();
-    if (messageText === "" || isContentLoading) return;
+    if (messageText === "" || isContentLoading || isWaitingForResponse) return;
 
     addMessage("user", messageText);
     chatInput.value = "";
@@ -201,6 +202,10 @@ async function sendMessage() {
         addMessage("bot", "教學文件還在載入中，請稍後再問一次。");
         return;
     }
+
+    isWaitingForResponse = true;
+    chatInput.disabled = true;
+    sendChatBtn.disabled = true;
 
     try {
         // System Instruction - 包含全站文件與回答規則
@@ -254,6 +259,10 @@ ${allDocsContent}
         addMessage("bot", `抱歉，發生錯誤：${error.message}\n\n請確認後端服務是否正常運作。`);
     } finally {
         hideTyping();
+        isWaitingForResponse = false;
+        chatInput.disabled = false;
+        sendChatBtn.disabled = false;
+        chatInput.focus();
     }
 }
 
@@ -372,7 +381,9 @@ function initChatbot() {
     // 送出訊息（Enter）
     if (chatInput) {
         chatInput.addEventListener("keydown", (e) => {
-            if (e.key === "Enter" && !e.shiftKey) {
+            // isComposing / keyCode 229：使用中文注音、拼音等輸入法選字時，
+            // 按 Enter 是在確認候選字，不是要送出訊息
+            if (e.key === "Enter" && !e.shiftKey && !e.isComposing && e.keyCode !== 229) {
                 e.preventDefault();
                 sendMessage();
             }

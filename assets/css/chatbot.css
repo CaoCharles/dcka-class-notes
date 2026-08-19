@@ -279,6 +279,11 @@
     color: #9ca3af;
 }
 
+#chat-input:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 /* 發送按鈕 */
 #send-chat {
     background: var(--chatbot-button-bg);
@@ -298,6 +303,12 @@
 #send-chat:hover {
     background: #7c4dff;
     transform: scale(1.05);
+}
+
+#send-chat:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
 }
 
 #send-chat svg {
