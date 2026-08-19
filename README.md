@@ -42,6 +42,8 @@ dcka-class-notes/
 │   └── README.md            # 後端詳細說明
 ├── hooks/                   # MkDocs Hooks
 │   └── generate_content.py  # 自動生成 content.json
+├── .github/workflows/       # CI/CD
+│   └── deploy-backend.yml   # 自動部署後端到 Cloud Run
 ├── overrides/               # MkDocs 主題覆寫
 ├── mkdocs.yml               # MkDocs 設定檔
 ├── pyproject.toml           # Python 專案設定（uv）
@@ -63,12 +65,12 @@ flowchart TB
         Frontend[📄 MkDocs 靜態網站<br/>HTML / CSS / JS]
     end
 
-    subgraph Railway Cloud
+    subgraph Google Cloud Run
         Backend[⚡ FastAPI 後端<br/>chat_server.py]
     end
 
     subgraph Google Cloud
-        Gemini[🤖 Gemini API<br/>gemini-flash-latest]
+        Gemini[🤖 Gemini API<br/>gemini-3.7-flash]
     end
 
     Browser -->|1. 訪問文件| Frontend
@@ -212,22 +214,31 @@ jobs:
         run: uv run mkdocs gh-deploy --force
 ```
 
-### 後端部署 (Railway)
+### 後端部署 (Google Cloud Run)
 
-1. **建立 Railway 專案**
-   - 前往 [Railway](https://railway.app/) 建立新專案
-   - 連結 GitHub Repository
+後端跑在 Google Cloud Run，由 [`.github/workflows/deploy-backend.yml`](.github/workflows/deploy-backend.yml) 自動化：push 到 `main` 且 `backend/` 有變動時，會用 `gcloud run deploy --source backend` 自動建置並部署。
 
-2. **設定環境變數**
-   - 在 Railway Dashboard 設定 `GEMINI_API_KEY`
+1. **建立 GCP 專案**，啟用 Cloud Run API、Cloud Build API
+2. **建立 Service Account**，授予 `Cloud Run Admin`、`Cloud Build Editor`、`Artifact Registry Writer`、`Service Account User` 角色，下載 JSON key
+3. **在 GitHub repo 設定 Secrets**（Settings → Secrets and variables → Actions）：
+   - `GCP_SA_KEY`：Service Account 的 JSON key
+   - `GCP_PROJECT_ID`：GCP 專案 ID
+   - `GEMINI_API_KEY`：Gemini API Key
+4. **手動部署一次**（首次或本機測試用）：
 
-3. **設定部署目錄**
-   - Root Directory: `backend`
-   - Start Command: `uvicorn chat_server:app --host 0.0.0.0 --port $PORT`
+```bash
+gcloud run deploy dcka-chatbot-backend \
+  --source backend \
+  --region asia-east1 \
+  --project <GCP_PROJECT_ID> \
+  --allow-unauthenticated \
+  --set-env-vars "GEMINI_API_KEY=<your_key>"
+```
 
-4. **更新前端 API URL**
-   - 編輯 `docs/assets/js/chatbot.js`
-   - 將 API URL 改為 Railway 提供的網址
+5. **更新前端 API URL**
+   - 編輯 `docs/assets/js/chatbot.js`，將 `BACKEND_API_URL` 改為 Cloud Run 服務網址（格式如 `https://<service>-<hash>.<region>.run.app`）
+
+> 📌 此專案原先部署在 Railway，因免費試用期滿（Railway 試用為固定 30 天，非額度用完才停）改遷移至 Cloud Run。
 
 ---
 
@@ -284,7 +295,7 @@ jobs:
 | **AI 整合** | Google Gemini API |
 | **套件管理** | uv (Astral) |
 | **前端部署** | GitHub Pages |
-| **後端部署** | Railway |
+| **後端部署** | Google Cloud Run（GitHub Actions 自動部署） |
 
 ---
 

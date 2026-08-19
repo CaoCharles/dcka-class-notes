@@ -39,7 +39,7 @@
                                     │    (傳送聊天訊息)
                                     ▼
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                     Railway (後端 API 服務)                              │
+│                Google Cloud Run (後端 API 服務)                          │
 │  ┌─────────────────────────────────────────────────────────┐           │
 │  │  FastAPI (chat_server.py)                               │           │
 │  │  - 接收前端請求                                          │           │
@@ -54,7 +54,7 @@
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                   Google Cloud (Gemini API)                             │
 │  ┌─────────────────────────────────────────────────────────┐           │
-│  │  Gemini 2.5 Flash                                      │           │
+│  │  Gemini 3.7 Flash                                       │           │
 │  │  - 上下文窗口: 1,000,000 (1M) Tokens                     │           │
 │  │  - 生成 AI 回應                                          │           │
 │  └─────────────────────────────────────────────────────────┘           │
@@ -80,25 +80,25 @@ backend/
 
 ---
 
-## 🤖 使用的模型資訊：Gemini 2.5 Flash
+## 🤖 使用的模型資訊：Gemini 3.7 Flash
 
-本專案使用 **Gemini 2.5 Flash** (`gemini-2.5-flash`)，這是 Google 穩定版的高效能模型。
+本專案使用 **Gemini 3.7 Flash** (`gemini-3.7-flash`)，這是 Google 目前最新的穩定版高效能模型。
 
 ### 模型規格
 
-- **模型名稱**: Gemini 2.5 Flash
-- **Context Window (上下文窗口)**: 1,000,000 (100 萬) Tokens
-- **特點**: 
-  - 穩定版模型，適合生產環境
+- **模型名稱**: Gemini 3.7 Flash
+- **Context Window (上下文窗口)**: 1,000,000 Tokens、最大輸出 64k Tokens
+- **特點**:
+  - 穩定版（GA）模型，適合生產環境
+  - 支援可調 thinking level（low/medium/high）
   - 高效能，適合 RAG 應用
   - 100 萬 tokens 足以放入數百篇教學文章
 
-### 費用參考 (2026/01)
+> 📌 模型會持續迭代，若要換成更新版本，直接修改 `chat_server.py` 裡 `genai.GenerativeModel('gemini-3.7-flash')` 的字串即可，可到 [Gemini API 模型列表](https://ai.google.dev/gemini-api/docs/models) 查詢目前可用的模型 ID。
 
-| 項目 | 價格 (每百萬 Tokens) |
-|------|----------------------|
-| **Input (輸入)** | **$0.10** |
-| **Output (輸出)** | **$0.40** |
+### 費用參考
+
+實際費率請以 [Gemini 模型定價頁](https://ai.google.dev/gemini-api/docs/models/gemini) 為準；本專案用量小，Gemini API 走的是 AI Studio 的預付額度制（prepay），額度用完會回傳 `429`，需到 [AI Studio](https://ai.studio/projects) 加值。
 
 ### 相關連結
 
@@ -272,7 +272,7 @@ if request.system_instruction:
 
 ---
 
-## 🔄 CI/CD：Railway 與 GitHub 互動流程
+## 🔄 CI/CD：GitHub Actions 與 Cloud Run 互動流程
 
 ```mermaid
 flowchart TB
@@ -280,34 +280,34 @@ flowchart TB
         GH_Repo[("📦 dcka-class-notes<br/>Repository")]
         GH_Main["main branch"]
         GH_Pages["gh-pages branch"]
+        GH_Action["⚙️ GitHub Actions<br/>deploy-backend.yml"]
     end
 
     subgraph 開發者本機
         DEV["💻 開發環境"]
     end
 
-    subgraph Railway
-        RW_Service["⚡ FastAPI 服務<br/>backend/"]
-        RW_Build["🔨 自動建置"]
-        RW_Deploy["🚀 自動部署"]
+    subgraph "Google Cloud Run"
+        CR_Build["🔨 gcloud run deploy --source"]
+        CR_Service["⚡ FastAPI 服務<br/>dcka-chatbot-backend"]
     end
 
     subgraph GitHub_Pages
         GP["🌐 靜態網站<br/>caocharles.github.io"]
     end
 
-    DEV -->|"1. git push"| GH_Main
-    GH_Main -->|"2. Webhook 觸發"| RW_Build
-    RW_Build -->|"3. Docker Build"| RW_Deploy
-    RW_Deploy -->|"4. 後端上線"| RW_Service
+    DEV -->|"1. git push (backend/ 有變動)"| GH_Main
+    GH_Main -->|"2. 觸發 workflow"| GH_Action
+    GH_Action -->|"3. gcloud auth + deploy"| CR_Build
+    CR_Build -->|"4. Docker Build + 部署"| CR_Service
 
     DEV -->|"5. mkdocs gh-deploy"| GH_Pages
     GH_Pages -->|"6. 自動發布"| GP
 
-    GP <-->|"7. API 請求"| RW_Service
+    GP <-->|"7. API 請求"| CR_Service
 
     style GH_Repo fill:#24292e,color:#fff
-    style RW_Service fill:#0B0D0E,color:#fff
+    style CR_Service fill:#4285F4,color:#fff
     style GP fill:#2ea44f,color:#fff
 ```
 
@@ -315,13 +315,13 @@ flowchart TB
 
 | 步驟 | 動作 | 說明 |
 |------|------|------|
-| 1 | `git push` | 推送程式碼到 GitHub main 分支 |
-| 2 | Webhook | Railway 偵測到變更自動觸發 |
-| 3 | Docker Build | Railway 執行 `backend/Dockerfile` |
-| 4 | 自動部署 | 後端服務更新上線 |
-| 5 | `mkdocs gh-deploy` | 建置並推送到 gh-pages 分支 |
+| 1 | `git push` | 推送程式碼到 GitHub main 分支，且 `backend/` 有變動 |
+| 2 | GitHub Actions 觸發 | [`deploy-backend.yml`](../.github/workflows/deploy-backend.yml) 開始執行 |
+| 3 | 驗證 GCP | 用 `GCP_SA_KEY` Secret 登入 Service Account |
+| 4 | 建置並部署 | `gcloud run deploy --source backend`，Cloud Build 建置 Docker image 並部署到 Cloud Run |
+| 5 | `mkdocs gh-deploy` | 建置並推送到 gh-pages 分支（前端仍需手動或另設 workflow） |
 | 6 | GitHub Pages | 自動發布靜態網站 |
-| 7 | API 請求 | 前端透過 HTTPS 呼叫後端 API |
+| 7 | API 請求 | 前端透過 HTTPS 呼叫 Cloud Run 服務 |
 
 ---
 
@@ -367,74 +367,66 @@ curl -X POST http://localhost:8001/api/chat \
 
 ---
 
-## ☁️ 部署到 Railway（免費方案）
+## ☁️ 部署到 Google Cloud Run
 
-Railway 提供每月 **$5 免費額度**，適合個人專案使用。
+### 一次性設定
 
-### Step 1：建立 Railway 帳號
-
-1. 前往 [Railway.app](https://railway.app/)
-2. 使用 GitHub 帳號登入
-
-### Step 2：建立新專案
-
-1. 點選 **New Project**
-2. 選擇 **Deploy from GitHub repo**
-3. 選擇你的 `dcka-class-notes` Repository
-4. 授權 Railway 存取
-
-### Step 3：設定部署目錄
-
-Railway 預設會部署整個 Repository，但我們只需要 `backend` 目錄：
-
-1. 進入專案 **Settings**
-2. 找到 **Root Directory**
-3. 設定為：`backend`
-
-![Railway Root Directory 設定](https://docs.railway.app/assets/images/root-directory.png)
-
-### Step 4：設定環境變數
-
-1. 進入專案 **Variables** 標籤
-2. 點選 **New Variable**
-3. 新增：
-
-| Variable | Value |
-|----------|-------|
-| `GEMINI_API_KEY` | `your_api_key_here` |
-
-### Step 5：確認啟動指令
-
-Railway 會自動偵測 Dockerfile，但你也可以手動設定：
-
-1. 進入 **Settings** → **Deploy**
-2. 確認 Start Command：
+**Step 1：建立/選擇 GCP 專案，啟用必要 API**
 
 ```bash
-uvicorn chat_server:app --host 0.0.0.0 --port $PORT
+gcloud services enable run.googleapis.com cloudbuild.googleapis.com artifactregistry.googleapis.com --project=<PROJECT_ID>
 ```
 
-### Step 6：部署並取得 URL
+**Step 2：確認帳單帳戶已連結**
 
-1. Railway 會自動開始部署
-2. 部署完成後，點選 **Settings** → **Networking**
-3. 點選 **Generate Domain** 取得公開網址
+Cloud Run 需要專案綁定有效帳單帳戶才能部署（用量在免費額度內通常不會實際收費）：
 
-本專案網址：`https://dcka-class-notes-production.up.railway.app`
+```bash
+gcloud billing projects link <PROJECT_ID> --billing-account=<BILLING_ACCOUNT_ID>
+```
 
-### Step 7：更新前端 API URL
+> ⚠️ 免費帳單帳戶預設只能連結 **5 個專案**，超過需申請額度提升，或改用已連結帳單的既有專案。
 
-編輯 `docs/assets/js/chatbot.js`，將第 47 行改為：
+**Step 3：建立 Service Account 供 GitHub Actions 使用**
+
+授予角色：`Cloud Run Admin`、`Cloud Build Editor`、`Artifact Registry Writer`、`Service Account User`，並下載 JSON key。
+
+**Step 4：在 GitHub repo 設定 Secrets**
+
+Settings → Secrets and variables → Actions：
+
+| Secret | 說明 |
+|--------|------|
+| `GCP_SA_KEY` | Service Account 的 JSON key 全文 |
+| `GCP_PROJECT_ID` | GCP 專案 ID |
+| `GEMINI_API_KEY` | Gemini API Key（[AI Studio](https://aistudio.google.com/apikey) 取得，建議跟部署用的 GCP 專案掛同一個） |
+
+之後 push 到 `main` 且 `backend/` 有變動，[`deploy-backend.yml`](../.github/workflows/deploy-backend.yml) 就會自動部署，不用再手動操作。
+
+### 手動部署（首次測試或緊急修復用）
+
+```bash
+gcloud run deploy dcka-chatbot-backend \
+  --source backend \
+  --region asia-east1 \
+  --project <PROJECT_ID> \
+  --allow-unauthenticated \
+  --set-env-vars "GEMINI_API_KEY=<your_api_key>"
+```
+
+部署完成後會印出服務網址，格式類似 `https://dcka-chatbot-backend-<hash>.asia-east1.run.app`。
+
+本專案目前網址：`https://dcka-chatbot-backend-978572634545.asia-east1.run.app`
+
+### 更新前端 API URL
+
+編輯 `docs/assets/js/chatbot.js`：
 
 ```javascript
-// 修改前（本地開發）
-window.BACKEND_API_URL = window.BACKEND_API_URL || "http://localhost:8001";
-
-// 修改後（生產環境）
-window.BACKEND_API_URL = window.BACKEND_API_URL || "https://dcka-class-notes-production.up.railway.app";
+window.BACKEND_API_URL = window.BACKEND_API_URL || "https://dcka-chatbot-backend-<hash>.asia-east1.run.app";
 ```
 
-### Step 8：重新部署 GitHub Pages
+改完後重新發布 GitHub Pages：
 
 ```bash
 uv run mkdocs gh-deploy --force
@@ -442,22 +434,11 @@ uv run mkdocs gh-deploy --force
 
 ---
 
-## 💰 Railway 免費額度說明
+## 💰 費用說明
 
-| 項目 | 免費額度 |
-|------|----------|
-| 每月執行時間 | 500 小時 |
-| 每月費用 | $5 |
-| RAM | 512 MB |
-| vCPU | 共享 |
+Cloud Run 依實際使用量計費，免費額度相當大方（每月 200 萬次請求、360,000 GB-秒記憶體、180,000 vCPU-秒），一個小型 chatbot 後端通常落在免費額度內、實質 $0。但這跟 Railway 那種「額度用完直接停」不同——理論上用量爆量超過免費額度會被收費，需留意帳單通知。
 
-> ⚠️ **注意**：免費方案的服務會在閒置時「睡眠」，首次請求可能需要幾秒鐘喚醒。
-
-### 降低使用量的技巧
-
-1. **使用 Starter Plan**：新帳號自動獲得 $5 額度
-2. **服務會自動睡眠**：閒置時不消耗資源
-3. **監控使用量**：在 Dashboard 查看每月消耗
+另外，Gemini API 走的是 AI Studio 的**預付額度制**：額度用完會回傳 `429 prepayment credits depleted`，這跟 Cloud Run 帳單是分開兩件事，需要到 [AI Studio](https://ai.studio/projects) 另外加值。
 
 ---
 
@@ -482,7 +463,7 @@ allow_origins=[
 
 ### API Key 保護
 
-- ✅ API Key 存放在 Railway 環境變數中
+- ✅ API Key 以 GitHub Secret（`GEMINI_API_KEY`）存放，部署時才注入 Cloud Run 環境變數
 - ✅ 不納入 Git 版控（在 `.gitignore` 中）
 - ✅ 前端無法直接存取 API Key
 
@@ -490,14 +471,15 @@ allow_origins=[
 
 ## 🐛 疑難排解
 
-### Q1: Railway 顯示 "Build Failed"
+### Q1: GitHub Actions 顯示 "Build Failed" 或部署失敗
 
-**原因**：可能是 Dockerfile 或 requirements.txt 問題
+**原因**：可能是 Dockerfile、Service Account 權限，或 Secrets 設定問題
 
 **解決**：
-1. 檢查 Railway 的 Build Logs
-2. 確認 `requirements.txt` 套件名稱正確
-3. 本地先測試 Docker 建置：
+1. 檢查 GitHub Actions 的執行紀錄（repo → Actions → 對應的 workflow run）
+2. 確認 `GCP_SA_KEY`、`GCP_PROJECT_ID`、`GEMINI_API_KEY` 三個 Secret 都存在且正確
+3. 確認 Service Account 有 `Cloud Run Admin`、`Cloud Build Editor`、`Artifact Registry Writer`、`Service Account User` 角色
+4. 本地先測試 Docker 建置：
 
 ```bash
 cd backend
@@ -511,28 +493,30 @@ docker run -p 8001:8000 -e GEMINI_API_KEY=xxx test-backend
 
 **解決**：修改 `chat_server.py` 的 `allow_origins`
 
-### Q3: Railway 服務回應很慢
+### Q3: 服務出現 "Application not found" 或健康檢查 404
 
-**原因**：免費方案服務會睡眠
-
-**解決**：
-- 這是正常現象，首次請求需要喚醒
-- 升級付費方案可避免睡眠
-
-### Q4: Gemini API 返回錯誤
-
-**原因**：API Key 無效或配額用盡
+**原因**：Cloud Run 服務不存在（尚未部署，或帳單/額度問題被移除）
 
 **解決**：
-1. 確認 Railway 環境變數設定正確
-2. 到 Google AI Studio 檢查 API 使用狀況
-3. 確認 API Key 未過期
+1. 確認 GCP 專案帳單帳戶是否還有效連結：`gcloud billing projects describe <PROJECT_ID>`
+2. 手動重新部署一次確認狀況（見上方「手動部署」段落）
+3. 確認 `chatbot.js` 裡的 `BACKEND_API_URL` 網址跟實際 Cloud Run 服務網址一致
+
+### Q4: Gemini API 返回 429 或錯誤
+
+**原因**：API Key 無效、預付額度用盡，或配額超限
+
+**解決**：
+1. 到 [AI Studio](https://ai.studio/projects) 檢查該專案的 API 使用狀況與預付額度
+2. 額度用完需在 AI Studio 加值（跟 Cloud Run 帳單是分開的兩件事）
+3. 確認 API Key 未過期、`GEMINI_API_KEY` Secret 內容正確
 
 ---
 
 ## 📚 相關資源
 
 - [FastAPI 官方文件](https://fastapi.tiangolo.com/)
-- [Railway 官方文件](https://docs.railway.app/)
+- [Google Cloud Run 官方文件](https://cloud.google.com/run/docs)
 - [Google Gemini API 文件](https://ai.google.dev/gemini-api/docs)
+- [Gemini API 模型列表](https://ai.google.dev/gemini-api/docs/models)
 - [Uvicorn 官方文件](https://www.uvicorn.org/)
