@@ -24,6 +24,11 @@ Thumbs.db
 
 # Logs
 *.log
+.claude/*.lock
+
+# Local QA / generated previews
+output/
+~$*.docx
 
 # Environment Variables
 .env

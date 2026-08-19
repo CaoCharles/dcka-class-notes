@@ -148,6 +148,11 @@ nav:
     - LAB 19 Kubernetes + wordpress + mysql: lab19_k8s_wordpress_mysql.md
     - LAB 20 圖形管理工具 Kubernetes Dashboard: lab20_dashboard.md
     - LAB 21 私庫圖形管理工具 docker-registry-web: lab21_registry_web.md
+  - 專案技術架構:
+    - 架構總覽: architecture/index.md
+    - System Component & Deployment: architecture/system-component-deployment.md
+    - AI Assistant Runtime Interaction: architecture/ai-assistant-runtime.md
+    - Frontend & Backend Delivery: architecture/frontend-backend-delivery.md
   - 附錄:
     - Docker 指令速查: appendix/docker_cheatsheet.md
     - Kubernetes 指令速查: appendix/k8s_cheatsheet.md

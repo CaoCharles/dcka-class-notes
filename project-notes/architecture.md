@@ -1,4 +1,4 @@
-# 系統元件與部署拓撲
+# System Component & Deployment Architecture
 
 ![DCKA 整體系統架構](assets/images/overall-architecture.svg)
 
@@ -29,15 +29,15 @@
 ### Client & Developer Zone
 
 - 開發者在本機維護 `docs/`、`mkdocs.yml`、`hooks/` 與 `backend/`。
-- MkDocs build 是前端 artifact 的產生點；建置後的 HTML、CSS、JavaScript、圖片及 `content.json` 才會送到 `gh-pages`。
+- MkDocs build 是前端 artifact 的產生點；建置後的 HTML、CSS、JavaScript、圖片及 `content.json` 會由 Actions 上傳為 GitHub Pages Artifact。
 - Browser runtime 負責 Chatbot UI、全站教材記憶體快取、Markdown rendering 與對話 Session。
 
 ### GitHub Control／Delivery Plane
 
 - `main` 是 application source of truth。
-- `gh-pages` 是前端 deployable artifact，不是主要開發分支。
-- GitHub Actions 只在 `backend/**` 或 workflow 本身變更時觸發後端部署。
-- `GCP_SA_KEY`、`GCP_PROJECT_ID`、`GEMINI_API_KEY` 由 GitHub Secrets 提供。
+- GitHub Pages Artifact 是前端 deployable artifact，不是主要開發分支。
+- GitHub Actions 以兩條 workflow 分別處理 MkDocs Pages 與 Cloud Run 後端部署。
+- GitHub Actions 使用 OIDC／Workload Identity Federation 取得 `github-actions-deployer` 的短效憑證；`GCP_PROJECT_ID`、WIF Provider 與 Service Account email 使用 GitHub Variables，只有 `GEMINI_API_KEY` 使用 GitHub Secret。
 
 ### Google Cloud Runtime
 
@@ -46,7 +46,7 @@
 - Cloud Run 對外提供 public HTTPS ingress，服務本身是 stateless。
 - `GEMINI_API_KEY` 以 runtime environment variable 注入，不會送到 GitHub Pages 或瀏覽器。
 - Cloud Firestore 使用 Native mode，`chat_logs` collection 保存匿名問答紀錄。
-- Cloud Run service account 透過 `roles/datastore.user` 存取 Firestore；Browser 不直接連線資料庫。
+- Cloud Run 使用專用 `dcka-chatbot-runtime` service account，透過 `roles/datastore.user` 存取 Firestore；Browser 不直接連線資料庫。
 - 每筆紀錄包含 `session_id`、問題、回答、模型、延遲、成功／失敗狀態、錯誤與 server timestamp。
 
 ### External AI Boundary
@@ -65,17 +65,19 @@
 ### GitHub
 
 - `main`：保存 Markdown、前端、後端與設定。
-- `gh-pages`：保存 MkDocs 建置後的靜態網站。
-- GitHub Pages：將 `gh-pages` 內容發布為公開網站。
+- Pages Artifact：保存 Actions 建置完成的靜態網站 bundle。
+- GitHub Pages：由 `actions/deploy-pages` 將 Artifact 發布為公開網站。
 - GitHub Actions：當 `backend/**` 變更並推到 `main` 時，自動部署 Cloud Run。
 
 ### Cloud Run 與 FastAPI
 
 - 對外提供 `GET /` 健康檢查。
 - 對外提供 `POST /api/chat` 問答端點。
+- 只接受 GitHub Pages 與 localhost Origin，並限制 body、訊息、History 與請求速率。
 - 從環境變數取得 `GEMINI_API_KEY`。
-- 使用 `google-genai` SDK 呼叫 `gemini-3.5-flash`。
+- 使用鎖定的 `google-genai==2.18.1` SDK 呼叫 `gemini-3.5-flash`。
 - 將 System Instruction 與對話內容分開傳入模型。
+- 先回傳一般化成功／錯誤 response，再由 `BackgroundTasks` 寫入遮罩後的 Firestore Log。
 
 ### 瀏覽器
 
@@ -87,38 +89,43 @@
 
 ## 目前部署方式
 
-- 前端：本機執行 `uv run mkdocs gh-deploy --force`。
+- 前端：push `main` 後，由 `.github/workflows/deploy-pages.yml` 建置並發布 GitHub Pages。
 - 後端：push `main` 後，由 `.github/workflows/deploy-backend.yml` 自動部署到 Cloud Run。
 
-因此「前端手動、後端自動」是目前實際狀態。
+兩條 pipeline 均已自動化，Repository Pages Source 已設定為 GitHub Actions。本機 `mkdocs gh-deploy` 只有在 Source 暫時切回 branch-based deployment 時才可作為緊急 fallback。
 
 ## Current-state 架構限制
 
-- `/api/chat` 允許匿名存取，沒有 Login、API authentication 或 rate limiting。
-- CORS 目前是 `*`，尚未收斂為正式網站與 localhost allowlist。
+- `/api/chat` 允許匿名存取，沒有 Login 或 API authentication；現有 rate limiter 是單一 Cloud Run instance 記憶體內計數，不是跨 instance 全域配額。
+- CORS 已收斂為正式 GitHub Pages 與 localhost exact-origin allowlist。
 - Firestore 已提供持久化問答紀錄，但沒有登入身分；`session_id` 只能用來關聯同一個分頁的匿名對話，不能當成身份或授權依據。
 - Cloud Run 仍是 stateless compute；persistent state 位於 Firestore。
 - 所謂 RAG 目前是 Browser 將完整 `content.json` 放進每次請求的 `system_instruction`，不是 embedding／top-k retrieval 架構。
-- `log_chat()` 使用同步 Firestore client 且在 HTTP response 前呼叫；`try/except` 可隔離寫入失敗，但寫入時間仍可能增加 request latency。
-- GitHub Actions 使用長效 Service Account JSON；後續可改成 Workload Identity Federation，降低長效憑證風險。
+- `log_chat()` 仍使用同步 Firestore client，但已移到 response 後的 `BackgroundTasks`；寫入內容會遮罩並帶有 90 天 `expires_at`。
+- GitHub Actions 已改用 Workload Identity Federation；Provider 只信任 `CaoCharles/dcka-class-notes` 的 `main` 分支，部署過程不保存長效 Service Account JSON。
 
 ## 維護建議
 
-### 優先處理
+### 已完成
 
-- 將正式環境 CORS 從 `*` 改成明確來源白名單。
-- 為公開 `/api/chat` 加入速率限制、訊息長度與 History 大小限制。
-- 不要把完整例外訊息直接回傳給使用者，避免暴露後端細節。
-- 為 Firestore 問答內容訂定資料保留期限、敏感資訊遮罩與管理者查閱權限。
+- 正式環境 CORS exact-origin allowlist。
+- `/api/chat` rate limiting、訊息／History／request body 大小限制。
+- 使用者只收到一般化錯誤，詳細 stack trace 留在 Cloud Logging。
+- Firestore 90 天 `expires_at`、敏感資訊遮罩與管理者唯讀權限原則。
+- 同步 FastAPI endpoint 避免 event loop 被同步 Gemini 呼叫阻塞。
+- Firestore logging 移至 response 後的受控 `BackgroundTasks`。
+- `google-genai==2.18.1` 與 `backend/uv.lock`。
+- GitHub Pages frontend workflow。
+- GitHub Actions Workload Identity Federation 與專用 deployer/runtime service accounts。
+- Firestore `chat_logs.expires_at` TTL policy 已確認為 `ACTIVE`。
 
 ### 中期改善
 
-- `async def` endpoint 目前呼叫同步 Gemini client；可改用 async client，或把 endpoint 改成同步 `def`，避免高併發時阻塞 event loop。
-- Firestore logging 可改成 async client、thread offload 或受控背景工作，降低寫入對聊天回應時間的影響。
-- Backend 建置應鎖定可重現的 `google-genai` 版本；目前只有 `>=1.0.0`，但程式使用較新的 thinking 設定。
 - 文件量增加後，將「每次傳送全站文件」升級成向量檢索式 RAG，降低 token、延遲與成本。
+- 若需嚴格全域 rate limit，改接 Cloud Armor／API Gateway 或集中式計數儲存。
+- 將 `GEMINI_API_KEY` 改由 Secret Manager 注入，並逐步移除預設 Compute Service Account 的 Project Editor 權限。
 
 ### 文件同步
 
-- `backend/README.md` 的 RAG 開頭與 sequence diagram 仍有「擷取目前頁面」的舊描述，實際已是載入全站 `content.json`。
-- `backend/Dockerfile` 的註解仍提到 Railway，實際部署平台已是 Cloud Run。
+- `backend/README.md` 已改為全站 `content.json` 的 full-context RAG 流程。
+- `backend/Dockerfile` 已改成 Cloud Run 註解，並使用 `uv.lock` 安裝依賴。

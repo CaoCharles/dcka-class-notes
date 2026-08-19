@@ -173,74 +173,41 @@ uv run mkdocs serve
 
 ### 前端部署 (GitHub Pages)
 
-1. **建置靜態網站**
+前端由 [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml) 自動發布。Repository 已將 **Settings → Pages → Source** 設為 **GitHub Actions**；網站相關檔案推到 `main` 後，Actions 會依 `uv.lock` 建置 MkDocs、上傳 Pages Artifact 並發布。
+
+本機建置：
 
 ```bash
 uv run mkdocs build
 ```
 
-2. **手動部署**
+若要以 `gh-pages` branch 緊急發布，必須先把 Repository Pages Source 暫時切回 **Deploy from a branch**；目前正式來源為 GitHub Actions，因此一般情況只需 push `main`：
 
 ```bash
-uv run mkdocs gh-deploy
-```
-
-3. **GitHub Actions 自動部署**（可選）
-
-建議建立 `.github/workflows/deploy.yml`：
-
-```yaml
-name: Deploy to GitHub Pages
-
-on:
-  push:
-    branches: [main]
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      
-      - name: Install uv
-        run: curl -LsSf https://astral.sh/uv/install.sh | sh
-      
-      - name: Install dependencies
-        run: uv sync
-      
-      - name: Deploy
-        run: uv run mkdocs gh-deploy --force
+uv run mkdocs gh-deploy --force
 ```
 
 ### 後端部署 (Google Cloud Run)
 
 後端跑在 Google Cloud Run，由 [`.github/workflows/deploy-backend.yml`](.github/workflows/deploy-backend.yml) 自動化：push 到 `main` 且 `backend/` 有變動時，會用 `gcloud run deploy --source backend` 自動建置並部署。
 
-1. **建立 GCP 專案**，啟用 Cloud Run API、Cloud Build API
-2. **建立 Service Account**，授予 `Cloud Run Admin`、`Cloud Build Editor`、`Artifact Registry Writer`、`Service Account User` 角色，下載 JSON key
-3. **在 GitHub repo 設定 Secrets**（Settings → Secrets and variables → Actions）：
-   - `GCP_SA_KEY`：Service Account 的 JSON key
-   - `GCP_PROJECT_ID`：GCP 專案 ID
-   - `GEMINI_API_KEY`：Gemini API Key
-4. **手動部署一次**（首次或本機測試用）：
+1. GitHub Actions 透過 **Workload Identity Federation (WIF)** 交換短效 GCP 憑證，不保存 Service Account JSON key。
+2. `github-actions-deployer` 只具備原始碼部署權限；Cloud Run 使用獨立的 `dcka-chatbot-runtime` 執行，並以 `roles/datastore.user` 存取 Firestore。
+3. GitHub Actions Variables：`GCP_PROJECT_ID`、`GCP_WIF_PROVIDER`、`GCP_DEPLOYER_SA`、`GCP_RUNTIME_SA`。
+4. GitHub Actions Secret：`GEMINI_API_KEY`。
+5. **手動部署一次**（首次或本機測試用）：
 
 ```bash
 gcloud run deploy dcka-chatbot-backend \
   --source backend \
   --region asia-east1 \
   --project <GCP_PROJECT_ID> \
+  --service-account dcka-chatbot-runtime@<GCP_PROJECT_ID>.iam.gserviceaccount.com \
   --allow-unauthenticated \
   --set-env-vars "GEMINI_API_KEY=<your_key>"
 ```
 
-5. **更新前端 API URL**
+6. **更新前端 API URL**
    - 編輯 `docs/assets/js/chatbot.js`，將 `BACKEND_API_URL` 改為 Cloud Run 服務網址（格式如 `https://<service>-<hash>.<region>.run.app`）
 
 > 📌 此專案原先部署在 Railway，因免費試用期滿（Railway 試用為固定 30 天，非額度用完才停）改遷移至 Cloud Run。

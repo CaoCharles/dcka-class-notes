@@ -1,8 +1,8 @@
-# Frontend／Backend Delivery Architecture
+# Frontend & Backend Delivery Architecture
 
-![Frontend 與 Backend Delivery Architecture](assets/images/github-pages-deployment.svg)
+![Frontend & Backend Delivery Architecture](assets/images/github-pages-deployment.svg)
 
-這張圖把同一個 GitHub repository 的兩條發布路徑分開呈現。前端的 deployment artifact 是 `gh-pages` 上的靜態檔案；後端的 deployment artifact 是 Google Cloud 建置並保存的 container image。兩者不共用 build，也不會因相同事件一起發布。
+這張圖把同一個 GitHub repository 的兩條發布路徑分開呈現。前端的 deployment artifact 是由 Actions 上傳的 GitHub Pages Artifact；後端的 deployment artifact 是 Google Cloud 建置並保存的 container image。兩者不共用 build，也不會因相同事件一起發布。
 
 ## Markdown 如何變成網頁
 
@@ -26,22 +26,23 @@
 
 ### 4. MkDocs Build
 
-本機部署指令：
+正式流程由 `deploy-pages.yml` 執行：
 
 ```bash
-uv run mkdocs gh-deploy --force
+uv sync --locked
+uv run mkdocs build
 ```
 
-這個指令會：
+Actions 會：
 
 1. 將 Markdown 轉成 HTML。
 2. 整合 CSS、JavaScript、圖片與附件。
 3. 執行 Hook，產生 `content.json`。
-4. 把結果推到 `gh-pages` branch。
+4. 將 `site/` 上傳為 Pages Artifact。
 
 ### 5. GitHub Pages 發布
 
-GitHub Pages 讀取 `gh-pages` branch，提供公開網址：
+`actions/deploy-pages` 將 Pages Artifact 發布至公開網址：
 
 ```text
 https://caocharles.github.io/dcka-class-notes/
@@ -51,24 +52,25 @@ https://caocharles.github.io/dcka-class-notes/
 
 ### 前端
 
-- 目前由開發者執行 `mkdocs gh-deploy`。
-- 部署內容是靜態檔案。
-- 可在未來加入 GitHub Actions，自動化 push main 後的部署。
+- `.github/workflows/deploy-pages.yml` 已存在。
+- 網站相關檔案推到 `main` 後，GitHub Actions 依 `uv.lock` 建置 MkDocs 並部署 Pages Artifact。
+- Repository 的 **Settings → Pages → Source** 已設為 **GitHub Actions**。
+- `mkdocs gh-deploy` 只適用於把 Source 暫時切回 **Deploy from a branch** 的緊急情境，不是目前正式發布路徑。
 
 ### 後端
 
 - `.github/workflows/deploy-backend.yml` 已存在。
 - 當 `backend/**` 變更推到 `main`，GitHub Actions 會執行 `gcloud run deploy --source backend`。
-- `GCP_SA_KEY`、`GCP_PROJECT_ID`、`GEMINI_API_KEY` 由 GitHub Secrets 提供。
+- GitHub Actions 透過 OIDC／Workload Identity Federation 取得短效 GCP 憑證；`GCP_PROJECT_ID`、WIF Provider 與 deployer/runtime Service Account 使用 GitHub Variables，`GEMINI_API_KEY` 使用 GitHub Secret。
 - `gcloud run deploy --source backend` 會委派 Cloud Build 建置 image，並由 Artifact Registry 保存 managed build artifact。
 - Cloud Run 建立新 revision 並切換流量；服務保持 stateless。
 - Firestore 是另行建立的 runtime dependency，不會因每次後端 deploy 重建；Cloud Run service account 需具備 `roles/datastore.user`。
 
 ## 架構治理重點
 
-- 前端目前存在 automation gap：push `main` 不等於網站已發布，仍需本機執行 `mkdocs gh-deploy`。
-- `gh-pages` 應被視為 build artifact branch，不應手動維護內容。
-- Backend authentication 目前依賴 GitHub Secret 中的 Service Account JSON；較成熟的做法是改用 Workload Identity Federation。
+- 前端與後端各有獨立 paths-filtered workflow；push `main` 後只建置有變更的一側。
+- GitHub Pages Artifact 不應手動維護內容。
+- Backend authentication 已改用 Workload Identity Federation，並限制只有 `CaoCharles/dcka-class-notes` 的 `main` 分支可以 impersonate `github-actions-deployer`。
 - `GEMINI_API_KEY` 現況是部署時寫入 Cloud Run environment；若需要更完整的 rotation 與稽核，可再評估 Secret Manager。
 - Firestore database、location 與 IAM 是一次性基礎設施設定；應與應用程式 deployment pipeline 分開管理與記錄。
 
@@ -84,5 +86,5 @@ https://caocharles.github.io/dcka-class-notes/
 2. 在 `mkdocs.yml` 的 `nav` 加入路徑。
 3. 執行 `uv run mkdocs serve` 本地預覽。
 4. commit 並 push `main`。
-5. 執行 `uv run mkdocs gh-deploy --force` 發布前端。
+5. 觀察 `Deploy MkDocs to GitHub Pages` workflow 完成。
 6. 開啟 GitHub Pages 確認文章、圖片與連結。

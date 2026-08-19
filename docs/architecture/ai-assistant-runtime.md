@@ -1,0 +1,122 @@
+---
+authors:
+  - name: Charles Cao
+    email: author@example.com
+date: 2026-08-19
+updated: 2026-08-19
+tags:
+  - AI Assistant
+  - Gemini
+  - FastAPI
+  - Firestore
+---
+
+# AI Assistant Runtime Interaction Architecture
+
+## 學習目標
+
+完成本章節後，你將能夠：
+
+- [ ] 追蹤一次 Chatbot Request 的完整執行順序。
+- [ ] 說明 `session_id`、History、System Instruction 與網站內容的用途。
+- [ ] 理解 Gemini 回覆與 Firestore 紀錄的成功及錯誤路徑。
+- [ ] 辨識 Browser、Cloud Run 與 Firestore 的 State Boundary。
+
+![AI Assistant Runtime Interaction Architecture](../assets/images/architecture/ai-assistant-runtime.svg){ loading=lazy }
+
+---
+
+## 端到端執行流程
+
+| 步驟 | 執行位置 | 行為 |
+|---:|---|---|
+| 1–3 | Browser／GitHub Pages | 建立匿名 Session，下載網站資源與 `content.json` |
+| 4–5 | User／Browser | 接收問題，組合 `session_id`、History、Message 與 System Instruction |
+| 6–8 | Cloud Run／FastAPI | 驗證 Origin、Body、欄位與 Rate Limit，整合歷史訊息與完整網站內容 |
+| 9–11 | google-genai／Gemini | 建立 Generation Config，呼叫模型並取得 Text 或 Exception |
+| 12 | Response Lane | 判斷成功或錯誤並計算 `latency_ms` |
+| 13 | FastAPI／Browser | 先送出 HTTP 200 回答或一般化 4xx／5xx 錯誤 |
+| 14–17 | FastAPI／Firestore | BackgroundTasks 遮罩並建立 Log Record；寫入失敗只進 Cloud Logging |
+| 18–19 | Browser／User | 渲染 Markdown、保存 History 並顯示結果 |
+
+## API Request Contract
+
+Browser 呼叫 `POST /api/chat` 時，主要 Request 結構如下：
+
+```json title="POST /api/chat"
+{
+  "session_id": "browser-generated-uuid",
+  "history": [
+    {
+      "role": "user",
+      "parts": [{ "text": "上一個問題" }]
+    },
+    {
+      "role": "bot",
+      "parts": [{ "text": "上一個回答" }]
+    }
+  ],
+  "message": "這次的新問題",
+  "system_instruction": "回答規則與完整網站內容"
+}
+```
+
+成功時 Backend 回傳：
+
+```json title="HTTP 200 Response"
+{
+  "text": "Gemini 產生的回答"
+}
+```
+
+模型或 Backend 發生錯誤時，FastAPI 只會回傳一般化 HTTP 500 `detail`；完整例外與 stack trace 留在 Cloud Logging。
+
+## Browser Session 不是登入身分
+
+`session_id` 由 Browser 使用 `crypto.randomUUID()` 產生，並保存在 `sessionStorage`。它只用於把同一次 Browser 對話串在一起：
+
+- 不包含姓名、帳號或 Email。
+- 不驗證使用者身分。
+- 清除聊天紀錄時會產生新的 `session_id`。
+- 不應當作 Authentication Token 或 Authorization 依據。
+
+## Firestore ChatLog Schema
+
+每次問答會嘗試在 `chat_logs` Collection 新增一筆 Document：
+
+```json title="Firestore chat_logs"
+{
+  "session_id": "browser-generated-uuid",
+  "question": "使用者問題",
+  "answer": "模型回答或 null",
+  "model": "gemini-3.5-flash",
+  "latency_ms": 3700,
+  "status": "success 或 error",
+  "error": "例外類型或 null",
+  "created_at": "SERVER_TIMESTAMP",
+  "expires_at": "建立時間 + 90 天"
+}
+```
+
+!!! note "Failure Isolation"
+    同步 Firestore Client 由 FastAPI `BackgroundTasks` 在 HTTP Response 送出後執行，並由 `try/except` 隔離失敗。問題與回答寫入前會遮罩 Email、手機、台灣身分證字號、付款卡號與常見 Secret。
+
+!!! tip "Retention 與查閱權限"
+    每筆文件都包含 `expires_at`，預設保留 90 天；Firestore `chat_logs.expires_at` TTL policy 已啟用並為 `ACTIVE`。Cloud Run 使用 `roles/datastore.user` 寫入；若要開放其他人查閱，管理者應透過專用群組取得唯讀 `roles/datastore.viewer`，一般網站使用者不具 Firestore 權限。
+
+## Security Boundary
+
+- `GEMINI_API_KEY` 只存在 Cloud Run Runtime Environment。
+- Browser 不會直接連線 Firestore。
+- Cloud Run 使用專用 `dcka-chatbot-runtime` Service Account，透過 `roles/datastore.user` 存取 Firestore。
+- Cloud Run Compute 維持 Stateless，Persistent State 由 Firestore 保存。
+- CORS 只允許正式 GitHub Pages 與 localhost；單次 request 及 history 皆有上限。
+- Rate limiting 目前是單一 Cloud Run instance 記憶體內計數，不等同全域配額。
+
+!!! warning "目前不是 Retrieval RAG"
+    Browser 會把完整 `content.json` 放入 System Instruction，而不是先使用 Vector Database 擷取相關片段。網站文章持續增加時，應評估 Token、Latency 與 Retrieval Architecture。
+
+## 延伸閱讀
+
+- [System Component & Deployment Architecture](system-component-deployment.md)
+- [Frontend & Backend Delivery Architecture](frontend-backend-delivery.md)

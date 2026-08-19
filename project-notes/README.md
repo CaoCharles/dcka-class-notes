@@ -4,17 +4,17 @@
 
 ## 閱讀順序
 
-1. [系統元件與部署拓撲](architecture.md)
-2. [Frontend／Backend Delivery Architecture](github-pages-deployment.md)
-3. [AI 助教技術泳道與 Firestore 紀錄](ai-chatbot-integration.md)
-4. [Word 技術分享文件](word/DCKA_網站與AI助教技術架構.docx)
+1. [System Component & Deployment Architecture](architecture.md)
+2. [Frontend & Backend Delivery Architecture](github-pages-deployment.md)
+3. [AI Assistant Runtime Interaction Architecture](ai-chatbot-integration.md)
+4. [Word 技術分享文件（安全強化版）](word/DCKA_網站與AI助教技術架構_安全強化版.docx)
 
 ## 可編輯架構圖
 
 - [Draw.io 原始檔（三個分頁）](assets/diagrams/dcka-system-architecture.drawio)
-- [C4 Container／Deployment View SVG](assets/images/overall-architecture.svg)
-- [Frontend／Backend Delivery View SVG](assets/images/github-pages-deployment.svg)
-- [AI 技術泳道／Firestore Data Flow SVG](assets/images/ai-chatbot-integration.svg)
+- [System Component & Deployment Architecture SVG](assets/images/overall-architecture.svg)
+- [Frontend & Backend Delivery Architecture SVG](assets/images/github-pages-deployment.svg)
+- [AI Assistant Runtime Interaction Architecture SVG](assets/images/ai-chatbot-integration.svg)
 
 ## 專案定位
 
@@ -27,5 +27,6 @@ DCKA 學習筆記把 Docker 與 Kubernetes 課程內容寫成 Markdown，再由 
 - `/api/chat` 從 `https://caocharles.github.io` 呼叫成功，CORS 正常。
 - 簡短測試問題約 3.70 秒回覆。
 - 實際 Chatbot 問答成功並能提供課程文章連結。
+- 本輪安全強化已通過 8 項後端自動測試與 MkDocs build；push 部署後需再完成線上回歸驗證。
 
 > 分享注意：這個 GitHub repository 若為 Public，`project-notes/` 也會公開。請勿放入 API Key、Service Account JSON、密碼或公司內部機密。

@@ -122,6 +122,17 @@ graph LR
 
 ---
 
+### 5. 專案技術架構
+
+- MkDocs 與 GitHub Pages 網站發布架構
+- Cloud Run、FastAPI 與 Gemini 串接流程
+- Firestore 匿名問答紀錄與 IAM 邊界
+- Frontend／Backend Delivery Pipeline
+
+[:octicons-arrow-right-24: 查看技術架構](architecture/index.md)
+
+---
+
 ## 預備知識
 
 開始本課程之前，建議你具備：

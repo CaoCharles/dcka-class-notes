@@ -71,9 +71,13 @@
 
 ```
 backend/
+├── .dockerignore         # 排除本機環境與測試檔，避免進入 image
+├── .gcloudignore         # 排除 Cloud Build 上傳不需要的檔案
 ├── chat_server.py      # FastAPI 主程式
 ├── Dockerfile          # Docker 容器設定 (Python 3.12 + uv)
 ├── pyproject.toml      # Python 依賴套件（uv 格式）
+├── uv.lock             # 可重現的完整依賴版本
+├── tests/              # CORS、限制、遮罩與錯誤處理測試
 ├── requirements.txt    # Python 依賴套件（pip 格式，備用）
 └── README.md           # 本文件
 ```
@@ -135,7 +139,8 @@ backend/
 |------|------|
 | `history` | 完整對話歷史（無狀態設計） |
 | `message` | 使用者的新訊息 |
-| `system_instruction` | RAG 上下文（當前頁面內容） |
+| `system_instruction` | 回答規則與 `content.json` 內的全站文件上下文 |
+| `session_id` | Browser 產生的匿名對話關聯 ID，不是登入憑證 |
 
 ### 3. 回應格式
 
@@ -150,30 +155,32 @@ backend/
 ```python
 # 1. 接收請求
 @app.post("/api/chat")
-async def chat_endpoint(request: ChatRequest):
+def chat_endpoint(payload: ChatRequest, request: Request, background_tasks: BackgroundTasks):
 
     # 2. 轉換對話歷史格式（user/bot → user/model），組成 Content 物件
     contents = []
-    for msg in request.history:
+    for msg in payload.history:
         role = "user" if msg.role == "user" else "model"
         contents.append(types.Content(role=role, parts=[...]))
-    contents.append(types.Content(role="user", parts=[types.Part.from_text(text=request.message)]))
+    contents.append(types.Content(role="user", parts=[types.Part.from_text(text=payload.message)]))
 
     # 3. 呼叫 Gemini API，system_instruction 透過 config 傳入（非字串拼接）
     response = client.models.generate_content(
         model="gemini-3.5-flash",
         contents=contents,
         config=types.GenerateContentConfig(
-            system_instruction=request.system_instruction,
+            system_instruction=payload.system_instruction,
             thinking_config=types.ThinkingConfig(thinking_level="low"),
         ),
     )
 
     # 4. 返回結果
+    # 回應送出後再執行同步 Firestore client，避免增加主要 response latency
+    background_tasks.add_task(log_chat, ...)
     return {"text": response.text}
 ```
 
-> 📌 本專案用的是新版 `google-genai` SDK（`from google import genai`），不是舊版 `google-generativeai`。兩者 import 路徑與 API 都不同，若參考網路上的舊教學要留意版本差異。
+> 📌 本專案用的是新版 `google-genai==2.18.1` SDK（`from google import genai`），不是舊版 `google-generativeai`。版本已由 `pyproject.toml` 與 `uv.lock` 鎖定，確保 `ThinkingConfig` 與 Cloud Run 建置可重現。
 
 ---
 
@@ -181,7 +188,7 @@ async def chat_endpoint(request: ChatRequest):
 
 在此之前，整個架構是完全無狀態的：問答紀錄只存在瀏覽器的 `sessionStorage`，關掉分頁就消失，不同裝置也看不到彼此的對話，後端也沒有寫入任何地方（`content.json` 是教材靜態資料，不是問答紀錄）。
 
-現在每次呼叫 `/api/chat` 後，無論成功或失敗，都會非同步寫一筆紀錄到 Firestore 的 `chat_logs` collection：
+現在每次呼叫 `/api/chat` 後，無論成功或失敗，都會透過 FastAPI `BackgroundTasks` 在 HTTP response 送出後寫一筆紀錄到 Firestore 的 `chat_logs` collection：
 
 | 欄位 | 說明 |
 |------|------|
@@ -191,10 +198,11 @@ async def chat_endpoint(request: ChatRequest):
 | `model` | 呼叫的模型名稱 |
 | `latency_ms` | 這次呼叫 Gemini API 花費的時間（毫秒） |
 | `status` | `success` 或 `error` |
-| `error` | 失敗時的錯誤訊息（成功時為 `null`） |
+| `error` | 失敗時的例外類型（成功時為 `null`），完整 stack trace 只進 Cloud Logging |
 | `created_at` | 伺服器時間戳記（Firestore `SERVER_TIMESTAMP`） |
+| `expires_at` | 建立時間加上保留天數；預設 90 天，供 Firestore TTL 使用 |
 
-**設計重點**：`log_chat()` 內部包了 `try/except`，Firestore 寫入失敗只會印警告到 log，**不會**讓聊天功能跟著壞掉——記錄是附加功能，不該變成單點故障。
+**設計重點**：問題與回答在寫入前會遮罩 Email、台灣身分證字號、手機號碼、付款卡號與常見 Secret／Token；`log_chat()` 內部包了 `try/except`，寫入失敗只會進 Cloud Logging，**不會**讓聊天功能跟著壞掉。
 
 ### 一次性設定
 
@@ -208,13 +216,27 @@ gcloud firestore databases create \
   --location=asia-east1 \
   --type=firestore-native
 
-# 授權 Cloud Run 執行用的 service account 可以讀寫 Firestore
+# 授權專用 Cloud Run Runtime Service Account 可以讀寫 Firestore
 gcloud projects add-iam-policy-binding <PROJECT_ID> \
-  --member="serviceAccount:<PROJECT_NUMBER>-compute@developer.gserviceaccount.com" \
+  --member="serviceAccount:dcka-chatbot-runtime@<PROJECT_ID>.iam.gserviceaccount.com" \
   --role="roles/datastore.user"
+
+# 啟用 chat_logs.expires_at 的 TTL；文件到期後由 Firestore 自動刪除
+gcloud firestore fields ttls update expires_at \
+  --collection-group=chat_logs \
+  --enable-ttl \
+  --project=<PROJECT_ID>
 ```
 
-> 📌 沒有特別指定 service account 時，Cloud Run 預設用的是 Compute Engine 預設服務帳號（`<PROJECT_NUMBER>-compute@developer.gserviceaccount.com`），要另外授權才能寫入 Firestore，否則 `log_chat()` 會靜默失敗（只印 log，不會噴錯給使用者）。
+> 📌 本專案的 workflow 以 `--service-account` 明確指定 `dcka-chatbot-runtime`，避免讓應用程式沿用權限過大的 Compute Engine 預設服務帳號。若 Runtime 帳號缺少 `roles/datastore.user`，`log_chat()` 會只在 Cloud Logging 留下錯誤，不會讓聊天回應跟著失敗。
+
+### 資料治理與管理者查閱
+
+- 預設保留 90 天，可用 `CHAT_LOG_RETENTION_DAYS` 調整；正式 `(default)` database 的 `chat_logs.expires_at` TTL policy 已於 2026-08-19 啟用並確認為 `ACTIVE`。
+- TTL 刪除不是即時排程；到期資料可能要等待一段時間才會由 Firestore 清除。
+- Cloud Run Runtime Service Account 只授予 `roles/datastore.user`。
+- 建議建立專用管理者群組，只有需要查閱問答紀錄的人加入，並授予唯讀 `roles/datastore.viewer`；不要把此角色開給一般網站使用者。
+- 管理者不得把問答紀錄下載到個人裝置或長期另存；如需匯出分析，應再次去識別化並另訂刪除日期。
 
 ### 查詢紀錄
 
@@ -230,7 +252,7 @@ curl -s -H "Authorization: Bearer $TOKEN" \
 
 ## 🧠 RAG 提示詞與文章串接流程
 
-本聊天機器人使用 **RAG（Retrieval-Augmented Generation）** 技術，將當前頁面內容作為上下文傳遞給 AI，讓回答更精準。
+本聊天機器人目前使用 **full-context RAG**：MkDocs 建置時把全站 Markdown 產生為 `content.json`，Browser 載入後將完整文件內容放進 `system_instruction`。目前尚未執行 embedding、vector search 或 top-k retrieval。
 
 ### RAG 資料流程
 
@@ -242,14 +264,14 @@ sequenceDiagram
     participant G as Gemini API
 
     U->>F: 1. 輸入問題
-    F->>F: 2. 擷取當前頁面內容<br/>(.md-content)
-    F->>F: 3. 組合系統提示詞<br/>+ 頁面內容 + 問題
-    F->>B: 4. POST /api/chat<br/>{history, message, system_instruction}
-    B->>B: 5. 轉換對話歷史格式
-    B->>B: 6. 合併 system_instruction + message
-    B->>G: 7. 呼叫 Gemini API
-    G->>B: 8. AI 回應
-    B->>F: 9. 返回 {text: "..."}
+    F->>F: 2. 載入 content.json<br/>並快取全站文件
+    F->>F: 3. 組合回答規則<br/>+ 全站文件 System Instruction
+    F->>B: 4. POST /api/chat<br/>{session_id, history, message, system_instruction}
+    B->>B: 5. Body / Pydantic / Rate Limit 驗證
+    B->>G: 6. 同步 worker 呼叫 Gemini API
+    G->>B: 7. AI 回應或 Exception
+    B->>F: 8. 返回 {text: "..."}<br/>或一般化錯誤
+    B-->>B: 9. BackgroundTasks<br/>遮罩後寫入 Firestore
     F->>U: 10. 顯示回答
 ```
 
@@ -288,7 +310,7 @@ const systemInstruction = `你是 DCKA 課程（Docker Containers 與 Kubernetes
 以下是完整的課程文件內容，請根據這些內容回答：
 
 ---
-${allDocsContent}  // ← 全站 24 個頁面的完整內容
+${allDocsContent}  // ← 建置時收錄的全站頁面內容
 ---`;
 ```
 
@@ -314,7 +336,7 @@ hooks/
 |----------|------|------|
 | **角色設定** | 寫死在程式碼 | "你是 DCKA 課程的 AI 助教" |
 | **回答規則** | 寫死在程式碼 | 繁體中文、提供連結、格式要求 |
-| **全站文件** | `content.json` (動態載入) | 24 個頁面的完整 Markdown 內容 |
+| **全站文件** | `content.json` (動態載入) | 建置當下所有頁面的完整 Markdown 內容 |
 | **對話歷史** | sessionStorage | 保持對話上下文連貫 |
 
 ### 後端如何處理提示詞
@@ -325,7 +347,7 @@ response = client.models.generate_content(
     model="gemini-3.5-flash",
     contents=contents,  # 對話歷史 + 這次的使用者訊息
     config=types.GenerateContentConfig(
-        system_instruction=request.system_instruction,  # RAG 上下文透過 system_instruction 傳入
+        system_instruction=payload.system_instruction,  # RAG 上下文透過 system_instruction 傳入
         thinking_config=types.ThinkingConfig(thinking_level="low"),
     ),
 )
@@ -340,8 +362,9 @@ flowchart TB
     subgraph GitHub
         GH_Repo[("📦 dcka-class-notes<br/>Repository")]
         GH_Main["main branch"]
-        GH_Pages["gh-pages branch"]
-        GH_Action["⚙️ GitHub Actions<br/>deploy-backend.yml"]
+        GH_Pages["GitHub Pages Artifact"]
+        GH_Action["⚙️ Backend Actions<br/>deploy-backend.yml"]
+        GH_Pages_Action["⚙️ Frontend Actions<br/>deploy-pages.yml"]
     end
 
     subgraph 開發者本機
@@ -362,10 +385,11 @@ flowchart TB
     GH_Action -->|"3. gcloud auth + deploy"| CR_Build
     CR_Build -->|"4. Docker Build + 部署"| CR_Service
 
-    DEV -->|"5. mkdocs gh-deploy"| GH_Pages
-    GH_Pages -->|"6. 自動發布"| GP
+    GH_Main -->|"5. docs / mkdocs 變更"| GH_Pages_Action
+    GH_Pages_Action -->|"6. MkDocs build + upload artifact"| GH_Pages
+    GH_Pages -->|"7. deploy-pages"| GP
 
-    GP <-->|"7. API 請求"| CR_Service
+    GP <-->|"8. API 請求"| CR_Service
 
     style GH_Repo fill:#24292e,color:#fff
     style CR_Service fill:#4285F4,color:#fff
@@ -378,11 +402,14 @@ flowchart TB
 |------|------|------|
 | 1 | `git push` | 推送程式碼到 GitHub main 分支，且 `backend/` 有變動 |
 | 2 | GitHub Actions 觸發 | [`deploy-backend.yml`](../.github/workflows/deploy-backend.yml) 開始執行 |
-| 3 | 驗證 GCP | 用 `GCP_SA_KEY` Secret 登入 Service Account |
+| 3 | 驗證 GCP | GitHub OIDC 經 WIF 換取 `github-actions-deployer` 的短效憑證，不保存 JSON key |
 | 4 | 建置並部署 | `gcloud run deploy --source backend`，Cloud Build 建置 Docker image 並部署到 Cloud Run |
-| 5 | `mkdocs gh-deploy` | 建置並推送到 gh-pages 分支（前端仍需手動或另設 workflow） |
-| 6 | GitHub Pages | 自動發布靜態網站 |
-| 7 | API 請求 | 前端透過 HTTPS 呼叫 Cloud Run 服務 |
+| 5 | Frontend Workflow | `docs/**`、MkDocs 設定或前端 workflow 變更時觸發 |
+| 6 | MkDocs Build | 依 `uv.lock` 安裝依賴、建置 `site/` 並上傳 Pages artifact |
+| 7 | GitHub Pages | `deploy-pages` 將 artifact 發布為靜態網站 |
+| 8 | API 請求 | 前端透過 HTTPS 呼叫 Cloud Run 服務 |
+
+> Repository **Settings → Pages → Build and deployment → Source** 已設定為 **GitHub Actions**。
 
 ---
 
@@ -448,19 +475,37 @@ gcloud billing projects link <PROJECT_ID> --billing-account=<BILLING_ACCOUNT_ID>
 
 > ⚠️ 免費帳單帳戶預設只能連結 **5 個專案**，超過需申請額度提升，或改用已連結帳單的既有專案。
 
-**Step 3：建立 Service Account 供 GitHub Actions 使用**
+**Step 3：以 Workload Identity Federation 連接 GitHub Actions**
 
-授予角色：`Cloud Run Admin`、`Cloud Build Editor`、`Artifact Registry Writer`、`Service Account User`，並下載 JSON key。
+本專案不保存 Service Account JSON key。GitHub Actions 透過 OIDC 向 Workload Identity Provider 換取短效憑證，再 impersonate 專用部署帳號：
 
-**Step 4：在 GitHub repo 設定 Secrets**
+```text
+CaoCharles/dcka-class-notes main branch
+  → GitHub OIDC token
+  → github-actions WIF Provider
+  → github-actions-deployer
+  → gcloud run deploy --source backend
+```
+
+目前權限分工：
+
+| 身分 | 權限／用途 |
+|------|-----------|
+| `github-actions-deployer` | `roles/run.sourceDeveloper`、`roles/serviceusage.serviceUsageConsumer` |
+| `dcka-chatbot-runtime` | `roles/datastore.user`，供 Cloud Run Runtime 寫入 Firestore |
+| WIF principal | 只能從 `CaoCharles/dcka-class-notes` 的 `main` branch impersonate deployer |
+
+**Step 4：設定 GitHub Actions Variables 與 Secret**
 
 Settings → Secrets and variables → Actions：
 
-| Secret | 說明 |
-|--------|------|
-| `GCP_SA_KEY` | Service Account 的 JSON key 全文 |
-| `GCP_PROJECT_ID` | GCP 專案 ID |
-| `GEMINI_API_KEY` | Gemini API Key（[AI Studio](https://aistudio.google.com/apikey) 取得，建議跟部署用的 GCP 專案掛同一個） |
+| 類型 | 名稱 | 說明 |
+|------|------|------|
+| Variable | `GCP_PROJECT_ID` | GCP Project ID |
+| Variable | `GCP_WIF_PROVIDER` | Workload Identity Provider 完整 resource name |
+| Variable | `GCP_DEPLOYER_SA` | `github-actions-deployer` email |
+| Variable | `GCP_RUNTIME_SA` | `dcka-chatbot-runtime` email |
+| Secret | `GEMINI_API_KEY` | Gemini API Key（[AI Studio](https://aistudio.google.com/apikey) 取得） |
 
 之後 push 到 `main` 且 `backend/` 有變動，[`deploy-backend.yml`](../.github/workflows/deploy-backend.yml) 就會自動部署，不用再手動操作。
 
@@ -471,6 +516,7 @@ gcloud run deploy dcka-chatbot-backend \
   --source backend \
   --region asia-east1 \
   --project <PROJECT_ID> \
+  --service-account dcka-chatbot-runtime@<PROJECT_ID>.iam.gserviceaccount.com \
   --allow-unauthenticated \
   --set-env-vars "GEMINI_API_KEY=<your_api_key>"
 ```
@@ -487,7 +533,7 @@ gcloud run deploy dcka-chatbot-backend \
 window.BACKEND_API_URL = window.BACKEND_API_URL || "https://dcka-chatbot-backend-<hash>.asia-east1.run.app";
 ```
 
-改完後重新發布 GitHub Pages：
+改完後 commit 並 push；`deploy-pages.yml` 會自動發布 GitHub Pages。若要使用下列 branch-based fallback，需先把 Pages Source 暫時切回 **Deploy from a branch**：
 
 ```bash
 uv run mkdocs gh-deploy --force
@@ -507,20 +553,37 @@ Cloud Run 依實際使用量計費，免費額度相當大方（每月 200 萬�
 
 ### CORS 設定
 
-目前 `chat_server.py` 設定為允許所有來源（開發方便）：
-
-```python
-allow_origins=["*"]  # 開發環境
-```
-
-**生產環境建議**：限制只允許你的網站：
+`chat_server.py` 預設只允許正式 GitHub Pages Origin 與本機預覽：
 
 ```python
 allow_origins=[
     "https://caocharles.github.io",
-    "http://localhost:8000"
+    "http://localhost:8000",
+    "http://127.0.0.1:8000"
 ]
 ```
+
+可用 `ALLOWED_ORIGINS` 覆寫，但必須填 Origin，不可包含 `/dcka-class-notes/` 路徑。
+
+### 公開 API 防護
+
+| 設定 | 預設值 | 用途 |
+|---|---:|---|
+| `RATE_LIMIT_REQUESTS` | 20 | 單一來源在視窗內最多請求數 |
+| `RATE_LIMIT_WINDOW_SECONDS` | 60 | Rate limit 視窗秒數 |
+| `MAX_REQUEST_BODY_BYTES` | 1,048,576 | `/api/chat` JSON body 上限 |
+| `MAX_MESSAGE_CHARS` | 4,000 | 單次問題字元上限 |
+| `MAX_HISTORY_MESSAGES` | 20 | 最近對話訊息上限 |
+| `MAX_SYSTEM_INSTRUCTION_CHARS` | 750,000 | 全站文件 System Instruction 上限 |
+| `CHAT_LOG_RETENTION_DAYS` | 90 | Firestore 問答紀錄保留日數 |
+
+目前 rate limiter 是 Cloud Run **單一 instance 記憶體內**的滑動視窗，適合先阻擋一般誤用；如果未來需要跨 instance 的全域配額，應改接 Cloud Armor／API Gateway 或集中式計數儲存。
+
+### 錯誤資訊
+
+- 使用者只會收到一般化 4xx／5xx 訊息，不會看到 Gemini 或 Python 的完整例外。
+- 詳細 stack trace 使用標準 Python logging 輸出，由 Cloud Run 收進 Cloud Logging。
+- Firestore 的 `error` 欄位只保存例外類型，不保存完整例外文字。
 
 ### API Key 保護
 
@@ -534,13 +597,14 @@ allow_origins=[
 
 ### Q1: GitHub Actions 顯示 "Build Failed" 或部署失敗
 
-**原因**：可能是 Dockerfile、Service Account 權限，或 Secrets 設定問題
+**原因**：可能是 Dockerfile、WIF assertion／IAM、GitHub Variables 或 Secret 設定問題
 
 **解決**：
 1. 檢查 GitHub Actions 的執行紀錄（repo → Actions → 對應的 workflow run）
-2. 確認 `GCP_SA_KEY`、`GCP_PROJECT_ID`、`GEMINI_API_KEY` 三個 Secret 都存在且正確
-3. 確認 Service Account 有 `Cloud Run Admin`、`Cloud Build Editor`、`Artifact Registry Writer`、`Service Account User` 角色
-4. 本地先測試 Docker 建置：
+2. 確認 `GCP_PROJECT_ID`、`GCP_WIF_PROVIDER`、`GCP_DEPLOYER_SA`、`GCP_RUNTIME_SA` 四個 Variables 與 `GEMINI_API_KEY` Secret 都存在
+3. 確認 WIF Provider 為 `ACTIVE`，attribute condition 限制正確 repository 與 `refs/heads/main`
+4. 確認 deployer 具備 `roles/run.sourceDeveloper`、`roles/serviceusage.serviceUsageConsumer`，並可對 Runtime Service Account 使用 `roles/iam.serviceAccountUser`
+5. 本地先測試 Docker 建置：
 
 ```bash
 cd backend
@@ -552,7 +616,7 @@ docker run -p 8001:8000 -e GEMINI_API_KEY=xxx test-backend
 
 **原因**：後端 CORS 設定未包含前端網址
 
-**解決**：修改 `chat_server.py` 的 `allow_origins`
+**解決**：確認 Request 的 Origin 位於 `ALLOWED_ORIGINS`；正式網址只填 Origin（例如 `https://caocharles.github.io`），不要包含 repository path。
 
 ### Q3: 服務出現 "Application not found" 或健康檢查 404
 

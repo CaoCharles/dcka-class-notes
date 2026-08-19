@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <mxfile host="app.diagrams.net" modified="2026-08-19T12:00:00.000Z" agent="Codex" version="24.7.17" type="device" compressed="false">
-  <diagram id="system-container" name="01 系統元件與部署拓撲">
+  <diagram id="system-container" name="01 System Component &amp; Deployment Architecture">
     <mxGraphModel dx="1800" dy="1120" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1120" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="system-container-title" value="DCKA 系統元件與部署拓撲（Current State）" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;verticalAlign=middle;fontSize=28;fontColor=#0F172A;align=left;fontStyle=1;" vertex="1" parent="1">
+        <mxCell id="system-container-title" value="DCKA System Component &amp; Deployment Architecture (Current State)" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;verticalAlign=middle;fontSize=28;fontColor=#0F172A;align=left;fontStyle=1;" vertex="1" parent="1">
           <mxGeometry x="55" y="28" width="720" height="40" as="geometry" />
         </mxCell>
         <mxCell id="system-container-subtitle" value="C4 Container / Deployment View｜實線：Runtime data flow　虛線：Build / Deploy control flow" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;verticalAlign=middle;fontSize=15;fontColor=#475569;align=left;" vertex="1" parent="1">
@@ -48,7 +48,7 @@
             <mxPoint x="220" y="465" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="e-build-gh" value="publish artifact" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;dashed=1;" edge="1" parent="1">
+        <mxCell id="e-build-gh" value="manual fallback" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;dashed=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="365" y="540" as="sourcePoint" />
             <mxPoint x="470" y="560" as="targetPoint" />
@@ -75,10 +75,20 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e-main-actions" value="backend/**" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;dashed=1;" edge="1" parent="1">
+        <mxCell id="e-main-actions" value="docs/** | backend/**" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;dashed=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="700" y="225" as="sourcePoint" />
             <mxPoint x="750" y="225" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-actions-pages-artifact" value="MkDocs build + upload" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="800" y="280" as="sourcePoint" />
+            <mxPoint x="700" y="550" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="800" y="480" />
+              <mxPoint x="700" y="480" />
+            </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="e-secrets-actions" value="workflow inputs" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;dashed=1;" edge="1" parent="1">
@@ -87,10 +97,30 @@
             <mxPoint x="880" y="290" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="e-actions-build" value="deploy source" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;dashed=1;" edge="1" parent="1">
+        <mxCell id="e-actions-wif" value="OIDC token" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;dashed=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1000" y="225" as="sourcePoint" />
-            <mxPoint x="1100" y="225" as="targetPoint" />
+            <mxPoint x="1100" y="355" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1060" y="225" />
+              <mxPoint x="1060" y="355" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-wif-deployer" value="impersonate" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1310" y="355" as="sourcePoint" />
+            <mxPoint x="1330" y="355" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-deployer-build" value="deploy source" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1435" y="315" as="sourcePoint" />
+            <mxPoint x="1210" y="290" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1435" y="295" />
+              <mxPoint x="1210" y="295" />
+            </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="e-build-artifact" value="image" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;dashed=1;" edge="1" parent="1">
@@ -112,14 +142,14 @@
         <mxCell id="e-secrets-env" value="--set-env-vars" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;strokeColor=#DC2626;strokeWidth=2;endArrow=block;endFill=1;dashed=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1000" y="395" as="sourcePoint" />
-            <mxPoint x="1215" y="810" as="targetPoint" />
+            <mxPoint x="1320" y="815" as="targetPoint" />
             <Array as="points">
               <mxPoint x="1050" y="395" />
-              <mxPoint x="1050" y="810" />
+              <mxPoint x="1050" y="815" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e-browser-ingress" value="HTTPS JSON · CORS · anonymous" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1">
+        <mxCell id="e-browser-ingress" value="HTTPS JSON · origin allowlist · anonymous" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="365" y="810" as="sourcePoint" />
             <mxPoint x="1120" y="525" as="targetPoint" />
@@ -153,7 +183,7 @@
         </mxCell>
         <mxCell id="e-env-genai" value="API key" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;strokeColor=#DC2626;strokeWidth=2;endArrow=block;endFill=1;dashed=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1320" y="780" as="sourcePoint" />
+            <mxPoint x="1420" y="780" as="sourcePoint" />
             <mxPoint x="1420" y="750" as="targetPoint" />
           </mxGeometry>
         </mxCell>
@@ -167,7 +197,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e-fastapi-firestore" value="log_chat() · best effort" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;strokeColor=#DB2777;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1">
+        <mxCell id="e-fastapi-firestore" value="BackgroundTasks · masked" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;strokeColor=#DB2777;strokeWidth=2;endArrow=block;endFill=1;dashed=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1510" y="545" as="sourcePoint" />
             <mxPoint x="1500" y="945" as="targetPoint" />
@@ -177,13 +207,19 @@
             </Array>
           </mxGeometry>
         </mxCell>
+        <mxCell id="e-runtime-firestore" value="runtime IAM" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;strokeColor=#DB2777;strokeWidth=2;endArrow=block;endFill=1;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1210" y="850" as="sourcePoint" />
+            <mxPoint x="1210" y="890" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="developer" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;Author / Developer&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;VS Code · Git · uv&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=2;fontColor=#0F172A;fontSize=14;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
           <mxGeometry x="75" y="175" width="290" height="90" as="geometry" />
         </mxCell>
         <mxCell id="local-repo" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;Local working tree&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;docs/ · mkdocs.yml&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;backend/ · hooks/&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=2;fontColor=#0F172A;fontSize=14;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
           <mxGeometry x="75" y="315" width="290" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="mkdocs" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;MkDocs build process&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Markdown → static site&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;hook → content.json&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;mkdocs gh-deploy&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#7C3AED;strokeWidth=2;fontColor=#0F172A;fontSize=14;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+        <mxCell id="mkdocs" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;MkDocs build process&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Markdown → static site&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;hook → content.json&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;local preview / fallback&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#7C3AED;strokeWidth=2;fontColor=#0F172A;fontSize=14;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
           <mxGeometry x="75" y="475" width="290" height="130" as="geometry" />
         </mxCell>
         <mxCell id="browser" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;Browser runtime&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;HTML / CSS / Material UI&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;chatbot.js + marked.js&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;content.json in memory&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;history → sessionStorage&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=2;fontColor=#0F172A;fontSize=14;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
@@ -192,13 +228,13 @@
         <mxCell id="main" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;main branch&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;source of truth&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;docs + frontend + backend&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#7C3AED;strokeWidth=2;fontColor=#0F172A;fontSize=14;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
           <mxGeometry x="470" y="175" width="230" height="105" as="geometry" />
         </mxCell>
-        <mxCell id="actions" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;GitHub Actions&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;deploy-backend.yml&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;paths: backend/**&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#7C3AED;strokeWidth=2;fontColor=#0F172A;fontSize=14;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+        <mxCell id="actions" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;GitHub Actions&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;deploy-pages.yml&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;deploy-backend.yml&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#7C3AED;strokeWidth=2;fontColor=#0F172A;fontSize=14;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
           <mxGeometry x="760" y="175" width="240" height="105" as="geometry" />
         </mxCell>
-        <mxCell id="secrets" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;GitHub Secrets&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;GCP_SA_KEY&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;GCP_PROJECT_ID&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;GEMINI_API_KEY&lt;/font&gt;" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=12;whiteSpace=wrap;html=1;fillColor=#FEE2E2;strokeColor=#DC2626;strokeWidth=2;fontColor=#0F172A;fontSize=14;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+        <mxCell id="secrets" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;GitHub configuration&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Variables: project + WIF&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Secret: GEMINI_API_KEY&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;no GCP JSON key&lt;/font&gt;" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=12;whiteSpace=wrap;html=1;fillColor=#FEE2E2;strokeColor=#DC2626;strokeWidth=2;fontColor=#0F172A;fontSize=14;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
           <mxGeometry x="760" y="330" width="240" height="130" as="geometry" />
         </mxCell>
-        <mxCell id="gh-pages" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;gh-pages branch&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;built site artifact&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;HTML / CSS / JS / JSON&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#7C3AED;strokeWidth=2;fontColor=#0F172A;fontSize=14;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+        <mxCell id="gh-pages" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;Pages artifact&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;built site bundle&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;HTML / CSS / JS / JSON&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#7C3AED;strokeWidth=2;fontColor=#0F172A;fontSize=14;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
           <mxGeometry x="470" y="505" width="230" height="110" as="geometry" />
         </mxCell>
         <mxCell id="pages" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;GitHub Pages&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;static hosting / CDN&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;caocharles.github.io&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;/dcka-class-notes/&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#7C3AED;strokeWidth=2;fontColor=#0F172A;fontSize=14;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
@@ -210,10 +246,16 @@
         <mxCell id="artifact" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;Artifact Registry&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;managed image&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;versioned artifact&lt;/font&gt;" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=12;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#059669;strokeWidth=2;fontColor=#0F172A;fontSize=14;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
           <mxGeometry x="1340" y="175" width="190" height="105" as="geometry" />
         </mxCell>
+        <mxCell id="wif" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;Workload Identity&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;GitHub OIDC federation&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;repo + main trust&lt;/font&gt;" style="shape=hexagon;perimeter=hexagonPerimeter2;fixedSize=1;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#059669;strokeWidth=2;fontColor=#0F172A;fontSize=11;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="1110" y="315" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="deployer" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;Deployer SA&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;short-lived credential&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;source deploy only&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#059669;strokeWidth=2;fontColor=#0F172A;fontSize=11;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="1340" y="315" width="190" height="80" as="geometry" />
+        </mxCell>
         <mxCell id="ingress" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;HTTPS ingress&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;GET /&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;POST /api/chat&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#059669;strokeWidth=2;fontColor=#0F172A;fontSize=14;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
           <mxGeometry x="1130" y="480" width="170" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="fastapi" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;FastAPI / Uvicorn&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Pydantic validation&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;CORS middleware&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#059669;strokeWidth=2;fontColor=#0F172A;fontSize=14;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+        <mxCell id="fastapi" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;FastAPI / Uvicorn&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;body + Pydantic limits&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;CORS + rate limiting&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#059669;strokeWidth=2;fontColor=#0F172A;fontSize=14;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
           <mxGeometry x="1330" y="480" width="180" height="105" as="geometry" />
         </mxCell>
         <mxCell id="adapter" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;Request adapter&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;role mapping&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;history + message&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#059669;strokeWidth=2;fontColor=#0F172A;fontSize=14;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
@@ -222,19 +264,22 @@
         <mxCell id="genai" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;google-genai SDK&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;GenerateContentConfig&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;thinking_level=low&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#059669;strokeWidth=2;fontColor=#0F172A;fontSize=14;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
           <mxGeometry x="1330" y="635" width="180" height="105" as="geometry" />
         </mxCell>
-        <mxCell id="env" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;Runtime env&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;GEMINI_API_KEY · PORT&lt;/font&gt;" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=12;whiteSpace=wrap;html=1;fillColor=#FEE2E2;strokeColor=#DC2626;strokeWidth=2;fontColor=#0F172A;fontSize=12;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
-          <mxGeometry x="1225" y="780" width="190" height="60" as="geometry" />
+        <mxCell id="runtime-sa" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;Runtime identity&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;dcka-chatbot-runtime&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;roles/datastore.user&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#059669;strokeWidth=2;fontColor=#0F172A;fontSize=11;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="1110" y="780" width="200" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="firestore" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;Cloud Firestore&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Native mode · chat_logs&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;persistent Q&amp;amp;A records&lt;/font&gt;" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=12;whiteSpace=wrap;html=1;fillColor=#FCE7F3;strokeColor=#DB2777;strokeWidth=2;fontColor=#0F172A;fontSize=13;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+        <mxCell id="env" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;Runtime secret&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;GEMINI_API_KEY · PORT&lt;/font&gt;" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=12;whiteSpace=wrap;html=1;fillColor=#FEE2E2;strokeColor=#DC2626;strokeWidth=2;fontColor=#0F172A;fontSize=11;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="1330" y="780" width="180" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="firestore" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;Cloud Firestore&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;masked chat_logs · expires_at&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;TTL ACTIVE · 90-day retention&lt;/font&gt;" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=12;whiteSpace=wrap;html=1;fillColor=#FCE7F3;strokeColor=#DB2777;strokeWidth=2;fontColor=#0F172A;fontSize=13;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
           <mxGeometry x="1190" y="900" width="300" height="90" as="geometry" />
         </mxCell>
         <mxCell id="gemini" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;Gemini API&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;model:&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;gemini-3.5-flash&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;request / response&lt;/font&gt;" style="shape=hexagon;perimeter=hexagonPerimeter2;fixedSize=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;strokeWidth=2;fontColor=#0F172A;fontSize=13;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
           <mxGeometry x="1608" y="505" width="144" height="185" as="geometry" />
         </mxCell>
-        <mxCell id="note-current" value="CURRENT-STATE CONSTRAINTS" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;verticalAlign=middle;fontSize=14;fontColor=#DC2626;align=left;fontStyle=1;" vertex="1" parent="1">
+        <mxCell id="note-current" value="CURRENT-STATE CONTROLS / CONSTRAINTS" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;verticalAlign=middle;fontSize=14;fontColor=#DC2626;align=left;fontStyle=1;" vertex="1" parent="1">
           <mxGeometry x="450" y="936" width="720" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="note-state" value="• No login / API authentication   • CORS = *   • Firestore stores anonymous Q&amp;amp;A logs" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;verticalAlign=middle;fontSize=13;fontColor=#475569;align=left;" vertex="1" parent="1">
+        <mxCell id="note-state" value="• Anonymous API   • Exact CORS allowlist   • Per-instance rate limit + request size limits" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;verticalAlign=middle;fontSize=13;fontColor=#475569;align=left;" vertex="1" parent="1">
           <mxGeometry x="450" y="965" width="720" height="25" as="geometry" />
         </mxCell>
         <mxCell id="note-rag" value="• Cloud Run remains stateless compute   • Persistence lives in Firestore   • Context is still full-site, not retrieval RAG" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;verticalAlign=middle;fontSize=13;fontColor=#475569;align=left;" vertex="1" parent="1">
@@ -243,12 +288,12 @@
       </root>
     </mxGraphModel>
   </diagram>
-  <diagram id="runtime-swimlane" name="02 AI 問答技術泳道">
+  <diagram id="runtime-swimlane" name="02 AI Assistant Runtime Interaction Architecture">
     <mxGraphModel dx="1800" dy="1160" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1160" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="runtime-swimlane-title" value="DCKA AI 助教｜Runtime Interaction Architecture" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;verticalAlign=middle;fontSize=28;fontColor=#0F172A;align=left;fontStyle=1;" vertex="1" parent="1">
+        <mxCell id="runtime-swimlane-title" value="DCKA AI Assistant | Runtime Interaction Architecture" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;verticalAlign=middle;fontSize=28;fontColor=#0F172A;align=left;fontStyle=1;" vertex="1" parent="1">
           <mxGeometry x="55" y="28" width="720" height="40" as="geometry" />
         </mxCell>
         <mxCell id="runtime-swimlane-subtitle" value="Current-state technical blueprint｜Vertical swimlanes = responsibility boundary｜Numbered circles = execution order" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;verticalAlign=middle;fontSize=15;fontColor=#475569;align=left;" vertex="1" parent="1">
@@ -363,7 +408,19 @@
             <mxPoint x="1422" y="780" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="sw-e13" value="log before response" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;strokeColor=#34414C;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1">
+        <mxCell id="sw-e13" value="HTTP 200 answer / generic 4xx–5xx" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;strokeColor=#34414C;strokeWidth=2;endArrow=block;endFill=1;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1328" y="850" as="sourcePoint" />
+            <mxPoint x="405" y="848" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1305" y="850" />
+              <mxPoint x="1305" y="920" />
+              <mxPoint x="410" y="920" />
+              <mxPoint x="410" y="848" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sw-e14" value="after response · background task" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;strokeColor=#34414C;strokeWidth=2;endArrow=block;endFill=1;dashed=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1518" y="820" as="sourcePoint" />
             <mxPoint x="1558" y="684" as="targetPoint" />
@@ -373,19 +430,19 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="sw-e14" value="add document" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;strokeColor=#34414C;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1">
+        <mxCell id="sw-e15" value="masked document" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;strokeColor=#34414C;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1660" y="728" as="sourcePoint" />
             <mxPoint x="1660" y="775" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="sw-e15" value="Yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;strokeColor=#34414C;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1">
+        <mxCell id="sw-e16" value="Yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;strokeColor=#34414C;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1660" y="880" as="sourcePoint" />
             <mxPoint x="1660" y="915" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="sw-e16" value="No → warning only" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;strokeColor=#DC2626;strokeWidth=2;endArrow=block;endFill=1;dashed=1;" edge="1" parent="1">
+        <mxCell id="sw-e17" value="No → Cloud Logging" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;strokeColor=#DC2626;strokeWidth=2;endArrow=block;endFill=1;dashed=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1592" y="833" as="sourcePoint" />
             <mxPoint x="1518" y="880" as="targetPoint" />
@@ -393,18 +450,6 @@
               <mxPoint x="1540" y="833" />
               <mxPoint x="1540" y="905" />
               <mxPoint x="1518" y="905" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="sw-e17" value="HTTP 200 answer / HTTP 500 detail" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;strokeColor=#34414C;strokeWidth=2;endArrow=block;endFill=1;dashed=1;" edge="1" parent="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1328" y="850" as="sourcePoint" />
-            <mxPoint x="405" y="848" as="targetPoint" />
-            <Array as="points">
-              <mxPoint x="1305" y="850" />
-              <mxPoint x="1305" y="920" />
-              <mxPoint x="410" y="920" />
-              <mxPoint x="410" y="848" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -444,8 +489,8 @@
         <mxCell id="sw-cache" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;Browser context&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;session_id + history&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;allDocsContent in memory&lt;/font&gt;" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=12;whiteSpace=wrap;html=1;fillColor=#FBFCFD;strokeColor=#34414C;strokeWidth=1;fontColor=#0F172A;fontSize=10;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
           <mxGeometry x="205" y="320" width="190" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="sw-schema" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;ChatLog schema&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;session_id · question&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;answer · model&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;latency_ms · status&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;error · created_at&lt;/font&gt;" style="whiteSpace=wrap;html=1;fillColor=#FFF8DF;strokeColor=#34414C;strokeWidth=1;fontColor=#0F172A;fontSize=10;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
-          <mxGeometry x="1568" y="190" width="184" height="122" as="geometry" />
+        <mxCell id="sw-schema" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;ChatLog schema&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;session_id · question&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;answer · model&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;latency_ms · status&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;error · created_at&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;expires_at · masked&lt;/font&gt;" style="whiteSpace=wrap;html=1;fillColor=#FFF8DF;strokeColor=#34414C;strokeWidth=1;fontColor=#0F172A;fontSize=10;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="1568" y="190" width="184" height="132" as="geometry" />
         </mxCell>
         <mxCell id="sw-iam" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;IAM boundary&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Cloud Run service account&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;roles/datastore.user&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Browser has no DB access&lt;/font&gt;" style="whiteSpace=wrap;html=1;fillColor=#FBFCFD;strokeColor=#34414C;strokeWidth=1;fontColor=#0F172A;fontSize=10;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
           <mxGeometry x="1568" y="360" width="184" height="95" as="geometry" />
@@ -456,10 +501,10 @@
         <mxCell id="sw-assemble" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;Request assembly&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;session_id · history&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;message · system rules&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;+ full site context&lt;/font&gt;" style="whiteSpace=wrap;html=1;fillColor=#FBFCFD;strokeColor=#34414C;strokeWidth=1;fontColor=#0F172A;fontSize=10;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
           <mxGeometry x="205" y="455" width="190" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="sw-post" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;POST /api/chat&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;JSON over HTTPS&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;CORS preflight&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;public ingress&lt;/font&gt;" style="whiteSpace=wrap;html=1;fillColor=#FBFCFD;strokeColor=#34414C;strokeWidth=1;fontColor=#0F172A;fontSize=10;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+        <mxCell id="sw-post" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;POST /api/chat&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;JSON over HTTPS&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;exact-origin CORS&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;public ingress&lt;/font&gt;" style="whiteSpace=wrap;html=1;fillColor=#FBFCFD;strokeColor=#34414C;strokeWidth=1;fontColor=#0F172A;fontSize=10;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
           <mxGeometry x="708" y="452" width="160" height="92" as="geometry" />
         </mxCell>
-        <mxCell id="sw-validate" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;Request valid?&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Pydantic&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;ChatRequest&lt;/font&gt;" style="rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;fillColor=#FBFCFD;strokeColor=#34414C;strokeWidth=1;fontColor=#0F172A;fontSize=10;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+        <mxCell id="sw-validate" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;Request valid?&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;body / Pydantic&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;rate limit&lt;/font&gt;" style="rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;fillColor=#FBFCFD;strokeColor=#34414C;strokeWidth=1;fontColor=#0F172A;fontSize=10;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
           <mxGeometry x="902" y="445" width="125" height="105" as="geometry" />
         </mxCell>
         <mxCell id="sw-adapter" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;Context / role adapter&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;map user / model roles&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;append current message&lt;/font&gt;" style="whiteSpace=wrap;html=1;fillColor=#FBFCFD;strokeColor=#34414C;strokeWidth=1;fontColor=#0F172A;fontSize=10;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
@@ -474,16 +519,16 @@
         <mxCell id="sw-result" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;Generation&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;success?&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;latency_ms&lt;/font&gt;" style="rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;fillColor=#FBFCFD;strokeColor=#34414C;strokeWidth=1;fontColor=#0F172A;fontSize=10;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
           <mxGeometry x="1350" y="620" width="145" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="sw-envelope" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;Response envelope&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;answer / error&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;model · status&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;session_id · latency&lt;/font&gt;" style="whiteSpace=wrap;html=1;fillColor=#FBFCFD;strokeColor=#34414C;strokeWidth=1;fontColor=#0F172A;fontSize=10;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+        <mxCell id="sw-envelope" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;Response envelope&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;answer / generic error&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;status · Retry-After&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;latency_ms&lt;/font&gt;" style="whiteSpace=wrap;html=1;fillColor=#FBFCFD;strokeColor=#34414C;strokeWidth=1;fontColor=#0F172A;fontSize=10;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
           <mxGeometry x="1328" y="790" width="190" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="sw-log" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;log_chat()&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;sync client · try/except&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;best-effort write&lt;/font&gt;" style="whiteSpace=wrap;html=1;fillColor=#FBFCFD;strokeColor=#34414C;strokeWidth=1;fontColor=#0F172A;fontSize=10;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+        <mxCell id="sw-log" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;log_chat()&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;BackgroundTasks&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;mask · try/except&lt;/font&gt;" style="whiteSpace=wrap;html=1;fillColor=#FBFCFD;strokeColor=#34414C;strokeWidth=1;fontColor=#0F172A;fontSize=10;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
           <mxGeometry x="1568" y="640" width="184" height="88" as="geometry" />
         </mxCell>
         <mxCell id="sw-db-decision" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;Firestore&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;write OK?&lt;/font&gt;" style="rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;fillColor=#FBFCFD;strokeColor=#34414C;strokeWidth=1;fontColor=#0F172A;fontSize=10;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
           <mxGeometry x="1592" y="785" width="136" height="95" as="geometry" />
         </mxCell>
-        <mxCell id="sw-firestore" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;chat_logs&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;SERVER_TIMESTAMP&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;persistent Q&amp;amp;A&lt;/font&gt;" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=12;whiteSpace=wrap;html=1;fillColor=#FBFCFD;strokeColor=#34414C;strokeWidth=1;fontColor=#0F172A;fontSize=10;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+        <mxCell id="sw-firestore" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;chat_logs&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;created_at + expires_at&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;TTL · persistent Q&amp;amp;A&lt;/font&gt;" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=12;whiteSpace=wrap;html=1;fillColor=#FBFCFD;strokeColor=#34414C;strokeWidth=1;fontColor=#0F172A;fontSize=10;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
           <mxGeometry x="1568" y="925" width="184" height="78" as="geometry" />
         </mxCell>
         <mxCell id="sw-render" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;Render / persist UI&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;fixBrokenLinks&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;marked.parse&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;history → sessionStorage&lt;/font&gt;" style="whiteSpace=wrap;html=1;fillColor=#FBFCFD;strokeColor=#34414C;strokeWidth=1;fontColor=#0F172A;fontSize=10;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
@@ -532,19 +577,19 @@
           <mxGeometry x="1408" y="706" width="28" height="28" as="geometry" />
         </mxCell>
         <mxCell id="sw-n13" value="&lt;font color=&quot;#FFFFFF&quot;&gt;&lt;b&gt;13&lt;/b&gt;&lt;/font&gt;" style="ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;fillColor=#F2B632;strokeColor=#F2B632;strokeWidth=1;fontColor=#FFFFFF;fontSize=10;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
-          <mxGeometry x="1504" y="806" width="28" height="28" as="geometry" />
+          <mxGeometry x="1314" y="836" width="28" height="28" as="geometry" />
         </mxCell>
         <mxCell id="sw-n14" value="&lt;font color=&quot;#FFFFFF&quot;&gt;&lt;b&gt;14&lt;/b&gt;&lt;/font&gt;" style="ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;fillColor=#F2B632;strokeColor=#F2B632;strokeWidth=1;fontColor=#FFFFFF;fontSize=10;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
-          <mxGeometry x="1646" y="714" width="28" height="28" as="geometry" />
+          <mxGeometry x="1504" y="806" width="28" height="28" as="geometry" />
         </mxCell>
         <mxCell id="sw-n15" value="&lt;font color=&quot;#FFFFFF&quot;&gt;&lt;b&gt;15&lt;/b&gt;&lt;/font&gt;" style="ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;fillColor=#F2B632;strokeColor=#F2B632;strokeWidth=1;fontColor=#FFFFFF;fontSize=10;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
-          <mxGeometry x="1646" y="866" width="28" height="28" as="geometry" />
+          <mxGeometry x="1646" y="714" width="28" height="28" as="geometry" />
         </mxCell>
         <mxCell id="sw-n16" value="&lt;font color=&quot;#FFFFFF&quot;&gt;&lt;b&gt;16&lt;/b&gt;&lt;/font&gt;" style="ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;fillColor=#F2B632;strokeColor=#F2B632;strokeWidth=1;fontColor=#FFFFFF;fontSize=10;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
-          <mxGeometry x="1578" y="819" width="28" height="28" as="geometry" />
+          <mxGeometry x="1646" y="866" width="28" height="28" as="geometry" />
         </mxCell>
         <mxCell id="sw-n17" value="&lt;font color=&quot;#FFFFFF&quot;&gt;&lt;b&gt;17&lt;/b&gt;&lt;/font&gt;" style="ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;fillColor=#F2B632;strokeColor=#F2B632;strokeWidth=1;fontColor=#FFFFFF;fontSize=10;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
-          <mxGeometry x="1314" y="836" width="28" height="28" as="geometry" />
+          <mxGeometry x="1578" y="819" width="28" height="28" as="geometry" />
         </mxCell>
         <mxCell id="sw-n18" value="&lt;font color=&quot;#FFFFFF&quot;&gt;&lt;b&gt;18&lt;/b&gt;&lt;/font&gt;" style="ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;fillColor=#F2B632;strokeColor=#F2B632;strokeWidth=1;fontColor=#FFFFFF;fontSize=10;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
           <mxGeometry x="181" y="834" width="28" height="28" as="geometry" />
@@ -582,27 +627,27 @@
         <mxCell id="sw-legend" value="Oval: start/end  •  Parallelogram: I/O  •  Rectangle: process  •  Diamond: decision  •  Cylinder: state/store  •  Dashed: control/failure" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;verticalAlign=middle;fontSize=12;fontColor=#475569;align=left;" vertex="1" parent="1">
           <mxGeometry x="220" y="1063" width="720" height="24" as="geometry" />
         </mxCell>
-        <mxCell id="sw-note-state" value="State ownership｜Browser: session_id + history   •   Cloud Run: stateless compute   •   Firestore: persistent anonymous Q&amp;amp;A records" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;verticalAlign=middle;fontSize=12;fontColor=#34414C;align=left;fontStyle=1;" vertex="1" parent="1">
+        <mxCell id="sw-note-state" value="State ownership｜Browser: session_id + history   •   Cloud Run: stateless compute   •   Firestore: persistent anonymous Q&amp;A records" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;verticalAlign=middle;fontSize=12;fontColor=#34414C;align=left;fontStyle=1;" vertex="1" parent="1">
           <mxGeometry x="45" y="1100" width="720" height="24" as="geometry" />
         </mxCell>
-        <mxCell id="sw-note-sync" value="Security｜GEMINI_API_KEY + Firestore IAM stay server-side; Firestore write is failure-isolated but synchronous." style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;verticalAlign=middle;fontSize=11;fontColor=#DC2626;align=left;fontStyle=1;" vertex="1" parent="1">
+        <mxCell id="sw-note-sync" value="Security｜Exact CORS allowlist + bounded input + per-instance rate limit; detailed exceptions stay in Cloud Logging." style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;verticalAlign=middle;fontSize=11;fontColor=#DC2626;align=left;fontStyle=1;" vertex="1" parent="1">
           <mxGeometry x="1035" y="1101" width="720" height="23" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
-  <diagram id="delivery-pipelines" name="03 Frontend / Backend Delivery">
+  <diagram id="delivery-pipelines" name="03 Frontend &amp; Backend Delivery Architecture">
     <mxGraphModel dx="1800" dy="1180" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1180" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="delivery-pipelines-title" value="Frontend 與 Backend Delivery Architecture" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;verticalAlign=middle;fontSize=28;fontColor=#0F172A;align=left;fontStyle=1;" vertex="1" parent="1">
+        <mxCell id="delivery-pipelines-title" value="Frontend &amp; Backend Delivery Architecture" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;verticalAlign=middle;fontSize=28;fontColor=#0F172A;align=left;fontStyle=1;" vertex="1" parent="1">
           <mxGeometry x="55" y="28" width="720" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="delivery-pipelines-subtitle" value="同一個 repository、兩條獨立發布路徑｜Frontend manual deploy；Backend path-triggered automation" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;verticalAlign=middle;fontSize=15;fontColor=#475569;align=left;" vertex="1" parent="1">
+        <mxCell id="delivery-pipelines-subtitle" value="同一個 repository、兩條獨立發布路徑｜Frontend + Backend path-triggered automation" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;verticalAlign=middle;fontSize=15;fontColor=#475569;align=left;" vertex="1" parent="1">
           <mxGeometry x="55" y="76" width="720" height="27" as="geometry" />
         </mxCell>
-        <mxCell id="front-zone" value="&lt;b&gt;PIPELINE A — STATIC FRONTEND&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Current: developer-triggered local build and publish&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#93C5FD;strokeWidth=2;verticalAlign=top;align=left;spacingTop=12;spacingLeft=14;fontSize=15;fontStyle=1;" vertex="1" parent="1">
+        <mxCell id="front-zone" value="&lt;b&gt;PIPELINE A — STATIC FRONTEND&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Current: GitHub Actions builds and deploys Pages after push main&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#93C5FD;strokeWidth=2;verticalAlign=top;align=left;spacingTop=12;spacingLeft=14;fontSize=15;fontStyle=1;" vertex="1" parent="1">
           <mxGeometry x="45" y="125" width="1710" height="430" as="geometry" />
         </mxCell>
         <mxCell id="back-zone" value="&lt;b&gt;PIPELINE B — CLOUD RUN BACKEND&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Current: GitHub Actions on push main when backend/** changes&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#F0FDF4;strokeColor=#86EFAC;strokeWidth=2;verticalAlign=top;align=left;spacingTop=12;spacingLeft=14;fontSize=15;fontStyle=1;" vertex="1" parent="1">
@@ -614,19 +659,19 @@
             <mxPoint x="350" y="272" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="fe2" value="build" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;dashed=1;" edge="1" parent="1">
+        <mxCell id="fe2" value="trigger deploy-pages.yml" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;dashed=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="600" y="272" as="sourcePoint" />
             <mxPoint x="645" y="272" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="fe3" value="git push artifact" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;dashed=1;" edge="1" parent="1">
+        <mxCell id="fe3" value="upload-pages-artifact" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;dashed=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="905" y="272" as="sourcePoint" />
             <mxPoint x="950" y="272" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="fe4" value="publish" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;dashed=1;" edge="1" parent="1">
+        <mxCell id="fe4" value="deploy-pages" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;dashed=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1180" y="272" as="sourcePoint" />
             <mxPoint x="1225" y="272" as="targetPoint" />
@@ -650,7 +695,7 @@
             <mxPoint x="625" y="772" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="be3" value="deploy source" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;dashed=1;" edge="1" parent="1">
+        <mxCell id="be3" value="OIDC / WIF → deploy" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;dashed=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="885" y="772" as="sourcePoint" />
             <mxPoint x="930" y="772" as="targetPoint" />
@@ -668,7 +713,7 @@
             <mxPoint x="1480" y="772" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="be-secret-action" value="authenticate" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;strokeColor=#DC2626;strokeWidth=2;endArrow=block;endFill=1;dashed=1;" edge="1" parent="1">
+        <mxCell id="be-secret-action" value="variables + secret" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;strokeColor=#DC2626;strokeWidth=2;endArrow=block;endFill=1;dashed=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="760" y="905" as="sourcePoint" />
             <mxPoint x="760" y="860" as="targetPoint" />
@@ -693,13 +738,13 @@
         <mxCell id="f-edit" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;Source content&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;docs/**/*.md&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;mkdocs.yml · assets&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=2;fontColor=#0F172A;fontSize=14;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
           <mxGeometry x="85" y="220" width="220" height="105" as="geometry" />
         </mxCell>
-        <mxCell id="f-local" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;Local build&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;uv run mkdocs&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;gh-deploy --force&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#7C3AED;strokeWidth=2;fontColor=#0F172A;fontSize=14;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+        <mxCell id="f-local" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;GitHub main&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;commit + push&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;source of truth&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#7C3AED;strokeWidth=2;fontColor=#0F172A;fontSize=14;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
           <mxGeometry x="360" y="220" width="240" height="105" as="geometry" />
         </mxCell>
-        <mxCell id="f-hook" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;MkDocs + post-build hook&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;render HTML / CSS / JS&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;scan Markdown&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;generate site/content.json&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#7C3AED;strokeWidth=2;fontColor=#0F172A;fontSize=14;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+        <mxCell id="f-hook" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;Pages build job&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;uv sync --locked&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;MkDocs + post-build hook&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;generate site/content.json&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#7C3AED;strokeWidth=2;fontColor=#0F172A;fontSize=14;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
           <mxGeometry x="655" y="205" width="250" height="135" as="geometry" />
         </mxCell>
-        <mxCell id="f-artifact" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;gh-pages branch&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;deployable static artifact&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;not application source&lt;/font&gt;" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=12;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#7C3AED;strokeWidth=2;fontColor=#0F172A;fontSize=14;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+        <mxCell id="f-artifact" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;Pages artifact&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;deployable static bundle&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;HTML / CSS / JS / JSON&lt;/font&gt;" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=12;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#7C3AED;strokeWidth=2;fontColor=#0F172A;fontSize=14;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
           <mxGeometry x="960" y="220" width="220" height="105" as="geometry" />
         </mxCell>
         <mxCell id="f-pages" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;GitHub Pages&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;static hosting / CDN&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;TLS + public URL&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#7C3AED;strokeWidth=2;fontColor=#0F172A;fontSize=14;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
@@ -717,7 +762,7 @@
         <mxCell id="b-trigger" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;GitHub Actions&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;paths filter: backend/**&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;checkout&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;google-github-actions/auth&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;setup-gcloud&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#7C3AED;strokeWidth=2;fontColor=#0F172A;fontSize=14;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
           <mxGeometry x="635" y="695" width="250" height="155" as="geometry" />
         </mxCell>
-        <mxCell id="b-secrets" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;GitHub Secrets&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;GCP_SA_KEY · project id&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;GEMINI_API_KEY&lt;/font&gt;" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=12;whiteSpace=wrap;html=1;fillColor=#FEE2E2;strokeColor=#DC2626;strokeWidth=2;fontColor=#0F172A;fontSize=12;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+        <mxCell id="b-secrets" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;GitHub configuration&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Variables: project + WIF + SAs&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Secret: GEMINI_API_KEY&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;no JSON deploy key&lt;/font&gt;" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=12;whiteSpace=wrap;html=1;fillColor=#FEE2E2;strokeColor=#DC2626;strokeWidth=2;fontColor=#0F172A;fontSize=11;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
           <mxGeometry x="635" y="905" width="250" height="120" as="geometry" />
         </mxCell>
         <mxCell id="b-build" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;Cloud Build&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;gcloud run deploy&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;--source backend&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#059669;strokeWidth=2;fontColor=#0F172A;fontSize=14;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
@@ -726,22 +771,22 @@
         <mxCell id="b-reg" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;Artifact Registry&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;container image&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;managed build artifact&lt;/font&gt;" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=12;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#059669;strokeWidth=2;fontColor=#0F172A;fontSize=14;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
           <mxGeometry x="1215" y="720" width="220" height="105" as="geometry" />
         </mxCell>
-        <mxCell id="b-run" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;Cloud Run revision&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;asia-east1&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;public /api/chat&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;env: GEMINI_API_KEY&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;automatic traffic switch&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#059669;strokeWidth=2;fontColor=#0F172A;fontSize=14;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+        <mxCell id="b-run" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;Cloud Run revision&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;asia-east1 · public /api/chat&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;SA: dcka-chatbot-runtime&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;env: GEMINI_API_KEY&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;automatic traffic switch&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#059669;strokeWidth=2;fontColor=#0F172A;fontSize=14;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
           <mxGeometry x="1490" y="695" width="220" height="155" as="geometry" />
         </mxCell>
-        <mxCell id="b-firestore" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;Cloud Firestore&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Native mode · chat_logs&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;IAM: roles/datastore.user&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;pre-provisioned dependency&lt;/font&gt;" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=12;whiteSpace=wrap;html=1;fillColor=#FCE7F3;strokeColor=#DB2777;strokeWidth=2;fontColor=#0F172A;fontSize=12;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+        <mxCell id="b-firestore" value="&lt;font color=&quot;#0F172A&quot;&gt;&lt;b&gt;Cloud Firestore&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Native mode · chat_logs&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;runtime IAM: datastore.user&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;TTL ACTIVE · 90 days&lt;/font&gt;" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=12;whiteSpace=wrap;html=1;fillColor=#FCE7F3;strokeColor=#DB2777;strokeWidth=2;fontColor=#0F172A;fontSize=12;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
           <mxGeometry x="1490" y="915" width="220" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="front-note" value="Artifact contract: HTML/CSS/JS/images + content.json are immutable static outputs served from gh-pages." style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;verticalAlign=middle;fontSize=13;fontColor=#475569;align=left;" vertex="1" parent="1">
+        <mxCell id="front-note" value="Artifact contract: HTML/CSS/JS/images + content.json are immutable static outputs deployed by GitHub Pages Actions." style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;verticalAlign=middle;fontSize=13;fontColor=#475569;align=left;" vertex="1" parent="1">
           <mxGeometry x="85" y="377" width="720" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="front-future" value="Automation gap: push main does not publish the frontend unless a separate Pages workflow is added." style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;verticalAlign=middle;fontSize=13;fontColor=#DC2626;align=left;fontStyle=1;" vertex="1" parent="1">
+        <mxCell id="front-future" value="Repository setting confirmed: Settings → Pages → Source = GitHub Actions." style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;verticalAlign=middle;fontSize=13;fontColor=#059669;align=left;fontStyle=1;" vertex="1" parent="1">
           <mxGeometry x="85" y="417" width="720" height="25" as="geometry" />
         </mxCell>
         <mxCell id="back-note" value="Cloud Build / Artifact Registry are deployment services; Firestore is a separately provisioned runtime dependency." style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;verticalAlign=middle;fontSize=13;fontColor=#475569;align=left;" vertex="1" parent="1">
           <mxGeometry x="940" y="1027" width="720" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="back-security" value="Current deploy auth uses a Service Account JSON secret; prefer Workload Identity Federation." style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;verticalAlign=middle;fontSize=13;fontColor=#DC2626;align=left;fontStyle=1;" vertex="1" parent="1">
+        <mxCell id="back-security" value="Deploy auth: GitHub OIDC → WIF → github-actions-deployer; short-lived credentials, no Service Account JSON key." style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;verticalAlign=middle;fontSize=13;fontColor=#059669;align=left;fontStyle=1;" vertex="1" parent="1">
           <mxGeometry x="940" y="1057" width="720" height="25" as="geometry" />
         </mxCell>
       </root>

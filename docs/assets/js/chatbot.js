@@ -9,6 +9,8 @@ let allDocsContent = null;
 let isContentLoading = false;
 let isWaitingForResponse = false;
 let chatHistory = [];
+const MAX_MESSAGE_CHARS = 4000;
+const MAX_HISTORY_MESSAGES = 20;
 
 // ====== 設定 ======
 // Cloud Run 後端 URL
@@ -203,6 +205,10 @@ function clearHistory() {
 async function sendMessage() {
     const messageText = chatInput.value.trim();
     if (messageText === "" || isContentLoading || isWaitingForResponse) return;
+    if (messageText.length > MAX_MESSAGE_CHARS) {
+        addMessage("bot", `問題請控制在 ${MAX_MESSAGE_CHARS} 個字元以內。`, false);
+        return;
+    }
 
     addMessage("user", messageText);
     chatInput.value = "";
@@ -249,7 +255,8 @@ ${allDocsContent}
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                history: chatHistory.slice(0, -1), // 排除剛加入的使用者訊息
+                // 排除剛加入的問題，並只保留後端允許的最近對話。
+                history: chatHistory.slice(0, -1).slice(-MAX_HISTORY_MESSAGES),
                 message: messageText,
                 system_instruction: systemInstruction,
                 session_id: chatSessionId,
@@ -313,7 +320,7 @@ function injectChatbotHTML() {
       </div>
       <div id="chat-messages"></div>
       <div id="chat-input-container">
-        <input type="text" id="chat-input" placeholder="輸入問題..." autocomplete="off">
+        <input type="text" id="chat-input" placeholder="輸入問題..." autocomplete="off" maxlength="${MAX_MESSAGE_CHARS}">
         <button id="send-chat">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
             <path fill="currentColor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>

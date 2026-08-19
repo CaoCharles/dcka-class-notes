@@ -197,7 +197,9 @@ def add_text(root: ET.Element, item: Text) -> None:
         + ("fontStyle=1;" if item.bold else "")
         + (f"rotation={item.rotation};" if item.rotation else "")
     )
-    cell = ET.SubElement(root, "mxCell", {"id": item.id, "value": escape(item.text), "style": style, "vertex": "1", "parent": "1"})
+    # ElementTree escapes XML attributes. Passing pre-escaped text would turn
+    # an ampersand into "&amp;amp;" inside the editable Draw.io source.
+    cell = ET.SubElement(root, "mxCell", {"id": item.id, "value": item.text, "style": style, "vertex": "1", "parent": "1"})
     width = 720 if item.anchor == "start" else 500
     x = item.x if item.anchor == "start" else item.x - width // 2
     ET.SubElement(cell, "mxGeometry", {"x": str(x), "y": str(item.y - item.size), "width": str(width), "height": str(item.size + 12), "as": "geometry"})
@@ -346,10 +348,10 @@ def write_svg(page: Page) -> None:
 def system_page() -> Page:
     p = Page(
         "system-container",
-        "01 系統元件與部署拓撲",
+        "01 System Component & Deployment Architecture",
         1800,
         1120,
-        "DCKA 系統元件與部署拓撲（Current State）",
+        "DCKA System Component & Deployment Architecture (Current State)",
         "C4 Container / Deployment View｜實線：Runtime data flow　虛線：Build / Deploy control flow",
         svg_name="overall-architecture.svg",
     )
@@ -363,47 +365,54 @@ def system_page() -> Page:
     p.nodes = [
         Node("developer", 75, 175, 290, 90, "Author / Developer", ["VS Code · Git · uv"], COLORS["blue_fill"], COLORS["blue"]),
         Node("local-repo", 75, 315, 290, 100, "Local working tree", ["docs/ · mkdocs.yml", "backend/ · hooks/"], COLORS["blue_fill"], COLORS["blue"]),
-        Node("mkdocs", 75, 475, 290, 130, "MkDocs build process", ["Markdown → static site", "hook → content.json", "mkdocs gh-deploy"], COLORS["purple_fill"], COLORS["purple"]),
+        Node("mkdocs", 75, 475, 290, 130, "MkDocs build process", ["Markdown → static site", "hook → content.json", "local preview / fallback"], COLORS["purple_fill"], COLORS["purple"]),
         Node("browser", 75, 700, 290, 220, "Browser runtime", ["HTML / CSS / Material UI", "chatbot.js + marked.js", "content.json in memory", "history → sessionStorage"], COLORS["blue_fill"], COLORS["blue"]),
         Node("main", 470, 175, 230, 105, "main branch", ["source of truth", "docs + frontend + backend"], COLORS["purple_fill"], COLORS["purple"]),
-        Node("actions", 760, 175, 240, 105, "GitHub Actions", ["deploy-backend.yml", "paths: backend/**"], COLORS["purple_fill"], COLORS["purple"]),
-        Node("secrets", 760, 330, 240, 130, "GitHub Secrets", ["GCP_SA_KEY", "GCP_PROJECT_ID", "GEMINI_API_KEY"], COLORS["red_fill"], COLORS["red"], "cylinder"),
-        Node("gh-pages", 470, 505, 230, 110, "gh-pages branch", ["built site artifact", "HTML / CSS / JS / JSON"], COLORS["purple_fill"], COLORS["purple"]),
+        Node("actions", 760, 175, 240, 105, "GitHub Actions", ["deploy-pages.yml", "deploy-backend.yml"], COLORS["purple_fill"], COLORS["purple"]),
+        Node("secrets", 760, 330, 240, 130, "GitHub configuration", ["Variables: project + WIF", "Secret: GEMINI_API_KEY", "no GCP JSON key"], COLORS["red_fill"], COLORS["red"], "cylinder"),
+        Node("gh-pages", 470, 505, 230, 110, "Pages artifact", ["built site bundle", "HTML / CSS / JS / JSON"], COLORS["purple_fill"], COLORS["purple"]),
         Node("pages", 760, 505, 240, 125, "GitHub Pages", ["static hosting / CDN", "caocharles.github.io", "/dcka-class-notes/"], COLORS["purple_fill"], COLORS["purple"]),
         Node("cloud-build", 1110, 175, 200, 105, "Cloud Build", ["source deploy", "uses Dockerfile"], COLORS["green_fill"], COLORS["green"]),
         Node("artifact", 1340, 175, 190, 105, "Artifact Registry", ["managed image", "versioned artifact"], COLORS["green_fill"], COLORS["green"], "cylinder"),
+        Node("wif", 1110, 315, 200, 80, "Workload Identity", ["GitHub OIDC federation", "repo + main trust"], COLORS["green_fill"], COLORS["green"], "hexagon", 15, 11),
+        Node("deployer", 1340, 315, 190, 80, "Deployer SA", ["short-lived credential", "source deploy only"], COLORS["green_fill"], COLORS["green"], "rounded", 15, 11),
         Node("ingress", 1130, 480, 170, 90, "HTTPS ingress", ["GET /", "POST /api/chat"], COLORS["green_fill"], COLORS["green"]),
-        Node("fastapi", 1330, 480, 180, 105, "FastAPI / Uvicorn", ["Pydantic validation", "CORS middleware"], COLORS["green_fill"], COLORS["green"]),
+        Node("fastapi", 1330, 480, 180, 105, "FastAPI / Uvicorn", ["body + Pydantic limits", "CORS + rate limiting"], COLORS["green_fill"], COLORS["green"]),
         Node("adapter", 1130, 635, 170, 105, "Request adapter", ["role mapping", "history + message"], COLORS["green_fill"], COLORS["green"]),
         Node("genai", 1330, 635, 180, 105, "google-genai SDK", ["GenerateContentConfig", "thinking_level=low"], COLORS["green_fill"], COLORS["green"]),
-        Node("env", 1225, 780, 190, 60, "Runtime env", ["GEMINI_API_KEY · PORT"], COLORS["red_fill"], COLORS["red"], "cylinder", 16, 12),
-        Node("firestore", 1190, 900, 300, 90, "Cloud Firestore", ["Native mode · chat_logs", "persistent Q&A records"], "#FCE7F3", "#DB2777", "cylinder", 17, 13),
+        Node("runtime-sa", 1110, 780, 200, 70, "Runtime identity", ["dcka-chatbot-runtime", "roles/datastore.user"], COLORS["green_fill"], COLORS["green"], "rounded", 15, 11),
+        Node("env", 1330, 780, 180, 70, "Runtime secret", ["GEMINI_API_KEY · PORT"], COLORS["red_fill"], COLORS["red"], "cylinder", 15, 11),
+        Node("firestore", 1190, 900, 300, 90, "Cloud Firestore", ["masked chat_logs · expires_at", "TTL ACTIVE · 90-day retention"], "#FCE7F3", "#DB2777", "cylinder", 17, 13),
         Node("gemini", 1608, 505, 144, 185, "Gemini API", ["model:", "gemini-3.5-flash", "request / response"], COLORS["amber_fill"], COLORS["amber"], "hexagon", 17, 13),
     ]
     p.edges = [
         Edge("e-dev-local", [(220, 265), (220, 305)], "edit"),
         Edge("e-local-main", [(365, 365), (420, 365), (420, 228), (470, 228)], "git push main", dashed=True, label_x=430, label_y=323),
         Edge("e-local-build", [(220, 415), (220, 465)], "uv run", dashed=True),
-        Edge("e-build-gh", [(365, 540), (420, 540), (420, 560), (470, 560)], "publish artifact", dashed=True, label_x=425, label_y=520),
+        Edge("e-build-gh", [(365, 540), (420, 540), (420, 560), (470, 560)], "manual fallback", dashed=True, label_x=425, label_y=520),
         Edge("e-gh-pages", [(700, 560), (750, 560)], "publish", dashed=True),
         Edge("e-pages-browser", [(760, 585), (680, 585), (680, 670), (220, 670), (220, 700)], "GET HTML / assets / content.json", bidirectional=False, label_x=505, label_y=652),
-        Edge("e-main-actions", [(700, 225), (750, 225)], "backend/**", dashed=True),
+        Edge("e-main-actions", [(700, 225), (750, 225)], "docs/** | backend/**", dashed=True),
+        Edge("e-actions-pages-artifact", [(800, 280), (800, 480), (700, 480), (700, 550)], "MkDocs build + upload", dashed=True, label_x=750, label_y=465),
         Edge("e-secrets-actions", [(880, 330), (880, 290)], "workflow inputs", dashed=True),
-        Edge("e-actions-build", [(1000, 225), (1100, 225)], "deploy source", dashed=True),
+        Edge("e-actions-wif", [(1000, 225), (1060, 225), (1060, 355), (1100, 355)], "OIDC token", dashed=True, label_x=1050, label_y=305),
+        Edge("e-wif-deployer", [(1310, 355), (1330, 355)], "impersonate", dashed=True),
+        Edge("e-deployer-build", [(1435, 315), (1435, 295), (1210, 295), (1210, 290)], "deploy source", dashed=True, label_x=1320, label_y=290),
         Edge("e-build-artifact", [(1310, 225), (1330, 225)], "image", dashed=True),
         Edge("e-artifact-run", [(1435, 280), (1435, 395), (1320, 395), (1320, 425)], "new revision", dashed=True),
-        Edge("e-secrets-env", [(1000, 395), (1050, 395), (1050, 810), (1215, 810)], "--set-env-vars", COLORS["red"], True, label_x=1085, label_y=790),
-        Edge("e-browser-ingress", [(365, 810), (1070, 810), (1070, 525), (1120, 525)], "HTTPS JSON · CORS · anonymous", label_x=760, label_y=790),
+        Edge("e-secrets-env", [(1000, 395), (1050, 395), (1050, 815), (1320, 815)], "--set-env-vars", COLORS["red"], True, label_x=1190, label_y=795),
+        Edge("e-browser-ingress", [(365, 810), (1070, 810), (1070, 525), (1120, 525)], "HTTPS JSON · origin allowlist · anonymous", label_x=760, label_y=790),
         Edge("e-ingress-fastapi", [(1300, 525), (1320, 525)], "route"),
         Edge("e-fastapi-adapter", [(1420, 585), (1420, 610), (1215, 610), (1215, 625)], "validated ChatRequest", label_x=1325, label_y=600),
         Edge("e-adapter-genai", [(1300, 685), (1320, 685)], "contents + config", label_x=1310, label_y=665),
-        Edge("e-env-genai", [(1320, 780), (1420, 750)], "API key", COLORS["red"], True),
+        Edge("e-env-genai", [(1420, 780), (1420, 750)], "API key", COLORS["red"], True),
         Edge("e-genai-gemini", [(1510, 685), (1585, 685), (1585, 600), (1598, 600)], "HTTPS generate_content", bidirectional=True, label_x=1560, label_y=728),
-        Edge("e-fastapi-firestore", [(1510, 545), (1550, 545), (1550, 945), (1500, 945)], "log_chat() · best effort", "#DB2777", False, 2, False, 1510, 885),
+        Edge("e-fastapi-firestore", [(1510, 545), (1550, 545), (1550, 945), (1500, 945)], "BackgroundTasks · masked", "#DB2777", True, 2, False, 1510, 885),
+        Edge("e-runtime-firestore", [(1210, 850), (1210, 890)], "runtime IAM", "#DB2777", True),
     ]
     p.texts = [
-        Text("note-current", 450, 950, "CURRENT-STATE CONSTRAINTS", 14, COLORS["red"], True),
-        Text("note-state", 450, 978, "• No login / API authentication   • CORS = *   • Firestore stores anonymous Q&A logs", 13),
+        Text("note-current", 450, 950, "CURRENT-STATE CONTROLS / CONSTRAINTS", 14, COLORS["red"], True),
+        Text("note-state", 450, 978, "• Anonymous API   • Exact CORS allowlist   • Per-instance rate limit + request size limits", 13),
         Text("note-rag", 450, 1002, "• Cloud Run remains stateless compute   • Persistence lives in Firestore   • Context is still full-site, not retrieval RAG", 13),
     ]
     return p
@@ -420,10 +429,10 @@ def runtime_page() -> Page:
 
     p = Page(
         "runtime-swimlane",
-        "02 AI 問答技術泳道",
+        "02 AI Assistant Runtime Interaction Architecture",
         1800,
         1160,
-        "DCKA AI 助教｜Runtime Interaction Architecture",
+        "DCKA AI Assistant | Runtime Interaction Architecture",
         "Current-state technical blueprint｜Vertical swimlanes = responsibility boundary｜Numbered circles = execution order",
         svg_name="ai-chatbot-integration.svg",
     )
@@ -442,20 +451,20 @@ def runtime_page() -> Page:
         Node("sw-session", 205, 185, 190, 82, "Session bootstrap", ["sessionStorage", "missing → randomUUID()"], bp_node, bp_line, "rect", 14, 10, stroke_width=1),
         Node("sw-pages", 458, 185, 188, 82, "GitHub Pages", ["HTML / JS / CSS", "content.json"], bp_node, bp_line, "rect", 14, 10, stroke_width=1),
         Node("sw-cache", 205, 320, 190, 90, "Browser context", ["session_id + history", "allDocsContent in memory"], bp_node, bp_line, "cylinder", 14, 10, stroke_width=1),
-        Node("sw-schema", 1568, 190, 184, 122, "ChatLog schema", ["session_id · question", "answer · model", "latency_ms · status", "error · created_at"], bp_note, bp_line, "rect", 14, 10, stroke_width=1),
+        Node("sw-schema", 1568, 190, 184, 132, "ChatLog schema", ["session_id · question", "answer · model", "latency_ms · status", "error · created_at", "expires_at · masked"], bp_note, bp_line, "rect", 14, 10, stroke_width=1),
         Node("sw-iam", 1568, 360, 184, 95, "IAM boundary", ["Cloud Run service account", "roles/datastore.user", "Browser has no DB access"], bp_node, bp_line, "rect", 14, 10, stroke_width=1),
         Node("sw-question", 45, 472, 115, 76, "輸入 Request", ["question", "Click Send"], bp_node, bp_line, "parallelogram", 14, 10, stroke_width=1),
         Node("sw-assemble", 205, 455, 190, 110, "Request assembly", ["session_id · history", "message · system rules", "+ full site context"], bp_node, bp_line, "rect", 14, 10, stroke_width=1),
-        Node("sw-post", 708, 452, 160, 92, "POST /api/chat", ["JSON over HTTPS", "CORS preflight", "public ingress"], bp_node, bp_line, "rect", 14, 10, stroke_width=1),
-        Node("sw-validate", 902, 445, 125, 105, "Request valid?", ["Pydantic", "ChatRequest"], bp_node, bp_line, "diamond", 13, 10, stroke_width=1),
+        Node("sw-post", 708, 452, 160, 92, "POST /api/chat", ["JSON over HTTPS", "exact-origin CORS", "public ingress"], bp_node, bp_line, "rect", 14, 10, stroke_width=1),
+        Node("sw-validate", 902, 445, 125, 105, "Request valid?", ["body / Pydantic", "rate limit"], bp_node, bp_line, "diamond", 13, 10, stroke_width=1),
         Node("sw-adapter", 758, 620, 220, 88, "Context / role adapter", ["map user / model roles", "append current message"], bp_node, bp_line, "rect", 14, 10, stroke_width=1),
         Node("sw-sdk", 1086, 620, 188, 88, "google-genai SDK", ["GenerateContentConfig", "thinking_level = low"], bp_node, bp_line, "rect", 14, 10, stroke_width=1),
         Node("sw-model", 1086, 772, 188, 95, "Gemini 3.5 Flash", ["generate_content", "text / exception"], bp_node, bp_line, "hexagon", 14, 10, stroke_width=1),
         Node("sw-result", 1350, 620, 145, 100, "Generation", ["success?", "latency_ms"], bp_node, bp_line, "diamond", 13, 10, stroke_width=1),
-        Node("sw-envelope", 1328, 790, 190, 100, "Response envelope", ["answer / error", "model · status", "session_id · latency"], bp_node, bp_line, "rect", 14, 10, stroke_width=1),
-        Node("sw-log", 1568, 640, 184, 88, "log_chat()", ["sync client · try/except", "best-effort write"], bp_node, bp_line, "rect", 14, 10, stroke_width=1),
+        Node("sw-envelope", 1328, 790, 190, 100, "Response envelope", ["answer / generic error", "status · Retry-After", "latency_ms"], bp_node, bp_line, "rect", 14, 10, stroke_width=1),
+        Node("sw-log", 1568, 640, 184, 88, "log_chat()", ["BackgroundTasks", "mask · try/except"], bp_node, bp_line, "rect", 14, 10, stroke_width=1),
         Node("sw-db-decision", 1592, 785, 136, 95, "Firestore", ["write OK?"], bp_node, bp_line, "diamond", 13, 10, stroke_width=1),
-        Node("sw-firestore", 1568, 925, 184, 78, "chat_logs", ["SERVER_TIMESTAMP", "persistent Q&A"], bp_node, bp_line, "cylinder", 14, 10, stroke_width=1),
+        Node("sw-firestore", 1568, 925, 184, 78, "chat_logs", ["created_at + expires_at", "TTL · persistent Q&A"], bp_node, bp_line, "cylinder", 14, 10, stroke_width=1),
         Node("sw-render", 205, 800, 190, 95, "Render / persist UI", ["fixBrokenLinks", "marked.parse", "history → sessionStorage"], bp_node, bp_line, "rect", 14, 10, stroke_width=1),
         Node("sw-response", 45, 805, 115, 78, "輸出 Response", ["answer / error", "show in widget"], bp_node, bp_line, "parallelogram", 14, 10, stroke_width=1),
         Node("sw-end", 55, 940, 95, 52, "結束", ["Ready"], bp_node, bp_line, "ellipse", 14, 10, stroke_width=1),
@@ -483,11 +492,11 @@ def runtime_page() -> Page:
     flow(10, [(1180, 708), (1180, 762)], "generate_content", color=bp_line)
     flow(11, [(1274, 820), (1305, 820), (1305, 670), (1340, 670)], "text / exception", color=bp_line, dashed=True, label_x=1305, label_y=745)
     flow(12, [(1422, 720), (1422, 780)], "success / error", color=bp_line)
-    flow(13, [(1518, 820), (1540, 820), (1540, 684), (1558, 684)], "log before response", color=bp_line, label_x=1535, label_y=760)
-    flow(14, [(1660, 728), (1660, 775)], "add document", color=bp_line)
-    flow(15, [(1660, 880), (1660, 915)], "Yes", color=bp_line)
-    flow(16, [(1592, 833), (1540, 833), (1540, 905), (1518, 905), (1518, 880)], "No → warning only", color=COLORS["red"], dashed=True, label_x=1520, label_y=930)
-    flow(17, [(1328, 850), (1305, 850), (1305, 920), (410, 920), (410, 848), (405, 848)], "HTTP 200 answer / HTTP 500 detail", color=bp_line, dashed=True, label_x=855, label_y=904)
+    flow(13, [(1328, 850), (1305, 850), (1305, 920), (410, 920), (410, 848), (405, 848)], "HTTP 200 answer / generic 4xx–5xx", color=bp_line, dashed=True, label_x=855, label_y=904)
+    flow(14, [(1518, 820), (1540, 820), (1540, 684), (1558, 684)], "after response · background task", color=bp_line, dashed=True, label_x=1535, label_y=760)
+    flow(15, [(1660, 728), (1660, 775)], "masked document", color=bp_line)
+    flow(16, [(1660, 880), (1660, 915)], "Yes", color=bp_line)
+    flow(17, [(1592, 833), (1540, 833), (1540, 905), (1518, 905), (1518, 880)], "No → Cloud Logging", color=COLORS["red"], dashed=True, label_x=1520, label_y=930)
     flow(18, [(195, 848), (170, 848)], "render", color=bp_line)
     flow(19, [(102, 883), (102, 930)], "ready", color=bp_line)
 
@@ -508,7 +517,7 @@ def runtime_page() -> Page:
         Text("sw-legend-title", 45, 1075, "ARCHITECTURE LEGEND", 12, bp_line, True),
         Text("sw-legend", 220, 1075, "Oval: start/end  •  Parallelogram: I/O  •  Rectangle: process  •  Diamond: decision  •  Cylinder: state/store  •  Dashed: control/failure", 12, COLORS["muted"]),
         Text("sw-note-state", 45, 1112, "State ownership｜Browser: session_id + history   •   Cloud Run: stateless compute   •   Firestore: persistent anonymous Q&A records", 12, bp_line, True),
-        Text("sw-note-sync", 1035, 1112, "Security｜GEMINI_API_KEY + Firestore IAM stay server-side; Firestore write is failure-isolated but synchronous.", 11, COLORS["red"], True),
+        Text("sw-note-sync", 1035, 1112, "Security｜Exact CORS allowlist + bounded input + per-instance rate limit; detailed exceptions stay in Cloud Logging.", 11, COLORS["red"], True),
     ])
     return p
 
@@ -516,53 +525,53 @@ def runtime_page() -> Page:
 def delivery_page() -> Page:
     p = Page(
         "delivery-pipelines",
-        "03 Frontend / Backend Delivery",
+        "03 Frontend & Backend Delivery Architecture",
         1800,
         1180,
-        "Frontend 與 Backend Delivery Architecture",
-        "同一個 repository、兩條獨立發布路徑｜Frontend manual deploy；Backend path-triggered automation",
+        "Frontend & Backend Delivery Architecture",
+        "同一個 repository、兩條獨立發布路徑｜Frontend + Backend path-triggered automation",
         svg_name="github-pages-deployment.svg",
     )
     p.zones = [
-        Zone("front-zone", 45, 125, 1710, 430, "PIPELINE A — STATIC FRONTEND", "Current: developer-triggered local build and publish", fill="#EFF6FF", stroke="#93C5FD"),
+        Zone("front-zone", 45, 125, 1710, 430, "PIPELINE A — STATIC FRONTEND", "Current: GitHub Actions builds and deploys Pages after push main", fill="#EFF6FF", stroke="#93C5FD"),
         Zone("back-zone", 45, 590, 1710, 500, "PIPELINE B — CLOUD RUN BACKEND", "Current: GitHub Actions on push main when backend/** changes", fill="#F0FDF4", stroke="#86EFAC"),
     ]
     p.nodes = [
         Node("f-edit", 85, 220, 220, 105, "Source content", ["docs/**/*.md", "mkdocs.yml · assets"], COLORS["blue_fill"], COLORS["blue"]),
-        Node("f-local", 360, 220, 240, 105, "Local build", ["uv run mkdocs", "gh-deploy --force"], COLORS["purple_fill"], COLORS["purple"]),
-        Node("f-hook", 655, 205, 250, 135, "MkDocs + post-build hook", ["render HTML / CSS / JS", "scan Markdown", "generate site/content.json"], COLORS["purple_fill"], COLORS["purple"]),
-        Node("f-artifact", 960, 220, 220, 105, "gh-pages branch", ["deployable static artifact", "not application source"], COLORS["purple_fill"], COLORS["purple"], "cylinder"),
+        Node("f-local", 360, 220, 240, 105, "GitHub main", ["commit + push", "source of truth"], COLORS["purple_fill"], COLORS["purple"]),
+        Node("f-hook", 655, 205, 250, 135, "Pages build job", ["uv sync --locked", "MkDocs + post-build hook", "generate site/content.json"], COLORS["purple_fill"], COLORS["purple"]),
+        Node("f-artifact", 960, 220, 220, 105, "Pages artifact", ["deployable static bundle", "HTML / CSS / JS / JSON"], COLORS["purple_fill"], COLORS["purple"], "cylinder"),
         Node("f-pages", 1235, 220, 220, 105, "GitHub Pages", ["static hosting / CDN", "TLS + public URL"], COLORS["purple_fill"], COLORS["purple"]),
         Node("f-user", 1510, 220, 200, 105, "Browser clients", ["GET static files", "cacheable delivery"], COLORS["blue_fill"], COLORS["blue"]),
         Node("b-edit", 85, 720, 220, 105, "Backend source", ["backend/**", "Dockerfile · Python"], COLORS["blue_fill"], COLORS["blue"]),
         Node("b-main", 360, 720, 220, 105, "GitHub main", ["commit + push", "source of truth"], COLORS["purple_fill"], COLORS["purple"], "cylinder"),
         Node("b-trigger", 635, 695, 250, 155, "GitHub Actions", ["paths filter: backend/**", "checkout", "google-github-actions/auth", "setup-gcloud"], COLORS["purple_fill"], COLORS["purple"]),
-        Node("b-secrets", 635, 905, 250, 120, "GitHub Secrets", ["GCP_SA_KEY · project id", "GEMINI_API_KEY"], COLORS["red_fill"], COLORS["red"], "cylinder", 16, 12),
+        Node("b-secrets", 635, 905, 250, 120, "GitHub configuration", ["Variables: project + WIF + SAs", "Secret: GEMINI_API_KEY", "no JSON deploy key"], COLORS["red_fill"], COLORS["red"], "cylinder", 15, 11),
         Node("b-build", 940, 720, 220, 105, "Cloud Build", ["gcloud run deploy", "--source backend"], COLORS["green_fill"], COLORS["green"]),
         Node("b-reg", 1215, 720, 220, 105, "Artifact Registry", ["container image", "managed build artifact"], COLORS["green_fill"], COLORS["green"], "cylinder"),
-        Node("b-run", 1490, 695, 220, 155, "Cloud Run revision", ["asia-east1", "public /api/chat", "env: GEMINI_API_KEY", "automatic traffic switch"], COLORS["green_fill"], COLORS["green"]),
-        Node("b-firestore", 1490, 915, 220, 110, "Cloud Firestore", ["Native mode · chat_logs", "IAM: roles/datastore.user", "pre-provisioned dependency"], "#FCE7F3", "#DB2777", "cylinder", 16, 12),
+        Node("b-run", 1490, 695, 220, 155, "Cloud Run revision", ["asia-east1 · public /api/chat", "SA: dcka-chatbot-runtime", "env: GEMINI_API_KEY", "automatic traffic switch"], COLORS["green_fill"], COLORS["green"]),
+        Node("b-firestore", 1490, 915, 220, 110, "Cloud Firestore", ["Native mode · chat_logs", "runtime IAM: datastore.user", "TTL ACTIVE · 90 days"], "#FCE7F3", "#DB2777", "cylinder", 16, 12),
     ]
     p.edges = [
         Edge("fe1", [(305, 272), (350, 272)], "author"),
-        Edge("fe2", [(600, 272), (645, 272)], "build", dashed=True),
-        Edge("fe3", [(905, 272), (950, 272)], "git push artifact", dashed=True),
-        Edge("fe4", [(1180, 272), (1225, 272)], "publish", dashed=True),
+        Edge("fe2", [(600, 272), (645, 272)], "trigger deploy-pages.yml", dashed=True),
+        Edge("fe3", [(905, 272), (950, 272)], "upload-pages-artifact", dashed=True),
+        Edge("fe4", [(1180, 272), (1225, 272)], "deploy-pages", dashed=True),
         Edge("fe5", [(1455, 272), (1500, 272)], "HTTPS GET"),
         Edge("be1", [(305, 772), (350, 772)], "git push"),
         Edge("be2", [(580, 772), (625, 772)], "trigger on path", dashed=True),
-        Edge("be3", [(885, 772), (930, 772)], "deploy source", dashed=True),
+        Edge("be3", [(885, 772), (930, 772)], "OIDC / WIF → deploy", dashed=True),
         Edge("be4", [(1160, 772), (1205, 772)], "push image", dashed=True),
         Edge("be5", [(1435, 772), (1480, 772)], "new revision", dashed=True),
-        Edge("be-secret-action", [(760, 905), (760, 860)], "authenticate", COLORS["red"], True),
+        Edge("be-secret-action", [(760, 905), (760, 860)], "variables + secret", COLORS["red"], True),
         Edge("be-secret-run", [(885, 965), (1455, 965), (1455, 825), (1480, 825)], "inject runtime env", COLORS["red"], True, label_x=1210, label_y=940),
         Edge("be-run-firestore", [(1600, 850), (1600, 905)], "runtime IAM", "#DB2777", True),
     ]
     p.texts = [
-        Text("front-note", 85, 390, "Artifact contract: HTML/CSS/JS/images + content.json are immutable static outputs served from gh-pages.", 13),
-        Text("front-future", 85, 430, "Automation gap: push main does not publish the frontend unless a separate Pages workflow is added.", 13, COLORS["red"], True),
+        Text("front-note", 85, 390, "Artifact contract: HTML/CSS/JS/images + content.json are immutable static outputs deployed by GitHub Pages Actions.", 13),
+        Text("front-future", 85, 430, "Repository setting confirmed: Settings → Pages → Source = GitHub Actions.", 13, COLORS["green"], True),
         Text("back-note", 940, 1040, "Cloud Build / Artifact Registry are deployment services; Firestore is a separately provisioned runtime dependency.", 13),
-        Text("back-security", 940, 1070, "Current deploy auth uses a Service Account JSON secret; prefer Workload Identity Federation.", 13, COLORS["red"], True),
+        Text("back-security", 940, 1070, "Deploy auth: GitHub OIDC → WIF → github-actions-deployer; short-lived credentials, no Service Account JSON key.", 13, COLORS["green"], True),
     ]
     return p
 

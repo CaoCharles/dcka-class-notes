@@ -1,6 +1,6 @@
-# AI 助教技術泳道與 Firestore 紀錄
+# AI Assistant Runtime Interaction Architecture
 
-![AI 助教技術泳道、模型生成與 Firestore 紀錄流程](assets/images/ai-chatbot-integration.svg)
+![AI Assistant Runtime Interaction Architecture](assets/images/ai-chatbot-integration.svg)
 
 這一頁使用技術架構常見的垂直泳道表示責任邊界。從左到右依序為匿名使用者、Browser／Session、GitHub Pages、Cloud Run API、Gemini Generation，以及 Firestore／Cloud Logging。圖中的編號表示目前程式實作的主要執行順序。
 
@@ -35,12 +35,12 @@ Chatbot 開啟時，`chatbot.js` 下載 `content.json`，把全站文章組合�
 4. 使用者送出問題後，Browser 組合 `session_id`、`history`、`message` 與 `system_instruction`；其中 System Instruction 包含回答規則與全站文件。
 5. 因 GitHub Pages 與 Cloud Run 是不同 Origin，Browser 會先進行 CORS preflight。
 6. Browser 以 `application/json` 呼叫 Cloud Run 的 `POST /api/chat`。
-7. FastAPI 透過 Pydantic 驗證 `ChatRequest`，把 role 對應成 `user`／`model`，再附加本次問題。
+7. FastAPI 套用 1 MiB body、Pydantic 欄位與 instance-local rate limit，再把 role 對應成 `user`／`model`。
 8. `google-genai` SDK 以 `GenerateContentConfig` 分開傳入 `system_instruction`，並設定 `thinking_level="low"`。
 9. Cloud Run 呼叫 `gemini-3.5-flash`，取得 `response.text` 或 exception，並計算 `latency_ms`。
-10. 後端組合 `session_id`、問題、回答、模型、延遲、狀態、錯誤與 `SERVER_TIMESTAMP`，寫入 Firestore `chat_logs`。
-11. Firestore 寫入位於 `try/except` 中；失敗只寫 warning，不會改變原本的聊天成功／失敗結果。
-12. FastAPI 回傳 `{ "text": "..." }` 或 HTTP 500；Cloud Run 本身不保存跨 request 的 Session。
+10. FastAPI 先回傳 `{ "text": "..." }` 或一般化 4xx／5xx；Cloud Run 本身不保存跨 request 的 Session。
+11. 回應送出後，`BackgroundTasks` 遮罩問答並組合 `created_at`、90 天 `expires_at` 等欄位，寫入 Firestore `chat_logs`。
+12. Firestore 寫入位於 `try/except` 中；失敗只進 Cloud Logging，不會改變原本的聊天結果。
 13. Browser 執行 `fixBrokenLinks()` 與 `marked.parse()`，將回答渲染到 DOM。
 14. 更新後的對話歷史寫回 `sessionStorage`。
 
@@ -48,9 +48,9 @@ Chatbot 開啟時，`chatbot.js` 下載 `content.json`，把全站文章組合�
 
 - **State placement**：教材快取、畫面對話與 `session_id` 在 Browser；Cloud Run 是 stateless compute；匿名問答紀錄持久化在 Firestore。
 - **Network boundary**：網站由 GitHub Pages 提供，AI API 由 Cloud Run 提供，因此是跨 Origin HTTPS request。
-- **Security boundary**：Gemini API Key 與 Firestore IAM 僅存在 Server side；Cloud Run endpoint 本身目前是 public anonymous，Browser 不直接存取 Firestore。
+- **Security boundary**：Gemini API Key 與 Firestore IAM 僅存在 Server side；Cloud Run endpoint 是 public anonymous，但已有 exact-origin CORS、bounded input 與 rate limiting；Browser 不直接存取 Firestore。
 - **Identity semantics**：`session_id` 是 correlation ID，不是 Login、身份或授權憑證。
-- **Logging semantics**：目前是 failure-isolated 的同步 Firestore write，不是 background queue；因此不會讓資料庫錯誤破壞聊天結果，但仍可能增加 response latency。
+- **Logging semantics**：同步 Firestore client 位於 response 後的 `BackgroundTasks`，並由 `try/except` failure isolation；它不是具 durability guarantee 的外部 Queue。
 - **Retrieval behavior**：沒有 query rewrite、embedding、vector search、reranker 或 top-k context selection；每次都傳送完整教材。
 
 ## API 格式
@@ -81,13 +81,15 @@ Chatbot 開啟時，`chatbot.js` 下載 `content.json`，把全站文章組合�
 
 若瀏覽器直接呼叫 Gemini，API Key 必須出現在 JavaScript 或網路請求中，任何使用者都能取得。透過 FastAPI Proxy，可讓 Key 只存在 Cloud Run 的環境變數。
 
-不過「Key 不在瀏覽器」不等於 API 已有完整存取控制。Cloud Run 端點目前允許匿名呼叫，因此仍建議加入：
+不過「Key 不在瀏覽器」不等於 API 已有完整存取控制。Cloud Run 端點仍允許匿名呼叫，目前已加入：
 
-- 來源白名單。
-- API rate limiting。
-- Request body 大小限制。
-- 訊息與 History 長度限制。
+- GitHub Pages 與 localhost exact-origin 白名單。
+- 單一 Cloud Run instance 的 API rate limiting。
+- Request body、訊息與 History 長度限制。
+- 一般化 Client Error 與 Cloud Logging 詳細例外。
 - Cloud Logging 與用量告警。
+
+若要跨 instances 的全域配額，仍需 Cloud Armor、API Gateway 或集中式 rate-limit store。
 
 ## Firestore 問答紀錄
 
@@ -102,18 +104,19 @@ Firestore 位於 Google Cloud trust boundary，由 Cloud Run service account 存
   "latency_ms": 3700,
   "status": "success",
   "error": null,
-  "created_at": "SERVER_TIMESTAMP"
+  "created_at": "SERVER_TIMESTAMP",
+  "expires_at": "建立時間 + 90 天"
 }
 ```
 
-這個資料庫用途是匿名稽核、熱門問題分析與品質觀測，不提供使用者身份識別，也不等同於登入後的跨裝置聊天歷史。
+這個資料庫用途是匿名稽核、熱門問題分析與品質觀測，不提供使用者身份識別，也不等同於登入後的跨裝置聊天歷史。問答寫入前會遮罩 Email、手機、台灣身分證字號、付款卡號與常見 Secret；`expires_at` 的 Firestore TTL policy 已啟用並為 `ACTIVE`。若要開放其他人查閱，管理者應透過專用群組取得唯讀 `roles/datastore.viewer`。
 
 ## CI/CD 介接
 
 後端修改推到 `main` 後：
 
 1. GitHub Actions 偵測 `backend/**` 變更。
-2. 使用 GitHub Secrets 驗證 Google Cloud。
+2. GitHub Actions 使用 OIDC，透過 Workload Identity Federation 取得 `github-actions-deployer` 的短效憑證。
 3. 執行 `gcloud run deploy --source backend`。
 4. Cloud Build 建置 Docker image。
 5. Cloud Run 建立新 revision。

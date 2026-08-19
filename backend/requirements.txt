@@ -1,6 +1,6 @@
 fastapi
 uvicorn
-google-genai
+google-genai==2.18.1
 google-cloud-firestore
 python-dotenv
 pydantic
