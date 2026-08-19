@@ -25,6 +25,9 @@ tags:
 !!! info "為什麼把架構文件放進網站"
     這個章節不只記錄課程內容，也說明本網站本身如何建置、部署與串接 AI。它適合用於技術分享、維護交接與問題診斷。
 
+!!! success "目前正式環境"
+    Frontend 由 GitHub Actions 建置 MkDocs Pages Artifact 並發布至 GitHub Pages；Backend 透過 GitHub OIDC／Workload Identity Federation 部署至 Cloud Run。部署流程不保存 GCP Service Account JSON，問答紀錄由 Cloud Run 寫入啟用 90 天 TTL 的 Firestore。
+
 ---
 
 ## Architecture Views
@@ -67,6 +70,16 @@ tags:
 | AI Assistant Runtime Interaction | 一次問答如何跨系統執行？ | API 串接、問題診斷 |
 | Frontend & Backend Delivery | 程式碼如何建置並發布？ | CI/CD、部署維護 |
 
+## 身分與責任邊界
+
+| 身分 | 使用階段 | 最小權限與責任 |
+|---|---|---|
+| `github-actions-deployer` | GitHub Actions Deployment | 透過 WIF 取得短效憑證，執行 Cloud Run source deploy |
+| `dcka-cloud-build` | Cloud Build | 以 `roles/run.builder` 建置並保存 Container Image |
+| `dcka-chatbot-runtime` | Cloud Run Runtime | 執行 FastAPI，並以 `roles/datastore.user` 寫入 Firestore |
+
+GitHub Variables 保存 Project、WIF Provider 與三個 Service Account 識別資訊；`GEMINI_API_KEY` 才使用 GitHub Secret。Browser 不會取得任何 GCP 身分或模型 API Key。
+
 !!! warning "網站內容也會成為 AI 上下文"
     `docs/` 下的 Markdown 會在 MkDocs Build 時寫入 `content.json`，並由 AI 助教載入。請勿在本章放置 API Key、Service Account JSON、密碼或其他敏感資料。
 
@@ -76,3 +89,5 @@ tags:
 - ✅ **網站層**：MkDocs 產生靜態網站，由 GitHub Pages 對外提供。
 - ✅ **AI 層**：Browser 呼叫 Cloud Run 上的 FastAPI，再由 Backend 呼叫 Gemini。
 - ✅ **資料層**：Firestore 保存匿名問答紀錄，Cloud Run 本身維持 Stateless Compute。
+- ✅ **部署身分**：WIF、Build SA 與 Runtime SA 分工，Repository 不保存長效 GCP JSON Key。
+- ✅ **驗證狀態**：GitHub Pages、Cloud Run、正式 CORS、Gemini 問答、Firestore 寫入與 TTL 均已完成線上驗證。

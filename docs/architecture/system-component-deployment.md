@@ -39,6 +39,20 @@ tags:
 | External AI | Gemini API | 根據文件上下文與對話內容產生回答 |
 | Persistent Data | Cloud Firestore | 保存匿名問答、模型、延遲、狀態與時間戳 |
 
+## Build／Deploy Control Flow
+
+1. 開發者將 `main` 推送至 GitHub；網站與後端依各自的 path filter 啟動不同 Workflow。
+2. Pages Workflow 將 MkDocs 產物上傳為 Pages Artifact，再由 `deploy-pages` 發布。
+3. Backend Workflow 取得 GitHub OIDC Token，經 WIF impersonate `github-actions-deployer`，不讀取長效 GCP JSON Key。
+4. `gcloud run deploy --source backend` 指定 `dcka-cloud-build` 執行 Container Build，並指定 `dcka-chatbot-runtime` 作為 Cloud Run Runtime Identity。
+5. Artifact Registry 保存建置 Image；Cloud Run 建立 Revision 並切換 Traffic。
+
+| Service Account | 執行平面 | 權限／責任 |
+|---|---|---|
+| `github-actions-deployer` | Deployment Control Plane | `roles/run.sourceDeveloper`、`roles/serviceusage.serviceUsageConsumer`，並只對 Build／Runtime SA 使用 `roles/iam.serviceAccountUser` |
+| `dcka-cloud-build` | Build Plane | `roles/run.builder` |
+| `dcka-chatbot-runtime` | Runtime／Data Plane | `roles/datastore.user` |
+
 ## Frontend Runtime Flow
 
 1. 使用者從 GitHub Pages 取得靜態網站資源。
@@ -63,7 +77,10 @@ tags:
 | 問答紀錄 | Firestore `chat_logs` | Persistent；預設 90 天並由 `expires_at` TTL 管理 |
 
 !!! note "Current-state Security Boundary"
-    `/api/chat` 仍是匿名公開入口，沒有登入或 API Authentication；現已具備 exact-origin CORS、輸入上限、instance-local rate limiting、一般化錯誤與 `ACTIVE` 的 Firestore 90 天 TTL。後端部署以 GitHub OIDC／WIF 取得短效憑證，Cloud Run 則以專用 Runtime Service Account 寫入 Firestore。若要跨 Cloud Run instances 套用全域配額，仍需 Cloud Armor、API Gateway 或集中式 rate-limit store。
+    `/api/chat` 仍是匿名公開入口，沒有登入或 API Authentication；現已具備 exact-origin CORS、輸入上限、instance-local rate limiting、一般化錯誤與 `ACTIVE` 的 Firestore 90 天 TTL。後端部署以 GitHub OIDC／WIF 取得短效憑證，Build 與 Runtime 各使用專用 Service Account。若要跨 Cloud Run instances 套用全域配額，仍需 Cloud Armor、API Gateway 或集中式 rate-limit store。
+
+!!! success "部署驗證"
+    2026-08-19 已確認 revision `dcka-chatbot-backend-00006-drd` 使用 `dcka-chatbot-runtime`、承接 100% Traffic；GitHub Pages、Cloud Run、CORS、Gemini 與 Firestore 端到端流程皆正常。
 
 ## 延伸閱讀
 

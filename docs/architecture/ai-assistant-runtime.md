@@ -90,7 +90,7 @@ Browser 呼叫 `POST /api/chat` 時，主要 Request 結構如下：
   "question": "使用者問題",
   "answer": "模型回答或 null",
   "model": "gemini-3.5-flash",
-  "latency_ms": 3700,
+  "latency_ms": 1731,
   "status": "success 或 error",
   "error": "例外類型或 null",
   "created_at": "SERVER_TIMESTAMP",
@@ -103,6 +103,22 @@ Browser 呼叫 `POST /api/chat` 時，主要 Request 結構如下：
 
 !!! tip "Retention 與查閱權限"
     每筆文件都包含 `expires_at`，預設保留 90 天；Firestore `chat_logs.expires_at` TTL policy 已啟用並為 `ACTIVE`。Cloud Run 使用 `roles/datastore.user` 寫入；若要開放其他人查閱，管理者應透過專用群組取得唯讀 `roles/datastore.viewer`，一般網站使用者不具 Firestore 權限。
+
+## 線上驗證結果
+
+2026-08-19 使用正式 GitHub Pages Origin 進行端到端驗證：
+
+| 驗證項目 | 結果 |
+|---|---|
+| Cloud Run Health Check | HTTP 200 |
+| 正式 Origin CORS Preflight | HTTP 200，回傳 `access-control-allow-origin: https://caocharles.github.io` |
+| 未授權 Origin | HTTP 400 |
+| `POST /api/chat` | HTTP 200，約 1.73 秒回覆 |
+| Firestore `chat_logs` | 成功寫入 `session_id`、Model、Latency、Status 與時間戳 |
+| Firestore TTL | `chat_logs.expires_at` 為 `ACTIVE`，驗證紀錄建立 90 天後到期時間 |
+
+!!! note "測試資料"
+    線上部署驗證會建立一筆匿名問答紀錄；它與一般訪客紀錄採相同遮罩及 90 天 TTL 規則，不包含登入身分。
 
 ## Security Boundary
 

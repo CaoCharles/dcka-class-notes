@@ -1,5 +1,5 @@
 site_name: DCKA 學習筆記
-site_description: Docker Containers 與 Kubernetes 系統管理課程
+site_description: Docker、Kubernetes 課程筆記與 DCKA 網站／AI 助教技術架構
 site_author: Charles Cao
 site_url: https://caocharles.github.io/dcka-class-notes/
 repo_name: CaoCharles/dcka-class-notes
@@ -148,11 +148,11 @@ nav:
     - LAB 19 Kubernetes + wordpress + mysql: lab19_k8s_wordpress_mysql.md
     - LAB 20 圖形管理工具 Kubernetes Dashboard: lab20_dashboard.md
     - LAB 21 私庫圖形管理工具 docker-registry-web: lab21_registry_web.md
-  - 專案技術架構:
-    - 架構總覽: architecture/index.md
-    - System Component & Deployment: architecture/system-component-deployment.md
-    - AI Assistant Runtime Interaction: architecture/ai-assistant-runtime.md
-    - Frontend & Backend Delivery: architecture/frontend-backend-delivery.md
+  - DCKA 技術架構:
+    - Architecture Overview: architecture/index.md
+    - 01 System Component & Deployment Architecture: architecture/system-component-deployment.md
+    - 02 AI Assistant Runtime Interaction Architecture: architecture/ai-assistant-runtime.md
+    - 03 Frontend & Backend Delivery Architecture: architecture/frontend-backend-delivery.md
   - 附錄:
     - Docker 指令速查: appendix/docker_cheatsheet.md
     - Kubernetes 指令速查: appendix/k8s_cheatsheet.md
