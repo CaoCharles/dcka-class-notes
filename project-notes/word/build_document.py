@@ -300,7 +300,7 @@ def add_validation_table(doc):
     rows = [
         ("GitHub Pages JavaScript", "新版 Cloud Run URL 已上線", "通過"),
         ("Cloud Run GET /", "HTTP 200", "通過"),
-        ("POST /api/chat", "HTTP 200；約 3.70 秒", "通過"),
+        ("POST /api/chat", "HTTP 200；部署驗證約 1.73 秒", "通過"),
         ("CORS", "只允許 GitHub Pages 與 localhost；本機測試通過", "本機通過"),
         ("API 防護", "1 MiB body、4000 字訊息、20 則 History、20 req/min", "本機通過"),
         ("錯誤隔離", "Client 只收到一般錯誤；完整例外留在 Logging", "本機通過"),
@@ -490,7 +490,7 @@ def build():
 
     page_break(doc)
     doc.add_heading("9. 驗證結果", level=1)
-    add_para(doc, "驗證日期：2026-08-19（Asia/Taipei）。既有線上問答流程已通過；本輪安全與部署改善已由後端 8 項自動測試及 MkDocs build 驗證，push 後仍需在線上複驗 CORS、rate limit、錯誤與 TTL。")
+    add_para(doc, "驗證日期：2026-08-19（Asia/Taipei）。本輪安全與部署改善已通過後端 8 項自動測試、MkDocs build、GitHub Pages Action、WIF／Cloud Run 部署、正式 CORS、線上問答、Firestore 落盤與 TTL ACTIVE 驗證。")
     add_validation_table(doc)
     add_para(doc, "簡短 API 測試回應：", bold=True, before=8, after=4)
     add_code(doc, "同學你好！Docker 的用途是將應用程式及其所需的執行環境打包成輕量級的容器，確保程式在任何系統上都能一致、快速地部署與執行。")
@@ -504,13 +504,13 @@ def build():
     add_bullet(doc, "同步 FastAPI endpoint、response 後 BackgroundTasks Firestore logging。")
     add_bullet(doc, "google-genai==2.18.1、backend/uv.lock 與可重現 Docker build。")
     add_bullet(doc, "GitHub Pages frontend Actions、RAG README 與 Cloud Run Dockerfile 註解。")
-    add_bullet(doc, "GitHub Actions Workload Identity Federation 與專用 deployer/runtime service accounts。")
+    add_bullet(doc, "GitHub Actions Workload Identity Federation 與專用 deployer/build/runtime service accounts；線上部署已驗證成功。")
     add_bullet(doc, "Firestore chat_logs.expires_at TTL policy 已啟用並為 ACTIVE。")
     doc.add_heading("中期改善", level=2)
     add_bullet(doc, "文件量增加時改成向量檢索式 RAG，只把相關文章片段送給模型。")
     add_bullet(doc, "跨 Cloud Run instances 的全域 rate limit 改用 Cloud Armor、API Gateway 或集中式計數儲存。")
     add_bullet(doc, "將 GEMINI_API_KEY 改由 Secret Manager 注入，強化 rotation 與稽核。")
-    add_bullet(doc, "完成 WIF 部署後的線上安全回歸測試，並逐步移除預設 Compute Service Account 的 Project Editor 權限。")
+    add_bullet(doc, "逐步移除預設 Compute Service Account 的 Project Editor 權限；目前 workflow 已不再使用該帳號。")
 
     page_break(doc)
     doc.add_heading("11. 同事分享建議腳本", level=1)

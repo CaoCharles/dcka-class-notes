@@ -116,7 +116,7 @@
 - Firestore logging 移至 response 後的受控 `BackgroundTasks`。
 - `google-genai==2.18.1` 與 `backend/uv.lock`。
 - GitHub Pages frontend workflow。
-- GitHub Actions Workload Identity Federation 與專用 deployer/runtime service accounts。
+- GitHub Actions Workload Identity Federation 與專用 deployer/build/runtime service accounts；線上部署已驗證成功。
 - Firestore `chat_logs.expires_at` TTL policy 已確認為 `ACTIVE`。
 
 ### 中期改善

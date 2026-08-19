@@ -25,8 +25,10 @@ DCKA 學習筆記把 Docker 與 Kubernetes 課程內容寫成 Markdown，再由 
 - GitHub Pages 正常提供網站與新版 `chatbot.js`。
 - Cloud Run 健康檢查回傳 HTTP 200。
 - `/api/chat` 從 `https://caocharles.github.io` 呼叫成功，CORS 正常。
-- 簡短測試問題約 3.70 秒回覆。
+- WIF 後端部署成功，Cloud Run revision `dcka-chatbot-backend-00006-drd` 使用專用 `dcka-chatbot-runtime` 並承接 100% 流量。
+- 簡短部署驗證問題約 1.73 秒回覆。
 - 實際 Chatbot 問答成功並能提供課程文章連結。
-- 本輪安全強化已通過 8 項後端自動測試與 MkDocs build；push 部署後需再完成線上回歸驗證。
+- Firestore 已寫入驗證紀錄，`chat_logs.expires_at` TTL policy 為 `ACTIVE`。
+- 本輪安全強化已通過 8 項後端自動測試、MkDocs build、GitHub Pages Action 與 Cloud Run WIF 部署回歸驗證。
 
 > 分享注意：這個 GitHub repository 若為 Public，`project-notes/` 也會公開。請勿放入 API Key、Service Account JSON、密碼或公司內部機密。
