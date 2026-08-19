@@ -10,15 +10,19 @@ let isContentLoading = false;
 let chatHistory = [];
 
 // ====== 設定 ======
-// Railway 後端 URL
-window.BACKEND_API_URL = window.BACKEND_API_URL || "https://dcka-class-notes-production.up.railway.app";
+// Cloud Run 後端 URL
+window.BACKEND_API_URL = window.BACKEND_API_URL || "https://dcka-chatbot-backend-978572634545.asia-east1.run.app";
 // 全站文件 JSON URL (自動判斷環境)
 const isGitHubPages = window.location.hostname.includes('github.io');
 const repoName = '/dcka-class-notes'; // GitHub Repo 名稱
 const basePath = isGitHubPages ? repoName : '';
 window.ALL_CONTENT_URL = window.ALL_CONTENT_URL || `${basePath}/content.json`;
+// 聊天機器人名稱
+window.CHATBOT_NAME = window.CHATBOT_NAME || "學習筆記小幫手";
+// 聊天機器人吉祥物圖示
+window.CHATBOT_MASCOT_URL = window.CHATBOT_MASCOT_URL || `${basePath}/assets/images/chatbot-mascot.png`;
 // 初始歡迎訊息
-window.INITIAL_PROMPT = "嗨！我是 DCKA 課程助教 🕶️\n\n我可以幫你解答 Docker 與 Kubernetes 的問題，並提供相關文章連結。\n\n試試問我：\n- 如何安裝 Docker？\n- 什麼是 Kubernetes？\n- 如何建立 Private Registry？";
+window.INITIAL_PROMPT = `嗨！我是 ${window.CHATBOT_NAME} 🕶️\n\n我可以幫你解答 Docker 與 Kubernetes 的問題，並提供相關文章連結。\n\n試試問我：\n- 如何安裝 Docker？\n- 什麼是 Kubernetes？\n- 如何建立 Private Registry？`;
 
 // ====== 小工具：把 history 畫回畫面 ======
 function rebuildChatFromHistory() {
@@ -240,14 +244,18 @@ function injectChatbotHTML() {
     if (document.getElementById('gemini-chatbot')) return;
 
     const chatbotHTML = `
-    <button id="open-chat">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30">
-        <path fill="currentColor" d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
-      </svg>
+    <button id="open-chat" aria-label="開啟 AI 助教聊天視窗">
+      <img src="${window.CHATBOT_MASCOT_URL}" alt="">
     </button>
     <div id="gemini-chatbot">
       <div id="chat-header">
-        <span>AI Assistant</span>
+        <span class="chat-header-title">
+          <span class="chat-avatar"><img src="${window.CHATBOT_MASCOT_URL}" alt=""></span>
+          <span class="chat-title-text">
+            <strong>${window.CHATBOT_NAME}</strong>
+            <small>線上為你解答</small>
+          </span>
+        </span>
         <div class="header-buttons">
           <button id="clear-history-btn" title="清除歷史">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
