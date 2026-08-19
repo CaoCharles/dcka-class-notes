@@ -12,6 +12,8 @@ on:
 env:
   SERVICE_NAME: dcka-chatbot-backend
   REGION: asia-east1
+  CONTENT_URL: https://caocharles.github.io/dcka-class-notes/content.json
+  DOCUMENT_CACHE_SECONDS: "3600"
 
 jobs:
   deploy:
@@ -41,7 +43,7 @@ jobs:
             --project "${{ vars.GCP_PROJECT_ID }}" \
             --service-account "${{ vars.GCP_RUNTIME_SA }}" \
             --build-service-account "${{ vars.GCP_BUILD_SA }}" \
-            --set-env-vars "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" \
+            --set-env-vars "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }},CONTENT_URL=${{ env.CONTENT_URL }},DOCUMENT_CACHE_SECONDS=${{ env.DOCUMENT_CACHE_SECONDS }}" \
             --quiet
 
       - name: Show service URL

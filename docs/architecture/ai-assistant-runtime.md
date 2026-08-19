@@ -30,9 +30,9 @@ tags:
 
 | 步驟 | 執行位置 | 行為 |
 |---:|---|---|
-| 1–3 | Browser／GitHub Pages | 建立匿名 Session，下載網站資源與 `content.json` |
-| 4–5 | User／Browser | 接收問題，組合 `session_id`、History、Message 與 System Instruction |
-| 6–8 | Cloud Run／FastAPI | 驗證 Origin、Body、欄位與 Rate Limit，整合歷史訊息與完整網站內容 |
+| 1–3 | Browser／GitHub Pages | 建立匿名 Session 並下載網站 UI 資源 |
+| 4–5 | User／Browser | 接收問題，只組合 `session_id`、History 與 Message |
+| 6–8 | Cloud Run／FastAPI | 驗證 Origin、Body、額外欄位與 Rate Limit，按需快取 `content.json` 並組合受控 System Instruction |
 | 9–11 | google-genai／Gemini | 建立 Generation Config，呼叫模型並取得 Text 或 Exception |
 | 12 | Response Lane | 判斷成功或錯誤並計算 `latency_ms` |
 | 13 | FastAPI／Browser | 先送出 HTTP 200 回答或一般化 4xx／5xx 錯誤 |
@@ -56,10 +56,11 @@ Browser 呼叫 `POST /api/chat` 時，主要 Request 結構如下：
       "parts": [{ "text": "上一個回答" }]
     }
   ],
-  "message": "這次的新問題",
-  "system_instruction": "回答規則與完整網站內容"
+  "message": "這次的新問題"
 }
 ```
+
+`system_instruction` 不是公開欄位；Browser 若傳入該欄位會收到一般化 HTTP 422。固定回答規則、信任邊界與完整網站內容只由 Backend 組合。
 
 成功時 Backend 回傳：
 
@@ -69,7 +70,7 @@ Browser 呼叫 `POST /api/chat` 時，主要 Request 結構如下：
 }
 ```
 
-模型或 Backend 發生錯誤時，FastAPI 只會回傳一般化 HTTP 500 `detail`；完整例外與 stack trace 留在 Cloud Logging。
+模型或 Backend 發生錯誤時，FastAPI 只會回傳一般化 HTTP 500／503 `detail`；完整例外與 stack trace 留在 Cloud Logging。
 
 ## Browser Session 不是登入身分
 
@@ -123,6 +124,8 @@ Browser 呼叫 `POST /api/chat` 時，主要 Request 結構如下：
 ## Security Boundary
 
 - `GEMINI_API_KEY` 只存在 Cloud Run Runtime Environment。
+- System Prompt 的執行控制權位於 Backend；Repository 原始碼仍是公開的，但 API Client 無法傳入或覆寫 `system_instruction`。
+- Backend 按需下載約 286 KB 的 `content.json`，每個 Cloud Run instance 預設快取一小時；沒有聊天請求時不會產生下載流量。
 - Browser 不會直接連線 Firestore。
 - Cloud Run 使用專用 `dcka-chatbot-runtime` Service Account，透過 `roles/datastore.user` 存取 Firestore。
 - Cloud Run Compute 維持 Stateless，Persistent State 由 Firestore 保存。
@@ -130,7 +133,7 @@ Browser 呼叫 `POST /api/chat` 時，主要 Request 結構如下：
 - Rate limiting 目前是單一 Cloud Run instance 記憶體內計數，不等同全域配額。
 
 !!! warning "目前不是 Retrieval RAG"
-    Browser 會把完整 `content.json` 放入 System Instruction，而不是先使用 Vector Database 擷取相關片段。網站文章持續增加時，應評估 Token、Latency 與 Retrieval Architecture。
+    Backend 仍會把完整 `content.json` 放入 System Instruction，而不是先使用 Vector Database 擷取相關片段。這次搬移改善 Prompt 控制權與 Browser Request 大小，不會降低 Gemini Token 用量；網站文章持續增加時，應評估 Token、Latency 與 Retrieval Architecture。
 
 ## 延伸閱讀
 

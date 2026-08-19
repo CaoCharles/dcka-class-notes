@@ -1,12 +1,10 @@
 // ====== DCKA 課程 AI 聊天機器人 ======
-// 版本：2.0 - 全站文件預載 + Anchor 連結支援
+// 版本：3.0 - 後端管理 Prompt + Anchor 連結支援
 
 // ====== 全域狀態 ======
 let chatContainer, chatMessages, chatInput, sendChatBtn;
 let openChatBtn, closeChatBtn, toggleFullscreenBtn, clearHistoryBtn;
 
-let allDocsContent = null;
-let isContentLoading = false;
 let isWaitingForResponse = false;
 let chatHistory = [];
 const MAX_MESSAGE_CHARS = 4000;
@@ -15,11 +13,10 @@ const MAX_HISTORY_MESSAGES = 20;
 // ====== 設定 ======
 // Cloud Run 後端 URL
 window.BACKEND_API_URL = window.BACKEND_API_URL || "https://dcka-chatbot-backend-978572634545.asia-east1.run.app";
-// 全站文件 JSON URL (自動判斷環境)
+// GitHub Pages base path（本機預覽時為空字串）
 const isGitHubPages = window.location.hostname.includes('github.io');
 const repoName = '/dcka-class-notes'; // GitHub Repo 名稱
 const basePath = isGitHubPages ? repoName : '';
-window.ALL_CONTENT_URL = window.ALL_CONTENT_URL || `${basePath}/content.json`;
 // 聊天機器人名稱
 window.CHATBOT_NAME = window.CHATBOT_NAME || "學習筆記小幫手";
 // 聊天機器人吉祥物圖示
@@ -148,46 +145,6 @@ function addMessage(sender, text, addToHistory = true) {
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
-// ====== 載入 content.json，組成 DOCUMENTATION 字串 ======
-async function loadContent() {
-    if (allDocsContent || isContentLoading) return;
-    isContentLoading = true;
-
-    const savedHistory = sessionStorage.getItem("geminiChatHistory");
-    if (!savedHistory) {
-        addMessage("bot", "正在載入教學文件，請稍候…", false);
-    }
-
-    try {
-        const res = await fetch(window.ALL_CONTENT_URL);
-        if (!res.ok) throw new Error("讀取 documentation 失敗");
-        const data = await res.json();
-
-        // 每頁 => Page / URL / Content
-        allDocsContent = data
-            .map(
-                (doc) =>
-                    `Page: ${doc.title}\nURL: ${doc.url}\nContent:\n${doc.content}`
-            )
-            .join("\n\n---\n\n");
-
-        // 移除「正在載入」那行
-        const loadingMessage = Array.from(chatMessages.children).find((child) =>
-            child.textContent.includes("正在載入教學文件")
-        );
-        if (loadingMessage) loadingMessage.remove();
-
-        if (!savedHistory && window.INITIAL_PROMPT) {
-            addMessage("bot", window.INITIAL_PROMPT);
-        }
-    } catch (err) {
-        console.error(err);
-        addMessage("bot", "抱歉，讀取教學文件失敗，稍後再試看看。");
-    } finally {
-        isContentLoading = false;
-    }
-}
-
 // ====== 清除歷史 ======
 function clearHistory() {
     chatHistory = [];
@@ -204,7 +161,7 @@ function clearHistory() {
 // ====== 核心：送出訊息，呼叫 FastAPI 後端 ======
 async function sendMessage() {
     const messageText = chatInput.value.trim();
-    if (messageText === "" || isContentLoading || isWaitingForResponse) return;
+    if (messageText === "" || isWaitingForResponse) return;
     if (messageText.length > MAX_MESSAGE_CHARS) {
         addMessage("bot", `問題請控制在 ${MAX_MESSAGE_CHARS} 個字元以內。`, false);
         return;
@@ -213,42 +170,11 @@ async function sendMessage() {
     addMessage("user", messageText);
     chatInput.value = "";
 
-    if (!allDocsContent) {
-        addMessage("bot", "教學文件還在載入中，請稍後再問一次。");
-        return;
-    }
-
     isWaitingForResponse = true;
     chatInput.disabled = true;
     sendChatBtn.disabled = true;
 
     try {
-        // System Instruction - 包含全站文件與回答規則
-        const systemInstruction = `你是 DCKA 課程（Docker Containers 與 Kubernetes 系統管理）的 AI 助教。
-
-## 回答規則
-1. **語言**：使用繁體中文回答
-2. **連結**：當提到相關主題時，**必須使用文件中的完整 URL**（不要自己組合路徑）
-3. **格式**：使用清晰的 Markdown 格式（標題、列點、程式碼區塊）
-4. **精準**：優先使用文件內容回答，如果沒有相關內容才用一般知識
-5. **程式碼**：提供可執行的命令範例時，使用 \`\`\`bash 格式
-6. **忽略特殊語法**：文件中的 icon 語法如 :octicons-arrow-right-24:、:fontawesome-brands-docker:、:material-kubernetes: 等請忽略，不要在回答中輸出這些語法
-
-## 連結格式（重要）
-每個文件都有 URL 欄位，請直接使用該 URL：
-- 正確範例：[LAB 02 安裝 Docker](https://caocharles.github.io/dcka-class-notes/lab02_docker_install/)
-- 正確範例：[疑難排解](https://caocharles.github.io/dcka-class-notes/appendix/troubleshooting/)
-- 錯誤範例：[LAB 02](/lab02_docker_install/) ← 不要這樣寫
-- 錯誤範例：:octicons-arrow-right-24: 開始學習 ← 不要輸出 icon 語法
-
-## 課程文件
-以下是完整的課程文件內容，請根據這些內容回答：
-
----
-${allDocsContent}
----`;
-
-
         // 呼叫 FastAPI 後端
         showTyping();
         const response = await fetch(`${window.BACKEND_API_URL}/api/chat`, {
@@ -258,7 +184,6 @@ ${allDocsContent}
                 // 排除剛加入的問題，並只保留後端允許的最近對話。
                 history: chatHistory.slice(0, -1).slice(-MAX_HISTORY_MESSAGES),
                 message: messageText,
-                system_instruction: systemInstruction,
                 session_id: chatSessionId,
             }),
         });
@@ -363,9 +288,7 @@ function initChatbot() {
             rebuildChatFromHistory();
         }
 
-        if (!allDocsContent) {
-            loadContent();
-        } else if (!savedHistory && window.INITIAL_PROMPT) {
+        if (!savedHistory && window.INITIAL_PROMPT) {
             addMessage("bot", window.INITIAL_PROMPT);
         }
     });

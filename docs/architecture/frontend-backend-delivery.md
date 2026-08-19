@@ -64,6 +64,7 @@ Backend 由 GitHub Actions 監看 `backend/**`，再交給 Google Cloud 建置�
 
 - `GCP_PROJECT_ID`、`GCP_WIF_PROVIDER`、`GCP_DEPLOYER_SA`、`GCP_BUILD_SA`、`GCP_RUNTIME_SA`：GitHub Actions Variables。
 - `GEMINI_API_KEY`：GitHub Secret，部署時注入 Cloud Run Runtime Environment。
+- `CONTENT_URL` 與 `DOCUMENT_CACHE_SECONDS=3600`：Backend Workflow 的非敏感 Runtime 設定；Cloud Run 按需取得 Pages `content.json`。
 - Workload Identity Provider：只接受 `CaoCharles/dcka-class-notes` 的 `main` branch OIDC assertion。
 - `github-actions-deployer`：取得部署所需的 `roles/run.sourceDeveloper` 與 `roles/serviceusage.serviceUsageConsumer`。
 - `dcka-cloud-build`：以 `roles/run.builder` 執行 source deploy 的建置工作；deployer 只能以 `roles/iam.serviceAccountUser` 使用此身分。

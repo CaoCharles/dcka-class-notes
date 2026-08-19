@@ -20,7 +20,7 @@
 系統分為兩條相互配合的流程：
 
 1. **教材網站**：Markdown 經 MkDocs 建置後部署到 GitHub Pages。
-2. **AI 助教**：瀏覽器把教材上下文與問題送到 Cloud Run，FastAPI 再呼叫 Gemini API。
+2. **AI 助教**：瀏覽器只把問題、History 與匿名 Session ID 送到 Cloud Run；FastAPI 載入教材、組合受控 Prompt，再呼叫 Gemini API。
 
 前端是純靜態網站，閱讀教材不需要應用伺服器；只有使用 AI 助教時才會呼叫 Cloud Run。Cloud Run 不保存可供下一個 request 使用的應用 Session；瀏覽器以 `sessionStorage` 保存畫面上的對話狀態，後端則把每次問答的稽核紀錄持久化到 Firestore。
 
@@ -30,7 +30,7 @@
 
 - 開發者在本機維護 `docs/`、`mkdocs.yml`、`hooks/` 與 `backend/`。
 - MkDocs build 是前端 artifact 的產生點；建置後的 HTML、CSS、JavaScript、圖片及 `content.json` 會由 Actions 上傳為 GitHub Pages Artifact。
-- Browser runtime 負責 Chatbot UI、全站教材記憶體快取、Markdown rendering 與對話 Session。
+- Browser runtime 負責 Chatbot UI、Markdown rendering 與對話 Session，不再持有或傳送 System Prompt。
 
 ### GitHub Control／Delivery Plane
 
@@ -43,6 +43,7 @@
 
 - Cloud Build 以專用 `dcka-cloud-build`（`roles/run.builder`）依照 `backend/Dockerfile` 建置 image，Artifact Registry 保存 managed image artifact。
 - Cloud Run revision 執行 FastAPI／Uvicorn 與 `google-genai` SDK。
+- Cloud Run 按需從 GitHub Pages 載入 `content.json`，每個 instance 快取一小時，並在 Server side 組合固定 Prompt 與教材內容。
 - Cloud Run 對外提供 public HTTPS ingress，服務本身是 stateless。
 - `GEMINI_API_KEY` 以 runtime environment variable 注入，不會送到 GitHub Pages 或瀏覽器。
 - Cloud Firestore 使用 Native mode，`chat_logs` collection 保存匿名問答紀錄。
@@ -76,14 +77,12 @@
 - 只接受 GitHub Pages 與 localhost Origin，並限制 body、訊息、History 與請求速率。
 - 從環境變數取得 `GEMINI_API_KEY`。
 - 使用鎖定的 `google-genai==2.18.1` SDK 呼叫 `gemini-3.5-flash`。
-- 將 System Instruction 與對話內容分開傳入模型。
+- 固定並保護 System Instruction；拒絕 Browser 傳入的 `system_instruction`，再與對話內容分開傳入模型。
 - 先回傳一般化成功／錯誤 response，再由 `BackgroundTasks` 寫入遮罩後的 Firestore Log。
 
 ### 瀏覽器
 
 - 顯示 MkDocs 教材。
-- 載入 `content.json` 全站文件。
-- 組合回答規則與文件上下文。
 - 將 Chatbot 對話歷史保存在 `sessionStorage`。
 - 使用 `marked.js` 將模型回應轉成 HTML。
 
@@ -100,7 +99,7 @@
 - CORS 已收斂為正式 GitHub Pages 與 localhost exact-origin allowlist。
 - Firestore 已提供持久化問答紀錄，但沒有登入身分；`session_id` 只能用來關聯同一個分頁的匿名對話，不能當成身份或授權依據。
 - Cloud Run 仍是 stateless compute；persistent state 位於 Firestore。
-- 所謂 RAG 目前是 Browser 將完整 `content.json` 放進每次請求的 `system_instruction`，不是 embedding／top-k retrieval 架構。
+- 所謂 RAG 目前是 Backend 將完整 `content.json` 放進每次 Gemini 呼叫的 `system_instruction`，不是 embedding／top-k retrieval 架構；雖然 Browser Request 已縮小，模型 Token 用量尚未降低。
 - `log_chat()` 仍使用同步 Firestore client，但已移到 response 後的 `BackgroundTasks`；寫入內容會遮罩並帶有 90 天 `expires_at`。
 - GitHub Actions 已改用 Workload Identity Federation；Provider 只信任 `CaoCharles/dcka-class-notes` 的 `main` 分支，部署過程不保存長效 Service Account JSON。
 
@@ -118,6 +117,7 @@
 - GitHub Pages frontend workflow。
 - GitHub Actions Workload Identity Federation 與專用 deployer/build/runtime service accounts；線上部署已驗證成功。
 - Firestore `chat_logs.expires_at` TTL policy 已確認為 `ACTIVE`。
+- System Prompt 已移至 Backend；Browser Request 不再包含教材或 `system_instruction`，並具一小時 instance-local 教材快取與 stale fallback。
 
 ### 中期改善
 

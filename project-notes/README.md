@@ -29,6 +29,6 @@ DCKA 學習筆記把 Docker 與 Kubernetes 課程內容寫成 Markdown，再由 
 - 簡短部署驗證問題約 1.73 秒回覆。
 - 實際 Chatbot 問答成功並能提供課程文章連結。
 - Firestore 已寫入驗證紀錄，`chat_logs.expires_at` TTL policy 為 `ACTIVE`。
-- 本輪安全強化已通過 8 項後端自動測試、MkDocs build、GitHub Pages Action 與 Cloud Run WIF 部署回歸驗證。
+- 安全強化與 Backend-owned Prompt 已通過 13 項後端自動測試及 MkDocs strict build；既有 GitHub Pages 與 Cloud Run WIF 部署回歸驗證亦正常。
 
 > 分享注意：這個 GitHub repository 若為 Public，`project-notes/` 也會公開。請勿放入 API Key、Service Account JSON、密碼或公司內部機密。

@@ -366,7 +366,7 @@ def system_page() -> Page:
         Node("developer", 75, 175, 290, 90, "Author / Developer", ["VS Code · Git · uv"], COLORS["blue_fill"], COLORS["blue"]),
         Node("local-repo", 75, 315, 290, 100, "Local working tree", ["docs/ · mkdocs.yml", "backend/ · hooks/"], COLORS["blue_fill"], COLORS["blue"]),
         Node("mkdocs", 75, 475, 290, 130, "MkDocs build process", ["Markdown → static site", "hook → content.json", "local preview / fallback"], COLORS["purple_fill"], COLORS["purple"]),
-        Node("browser", 75, 700, 290, 220, "Browser runtime", ["HTML / CSS / Material UI", "chatbot.js + marked.js", "content.json in memory", "history → sessionStorage"], COLORS["blue_fill"], COLORS["blue"]),
+        Node("browser", 75, 700, 290, 220, "Browser runtime", ["HTML / CSS / Material UI", "chatbot.js + marked.js", "history → sessionStorage", "no system prompt / docs payload"], COLORS["blue_fill"], COLORS["blue"]),
         Node("main", 470, 175, 230, 105, "main branch", ["source of truth", "docs + frontend + backend"], COLORS["purple_fill"], COLORS["purple"]),
         Node("actions", 760, 175, 240, 105, "GitHub Actions", ["deploy-pages.yml", "deploy-backend.yml"], COLORS["purple_fill"], COLORS["purple"]),
         Node("secrets", 760, 330, 240, 130, "GitHub configuration", ["Variables: project + WIF + 3 SAs", "Secret: GEMINI_API_KEY", "no GCP JSON key"], COLORS["red_fill"], COLORS["red"], "cylinder"),
@@ -378,10 +378,10 @@ def system_page() -> Page:
         Node("deployer", 1340, 315, 190, 80, "Deployer SA", ["short-lived credential", "source deploy only"], COLORS["green_fill"], COLORS["green"], "rounded", 15, 11),
         Node("ingress", 1130, 480, 170, 90, "HTTPS ingress", ["GET /", "POST /api/chat"], COLORS["green_fill"], COLORS["green"]),
         Node("fastapi", 1330, 480, 180, 105, "FastAPI / Uvicorn", ["body + Pydantic limits", "CORS + rate limiting"], COLORS["green_fill"], COLORS["green"]),
-        Node("adapter", 1130, 635, 170, 105, "Request adapter", ["role mapping", "history + message"], COLORS["green_fill"], COLORS["green"]),
+        Node("adapter", 1130, 625, 170, 125, "Prompt adapter", ["Backend-owned rules", "content.json cache · 1h", "history + message"], COLORS["green_fill"], COLORS["green"]),
         Node("genai", 1330, 635, 180, 105, "google-genai SDK", ["GenerateContentConfig", "thinking_level=low"], COLORS["green_fill"], COLORS["green"]),
         Node("runtime-sa", 1110, 780, 200, 70, "Runtime identity", ["dcka-chatbot-runtime", "roles/datastore.user"], COLORS["green_fill"], COLORS["green"], "rounded", 15, 11),
-        Node("env", 1330, 780, 180, 70, "Runtime secret", ["GEMINI_API_KEY · PORT"], COLORS["red_fill"], COLORS["red"], "cylinder", 15, 11),
+        Node("env", 1330, 770, 180, 90, "Runtime config", ["GEMINI_API_KEY · PORT", "CONTENT_URL · cache TTL"], COLORS["red_fill"], COLORS["red"], "cylinder", 15, 11),
         Node("firestore", 1190, 900, 300, 90, "Cloud Firestore", ["masked chat_logs · expires_at", "TTL ACTIVE · 90-day retention"], "#FCE7F3", "#DB2777", "cylinder", 17, 13),
         Node("gemini", 1608, 505, 144, 185, "Gemini API", ["model:", "gemini-3.5-flash", "request / response"], COLORS["amber_fill"], COLORS["amber"], "hexagon", 17, 13),
     ]
@@ -391,7 +391,7 @@ def system_page() -> Page:
         Edge("e-local-build", [(220, 415), (220, 465)], "uv run", dashed=True),
         Edge("e-build-gh", [(365, 540), (420, 540), (420, 560), (470, 560)], "manual fallback", dashed=True, label_x=425, label_y=520),
         Edge("e-gh-pages", [(700, 560), (750, 560)], "publish", dashed=True),
-        Edge("e-pages-browser", [(760, 585), (680, 585), (680, 670), (220, 670), (220, 700)], "GET HTML / assets / content.json", bidirectional=False, label_x=505, label_y=652),
+        Edge("e-pages-browser", [(760, 585), (680, 585), (680, 670), (220, 670), (220, 700)], "GET HTML / assets", bidirectional=False, label_x=505, label_y=652),
         Edge("e-main-actions", [(700, 225), (750, 225)], "docs/** | backend/**", dashed=True),
         Edge("e-actions-pages-artifact", [(800, 280), (800, 480), (700, 480), (700, 550)], "MkDocs build + upload", dashed=True, label_x=750, label_y=465),
         Edge("e-secrets-actions", [(880, 330), (880, 290)], "workflow inputs", dashed=True),
@@ -401,9 +401,10 @@ def system_page() -> Page:
         Edge("e-build-artifact", [(1310, 225), (1330, 225)], "image", dashed=True),
         Edge("e-artifact-run", [(1435, 280), (1435, 395), (1320, 395), (1320, 425)], "new revision", dashed=True),
         Edge("e-secrets-env", [(1000, 395), (1050, 395), (1050, 815), (1320, 815)], "--set-env-vars", COLORS["red"], True, label_x=1190, label_y=795),
-        Edge("e-browser-ingress", [(365, 810), (1070, 810), (1070, 525), (1120, 525)], "HTTPS JSON · origin allowlist · anonymous", label_x=760, label_y=790),
+        Edge("e-browser-ingress", [(365, 810), (1070, 810), (1070, 525), (1120, 525)], "HTTPS JSON · history + message + session_id", label_x=760, label_y=790),
+        Edge("e-pages-context", [(1000, 585), (1050, 585), (1050, 685), (1120, 685)], "GET content.json · on demand · 1h cache", bidirectional=True, label_x=1060, label_y=650),
         Edge("e-ingress-fastapi", [(1300, 525), (1320, 525)], "route"),
-        Edge("e-fastapi-adapter", [(1420, 585), (1420, 610), (1215, 610), (1215, 625)], "validated ChatRequest", label_x=1325, label_y=600),
+        Edge("e-fastapi-adapter", [(1420, 585), (1420, 610), (1215, 610), (1215, 615)], "validated ChatRequest · extra fields forbidden", label_x=1325, label_y=600),
         Edge("e-adapter-genai", [(1300, 685), (1320, 685)], "contents + config", label_x=1310, label_y=665),
         Edge("e-env-genai", [(1420, 780), (1420, 750)], "API key", COLORS["red"], True),
         Edge("e-genai-gemini", [(1510, 685), (1585, 685), (1585, 600), (1598, 600)], "HTTPS generate_content", bidirectional=True, label_x=1560, label_y=728),
@@ -450,14 +451,14 @@ def runtime_page() -> Page:
         Node("sw-start", 55, 195, 95, 52, "開始", ["Open site"], bp_node, bp_line, "ellipse", 14, 10, stroke_width=1),
         Node("sw-session", 205, 185, 190, 82, "Session bootstrap", ["sessionStorage", "missing → randomUUID()"], bp_node, bp_line, "rect", 14, 10, stroke_width=1),
         Node("sw-pages", 458, 185, 188, 82, "GitHub Pages", ["HTML / JS / CSS", "content.json"], bp_node, bp_line, "rect", 14, 10, stroke_width=1),
-        Node("sw-cache", 205, 320, 190, 90, "Browser context", ["session_id + history", "allDocsContent in memory"], bp_node, bp_line, "cylinder", 14, 10, stroke_width=1),
+        Node("sw-cache", 205, 320, 190, 90, "Browser state", ["session_id + history", "sessionStorage"], bp_node, bp_line, "cylinder", 14, 10, stroke_width=1),
         Node("sw-schema", 1568, 190, 184, 132, "ChatLog schema", ["session_id · question", "answer · model", "latency_ms · status", "error · created_at", "expires_at · masked"], bp_note, bp_line, "rect", 14, 10, stroke_width=1),
         Node("sw-iam", 1568, 360, 184, 95, "IAM boundary", ["Cloud Run service account", "roles/datastore.user", "Browser has no DB access"], bp_node, bp_line, "rect", 14, 10, stroke_width=1),
         Node("sw-question", 45, 472, 115, 76, "輸入 Request", ["question", "Click Send"], bp_node, bp_line, "parallelogram", 14, 10, stroke_width=1),
-        Node("sw-assemble", 205, 455, 190, 110, "Request assembly", ["session_id · history", "message · system rules", "+ full site context"], bp_node, bp_line, "rect", 14, 10, stroke_width=1),
+        Node("sw-assemble", 205, 455, 190, 110, "Request assembly", ["session_id · history", "message only", "no system_instruction"], bp_node, bp_line, "rect", 14, 10, stroke_width=1),
         Node("sw-post", 708, 452, 160, 92, "POST /api/chat", ["JSON over HTTPS", "exact-origin CORS", "public ingress"], bp_node, bp_line, "rect", 14, 10, stroke_width=1),
         Node("sw-validate", 902, 445, 125, 105, "Request valid?", ["body / Pydantic", "rate limit"], bp_node, bp_line, "diamond", 13, 10, stroke_width=1),
-        Node("sw-adapter", 758, 620, 220, 88, "Context / role adapter", ["map user / model roles", "append current message"], bp_node, bp_line, "rect", 14, 10, stroke_width=1),
+        Node("sw-adapter", 758, 610, 220, 108, "Prompt / role adapter", ["Backend-owned rules", "content.json cache · 1h", "map user / model roles"], bp_node, bp_line, "rect", 14, 10, stroke_width=1),
         Node("sw-sdk", 1086, 620, 188, 88, "google-genai SDK", ["GenerateContentConfig", "thinking_level = low"], bp_node, bp_line, "rect", 14, 10, stroke_width=1),
         Node("sw-model", 1086, 772, 188, 95, "Gemini 3.5 Flash", ["generate_content", "text / exception"], bp_node, bp_line, "hexagon", 14, 10, stroke_width=1),
         Node("sw-result", 1350, 620, 145, 100, "Generation", ["success?", "latency_ms"], bp_node, bp_line, "diamond", 13, 10, stroke_width=1),
@@ -482,12 +483,12 @@ def runtime_page() -> Page:
 
     flow(1, [(150, 221), (195, 221)], "", color=bp_line)
     flow(2, [(395, 221), (448, 221)], "", color=bp_line, dashed=True)
-    flow(3, [(552, 267), (552, 300), (405, 300), (405, 365)], "content.json → memory", color=bp_line, dashed=True, label_x=470, label_y=292)
+    flow(3, [(552, 267), (552, 300), (405, 300), (405, 365)], "HTML / JS / CSS", color=bp_line, dashed=True, label_x=470, label_y=292)
     flow(4, [(160, 510), (195, 510)], "", color=bp_line)
-    flow(5, [(395, 510), (698, 510)], "{session_id, history, message, system_instruction}", color=bp_line, label_x=545, label_y=490)
+    flow(5, [(395, 510), (698, 510)], "{session_id, history, message}", color=bp_line, label_x=545, label_y=490)
     flow(6, [(868, 498), (892, 498)], "validate", color=bp_line)
     flow(7, [(965, 550), (965, 600), (868, 600), (868, 610)], "normal request", color=bp_line, label_x=925, label_y=590)
-    flow(8, [(395, 365), (430, 365), (430, 665), (748, 665)], "history + full site context", color=bp_line, label_x=575, label_y=645)
+    flow(8, [(395, 365), (430, 365), (430, 665), (748, 665)], "history + current message", color=bp_line, label_x=575, label_y=645)
     flow(9, [(978, 665), (1076, 665)], "contents + config", color=bp_line)
     flow(10, [(1180, 708), (1180, 762)], "generate_content", color=bp_line)
     flow(11, [(1274, 820), (1305, 820), (1305, 670), (1340, 670)], "text / exception", color=bp_line, dashed=True, label_x=1305, label_y=745)
@@ -502,6 +503,7 @@ def runtime_page() -> Page:
 
     p.edges.extend([
         Edge("sw-boundary", [(675, 175), (675, 1010)], "", COLORS["red"], True, 2),
+        Edge("sw-pages-docs", [(646, 225), (665, 225), (665, 585), (748, 585), (748, 640)], "GET content.json on cache miss · stale fallback", bp_line, True, 1, True, 705, 570),
         Edge("sw-iam-access", [(1660, 455), (1660, 630)], "service account / IAM", bp_line, True, 1, False, 1660, 560),
     ])
 

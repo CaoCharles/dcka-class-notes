@@ -131,7 +131,7 @@ backend/
     {"role": "model", "parts": [{"text": "Docker 是一個容器化平台..."}]}
   ],
   "message": "如何安裝 Docker？",
-  "system_instruction": "你是課程助教，請根據以下頁面內容回答..."
+  "session_id": "browser-generated-uuid"
 }
 ```
 
@@ -139,8 +139,9 @@ backend/
 |------|------|
 | `history` | 完整對話歷史（無狀態設計） |
 | `message` | 使用者的新訊息 |
-| `system_instruction` | 回答規則與 `content.json` 內的全站文件上下文 |
 | `session_id` | Browser 產生的匿名對話關聯 ID，不是登入憑證 |
+
+> `system_instruction` 不屬於公開 API Contract。回答規則與教材上下文由 Backend 組合；Request 若夾帶這個欄位，Pydantic 會回 HTTP 422。
 
 ### 3. 回應格式
 
@@ -164,17 +165,21 @@ def chat_endpoint(payload: ChatRequest, request: Request, background_tasks: Back
         contents.append(types.Content(role=role, parts=[...]))
     contents.append(types.Content(role="user", parts=[types.Part.from_text(text=payload.message)]))
 
-    # 3. 呼叫 Gemini API，system_instruction 透過 config 傳入（非字串拼接）
+    # 3. 後端取得並快取 content.json，組合受控 System Instruction
+    documentation = documentation_cache.get()
+    system_instruction = build_system_instruction(documentation)
+
+    # 4. 呼叫 Gemini API
     response = client.models.generate_content(
         model="gemini-3.5-flash",
         contents=contents,
         config=types.GenerateContentConfig(
-            system_instruction=payload.system_instruction,
+            system_instruction=system_instruction,
             thinking_config=types.ThinkingConfig(thinking_level="low"),
         ),
     )
 
-    # 4. 返回結果
+    # 5. 返回結果
     # 回應送出後再執行同步 Firestore client，避免增加主要 response latency
     background_tasks.add_task(log_chat, ...)
     return {"text": response.text}
@@ -252,7 +257,7 @@ curl -s -H "Authorization: Bearer $TOKEN" \
 
 ## 🧠 RAG 提示詞與文章串接流程
 
-本聊天機器人目前使用 **full-context RAG**：MkDocs 建置時把全站 Markdown 產生為 `content.json`，Browser 載入後將完整文件內容放進 `system_instruction`。目前尚未執行 embedding、vector search 或 top-k retrieval。
+本聊天機器人目前使用 **server-owned full-context RAG**：MkDocs 建置時把全站 Markdown 產生為公開的 `content.json`；Cloud Run 在收到聊天請求時下載並快取文件，由 Backend 將固定回答規則與完整文件組成 System Instruction。Browser 無法設定或覆寫模型的 System Instruction。目前尚未執行 embedding、vector search 或 top-k retrieval。
 
 ### RAG 資料流程
 
@@ -260,59 +265,42 @@ curl -s -H "Authorization: Bearer $TOKEN" \
 sequenceDiagram
     participant U as 使用者
     participant F as 前端 (chatbot.js)
+    participant P as GitHub Pages
     participant B as 後端 (FastAPI)
     participant G as Gemini API
 
     U->>F: 1. 輸入問題
-    F->>F: 2. 載入 content.json<br/>並快取全站文件
-    F->>F: 3. 組合回答規則<br/>+ 全站文件 System Instruction
-    F->>B: 4. POST /api/chat<br/>{session_id, history, message, system_instruction}
-    B->>B: 5. Body / Pydantic / Rate Limit 驗證
-    B->>G: 6. 同步 worker 呼叫 Gemini API
-    G->>B: 7. AI 回應或 Exception
-    B->>F: 8. 返回 {text: "..."}<br/>或一般化錯誤
-    B-->>B: 9. BackgroundTasks<br/>遮罩後寫入 Firestore
-    F->>U: 10. 顯示回答
+    F->>B: 2. POST /api/chat<br/>{session_id, history, message}
+    B->>B: 3. Body / Pydantic / Rate Limit 驗證
+    B->>P: 4. 快取到期時 GET content.json
+    P->>B: 5. 全站文件 JSON
+    B->>B: 6. 快取 1 小時<br/>組合固定規則 + 文件
+    B->>G: 7. 同步 worker 呼叫 Gemini API
+    G->>B: 8. AI 回應或 Exception
+    B->>F: 9. 返回 {text: "..."}<br/>或一般化錯誤
+    B-->>B: 10. BackgroundTasks<br/>遮罩後寫入 Firestore
+    F->>U: 11. 顯示回答
 ```
 
-### 完整 System Prompt 範例（v2.0 - 全站預載版）
+### System Prompt 控制權（v3.0 - Backend Owned）
 
-> ⚠️ **v2.0 更新**：現在使用 `content.json` 預載全站文件，而非僅抓取當前頁面。
+固定 Prompt 位於 `backend/chat_server.py` 的 `BASE_SYSTEM_PROMPT`，包含角色、繁體中文、文件 URL、Markdown／bash 格式與 Prompt Injection 邊界。`build_system_instruction()` 只在 Backend 將文件放入 `<documentation>` 區段：
 
-前端 `chatbot.js` 會在使用者開啟聊天視窗時，載入 `content.json` 並組合以下系統提示詞：
+```python
+documentation = documentation_cache.get()
+system_instruction = build_system_instruction(documentation)
 
-```javascript
-// 載入全站文件
-const res = await fetch('./content.json');
-const data = await res.json();
-
-// 組合成 DOCUMENTATION 字串
-allDocsContent = data
-  .map(doc => `Page: ${doc.title}\nURL: ${doc.url}\nContent:\n${doc.content}`)
-  .join("\n\n---\n\n");
-
-// 系統提示詞
-const systemInstruction = `你是 DCKA 課程（Docker Containers 與 Kubernetes 系統管理）的 AI 助教。
-
-## 回答規則
-1. **語言**：使用繁體中文回答
-2. **連結**：當提到相關主題時，提供文章的 Markdown 連結（使用 URL 欄位）
-3. **格式**：使用清晰的 Markdown 格式（標題、列點、程式碼區塊）
-4. **精準**：優先使用文件內容回答，如果沒有相關內容才用一般知識
-5. **程式碼**：提供可執行的命令範例時，使用 \`\`\`bash 格式
-
-## 連結格式範例
-當提到某個主題時，這樣提供連結：
-- 想了解更多，請參考 [LAB 02 安裝 Docker](/lab02_docker_install/)
-- 詳細步驟請見 [Private Registry 建置](/lab05_private_registry/)
-
-## 課程文件
-以下是完整的課程文件內容，請根據這些內容回答：
-
----
-${allDocsContent}  // ← 建置時收錄的全站頁面內容
----`;
+response = client.models.generate_content(
+    model=MODEL_NAME,
+    contents=contents,
+    config=types.GenerateContentConfig(
+        system_instruction=system_instruction,
+        thinking_config=types.ThinkingConfig(thinking_level="low"),
+    ),
+)
 ```
+
+`ChatRequest` 使用 `ConfigDict(extra="forbid")`；公開 Request 若傳入 `system_instruction` 或其他未定義欄位，會收到一般化 HTTP 422。
 
 ### content.json 生成機制
 
@@ -334,24 +322,20 @@ hooks/
 
 | 組成部分 | 來源 | 說明 |
 |----------|------|------|
-| **角色設定** | 寫死在程式碼 | "你是 DCKA 課程的 AI 助教" |
-| **回答規則** | 寫死在程式碼 | 繁體中文、提供連結、格式要求 |
-| **全站文件** | `content.json` (動態載入) | 建置當下所有頁面的完整 Markdown 內容 |
+| **角色設定** | Backend `BASE_SYSTEM_PROMPT` | "你是 DCKA 課程的 AI 助教" |
+| **回答規則** | Backend `BASE_SYSTEM_PROMPT` | 繁體中文、完整連結、格式與信任邊界 |
+| **全站文件** | Backend 讀取 `content.json` | 建置當下所有頁面的完整 Markdown 內容 |
 | **對話歷史** | sessionStorage | 保持對話上下文連貫 |
 
-### 後端如何處理提示詞
+### 文件快取與失敗策略
 
-```python
-# chat_server.py
-response = client.models.generate_content(
-    model="gemini-3.5-flash",
-    contents=contents,  # 對話歷史 + 這次的使用者訊息
-    config=types.GenerateContentConfig(
-        system_instruction=payload.system_instruction,  # RAG 上下文透過 system_instruction 傳入
-        thinking_config=types.ThinkingConfig(thinking_level="low"),
-    ),
-)
-```
+- Cache 是每個 Cloud Run instance 的記憶體內資料，預設有效 3,600 秒。
+- 沒有聊天請求時不會背景下載；快取到期後，由下一個聊天請求觸發更新。
+- 同一 instance 在一小時內的所有聊天共用同一份文件內容。
+- 更新失敗且已有舊內容時繼續使用 stale cache；第一次載入就失敗時回一般化 HTTP 503。
+- 更新失敗後會等待 60 秒才重試，避免 Pages 異常時每個聊天請求都重新下載。
+- `MAX_DOCUMENT_JSON_BYTES` 限制下載大小，`MAX_DOCUMENT_CONTEXT_CHARS` 限制送入模型的文件字元數。
+- 目前仍會把完整文件送給 Gemini；降低模型 Token 與延遲需再升級成 Retrieval RAG。
 
 ---
 
@@ -449,7 +433,7 @@ curl -X POST http://localhost:8001/api/chat \
   -d '{
     "history": [],
     "message": "什麼是 Docker？",
-    "system_instruction": ""
+    "session_id": "local-test"
   }'
 ```
 
@@ -523,7 +507,7 @@ gcloud run deploy dcka-chatbot-backend \
   --service-account dcka-chatbot-runtime@<PROJECT_ID>.iam.gserviceaccount.com \
   --build-service-account projects/<PROJECT_NUMBER>/serviceAccounts/dcka-cloud-build@<PROJECT_ID>.iam.gserviceaccount.com \
   --allow-unauthenticated \
-  --set-env-vars "GEMINI_API_KEY=<your_api_key>"
+  --set-env-vars "GEMINI_API_KEY=<your_api_key>,CONTENT_URL=https://caocharles.github.io/dcka-class-notes/content.json,DOCUMENT_CACHE_SECONDS=3600"
 ```
 
 部署完成後會印出服務網址，格式類似 `https://dcka-chatbot-backend-<hash>.asia-east1.run.app`。
@@ -579,7 +563,12 @@ allow_origins=[
 | `MAX_REQUEST_BODY_BYTES` | 1,048,576 | `/api/chat` JSON body 上限 |
 | `MAX_MESSAGE_CHARS` | 4,000 | 單次問題字元上限 |
 | `MAX_HISTORY_MESSAGES` | 20 | 最近對話訊息上限 |
-| `MAX_SYSTEM_INSTRUCTION_CHARS` | 750,000 | 全站文件 System Instruction 上限 |
+| `CONTENT_URL` | 正式網站 `content.json` | Backend 教材來源 |
+| `DOCUMENT_CACHE_SECONDS` | 3,600 | 每個 instance 的教材快取時間；只有聊天請求會觸發更新 |
+| `DOCUMENT_FETCH_TIMEOUT_SECONDS` | 10 | Backend 下載教材的 timeout 秒數 |
+| `DOCUMENT_RETRY_SECONDS` | 60 | 文件下載失敗後的重試退避秒數 |
+| `MAX_DOCUMENT_JSON_BYTES` | 1,048,576 | `content.json` 下載大小上限 |
+| `MAX_DOCUMENT_CONTEXT_CHARS` | 750,000 | 送入模型的教材上下文字元上限 |
 | `CHAT_LOG_RETENTION_DAYS` | 90 | Firestore 問答紀錄保留日數 |
 
 目前 rate limiter 是 Cloud Run **單一 instance 記憶體內**的滑動視窗，適合先阻擋一般誤用；如果未來需要跨 instance 的全域配額，應改接 Cloud Armor／API Gateway 或集中式計數儲存。

@@ -264,7 +264,7 @@ def add_code(doc, text):
 def add_components_table(doc):
     rows = [
         ("內容層", "Markdown / MkDocs", "保存教材並產生靜態網站與 content.json", "本機 → Pages"),
-        ("互動層", "chatbot.js", "保存 Browser Session、組合 full-context prompt、渲染回答", "瀏覽器"),
+        ("互動層", "chatbot.js", "保存 Browser Session、傳送問題與 History、渲染回答", "瀏覽器"),
         ("Delivery", "GitHub Actions", "分別建置 GitHub Pages 與部署 Cloud Run", "GitHub"),
         ("Build", "Cloud Build / Registry", "以 dcka-cloud-build（run.builder）建置並保存 container image", "Google Cloud"),
         ("API 層", "FastAPI / google-genai", "CORS、輸入與速率限制、保管 Key、呼叫模型", "Cloud Run"),
@@ -386,7 +386,7 @@ def build():
     doc.add_heading("1. 專案整體架構", level=1)
     add_figure(doc, "overall-architecture.png", "圖 1　System Component & Deployment Architecture", width=6.35)
     add_para(doc, "教材閱讀與 AI 問答採前後端分離。圖中實線表示 Runtime 資料流，虛線表示 Build／Deploy 控制流；GitHub、Google Cloud、Browser 與外部 Gemini API 則是四個主要平台或信任邊界。")
-    add_callout(doc, "Current State", "Cloud Run 是 stateless public API；畫面對話與匿名 session_id 位於 Browser sessionStorage，問答稽核紀錄則持久化至 Firestore。系統仍未使用向量資料庫，每次問答都會把完整 content.json 放進 System Instruction。", fill=LIGHT_BLUE)
+    add_callout(doc, "Current State", "Cloud Run 是 stateless public API；畫面對話與匿名 session_id 位於 Browser sessionStorage，問答稽核紀錄則持久化至 Firestore。System Prompt 已由 Backend 控制；每個 Cloud Run instance 按需快取 content.json 一小時，但仍未使用向量資料庫。", fill=LIGHT_BLUE)
     add_components_table(doc)
 
     page_break(doc)
@@ -395,8 +395,8 @@ def build():
     doc.add_heading("關鍵檔案", level=2)
     add_bullet(doc, "mkdocs.yml：決定 nav、theme、plugins、JavaScript、CSS 與 Hook。")
     add_bullet(doc, "hooks/generate_content.py：掃描 docs/**/*.md 並輸出 site/content.json。")
-    add_bullet(doc, "docs/assets/js/chatbot.js：Chatbot UI、History、Prompt 與 API 呼叫。")
-    add_bullet(doc, "backend/chat_server.py：請求格式、Gemini client、Firestore logging 與 /api/chat。")
+    add_bullet(doc, "docs/assets/js/chatbot.js：Chatbot UI、History 與精簡 API Request；不保存 System Prompt。")
+    add_bullet(doc, "backend/chat_server.py：受控 Prompt、教材快取、Gemini client、Firestore logging 與 /api/chat。")
     add_bullet(doc, ".github/workflows/deploy-pages.yml：前端 MkDocs 建置與 GitHub Pages 部署。")
     add_bullet(doc, ".github/workflows/deploy-backend.yml：後端 GitHub Actions 部署。")
     add_callout(doc, "範圍提醒", "project-notes/ 位於 docs/ 外，不會出現在 MkDocs 網站，也不會進入 content.json。", fill=LIGHT_GREEN, color=GREEN)
@@ -428,12 +428,12 @@ def build():
     page_break(doc)
     doc.add_heading("5. AI 助教系統介接", level=1)
     add_figure(doc, "ai-chatbot-integration.png", "圖 4　AI Assistant Runtime Interaction Architecture", width=6.35)
-    add_callout(doc, "核心安全設計", "GEMINI_API_KEY 與 Firestore IAM 只存在 Server side；Browser 不會取得金鑰，也不會直接存取 Firestore。", fill=LIGHT_GREEN, color=GREEN)
+    add_callout(doc, "核心安全設計", "GEMINI_API_KEY 與 Firestore IAM 只存在 Server side；System Prompt 原始碼仍公開，但執行控制權在 Backend，Browser 無法覆寫，也不會直接存取 Firestore。", fill=LIGHT_GREEN, color=GREEN)
     add_para(doc, "GitHub Pages 與 Cloud Run 是不同 Origin，因此 JSON POST 前會進行 CORS preflight。Backend 只接受正式 Pages 與 localhost Origin，並限制 Body、訊息、History 與速率；同步 worker 呼叫 Gemini 後先回傳一般化 Response，再由 BackgroundTasks 遮罩並寫入 Firestore chat_logs。")
 
     page_break(doc)
     doc.add_heading("6. Chatbot 使用方式", level=1)
-    add_para(doc, "點擊右下角機器人圖示，即可開啟「學習筆記小幫手」。首次開啟時，前端會下載 content.json 並準備全站教材上下文。")
+    add_para(doc, "點擊右下角機器人圖示，即可開啟「學習筆記小幫手」。前端不再下載教材；使用者送出問題後，由 Backend 按需讀取並快取 content.json。")
     add_figure(doc, "chatbot-open-focus.png", "圖 5　AI 助教開啟與歡迎畫面", width=3.7)
     add_para(doc, "使用者送出問題後，畫面會顯示思考中狀態；回應完成後，Markdown 會轉成 HTML，並保留文章連結及程式碼複製功能。")
     add_figure(doc, "chatbot-success-focus.png", "圖 6　實際成功問答與課程文章連結", width=3.7)
@@ -441,11 +441,12 @@ def build():
     page_break(doc)
     doc.add_heading("7. 一次問答的完整流程", level=1)
     steps = (
-        "Browser 從 GitHub Pages 取得網站 assets 與 content.json。",
-        "教材快取放在 Browser memory；對話歷史與匿名 session_id 放在 sessionStorage。",
-        "使用者輸入問題，Browser 組合 session_id、history、message 與 full-context system_instruction。",
+        "Browser 從 GitHub Pages 取得網站 HTML、CSS 與 JavaScript assets。",
+        "對話歷史與匿名 session_id 放在 sessionStorage；Browser 不保存教材或 System Prompt。",
+        "使用者輸入問題，Browser 只組合 session_id、history 與 message。",
         "跨 Origin 呼叫先完成 OPTIONS CORS preflight，再 POST /api/chat。",
-        "FastAPI 驗證 1 MiB Body、ChatRequest 與 rate limit，並將 History 轉換成 google.genai.types.Content。",
+        "FastAPI 驗證 1 MiB Body、拒絕額外欄位並套用 rate limit；教材快取不存在或超過一小時時，按需讀取 content.json。",
+        "Backend 將固定回答規則、信任邊界與完整教材組成 System Instruction，並將 History 轉換成 google.genai.types.Content。",
         "同步 endpoint 由 FastAPI worker thread 執行 google-genai==2.18.1，呼叫 Gemini 3.5 Flash。",
         "FastAPI 先回傳 {text: ...} 或一般化 4xx／5xx；完整例外只寫入 Cloud Logging。",
         "Response 後由 BackgroundTasks 遮罩問答，加入 created_at 與 90 天 expires_at，再寫入 chat_logs。",
@@ -455,12 +456,12 @@ def build():
     for text in steps:
         add_number(doc, text)
     doc.add_heading("API 請求", level=2)
-    add_code(doc, '{\n  "session_id": "7e930f52-...",\n  "history": [{"role": "user", "parts": [{"text": "什麼是 Docker？"}]}],\n  "message": "Kubernetes 的角色是什麼？",\n  "system_instruction": "回答規則與全站教材內容"\n}')
+    add_code(doc, '{\n  "session_id": "7e930f52-...",\n  "history": [{"role": "user", "parts": [{"text": "什麼是 Docker？"}]}],\n  "message": "Kubernetes 的角色是什麼？"\n}')
     doc.add_heading("API 回應", level=2)
     add_code(doc, '{"text": "Kubernetes 是用來部署、調度與管理容器工作負載的編排平台。"}')
     doc.add_heading("Firestore chat_logs", level=2)
     add_code(doc, '{\n  "session_id": "匿名對話 UUID",\n  "question": "遮罩後問題",\n  "answer": "遮罩後回答或 null",\n  "model": "gemini-3.5-flash",\n  "latency_ms": 3700,\n  "status": "success",\n  "error": null,\n  "created_at": "SERVER_TIMESTAMP",\n  "expires_at": "建立時間 + 90 天"\n}')
-    add_callout(doc, "RAG 現況", "目前是把全站文件直接加入 System Instruction 的 full-context RAG，尚未使用 embedding、vector database 或 top-k retrieval。", fill=LIGHT_BLUE)
+    add_callout(doc, "RAG 現況", "Backend 會把全站文件直接加入 System Instruction，仍是 full-context RAG；這次改善 Prompt 控制權與 Browser Request 大小，但 Gemini Token 用量不變。", fill=LIGHT_BLUE)
 
     page_break(doc)
     doc.add_heading("8. GitHub Actions 與 Cloud Run", level=1)
@@ -490,7 +491,7 @@ def build():
 
     page_break(doc)
     doc.add_heading("9. 驗證結果", level=1)
-    add_para(doc, "驗證日期：2026-08-19（Asia/Taipei）。本輪安全與部署改善已通過後端 8 項自動測試、MkDocs build、GitHub Pages Action、WIF／Cloud Run 部署、正式 CORS、線上問答、Firestore 落盤與 TTL ACTIVE 驗證。")
+    add_para(doc, "驗證日期：2026-08-19（Asia/Taipei）。安全與 Backend-owned Prompt 已通過後端 13 項自動測試及 MkDocs strict build；既有 GitHub Pages Action、WIF／Cloud Run 部署、正式 CORS、線上問答、Firestore 落盤與 TTL ACTIVE 驗證亦正常。")
     add_validation_table(doc)
     add_para(doc, "簡短 API 測試回應：", bold=True, before=8, after=4)
     add_code(doc, "同學你好！Docker 的用途是將應用程式及其所需的執行環境打包成輕量級的容器，確保程式在任何系統上都能一致、快速地部署與執行。")
@@ -506,6 +507,7 @@ def build():
     add_bullet(doc, "GitHub Pages frontend Actions、RAG README 與 Cloud Run Dockerfile 註解。")
     add_bullet(doc, "GitHub Actions Workload Identity Federation 與專用 deployer/build/runtime service accounts；線上部署已驗證成功。")
     add_bullet(doc, "Firestore chat_logs.expires_at TTL policy 已啟用並為 ACTIVE。")
+    add_bullet(doc, "System Prompt 已移至 Backend；公開 API 拒絕 system_instruction，教材採一小時 instance-local cache 與 stale fallback。")
     doc.add_heading("中期改善", level=2)
     add_bullet(doc, "文件量增加時改成向量檢索式 RAG，只把相關文章片段送給模型。")
     add_bullet(doc, "跨 Cloud Run instances 的全域 rate limit 改用 Cloud Armor、API Gateway 或集中式計數儲存。")

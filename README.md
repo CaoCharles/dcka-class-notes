@@ -76,10 +76,11 @@ flowchart TB
 
     Browser -->|1. 訪問文件| Frontend
     Browser -->|2. 發送聊天訊息| Backend
-    Backend -->|3. 轉發請求<br/>附帶 API Key| Gemini
-    Gemini -->|4. AI 回應| Backend
-    Backend -->|5. 非同步寫入問答紀錄| Firestore
-    Backend -->|6. 回傳結果| Browser
+    Backend -->|3. 快取到期時讀取 content.json| Frontend
+    Backend -->|4. 組合受控 Prompt<br/>附帶 API Key| Gemini
+    Gemini -->|5. AI 回應| Backend
+    Backend -->|6. 非同步寫入問答紀錄| Firestore
+    Backend -->|7. 回傳結果| Browser
 
     style Frontend fill:#e1f5fe
     style Backend fill:#fff3e0
@@ -105,9 +106,11 @@ flowchart TB
     {"role": "model", "parts": [{"text": "Docker 是一個容器化平台..."}]}
   ],
   "message": "如何安裝 Docker？",
-  "system_instruction": "你是 Docker 與 Kubernetes 課程的助教..."
+  "session_id": "browser-generated-uuid"
 }
 ```
+
+> System Instruction 與全站教材由 Backend 組合；Browser 無法傳入或覆寫 Prompt。Cloud Run 每個 instance 會按需快取 `content.json` 一小時，沒有聊天流量時不會下載。
 
 ---
 
@@ -205,7 +208,7 @@ gcloud run deploy dcka-chatbot-backend \
   --service-account dcka-chatbot-runtime@<GCP_PROJECT_ID>.iam.gserviceaccount.com \
   --build-service-account projects/<PROJECT_NUMBER>/serviceAccounts/dcka-cloud-build@<GCP_PROJECT_ID>.iam.gserviceaccount.com \
   --allow-unauthenticated \
-  --set-env-vars "GEMINI_API_KEY=<your_key>"
+  --set-env-vars "GEMINI_API_KEY=<your_key>,CONTENT_URL=https://caocharles.github.io/dcka-class-notes/content.json,DOCUMENT_CACHE_SECONDS=3600"
 ```
 
 6. **更新前端 API URL**

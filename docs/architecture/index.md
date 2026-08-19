@@ -26,7 +26,7 @@ tags:
     這個章節不只記錄課程內容，也說明本網站本身如何建置、部署與串接 AI。它適合用於技術分享、維護交接與問題診斷。
 
 !!! success "目前正式環境"
-    Frontend 由 GitHub Actions 建置 MkDocs Pages Artifact 並發布至 GitHub Pages；Backend 透過 GitHub OIDC／Workload Identity Federation 部署至 Cloud Run。部署流程不保存 GCP Service Account JSON，問答紀錄由 Cloud Run 寫入啟用 90 天 TTL 的 Firestore。
+    Frontend 由 GitHub Actions 建置 MkDocs Pages Artifact 並發布至 GitHub Pages；Backend 透過 GitHub OIDC／Workload Identity Federation 部署至 Cloud Run。System Prompt 與教材載入由 Backend 控制，Browser 只送出問題、History 與匿名 Session ID。部署流程不保存 GCP Service Account JSON，問答紀錄由 Cloud Run 寫入啟用 90 天 TTL 的 Firestore。
 
 ---
 

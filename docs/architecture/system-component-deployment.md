@@ -56,28 +56,28 @@ tags:
 ## Frontend Runtime Flow
 
 1. 使用者從 GitHub Pages 取得靜態網站資源。
-2. `chatbot.js` 載入 `content.json`，將網站文章保存在 Browser Memory。
-3. Browser 使用 `sessionStorage` 保存 Chat History 與匿名 `session_id`。
-4. 使用者送出問題時，Browser 以 HTTPS 呼叫 Cloud Run 的 `/api/chat`。
+2. Browser 使用 `sessionStorage` 保存 Chat History 與匿名 `session_id`。
+3. 使用者送出問題時，Browser 只以 HTTPS 傳送 History、Message 與 Session ID 至 Cloud Run `/api/chat`。
 
 ## Backend Runtime Flow
 
 1. Cloud Run HTTPS Ingress 將 Request 交給 FastAPI，CORS 只接受 GitHub Pages 與 localhost Origin。
-2. Backend 套用 1 MiB body、Pydantic 欄位與每來源 20 次／分鐘的 instance-local rate limit。
-3. 同步 FastAPI endpoint 在 worker thread 呼叫鎖定版本的 `google-genai` SDK，不阻塞 event loop。
-4. Backend 先回傳回答或一般化錯誤，再由 `BackgroundTasks` 遮罩並寫入 Firestore。
+2. Backend 套用 1 MiB body、Pydantic extra-field rejection 與每來源 20 次／分鐘的 instance-local rate limit；Browser 無法傳入 `system_instruction`。
+3. Cloud Run 按需從 GitHub Pages 下載 `content.json`，每個 instance 快取一小時；更新失敗時可沿用 stale cache。
+4. Backend 以固定回答規則和教材內容組合 System Instruction，再由同步 FastAPI endpoint 在 worker thread 呼叫鎖定版本的 `google-genai` SDK。
+5. Backend 先回傳回答或一般化錯誤，再由 `BackgroundTasks` 遮罩並寫入 Firestore。
 
 ## State Ownership
 
 | State | 保存位置 | 生命週期 |
 |---|---|---|
 | `session_id`、Chat History | Browser `sessionStorage` | 同一個 Browser 分頁工作階段 |
-| 教材上下文 | Browser Memory | 頁面重新載入前 |
+| 教材上下文 | Cloud Run Instance Memory | 按需載入；預設一小時 Cache，可在更新失敗時沿用舊內容 |
 | API Runtime | Cloud Run Instance | Stateless，不保證 Instance 持續存在 |
 | 問答紀錄 | Firestore `chat_logs` | Persistent；預設 90 天並由 `expires_at` TTL 管理 |
 
 !!! note "Current-state Security Boundary"
-    `/api/chat` 仍是匿名公開入口，沒有登入或 API Authentication；現已具備 exact-origin CORS、輸入上限、instance-local rate limiting、一般化錯誤與 `ACTIVE` 的 Firestore 90 天 TTL。後端部署以 GitHub OIDC／WIF 取得短效憑證，Build 與 Runtime 各使用專用 Service Account。若要跨 Cloud Run instances 套用全域配額，仍需 Cloud Armor、API Gateway 或集中式 rate-limit store。
+    `/api/chat` 仍是匿名公開入口，沒有登入或 API Authentication；現已具備 Backend-owned System Prompt、extra-field rejection、exact-origin CORS、輸入上限、instance-local rate limiting、一般化錯誤與 `ACTIVE` 的 Firestore 90 天 TTL。後端部署以 GitHub OIDC／WIF 取得短效憑證，Build 與 Runtime 各使用專用 Service Account。若要跨 Cloud Run instances 套用全域配額，仍需 Cloud Armor、API Gateway 或集中式 rate-limit store。
 
 !!! success "部署驗證"
     2026-08-19 已確認 revision `dcka-chatbot-backend-00006-drd` 使用 `dcka-chatbot-runtime`、承接 100% Traffic；GitHub Pages、Cloud Run、CORS、Gemini 與 Firestore 端到端流程皆正常。

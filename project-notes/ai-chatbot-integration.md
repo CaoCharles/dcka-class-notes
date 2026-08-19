@@ -10,7 +10,7 @@
 
 ![AI 助教開啟畫面](assets/images/chatbot-open.png)
 
-使用者輸入問題後，前端將問題、對話歷史與教材上下文送到 Cloud Run。成功回應會以 Markdown 顯示，並可提供相關文章連結與程式碼區塊。
+使用者輸入問題後，前端只將問題、對話歷史與匿名 `session_id` 送到 Cloud Run。Backend 自行載入教材並組合 System Instruction；成功回應會以 Markdown 顯示，並可提供相關文章連結與程式碼區塊。
 
 ![AI 助教成功問答](assets/images/chatbot-success.png)
 
@@ -23,20 +23,20 @@
 3. 產生 `site/content.json`。
 4. GitHub Pages 一併發布這個 JSON。
 
-Chatbot 開啟時，`chatbot.js` 下載 `content.json`，把全站文章組合成 System Instruction 的文件區段。
+Cloud Run 收到聊天請求時會按需下載 `content.json`，把全站文章組合成 System Instruction 的文件區段。每個 instance 預設快取一小時；沒有聊天請求時不會下載，更新失敗且已有舊資料時會沿用 stale cache。
 
 > 目前是「全站內容直接放入提示詞」的 full-context RAG，尚未使用 embedding、vector database 或 top-k retrieval。
 
 ## 一次問答的資料流程
 
 1. 使用者開啟網站，Browser 向 GitHub Pages 取得 HTML、CSS、`chatbot.js` 與 `marked.js`。
-2. `chatbot.js` 再向 GitHub Pages 取得 `content.json`，保存成 Browser memory 中的 `allDocsContent`。
-3. 對話歷史與匿名 `session_id` 使用 `sessionStorage` 保存；清除歷史時會重新產生 UUID。
-4. 使用者送出問題後，Browser 組合 `session_id`、`history`、`message` 與 `system_instruction`；其中 System Instruction 包含回答規則與全站文件。
+2. 對話歷史與匿名 `session_id` 使用 `sessionStorage` 保存；清除歷史時會重新產生 UUID。
+3. 使用者送出問題後，Browser 只組合 `session_id`、`history` 與 `message`；公開 API 會拒絕 `system_instruction` 等額外欄位。
+4. Cloud Run 在教材快取不存在或到期時向 GitHub Pages 取得 `content.json`，並由 Backend 組合固定回答規則與全站文件。
 5. 因 GitHub Pages 與 Cloud Run 是不同 Origin，Browser 會先進行 CORS preflight。
 6. Browser 以 `application/json` 呼叫 Cloud Run 的 `POST /api/chat`。
 7. FastAPI 套用 1 MiB body、Pydantic 欄位與 instance-local rate limit，再把 role 對應成 `user`／`model`。
-8. `google-genai` SDK 以 `GenerateContentConfig` 分開傳入 `system_instruction`，並設定 `thinking_level="low"`。
+8. `google-genai` SDK 以 `GenerateContentConfig` 傳入 Backend-owned `system_instruction`，並設定 `thinking_level="low"`。
 9. Cloud Run 呼叫 `gemini-3.5-flash`，取得 `response.text` 或 exception，並計算 `latency_ms`。
 10. FastAPI 先回傳 `{ "text": "..." }` 或一般化 4xx／5xx；Cloud Run 本身不保存跨 request 的 Session。
 11. 回應送出後，`BackgroundTasks` 遮罩問答並組合 `created_at`、90 天 `expires_at` 等欄位，寫入 Firestore `chat_logs`。
@@ -46,9 +46,9 @@ Chatbot 開啟時，`chatbot.js` 下載 `content.json`，把全站文章組合�
 
 ## Runtime 性質
 
-- **State placement**：教材快取、畫面對話與 `session_id` 在 Browser；Cloud Run 是 stateless compute；匿名問答紀錄持久化在 Firestore。
+- **State placement**：畫面對話與 `session_id` 在 Browser；教材是一小時的 Cloud Run instance-local cache；匿名問答紀錄持久化在 Firestore。
 - **Network boundary**：網站由 GitHub Pages 提供，AI API 由 Cloud Run 提供，因此是跨 Origin HTTPS request。
-- **Security boundary**：Gemini API Key 與 Firestore IAM 僅存在 Server side；Cloud Run endpoint 是 public anonymous，但已有 exact-origin CORS、bounded input 與 rate limiting；Browser 不直接存取 Firestore。
+- **Security boundary**：Gemini API Key 與 Firestore IAM 僅存在 Server side；System Prompt 的執行控制權在 Backend（原始碼仍公開），API Client 無法覆寫；Cloud Run endpoint 是 public anonymous，但已有 extra-field rejection、exact-origin CORS、bounded input 與 rate limiting。
 - **Identity semantics**：`session_id` 是 correlation ID，不是 Login、身份或授權憑證。
 - **Logging semantics**：同步 Firestore client 位於 response 後的 `BackgroundTasks`，並由 `try/except` failure isolation；它不是具 durability guarantee 的外部 Queue。
 - **Retrieval behavior**：沒有 query rewrite、embedding、vector search、reranker 或 top-k context selection；每次都傳送完整教材。
@@ -64,8 +64,7 @@ Chatbot 開啟時，`chatbot.js` 下載 `content.json`，把全站文章組合�
     {"role": "user", "parts": [{"text": "什麼是 Docker？"}]},
     {"role": "model", "parts": [{"text": "Docker 是容器化平台。"}]}
   ],
-  "message": "Kubernetes 的角色是什麼？",
-  "system_instruction": "回答規則與全站教材內容"
+  "message": "Kubernetes 的角色是什麼？"
 }
 ```
 
