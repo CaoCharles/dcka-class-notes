@@ -24,6 +24,12 @@ window.CHATBOT_NAME = window.CHATBOT_NAME || "學習筆記小幫手";
 window.CHATBOT_MASCOT_URL = window.CHATBOT_MASCOT_URL || `${basePath}/assets/images/chatbot-mascot.png`;
 // 初始歡迎訊息
 window.INITIAL_PROMPT = `嗨！我是 ${window.CHATBOT_NAME} 🕶️\n\n我可以幫你解答 Docker 與 Kubernetes 的問題，並提供相關文章連結。\n\n試試問我：\n- 如何安裝 Docker？\n- 什麼是 Kubernetes？\n- 如何建立 Private Registry？`;
+// 這個分頁的對話識別碼，讓後端能把同一次對話的問答串起來
+let chatSessionId = sessionStorage.getItem("chatSessionId");
+if (!chatSessionId) {
+    chatSessionId = crypto.randomUUID();
+    sessionStorage.setItem("chatSessionId", chatSessionId);
+}
 
 // ====== 小工具：把 history 畫回畫面 ======
 function rebuildChatFromHistory() {
@@ -185,6 +191,9 @@ function clearHistory() {
     chatHistory = [];
     sessionStorage.removeItem("geminiChatHistory");
     chatMessages.innerHTML = "";
+    // 清除歷史視為開啟新的一次對話，換一個新的 session_id
+    chatSessionId = crypto.randomUUID();
+    sessionStorage.setItem("chatSessionId", chatSessionId);
     if (window.INITIAL_PROMPT) {
         addMessage("bot", window.INITIAL_PROMPT);
     }
@@ -243,6 +252,7 @@ ${allDocsContent}
                 history: chatHistory.slice(0, -1), // 排除剛加入的使用者訊息
                 message: messageText,
                 system_instruction: systemInstruction,
+                session_id: chatSessionId,
             }),
         });
 
