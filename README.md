@@ -70,7 +70,7 @@ flowchart TB
     end
 
     subgraph Google Cloud
-        Gemini[🤖 Gemini API<br/>gemini-3.7-flash]
+        Gemini[🤖 Gemini API<br/>gemini-3.5-flash]
     end
 
     Browser -->|1. 訪問文件| Frontend

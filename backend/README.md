@@ -54,7 +54,7 @@
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                   Google Cloud (Gemini API)                             │
 │  ┌─────────────────────────────────────────────────────────┐           │
-│  │  Gemini 3.7 Flash                                       │           │
+│  │  Gemini 3.5 Flash                                       │           │
 │  │  - 上下文窗口: 1,000,000 (1M) Tokens                     │           │
 │  │  - 生成 AI 回應                                          │           │
 │  └─────────────────────────────────────────────────────────┘           │
@@ -80,21 +80,23 @@ backend/
 
 ---
 
-## 🤖 使用的模型資訊：Gemini 3.7 Flash
+## 🤖 使用的模型資訊：Gemini 3.5 Flash
 
-本專案使用 **Gemini 3.7 Flash** (`gemini-3.7-flash`)，這是 Google 目前最新的穩定版高效能模型。
+本專案使用 **Gemini 3.5 Flash** (`gemini-3.5-flash`)。
+
+> 📌 **為什麼不用最新的 3.7-flash？** 實測時 gemini-3.7-flash 正值發布初期，Google 端容量吃緊，經常要 30-50 秒才回應、甚至偶發 503 高負載錯誤；3.6-flash 也要接近 30 秒。反觀 3.5-flash 多次測試都穩定落在 3-6 秒內完成。對於即時問答的 chatbot，穩定與速度比「最新」更重要，因此選用 3.5-flash。之後 Google 容量狀況改善，可再評估換回更新版本。
 
 ### 模型規格
 
-- **模型名稱**: Gemini 3.7 Flash
-- **Context Window (上下文窗口)**: 1,000,000 Tokens、最大輸出 64k Tokens
+- **模型名稱**: Gemini 3.5 Flash
+- **Context Window (上下文窗口)**: 1,000,000 Tokens
 - **特點**:
   - 穩定版（GA）模型，適合生產環境
-  - 支援可調 thinking level（low/medium/high）
+  - 支援可調 thinking level（low/medium/high），本專案設為 `low` 以降低延遲
   - 高效能，適合 RAG 應用
   - 100 萬 tokens 足以放入數百篇教學文章
 
-> 📌 模型會持續迭代，若要換成更新版本，直接修改 `chat_server.py` 裡 `genai.GenerativeModel('gemini-3.7-flash')` 的字串即可，可到 [Gemini API 模型列表](https://ai.google.dev/gemini-api/docs/models) 查詢目前可用的模型 ID。
+> 📌 模型會持續迭代，若要換成更新版本，直接修改 `chat_server.py` 裡 `client.models.generate_content(model="gemini-3.5-flash", ...)` 的字串即可，換版本前建議先實測延遲與穩定性（可參考 `backend/` 內的測試方式：連續呼叫同一 prompt 幾次比較耗時）。可到 [Gemini API 模型列表](https://ai.google.dev/gemini-api/docs/models) 查詢目前可用的模型 ID。
 
 ### 費用參考
 
@@ -149,25 +151,29 @@ backend/
 # 1. 接收請求
 @app.post("/api/chat")
 async def chat_endpoint(request: ChatRequest):
-    
-    # 2. 轉換對話歷史格式（user/bot → user/model）
-    gemini_history = []
+
+    # 2. 轉換對話歷史格式（user/bot → user/model），組成 Content 物件
+    contents = []
     for msg in request.history:
         role = "user" if msg.role == "user" else "model"
-        gemini_history.append({...})
-    
-    # 3. 建立聊天會話
-    chat = model.start_chat(history=gemini_history)
-    
-    # 4. 組合系統指令 + 使用者訊息
-    final_message = f"{system_instruction}\n\nUser: {message}"
-    
-    # 5. 發送到 Gemini API
-    response = chat.send_message(final_message)
-    
-    # 6. 返回結果
+        contents.append(types.Content(role=role, parts=[...]))
+    contents.append(types.Content(role="user", parts=[types.Part.from_text(text=request.message)]))
+
+    # 3. 呼叫 Gemini API，system_instruction 透過 config 傳入（非字串拼接）
+    response = client.models.generate_content(
+        model="gemini-3.5-flash",
+        contents=contents,
+        config=types.GenerateContentConfig(
+            system_instruction=request.system_instruction,
+            thinking_config=types.ThinkingConfig(thinking_level="low"),
+        ),
+    )
+
+    # 4. 返回結果
     return {"text": response.text}
 ```
+
+> 📌 本專案用的是新版 `google-genai` SDK（`from google import genai`），不是舊版 `google-generativeai`。兩者 import 路徑與 API 都不同，若參考網路上的舊教學要留意版本差異。
 
 ---
 
@@ -263,11 +269,15 @@ hooks/
 ### 後端如何處理提示詞
 
 ```python
-# chat_server.py 第 77-80 行
-final_message = request.message
-if request.system_instruction:
-    # 將 RAG 上下文與使用者問題合併
-    final_message = f"{request.system_instruction}\n\nUser Question: {request.message}"
+# chat_server.py
+response = client.models.generate_content(
+    model="gemini-3.5-flash",
+    contents=contents,  # 對話歷史 + 這次的使用者訊息
+    config=types.GenerateContentConfig(
+        system_instruction=request.system_instruction,  # RAG 上下文透過 system_instruction 傳入
+        thinking_config=types.ThinkingConfig(thinking_level="low"),
+    ),
+)
 ```
 
 ---
