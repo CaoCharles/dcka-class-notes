@@ -80,7 +80,7 @@ tags:
     `/api/chat` 仍是匿名公開入口，沒有登入或 API Authentication；現已具備 Backend-owned System Prompt、extra-field rejection、exact-origin CORS、輸入上限、instance-local rate limiting、一般化錯誤與 `ACTIVE` 的 Firestore 90 天 TTL。後端部署以 GitHub OIDC／WIF 取得短效憑證，Build 與 Runtime 各使用專用 Service Account。若要跨 Cloud Run instances 套用全域配額，仍需 Cloud Armor、API Gateway 或集中式 rate-limit store。
 
 !!! success "部署驗證"
-    2026-08-19 已確認 revision `dcka-chatbot-backend-00006-drd` 使用 `dcka-chatbot-runtime`、承接 100% Traffic；GitHub Pages、Cloud Run、CORS、Gemini 與 Firestore 端到端流程皆正常。
+    2026-08-19 已確認 revision `dcka-chatbot-backend-00007-p7b` 使用 `dcka-chatbot-runtime`、承接 100% Traffic；GitHub Pages、Cloud Run、Backend-owned Prompt、教材快取、CORS、Gemini 與 Firestore 端到端流程皆正常。
 
 ## 延伸閱讀
 

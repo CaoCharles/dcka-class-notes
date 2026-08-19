@@ -129,8 +129,10 @@ Firestore 位於 Google Cloud trust boundary，由 Cloud Run service account 存
 - `GET /`：HTTP 200。
 - `POST /api/chat`：HTTP 200。
 - CORS：允許 `https://caocharles.github.io`。
-- WIF 部署成功；Cloud Run revision `dcka-chatbot-backend-00006-drd` 使用 `dcka-chatbot-runtime` 並承接 100% 流量。
-- 簡短部署驗證問題回應時間：約 1.73 秒。
+- WIF 部署成功；Cloud Run revision `dcka-chatbot-backend-00007-p7b` 使用 `dcka-chatbot-runtime` 並承接 100% 流量。
+- Backend-owned Prompt 首次請求約 5.60 秒；同一 instance 快取命中的第二次請求約 3.30 秒。
+- Browser Request 不含 `system_instruction`；若刻意夾帶該欄位，API 會回 HTTP 422。
 - Firestore 寫入 `status=success`，並建立 90 天後的 `expires_at`；TTL policy 為 `ACTIVE`。
+- Cloud Logging 只記錄一次教材 cache refresh，證實第二次請求沿用一小時 instance-local cache。
 - 模型回覆：繁體中文正常。
 - Chatbot 長回答、文章連結及程式碼區塊正常顯示。

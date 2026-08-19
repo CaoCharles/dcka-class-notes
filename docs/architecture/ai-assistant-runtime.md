@@ -114,18 +114,20 @@ Browser 呼叫 `POST /api/chat` 時，主要 Request 結構如下：
 | Cloud Run Health Check | HTTP 200 |
 | 正式 Origin CORS Preflight | HTTP 200，回傳 `access-control-allow-origin: https://caocharles.github.io` |
 | 未授權 Origin | HTTP 400 |
-| `POST /api/chat` | HTTP 200，約 1.73 秒回覆 |
+| `POST /api/chat` | HTTP 200；首次教材載入約 5.60 秒，快取命中約 3.30 秒 |
+| Prompt Ownership | Browser 不傳 Prompt；夾帶 `system_instruction` 時 HTTP 422 |
+| 教材 Cache | Cloud Logging 僅出現一次 refresh；第二次請求沿用一小時快取 |
 | Firestore `chat_logs` | 成功寫入 `session_id`、Model、Latency、Status 與時間戳 |
 | Firestore TTL | `chat_logs.expires_at` 為 `ACTIVE`，驗證紀錄建立 90 天後到期時間 |
 
 !!! note "測試資料"
-    線上部署驗證會建立一筆匿名問答紀錄；它與一般訪客紀錄採相同遮罩及 90 天 TTL 規則，不包含登入身分。
+    本輪線上部署驗證建立兩筆匿名問答紀錄；它們與一般訪客紀錄採相同遮罩及 90 天 TTL 規則，不包含登入身分。
 
 ## Security Boundary
 
 - `GEMINI_API_KEY` 只存在 Cloud Run Runtime Environment。
 - System Prompt 的執行控制權位於 Backend；Repository 原始碼仍是公開的，但 API Client 無法傳入或覆寫 `system_instruction`。
-- Backend 按需下載約 286 KB 的 `content.json`，每個 Cloud Run instance 預設快取一小時；沒有聊天請求時不會產生下載流量。
+- Backend 按需下載約 287 KiB 的 `content.json`，每個 Cloud Run instance 預設快取一小時；沒有聊天請求時不會產生下載流量。
 - Browser 不會直接連線 Firestore。
 - Cloud Run 使用專用 `dcka-chatbot-runtime` Service Account，透過 `roles/datastore.user` 存取 Firestore。
 - Cloud Run Compute 維持 Stateless，Persistent State 由 Firestore 保存。

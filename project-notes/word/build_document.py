@@ -300,12 +300,14 @@ def add_validation_table(doc):
     rows = [
         ("GitHub Pages JavaScript", "新版 Cloud Run URL 已上線", "通過"),
         ("Cloud Run GET /", "HTTP 200", "通過"),
-        ("POST /api/chat", "HTTP 200；部署驗證約 1.73 秒", "通過"),
-        ("CORS", "只允許 GitHub Pages 與 localhost；本機測試通過", "本機通過"),
+        ("POST /api/chat", "HTTP 200；首次約 5.60 秒、快取命中約 3.30 秒", "線上通過"),
+        ("Prompt Ownership", "Browser 不傳 Prompt；夾帶 system_instruction 時 HTTP 422", "線上通過"),
+        ("教材 Cache", "Cloud Logging 僅一次 refresh；第二次請求沿用一小時快取", "線上通過"),
+        ("CORS", "只允許 GitHub Pages 與 localhost；正式 Origin 線上通過", "線上通過"),
         ("API 防護", "1 MiB body、4000 字訊息、20 則 History、20 req/min", "本機通過"),
         ("錯誤隔離", "Client 只收到一般錯誤；完整例外留在 Logging", "本機通過"),
         ("Chatbot 實際問答", "繁中回答、文章連結與程式碼顯示正常", "通過"),
-        ("Firestore chat_logs", "遮罩、expires_at 與 background write 自動測試通過", "本機通過"),
+        ("Firestore chat_logs", "兩筆問答、模型、延遲、狀態與 expires_at 正確落盤", "線上通過"),
     ]
     table = doc.add_table(rows=1, cols=3)
     table.style = "Table Grid"
@@ -491,7 +493,7 @@ def build():
 
     page_break(doc)
     doc.add_heading("9. 驗證結果", level=1)
-    add_para(doc, "驗證日期：2026-08-19（Asia/Taipei）。安全與 Backend-owned Prompt 已通過後端 13 項自動測試及 MkDocs strict build；既有 GitHub Pages Action、WIF／Cloud Run 部署、正式 CORS、線上問答、Firestore 落盤與 TTL ACTIVE 驗證亦正常。")
+    add_para(doc, "驗證日期：2026-08-19（Asia/Taipei）。安全與 Backend-owned Prompt 已通過後端 13 項自動測試及 MkDocs strict build；GitHub Pages Action、WIF／Cloud Run revision dcka-chatbot-backend-00007-p7b、正式 CORS、Prompt 拒絕覆寫、教材快取、線上問答、Firestore 落盤與 TTL ACTIVE 驗證亦正常。")
     add_validation_table(doc)
     add_para(doc, "簡短 API 測試回應：", bold=True, before=8, after=4)
     add_code(doc, "同學你好！Docker 的用途是將應用程式及其所需的執行環境打包成輕量級的容器，確保程式在任何系統上都能一致、快速地部署與執行。")

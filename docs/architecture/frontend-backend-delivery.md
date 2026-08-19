@@ -74,7 +74,7 @@ Backend 由 GitHub Actions 監看 `backend/**`，再交給 Google Cloud 建置�
     GitHub Actions 已改用 Workload Identity Federation，不再保存 `GCP_SA_KEY`。每次 workflow 由 GitHub OIDC 換取短效憑證，再 impersonate 專用部署帳號。
 
 !!! success "2026-08-19 線上驗證完成"
-    GitHub Pages 與 Cloud Run Actions 均部署成功；Cloud Run revision `dcka-chatbot-backend-00006-drd` 使用 `dcka-chatbot-runtime` 並承接 100% 流量。正式 Origin CORS、Gemini 問答、Firestore 寫入與 `expires_at` TTL `ACTIVE` 均已完成端對端驗證。
+    GitHub Pages 與 Cloud Run Actions 均部署成功；Cloud Run revision `dcka-chatbot-backend-00007-p7b` 使用 `dcka-chatbot-runtime` 並承接 100% 流量。正式 Origin CORS、Backend-owned Prompt、教材快取、Gemini 問答、Firestore 寫入與 `expires_at` TTL `ACTIVE` 均已完成端對端驗證。
 
 ## 兩條 Pipeline 的差異
 
