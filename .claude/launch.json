@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "mkdocs-serve",
+      "runtimeExecutable": "uv",
+      "runtimeArgs": ["run", "mkdocs", "serve", "-a", "127.0.0.1:8000"],
+      "port": 8000
+    },
+    {
+      "name": "static-site",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8010", "--directory", "site"],
+      "port": 8010
+    }
+  ]
+}
