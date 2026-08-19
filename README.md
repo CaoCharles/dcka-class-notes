@@ -71,18 +71,23 @@ flowchart TB
 
     subgraph Google Cloud
         Gemini[🤖 Gemini API<br/>gemini-3.5-flash]
+        Firestore[(🗄️ Firestore<br/>chat_logs)]
     end
 
     Browser -->|1. 訪問文件| Frontend
     Browser -->|2. 發送聊天訊息| Backend
     Backend -->|3. 轉發請求<br/>附帶 API Key| Gemini
     Gemini -->|4. AI 回應| Backend
-    Backend -->|5. 回傳結果| Browser
+    Backend -->|5. 非同步寫入問答紀錄| Firestore
+    Backend -->|6. 回傳結果| Browser
 
     style Frontend fill:#e1f5fe
     style Backend fill:#fff3e0
     style Gemini fill:#e8f5e9
+    style Firestore fill:#fce4ec
 ```
+
+> 📌 每次問答會額外記錄一筆到 Firestore（`session_id`、問題、回答、模型、延遲、成功/失敗狀態），寫入失敗不影響聊天回應本身。詳見 [backend/README.md](backend/README.md#firestore-問答紀錄)。
 
 ### API 端點
 
@@ -293,6 +298,7 @@ gcloud run deploy dcka-chatbot-backend \
 | **文件框架** | MkDocs + Material Theme |
 | **後端服務** | FastAPI + Uvicorn |
 | **AI 整合** | Google Gemini API |
+| **問答紀錄** | Google Cloud Firestore |
 | **套件管理** | uv (Astral) |
 | **前端部署** | GitHub Pages |
 | **後端部署** | Google Cloud Run（GitHub Actions 自動部署） |

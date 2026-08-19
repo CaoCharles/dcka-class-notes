@@ -177,6 +177,57 @@ async def chat_endpoint(request: ChatRequest):
 
 ---
 
+## 🗄️ Firestore 問答紀錄
+
+在此之前，整個架構是完全無狀態的：問答紀錄只存在瀏覽器的 `sessionStorage`，關掉分頁就消失，不同裝置也看不到彼此的對話，後端也沒有寫入任何地方（`content.json` 是教材靜態資料，不是問答紀錄）。
+
+現在每次呼叫 `/api/chat` 後，無論成功或失敗，都會非同步寫一筆紀錄到 Firestore 的 `chat_logs` collection：
+
+| 欄位 | 說明 |
+|------|------|
+| `session_id` | 前端在 `sessionStorage` 產生的 UUID，同一次對話（同一個分頁、未按清除歷史）共用同一個值 |
+| `question` | 使用者這次問的問題 |
+| `answer` | Gemini 的回答（失敗時為 `null`） |
+| `model` | 呼叫的模型名稱 |
+| `latency_ms` | 這次呼叫 Gemini API 花費的時間（毫秒） |
+| `status` | `success` 或 `error` |
+| `error` | 失敗時的錯誤訊息（成功時為 `null`） |
+| `created_at` | 伺服器時間戳記（Firestore `SERVER_TIMESTAMP`） |
+
+**設計重點**：`log_chat()` 內部包了 `try/except`，Firestore 寫入失敗只會印警告到 log，**不會**讓聊天功能跟著壞掉——記錄是附加功能，不該變成單點故障。
+
+### 一次性設定
+
+```bash
+# 啟用 API
+gcloud services enable firestore.googleapis.com --project=<PROJECT_ID>
+
+# 建立 Native mode 資料庫（建議跟 Cloud Run 同區域）
+gcloud firestore databases create \
+  --project=<PROJECT_ID> \
+  --location=asia-east1 \
+  --type=firestore-native
+
+# 授權 Cloud Run 執行用的 service account 可以讀寫 Firestore
+gcloud projects add-iam-policy-binding <PROJECT_ID> \
+  --member="serviceAccount:<PROJECT_NUMBER>-compute@developer.gserviceaccount.com" \
+  --role="roles/datastore.user"
+```
+
+> 📌 沒有特別指定 service account 時，Cloud Run 預設用的是 Compute Engine 預設服務帳號（`<PROJECT_NUMBER>-compute@developer.gserviceaccount.com`），要另外授權才能寫入 Firestore，否則 `log_chat()` 會靜默失敗（只印 log，不會噴錯給使用者）。
+
+### 查詢紀錄
+
+Firestore Console 可以直接看，或用指令快速查最新幾筆：
+
+```bash
+TOKEN=$(gcloud auth print-access-token)
+curl -s -H "Authorization: Bearer $TOKEN" \
+  "https://firestore.googleapis.com/v1/projects/<PROJECT_ID>/databases/(default)/documents/chat_logs?pageSize=10&orderBy=created_at%20desc"
+```
+
+---
+
 ## 🧠 RAG 提示詞與文章串接流程
 
 本聊天機器人使用 **RAG（Retrieval-Augmented Generation）** 技術，將當前頁面內容作為上下文傳遞給 AI，讓回答更精準。
